@@ -1,0 +1,37 @@
+{
+  "total_claims": 0,
+  "correct_predictions": 0,
+  "incorrect_predictions": 0,
+  "accuracy": 0.0,
+  "neutral_predictions": 0,
+  "neutral_rate": 0.0,
+  "expected_distribution": {},
+  "predicted_distribution": {},
+  "confusion_matrix": {
+    "labels": [
+      "support",
+      "refute",
+      "neutral"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ]
+  },
+  "context_accuracy": {},
+  "split": "en",
+  "generated_at_utc": "2026-04-17T18:56:57.275102+00:00"
+}

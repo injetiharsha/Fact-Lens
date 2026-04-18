@@ -1,0 +1,22 @@
+{
+  "health": {
+    "primary": ["openFDA", "pubmed"],
+    "fallback": ["web_search"]
+  },
+  "space": {
+    "primary": ["NASA"],
+    "fallback": ["web_search"]
+  },
+  "finance": {
+    "primary": ["SEC", "web_search"],
+    "fallback": ["llm_verify"]
+  },
+  "science": {
+    "primary": ["pubmed", "web_search"],
+    "fallback": ["llm_verify"]
+  },
+  "default": {
+    "primary": ["web_search"],
+    "fallback": ["llm_verify"]
+  }
+}

@@ -1,0 +1,8 @@
+enable_llm_verifier: true
+llm_provider: openai
+llm_model: gpt-4o-mini
+checkability_checkpoint: checkpoints/checkability/latest
+context_checkpoint: checkpoints/context/latest
+relevance_checkpoint: checkpoints/relevance/latest
+stance_checkpoint: checkpoints/stance/latest
+min_claim_words: 6

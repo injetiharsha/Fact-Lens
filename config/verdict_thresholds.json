@@ -1,0 +1,6 @@
+{
+  "true": 0.75,
+  "mixed": [0.45, 0.75],
+  "false": 0.25,
+  "unverifiable": 0.15
+}

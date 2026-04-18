@@ -1,0 +1,47 @@
+﻿{
+    "claim":  "The Earth revolves around the Sun.",
+    "language":  "en",
+    "generated_at":  "2026-04-17T06:02:05",
+    "results":  [
+                    {
+                        "env":  "venv",
+                        "llm_off":  {
+                                        "verdict":  "support",
+                                        "confidence":  0.6709129146352476,
+                                        "evidence_count":  9,
+                                        "file":  "tests\\llm_toggle\\dual_env_manual_run\\venv_llm_off.json"
+                                    },
+                        "llm_on":  {
+                                       "verdict":  "support",
+                                       "confidence":  0.6709129146352476,
+                                       "evidence_count":  9,
+                                       "file":  "tests\\llm_toggle\\dual_env_manual_run\\venv_llm_on.json"
+                                   },
+                        "changed":  {
+                                        "verdict_changed":  false,
+                                        "confidence_delta":  0,
+                                        "evidence_count_delta":  0
+                                    }
+                    },
+                    {
+                        "env":  "venv_gpu",
+                        "llm_off":  {
+                                        "verdict":  "support",
+                                        "confidence":  0.6724407448442895,
+                                        "evidence_count":  9,
+                                        "file":  "tests\\llm_toggle\\dual_env_manual_run\\venv_gpu_llm_off.json"
+                                    },
+                        "llm_on":  {
+                                       "verdict":  "support",
+                                       "confidence":  0.6724407448442895,
+                                       "evidence_count":  9,
+                                       "file":  "tests\\llm_toggle\\dual_env_manual_run\\venv_gpu_llm_on.json"
+                                   },
+                        "changed":  {
+                                        "verdict_changed":  false,
+                                        "confidence_delta":  0,
+                                        "evidence_count_delta":  0
+                                    }
+                    }
+                ]
+}

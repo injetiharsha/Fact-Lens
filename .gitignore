@@ -1,0 +1,72 @@
+# Environment
+.env
+.env.local
+.env.*.local
+
+.venv
+.venv-gpu
+cuda.py
+.llm_verifier_rate_limit.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data and Models
+data/raw/
+data/processed/
+data/interim/
+checkpoints/*/
+models/
+old_checkpoints/
+*.pth
+*.pt
+*.bin
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+.pytest_cache/
+.coverage
+
+# Benchmarks and Results
+benchmarks/results/*.jsonl
+benchmarks/reports/*.csv
+tests/benchmarks/*/parallel_like_results_*.json
+tmp_arch_doc/
+tmp_arch_doc.zip
+tmp_arch_doc_snippets.txt
+temp_*.docx
+temp_*.txt

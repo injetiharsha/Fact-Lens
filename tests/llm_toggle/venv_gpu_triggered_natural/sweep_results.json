@@ -1,0 +1,20 @@
+[
+  {
+    "claim": "The Earth revolves around the Sun.",
+    "on_verdict": "support",
+    "on_confidence": 0.7036308799659927,
+    "on_evidence_count": 8,
+    "llm_enabled": true,
+    "llm_triggered": false,
+    "llm_reason": "not_triggered"
+  },
+  {
+    "claim": "Vitamin C cures all viral infections.",
+    "on_verdict": "neutral",
+    "on_confidence": 0.5,
+    "on_evidence_count": 8,
+    "llm_enabled": true,
+    "llm_triggered": true,
+    "llm_reason": "groq verify call failed: Expecting value: line 3 column 16 (char 40)"
+  }
+]

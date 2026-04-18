@@ -1,0 +1,385 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.tree{font-family:var(--font-mono,monospace);font-size:12px;line-height:1.65;padding:6px 0}
+.row{display:flex;align-items:center;gap:5px;padding:2px 6px;border-radius:4px;cursor:pointer;user-select:none;transition:background .1s}
+.row:hover{background:var(--color-background-secondary)}
+.indent{padding-left:16px;border-left:1px solid var(--color-border-tertiary);margin-left:8px}
+.collapsed{display:none}
+.caret{font-size:8px;color:var(--color-text-tertiary);width:10px;flex-shrink:0;transition:transform .15s;display:inline-block}
+.caret.open{transform:rotate(90deg)}
+.spacer{width:10px;flex-shrink:0}
+.fname{flex:1;min-width:0}
+.t-root .fname{font-weight:500;color:var(--color-text-primary)}
+.t-dir  .fname{color:var(--color-text-primary)}
+.t-py   .fname{color:#0C447C}
+.t-nb   .fname{color:#854F0B}
+.t-yaml .fname{color:#0F6E56}
+.t-json .fname{color:#993C1D}
+.t-txt  .fname{color:var(--color-text-secondary)}
+.t-md   .fname{color:var(--color-text-secondary)}
+.tag{font-size:10px;color:var(--color-text-tertiary);font-family:var(--font-sans);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:320px}
+
+.badge{font-size:10px;font-family:var(--font-sans);padding:1px 7px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.b-4050{background:#E1F5EE;color:#085041}
+.b-k1  {background:#EEEDFE;color:#3C3489}
+.b-k2  {background:#E6F1FB;color:#0C447C}
+.b-c1  {background:#FAEEDA;color:#633806}
+.b-c2  {background:#FAECE7;color:#712B13}
+.b-has {background:#F1EFE8;color:#444441}
+.b-new {background:#FCEBEB;color:#791F1F}
+.b-off {background:#EAF3DE;color:#27500A}
+.b-cfg {background:#E1F5EE;color:#085041}
+.b-data{background:#EAF3DE;color:#3B6D11}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px;padding:6px 6px 8px;border-bottom:1px solid var(--color-border-tertiary);margin-bottom:4px}
+.legend span{font-size:10px;font-family:var(--font-sans);padding:2px 8px;border-radius:10px}
+.platform-label{font-size:10px;font-family:var(--font-sans);color:var(--color-text-tertiary);padding:4px 6px 2px;letter-spacing:.05em}
+</style>
+
+<div class="legend">
+  <span class="b-4050">RTX 4050 local</span>
+  <span class="b-k1">Kaggle Acc 1</span>
+  <span class="b-k2">Kaggle Acc 2</span>
+  <span class="b-c1">Colab Acc 1</span>
+  <span class="b-c2">Colab Acc 2</span>
+  <span class="b-has">existing ckpt</span>
+  <span class="b-new">needs training</span>
+  <span class="b-off">off-shelf</span>
+  <span class="b-cfg">config</span>
+  <span class="b-data">dataset</span>
+</div>
+<div class="tree" id="tree"></div>
+
+<script>
+const D=(n,tag,ch,open=false)=>({k:'dir',n,tag,ch,open});
+const F=(n,cls,b='',tag='')=>({k:'file',n,cls,b,tag});
+const PY=(n,b='',tag='')=>F(n,'t-py',b,tag);
+const NB=(n,b='',tag='')=>F(n,'t-nb',b,tag);
+const YML=(n,tag='')=>F(n,'t-yaml','b-cfg',tag);
+const JS=(n,tag='')=>F(n,'t-json','b-cfg',tag);
+const MD=(n,tag='')=>F(n,'t-md','',tag);
+const TXT=(n,tag='')=>F(n,'t-txt','',tag);
+
+const tree=[
+  F('.env.example','t-txt','b-cfg','all API keys, model paths, feature flags — never commit .env'),
+  F('.gitignore','t-txt','','checkpoints/ · data/raw/ · logs/ · .env · __pycache__'),
+  F('requirements.txt','t-txt','','runtime pipeline deps only'),
+  F('requirements_train.txt','t-txt','b-new','transformers · datasets · accelerate · sentence-transformers'),
+  MD('README.md','project overview and setup'),
+
+  D('configs/',  'all config — no logic lives here', [
+    YML('pipeline.yaml','ENABLE_* toggles · model checkpoint paths · thresholds'),
+    D('domains/', 'routing + credibility', [
+      JS('credibility_tiers.json','T1–T8 weight per root domain. Unknown domains → T6 default'),
+      JS('domain_routing.json','context label → prioritized API/search/scrape sources'),
+      JS('trusted_sources_india.json','pib · rbi · prs · data.gov.in · factly · altnews · boomlive'),
+      TXT('restricted_domains.txt','social media · blocked domains (T8)'),
+    ], true),
+    D('scoring/', 'formula parameters — tune these without touching code', [
+      YML('verdict_thresholds.yaml','0.30 RS drop threshold · 0.55 / 0.75 verdict cutoffs'),
+      YML('temporal_weights.yaml','age bracket → TW · domain exceptions: HISTORY SCIENCE = 1.0'),
+      YML('diversity_weights.yaml','domain diversity multipliers: 1st=1.0 · 2nd=0.70 · 3rd=0.50'),
+    ], true),
+  ], true),
+
+  D('checkpoints/', 'model weights — excluded from git (too large)', [
+    D('off_shelf/', 'download once, never retrain', [
+      D('fasttext/','',[ F('lid.176.bin','t-txt','b-off','fastText language detection — 176 languages') ]),
+      D('ner_en/','',[ F('en_core_web_trf/','t-txt','b-off','spaCy RoBERTa-based NER') ]),
+      D('ner_indic/','',[ F('indicner_v1/','t-txt','b-off','AI4Bharat IndicNER') ]),
+      D('biencoder/','',[ F('multilingual_e5_small/','t-txt','b-off','shared EN+Indic — no fine-tune needed') ]),
+    ], true),
+    D('checkability/', 'existing — evaluate first on CLEF 2022', [
+      D('en/','',[  F('v5_public_large/','t-txt','b-has','eval target: Macro-F1 > 0.82')  ]),
+      D('indic/','',[  F('v5_public_large_multilingual/','t-txt','b-has','eval on IndicNLI Hindi test')  ]),
+    ], true),
+    D('context/', 'existing — evaluate first on DBpedia 14', [
+      D('en/','',[  F('context_model_final/','t-txt','b-has','eval target: Accuracy > 0.83')  ]),
+      D('indic/','',[  F('muril_base_v1/','t-txt','b-has','eval on IndicNLP News test')  ]),
+    ], true),
+    D('relevance/', '', [
+      D('crossencoder/', '', [
+        D('en/','',[  F('msmarco_minilm_v1/','t-txt','b-new','TRAIN Colab Acc 1 · FEVER fine-tune')  ]),
+        D('indic/','',[  F('mmarco_mminiml_v1/','t-txt','b-new','TRAIN Colab Acc 2 · FEVER+IndicQA')  ]),
+      ], true),
+    ], true),
+    D('stance/', '', [
+      D('en/', '', [
+        F('stance_b3/','t-txt','b-has','benchmark first on FEVER dev — 3-way accuracy'),
+        F('deberta_v3_base_v1/','t-txt','b-new','TRAIN Kaggle Acc 1 · MNLI→FEVER→VitaminC staged'),
+      ]),
+      D('indic/', '', [
+        F('mdeberta_v3_base_v1/','t-txt','b-new','TRAIN Kaggle Acc 2 · IndicNLI + translated FEVER'),
+      ]),
+    ], true),
+  ], true),
+
+  D('data/', 'datasets', [
+    D('raw/', 'download here — never edit', [
+      D('stance/', '', [
+        D('mnli/','b-data','MNLI warmup — HuggingFace: multi_nli'),
+        D('fever/','b-data','FEVER v1.0 — HuggingFace: fever'),
+        D('vitaminc/','b-data','Contrastive NLI — tals/vitaminc — CRITICAL'),
+        D('indicnli/','b-data','AI4Bharat 11 langs — ai4bharat/IndicNLI'),
+        D('indicxnli/','b-data','Divyanshu/indicxnli'),
+        D('xnli/','b-data','HuggingFace: xnli'),
+      ], true),
+      D('relevance/', '', [
+        D('fever_evidence/','b-data','claim-evidence pairs — HuggingFace: fever'),
+        D('msmarco_passage/','b-data','HuggingFace: ms_marco'),
+        D('indicqa/','b-data','AI4Bharat IndicQA'),
+        D('mrtydi_hindi/','b-data','HuggingFace: mr_tydi'),
+      ], true),
+      D('checkability_eval/', '', [
+        D('clef_2022_task1a/','b-data','checkthat.gitlab.io'),
+        D('clef_2023_task1a/','b-data','checkthat.gitlab.io'),
+      ]),
+      D('context_eval/', '', [
+        D('dbpedia_14_test/','b-data','HuggingFace: dbpedia_14'),
+        D('indicnlp_news_test/','b-data','AI4Bharat IndicNLPSuite'),
+      ]),
+    ], true),
+    D('processed/', 'tokenized + cleaned — regenerate from raw if needed', [
+      D('stance_en/','',[ TXT('train.jsonl'), TXT('val.jsonl'), TXT('test.jsonl') ]),
+      D('stance_indic/', '', [
+        D('hi/',''), D('ta/',''), D('te/',''), D('kn/',''), D('ml/',''),
+      ], true),
+      D('relevance_en/','',[ TXT('biencoder_pairs/'), TXT('ce_triplets/') ]),
+      D('relevance_indic/','',[ TXT('biencoder_pairs/'), TXT('ce_triplets/') ]),
+    ]),
+    D('augmented/', 'IndicTrans2 translated + synthetic', [
+      D('back_translated/', '', [
+        D('fever_hi/','source: translated FEVER EN → Hindi via IndicTrans2'),
+        D('vitaminc_hi/','translated VitaminC → Hindi'),
+      ]),
+    ]),
+  ], true),
+
+  D('training/', 'ONE folder — split by hardware platform inside', [
+    MD('README.md','maps each notebook to platform · expected runtime · resume instructions'),
+    F('training_log.json','t-json','b-cfg','tracks epoch completed per model — update after every session'),
+
+    D('local_4050/', 'Evaluation only — RTX 4050 · unlimited sessions', [
+      PY('eval_checkability.py','b-4050','CLEF 2022+2023 → Macro-F1 · MAP · confusion matrix'),
+      PY('eval_context.py','b-4050','DBpedia 14 → Accuracy · Macro-F1 · 14×14 confusion'),
+      PY('eval_relevance_biencoder.py','b-4050','off-shelf e5-small → Recall@5 on FEVER'),
+      PY('eval_relevance_ce.py','b-4050','compare off-shelf vs fine-tuned CE · Recall@5 · MRR@10'),
+      PY('eval_stance_en.py','b-4050','stance_b3 vs deberta_v3 → FEVER 3-way accuracy'),
+      PY('eval_stance_indic.py','b-4050','per-language accuracy on IndicNLI test splits'),
+      PY('prepare_datasets.py','b-4050','preprocess raw → processed/ · tokenize · create triplets'),
+      PY('translate_data.py','b-4050','IndicTrans2 translation pipeline for data augmentation'),
+    ], true),
+
+    D('kaggle_account_1/', 'Stance EN · DeBERTa-v3-base · T4×2 · 12hr sessions', [
+      NB('session1_mnli_warmup.ipynb','b-k1','1 epoch MNLI · batch 8 · grad_accum 4 · save ckpt'),
+      NB('session2_fever_finetune.ipynb','b-k1','3 epochs FEVER · load from session1 ckpt'),
+      NB('session3_vitaminc_finetune.ipynb','b-k1','2 epochs VitaminC · load from session2 ckpt'),
+      NB('session4_eval_en_stance.ipynb','b-k1','final eval on FEVER dev · log all metrics'),
+      YML('config_stance_en.yaml','lr=2e-5 · batch=8 · grad_accum=4 · max_len=512 · fp16=true'),
+      MD('RESUME.md','checkpoint resume instructions — read before starting each session'),
+    ], true),
+
+    D('kaggle_account_2/', 'Stance Indic · mDeBERTa-v3-base · T4×2 · 12hr sessions', [
+      NB('session1_indicnli_train.ipynb','b-k2','3 epochs IndicNLI all languages · batch 8'),
+      NB('session2_fever_hi_finetune.ipynb','b-k2','2 epochs translated FEVER Hindi'),
+      NB('session3_eval_indic_stance.ipynb','b-k2','per-language accuracy: hi/ta/te/kn/ml'),
+      YML('config_stance_indic.yaml','lr=2e-5 · batch=8 · grad_accum=4 · max_len=256 · fp16=true'),
+      MD('RESUME.md','checkpoint resume instructions'),
+    ], true),
+
+    D('colab_account_1/', 'Relevance CE EN · MiniLM · T4 or L4 · 4hr sessions', [
+      NB('session1_msmarco_pretrain.ipynb','b-c1','1 epoch MS-MARCO · batch 32 · save to Drive'),
+      NB('session2_fever_finetune.ipynb','b-c1','3 epochs FEVER evidence pairs'),
+      NB('session3_eval_recall.ipynb','b-c1','Recall@5 · MRR@10 on FEVER dev'),
+      YML('config_relevance_en.yaml','lr=7e-6 · batch=32 · max_len=512 · fp16=true'),
+      MD('RESUME.md','Google Drive checkpoint paths'),
+    ], true),
+
+    D('colab_account_2/', 'Relevance CE Indic · mMiniLM · T4 or L4 · 4hr sessions', [
+      NB('session1_fever_multilingual.ipynb','b-c2','FEVER multilingual CE pairs'),
+      NB('session2_indicqa_finetune.ipynb','b-c2','IndicQA CE triplets fine-tune'),
+      NB('session3_eval_indic_recall.ipynb','b-c2','Recall@5 on IndicQA test'),
+      YML('config_relevance_indic.yaml','lr=7e-6 · batch=32 · max_len=256 · fp16=true'),
+      MD('RESUME.md','Google Drive checkpoint paths'),
+    ], true),
+  ], true),
+
+  D('pipeline/', 'runtime inference — no training code here', [
+    PY('orchestrator.py','b-4050','main coordinator — calls all stages in order'),
+    PY('language_detector.py','','fastText lid.176.bin wrapper → routes EN vs Indic'),
+    D('cache/', 'Redis layer — check before full pipeline', [
+      PY('claim_cache.py','','fingerprint dedup — SHA256 of normalized claim'),
+      PY('evidence_cache.py','','TTL 24hr scraped page cache'),
+    ]),
+    D('ingestion/', 'input handlers per modality', [
+      PY('text_input.py','','direct text → normalization'),
+      D('image/', 'Image pipeline — OCR then text pipeline', [
+        PY('image_input.py','','entry point · quality check · scope gate V1'),
+        PY('tesseract_wrapper.py','','primary OCR · langs: eng+tel+hin+tam+kan+mal'),
+        PY('easyocr_wrapper.py','','fallback · triggered if Tesseract conf < 0.70'),
+        PY('ocr_selector.py','','quality check → pick engine'),
+        PY('ocr_postprocessor.py','','artifact removal · encoding fix · line stitching'),
+      ], true),
+      D('pdf/', 'PDF pipeline — OPTIONAL · build after text+image stable', [
+        PY('pdf_input.py','','page count gate · pdfplumber section extraction'),
+        PY('section_extractor.py','','headings + paragraphs → structured dict'),
+        PY('claim_miner.py','','runs checkability per paragraph · dedup near-identical'),
+        PY('batch_runner.py','','pushes each claim to main pipeline · collects verdicts'),
+        PY('pdf_verdict_report.py','','per-page + per-section + document-level aggregation'),
+      ], true),
+    ], true),
+    D('normalization/', '', [
+      PY('claim_normalizer.py','','whitespace · encoding · length check'),
+      PY('query_generator.py','','NER extraction + LLM-based query expansion → 2–3 queries'),
+    ]),
+    D('checkpoints/', 'model wrappers — paths loaded from configs/pipeline.yaml', [
+      D('checkability/','',[  PY('checker.py'), PY('model_loader.py')  ]),
+      D('context/','',[  PY('classifier.py'), PY('router.py','context label → domain_routing.json lookup'), PY('model_loader.py')  ], true),
+      D('relevance/', '', [
+        PY('biencoder.py','','multilingual-e5-small · 100 → top 20 fast filter'),
+        PY('crossencoder.py','','fine-tuned CE · 20 → top 5–8 precise rank'),
+        PY('two_stage_ranker.py','','orchestrates bi-enc → MMR → CE pipeline'),
+        PY('model_loader.py',''),
+      ], true),
+      D('stance/','',[
+        PY('detector.py','','NLI over each (claim, evidence) pair → [P_sup P_ref P_neu]'),
+        PY('aggregator.py','','EW-weighted vote → agg_sup / agg_ref / agg_neu + conflict flag'),
+        PY('model_loader.py',''),
+      ], true),
+    ], true),
+    D('evidence/', '', [
+      PY('coordinator.py','','gather → MMR select → loop-back if quality low · max 2 retries'),
+      PY('mmr_deduplicator.py','','MMR correct placement: domain diversity re-ranking HERE'),
+      PY('circuit_breaker.py','','per-source retry cap · graceful degradation flag'),
+      D('apis/', 'structured data sources', [
+        PY('nasa.py',''), PY('openfda.py',''), PY('pib.py','Press Information Bureau RSS'),
+        PY('data_gov_in.py',''), PY('prs_india.py',''), PY('newsapi.py',''),
+      ], true),
+      D('search/','',[
+        PY('tavily_search.py','primary'), PY('serpapi_search.py',''), PY('duckduckgo_search.py','fallback'),
+      ]),
+      D('scraper/','',[
+        PY('trafilatura_scraper.py','primary · best for article text extraction'),
+        PY('playwright_scraper.py','JS-rendered pages fallback'),
+        PY('beautifulsoup_scraper.py','simple HTML fallback'),
+      ]),
+    ], true),
+    D('scoring/', 'evidence weight formula — RS × CW × TW', [
+      PY('credibility_scorer.py','','reads credibility_tiers.json → CW per root domain'),
+      PY('temporal_scorer.py','','article age → TW · HISTORY/SCIENCE domains bypass decay'),
+      PY('confidence_aggregator.py','','RS×CW×TW · diversity multiplier · count adjustment'),
+    ], true),
+    D('verdict/','',[
+      PY('verdict_engine.py','','argmax + confidence mapping + conflict flag'),
+      PY('llm_verifier.py','','Groq llama-3.3-70b-versatile · neutral_only · timeout 20s'),
+      PY('explainer.py','','top evidence chain + conflict note for API response'),
+    ], true),
+  ], true),
+
+  D('api/', 'FastAPI layer', [
+    PY('main.py',''),
+    D('routes/','',[
+      PY('claim.py','','POST /check-claim'),
+      PY('image.py','','POST /check-image'),
+      PY('pdf.py','','POST /check-pdf  (optional, enable via config)'),
+      PY('feedback.py','','POST /feedback  — logs wrong verdicts for future training data'),
+      PY('health.py','','GET /health'),
+    ], true),
+    D('schemas/','',[
+      PY('claim_input.py','Pydantic'), PY('verdict_output.py','Pydantic'),
+    ]),
+  ], true),
+
+  D('benchmarks/', 'end-to-end evaluation across test sets', [
+    D('datasets/','',[
+      D('fever_test/','b-data',''), D('clef_2023_test/','b-data',''),
+      D('indicnli_test/','b-data','per language sub-folders'),
+      D('custom_indian_claims/','b-data','100 hand-curated — build this early'),
+    ], true),
+    PY('run_full_benchmark.py','','full pipeline on all test sets · reports per-stage drop-off'),
+    PY('latency_profiler.py','','per-stage timing · identify bottlenecks'),
+    D('results/','holds JSON outputs per benchmark run'),
+  ], true),
+
+  D('tests/','',[
+    D('unit/','checkability · context · relevance · stance isolated'),
+    D('integration/','full pipeline EN · full pipeline Indic · image OCR → verdict'),
+    D('fixtures/','',[ TXT('claims_en.jsonl'), TXT('claims_hi.jsonl'), TXT('claims_ta.jsonl'), TXT('claims_te.jsonl'), D('sample_images/','') ]),
+  ]),
+
+  D('utils/','',[
+    PY('text_cleaner.py',''), PY('language_utils.py',''), PY('domain_utils.py',''),
+    PY('date_extractor.py','extracts publication date from scraped HTML metadata'),
+    PY('logging_utils.py',''),
+  ]),
+
+  D('logs/','',[
+    D('pipeline/','per-claim trace logs'),
+    D('errors/','scrape failures · API errors · circuit breaks · OCR failures'),
+    D('feedback/','POST /feedback payloads — future training data gold mine'),
+    D('benchmarks/','benchmark run outputs per date'),
+  ]),
+];
+
+function render(nodes, container) {
+  nodes.forEach(n => {
+    const wrap = document.createElement('div');
+    const row = document.createElement('div');
+    row.className = 'row ' + (n.k === 'dir' ? 't-dir' : (n.cls || 't-txt'));
+
+    if (n.k === 'dir') {
+      const c = document.createElement('span');
+      c.className = 'caret' + (n.open ? ' open' : '');
+      c.textContent = '▶';
+      row.appendChild(c);
+    } else {
+      const s = document.createElement('span'); s.className = 'spacer'; row.appendChild(s);
+    }
+
+    const nm = document.createElement('span');
+    nm.className = 'fname';
+    nm.textContent = n.n;
+    row.appendChild(nm);
+
+    if (n.b) {
+      const bText = {
+        'b-4050':'4050','b-k1':'kaggle 1','b-k2':'kaggle 2',
+        'b-c1':'colab 1','b-c2':'colab 2','b-has':'existing',
+        'b-new':'train','b-off':'off-shelf','b-cfg':'config','b-data':'dataset'
+      }[n.b];
+      if (bText) {
+        const b = document.createElement('span');
+        b.className = 'badge ' + n.b;
+        b.textContent = bText;
+        row.appendChild(b);
+      }
+    }
+
+    if (n.tag) {
+      const t = document.createElement('span');
+      t.className = 'tag';
+      t.textContent = '// ' + n.tag;
+      row.appendChild(t);
+    }
+
+    wrap.appendChild(row);
+
+    if (n.k === 'dir' && n.ch && n.ch.length) {
+      const indent = document.createElement('div');
+      indent.className = 'indent' + (n.open ? '' : ' collapsed');
+      render(n.ch, indent);
+      wrap.appendChild(indent);
+      row.addEventListener('click', () => {
+        const isOpen = !indent.classList.contains('collapsed');
+        indent.classList.toggle('collapsed', isOpen);
+        row.querySelector('.caret').classList.toggle('open', !isOpen);
+      });
+    }
+
+    container.appendChild(wrap);
+  });
+}
+
+render(tree, document.getElementById('tree'));
+</script>

@@ -1,0 +1,116 @@
+{
+  "total_claims": 60,
+  "correct_predictions": 28,
+  "incorrect_predictions": 32,
+  "accuracy": 0.4666666666666667,
+  "neutral_predictions": 24,
+  "neutral_rate": 0.4,
+  "expected_distribution": {
+    "support": 36,
+    "refute": 15,
+    "neutral": 9
+  },
+  "predicted_distribution": {
+    "support": 22,
+    "refute": 14,
+    "neutral": 24
+  },
+  "confusion_matrix": {
+    "labels": [
+      "support",
+      "refute",
+      "neutral"
+    ],
+    "matrix": [
+      [
+        17,
+        3,
+        16
+      ],
+      [
+        2,
+        8,
+        5
+      ],
+      [
+        3,
+        3,
+        3
+      ]
+    ]
+  },
+  "context_accuracy": {
+    "ECONOMICS_BUSINESS": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    },
+    "ENTERTAINMENT": {
+      "total": 4,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "ENVIRONMENT_CLIMATE": {
+      "total": 4,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "GENERAL_FACTUAL": {
+      "total": 4,
+      "correct": 3,
+      "accuracy": 0.75
+    },
+    "GEOGRAPHY": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    },
+    "HEALTH": {
+      "total": 6,
+      "correct": 2,
+      "accuracy": 0.3333333333333333
+    },
+    "HISTORY": {
+      "total": 4,
+      "correct": 1,
+      "accuracy": 0.25
+    },
+    "LAW_CRIME": {
+      "total": 4,
+      "correct": 4,
+      "accuracy": 1.0
+    },
+    "POLITICS_GOVERNMENT": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    },
+    "SCIENCE": {
+      "total": 6,
+      "correct": 3,
+      "accuracy": 0.5
+    },
+    "SOCIETY_CULTURE": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    },
+    "SPACE_ASTRONOMY": {
+      "total": 4,
+      "correct": 3,
+      "accuracy": 0.75
+    },
+    "SPORTS": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    },
+    "TECHNOLOGY": {
+      "total": 4,
+      "correct": 2,
+      "accuracy": 0.5
+    }
+  },
+  "split": "all",
+  "generated_at_utc": "2026-04-17T15:21:25.982192+00:00"
+}

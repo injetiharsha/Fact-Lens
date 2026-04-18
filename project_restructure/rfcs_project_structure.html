@@ -1,0 +1,316 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-mono,monospace);font-size:12.5px;line-height:1.6;color:var(--color-text-primary)}
+.tree{padding:8px 0}
+.node{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:6px;padding:2px 6px;border-radius:4px;cursor:pointer;user-select:none;transition:background .12s}
+.row:hover{background:var(--color-background-secondary)}
+.indent{display:flex;flex-direction:column;padding-left:18px;border-left:1px solid var(--color-border-tertiary);margin-left:9px}
+.caret{font-size:9px;color:var(--color-text-tertiary);width:10px;flex-shrink:0;transition:transform .15s}
+.caret.open{transform:rotate(90deg)}
+.spacer{width:10px;flex-shrink:0}
+.name{flex:1}
+.badge{font-size:10px;padding:1px 6px;border-radius:10px;flex-shrink:0;font-family:var(--font-sans)}
+.tag{font-size:10px;color:var(--color-text-tertiary);font-family:var(--font-sans);margin-left:4px}
+.collapsed{display:none}
+
+.t-root  .name{color:var(--color-text-primary);font-weight:500}
+.t-dir   .name{color:var(--color-text-primary)}
+.t-file  .name{color:var(--color-text-secondary)}
+.t-nb    .name{color:#854F0B}
+.t-py    .name{color:#185FA5}
+.t-yaml  .name{color:#0F6E56}
+.t-json  .name{color:#993C1D}
+
+.b-train {background:#FAEEDA;color:#633806}
+.b-ckpt  {background:#EEEDFE;color:#3C3489}
+.b-data  {background:#EAF3DE;color:#27500A}
+.b-pipe  {background:#E6F1FB;color:#0C447C}
+.b-cfg   {background:#E1F5EE;color:#085041}
+.b-exists{background:#F1EFE8;color:#444441}
+.b-new   {background:#FCEBEB;color:#791F1F}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;padding:8px 6px 4px;border-bottom:0.5px solid var(--color-border-tertiary);margin-bottom:6px}
+.legend span{font-size:11px;font-family:var(--font-sans);padding:2px 8px;border-radius:10px}
+.hdr{font-size:11px;color:var(--color-text-tertiary);font-family:var(--font-sans);padding:4px 6px 2px;letter-spacing:.04em}
+</style>
+
+<div class="legend">
+  <span class="b-train">training notebook</span>
+  <span class="b-ckpt">checkpoint</span>
+  <span class="b-data">dataset</span>
+  <span class="b-pipe">pipeline</span>
+  <span class="b-cfg">config / scoring</span>
+  <span class="b-exists">existing model</span>
+  <span class="b-new">train this</span>
+</div>
+
+<div class="tree" id="tree"></div>
+
+<script>
+const T = {
+  dir:(name,tag,children,open=false)=>({type:'dir',name,tag,children,open}),
+  file:(name,cls,badge,tag='')=>({type:'file',name,cls,badge,tag}),
+  nb:(name,badge,tag='')=>({type:'file',name,cls:'t-nb',badge,tag}),
+  py:(name,badge,tag='')=>({type:'file',name,cls:'t-py',badge,tag}),
+  yaml:(name,tag='')=>({type:'file',name,cls:'t-yaml',badge:'',tag}),
+  json:(name,tag='')=>({type:'file',name,cls:'t-json',badge:'',tag}),
+};
+
+const tree = [
+  T.file('.env.example','t-file','b-cfg','all API keys — never commit real .env'),
+  T.file('.gitignore','t-file','','checkpoints/ data/raw/ logs/ .env'),
+  T.file('requirements.txt','t-file','','runtime deps only'),
+  T.file('requirements_train.txt','t-file','b-train','heavy deps: transformers, datasets, accelerate'),
+  T.file('README.md','t-file',''),
+
+  T.dir('configs/', 'config layer', [
+    T.yaml('pipeline.yaml','master toggle — ENABLE_* flags, model paths, thresholds'),
+    T.dir('domains/', 'routing + credibility', [
+      T.json('credibility_tiers.json','T1–T8 weight per root domain'),
+      T.json('domain_routing.json','context label → API/search source map'),
+      T.json('trusted_sources_india.json','pib · rbi · prs · data.gov.in · factly · altnews'),
+      T.file('restricted_domains.txt','t-file','','social media, blocked domains'),
+    ], true),
+    T.dir('scoring/', 'formula parameters', [
+      T.yaml('verdict_thresholds.yaml','0.55 / 0.75 cutoffs per label'),
+      T.yaml('temporal_weights.yaml','age bracket → TW value, domain exceptions'),
+    ], true),
+  ], true),
+
+  T.dir('checkpoints/', 'model weights', [
+    T.dir('checkability/', '', [
+      T.dir('en/', '', [T.file('v5_public_large/','t-file','b-exists','existing — eval on CLEF 2022 first')]),
+      T.dir('multilingual/', '', [T.file('v5_public_large_multilingual/','t-file','b-exists','existing — eval on IndicNLI Hindi')]),
+    ], true),
+    T.dir('context/', '', [
+      T.dir('en/', '', [T.file('context_model_final/','t-file','b-exists','existing — eval on DBpedia 14 test')]),
+      T.dir('multilingual/', '', [T.file('muril_base_v1/','t-file','b-exists','existing or off-shelf MuRIL')]),
+    ], true),
+    T.dir('relevance/', '', [
+      T.dir('biencoder/', '', [
+        T.file('multilingual_e5_small/','t-file','b-exists','off-shelf — no training needed, shared EN + ML'),
+      ]),
+      T.dir('crossencoder/', '', [
+        T.dir('en/', '', [T.file('msmarco_minilm_v1/','t-file','b-new','TRAIN on Colab Account 1 — fine-tune on FEVER')]),
+        T.dir('multilingual/', '', [T.file('mmarco_mminiml_v1/','t-file','b-new','TRAIN on Colab Account 2 — fine-tune on FEVER + IndicQA')]),
+      ], true),
+    ], true),
+    T.dir('stance/', '', [
+      T.dir('en/', '', [
+        T.file('stance_b3/','t-file','b-exists','existing — benchmark first on FEVER dev'),
+        T.file('deberta_v3_base_v1/','t-file','b-new','TRAIN on Kaggle Account 1 (T4×2) — MNLI→FEVER→VitaminC'),
+      ]),
+      T.dir('multilingual/', '', [
+        T.file('mdeberta_v3_base_v1/','t-file','b-new','TRAIN on Kaggle Account 2 (T4×2) — IndicNLI + translated FEVER'),
+      ]),
+    ], true),
+  ], true),
+
+  T.dir('data/', 'datasets', [
+    T.dir('raw/', 'download here, never modify', [
+      T.dir('stance/', '', [
+        T.dir('fever/',''),
+        T.dir('vitaminc/','contrastive NLI — critical for robustness'),
+        T.dir('mnli/','general NLI pretraining'),
+        T.dir('indicnli/','AI4Bharat — 11 Indian languages'),
+        T.dir('indicxnli/',''),
+      ], true),
+      T.dir('relevance/', '', [
+        T.dir('fever_evidence/','claim-evidence pairs'),
+        T.dir('msmarco_passage/',''),
+        T.dir('indicqa/','AI4Bharat multilingual QA'),
+      ], true),
+    ]),
+    T.dir('processed/', 'cleaned + tokenized', [
+      T.dir('stance/', '', [
+        T.dir('en/','train.jsonl / val.jsonl / test.jsonl'),
+        T.dir('multilingual/', '', [
+          T.dir('hi/',''), T.dir('ta/',''), T.dir('te/',''), T.dir('kn/',''), T.dir('ml/',''),
+        ]),
+      ], true),
+      T.dir('relevance/', '', [
+        T.dir('en/','biencoder pairs + crossencoder triplets'),
+        T.dir('multilingual/',''),
+      ], true),
+    ]),
+    T.dir('augmented/', 'synthetic + translated', [
+      T.dir('back_translated/', '', [
+        T.dir('fever_hi/','IndicTrans2 translated — medium quality'),
+        T.dir('vitaminc_hi/',''),
+      ]),
+    ]),
+  ], true),
+
+  T.dir('training/', 'organised by hardware platform', [
+    T.file('README.md','t-file','','maps each notebook to its platform + runtime quota'),
+    T.dir('kaggle_account_1/', 'Stance EN  ·  T4×2  ·  30hr/wk', [
+      T.nb('stance_en_train.ipynb','b-train','MNLI→FEVER→VitaminC staged training'),
+      T.nb('stance_en_eval.ipynb','b-train','FEVER dev: 3-way accuracy, Macro-F1, confusion matrix'),
+    ], true),
+    T.dir('kaggle_account_2/', 'Stance ML  ·  T4×2  ·  30hr/wk', [
+      T.nb('stance_ml_train.ipynb','b-train','IndicNLI + translated FEVER'),
+      T.nb('stance_ml_eval.ipynb','b-train','IndicNLI per-language accuracy: hi/ta/te/kn/ml'),
+    ], true),
+    T.dir('colab_account_1/', 'Relevance cross-encoder EN', [
+      T.nb('relevance_en_train.ipynb','b-train','FEVER evidence + MS-MARCO cross-encoder pairs'),
+      T.nb('relevance_en_eval.ipynb','b-train','Recall@5, MRR@10 on FEVER dev'),
+    ], true),
+    T.dir('colab_account_2/', 'Relevance cross-encoder ML', [
+      T.nb('relevance_ml_train.ipynb','b-train','FEVER + IndicQA cross-encoder triplets'),
+      T.nb('relevance_ml_eval.ipynb','b-train','Recall@5 on IndicQA test'),
+    ], true),
+    T.dir('local_4050/', 'Evaluation only — no training', [
+      T.py('eval_checkability.py','','run existing v5 on CLEF 2022 test — report Macro-F1 + MAP'),
+      T.py('eval_context.py','','run context_model_final on DBpedia 14 test — Accuracy + Confusion'),
+      T.py('eval_relevance.py','','compare off-shelf biencoder vs fine-tuned CE on FEVER'),
+      T.py('eval_stance.py','','benchmark stance_b3 vs deberta_v3 on FEVER dev'),
+      T.py('eval_multilingual_stance.py','','per-language F1 on IndicNLI'),
+    ], true),
+  ], true),
+
+  T.dir('pipeline/', 'runtime inference only', [
+    T.py('orchestrator.py','b-pipe','main pipeline coordinator — calls all checkpoints in order'),
+    T.py('language_detector.py','','fastText lid.176.bin wrapper'),
+    T.dir('cache/', 'Redis layer', [
+      T.py('claim_cache.py','','fingerprint dedup — check before full pipeline'),
+      T.py('evidence_cache.py','','TTL 24hr scraped page cache'),
+    ], true),
+    T.dir('ingestion/', '', [
+      T.py('text_input.py','',''),
+      T.py('image_input.py','','routes to OCR then main pipeline'),
+    ]),
+    T.dir('ocr/', '', [
+      T.py('tesseract_wrapper.py','','primary — langs: eng+tel+hin+tam+kan+mal'),
+      T.py('easyocr_wrapper.py','','fallback for low quality / handwritten images'),
+      T.py('ocr_selector.py','','quality check → choose engine'),
+    ], true),
+    T.dir('normalization/', '', [
+      T.py('claim_normalizer.py','','clean whitespace, encoding, length check'),
+      T.py('query_generator.py','','NER (spaCy/IndicNER) + LLM query expansion'),
+    ]),
+    T.dir('checkpoints/', 'checkpoint wrappers', [
+      T.dir('checkability/', '', [T.py('checker.py',''), T.py('model_loader.py','')]),
+      T.dir('context/', '', [T.py('classifier.py',''), T.py('router.py','context → source routing'), T.py('model_loader.py','')], true),
+      T.dir('relevance/', '', [T.py('biencoder.py',''), T.py('crossencoder.py',''), T.py('two_stage_ranker.py','bi-enc filter 100→20  then  CE rank 20→top5'), T.py('model_loader.py','')], true),
+      T.dir('stance/', '', [T.py('detector.py','NLI over each (claim, evidence) pair'), T.py('aggregator.py','EW-weighted vote → agg_sup / agg_ref / agg_neu'), T.py('model_loader.py','')], true),
+    ], true),
+    T.dir('evidence/', 'gathering + dedup', [
+      T.py('coordinator.py','','manage loop-back + max 2 retries'),
+      T.py('deduplicator.py','','MMR domain diversity — here is the correct place for MMR'),
+      T.py('circuit_breaker.py','','per-source retry cap + graceful degradation flag'),
+      T.dir('apis/', 'structured data sources', [
+        T.py('nasa.py',''), T.py('openfda.py',''), T.py('pib.py','Press Information Bureau RSS'),
+        T.py('data_gov_in.py',''), T.py('prs_india.py',''), T.py('newsapi.py',''),
+      ], true),
+      T.dir('search/', '', [T.py('tavily_search.py','primary'), T.py('serpapi_search.py',''), T.py('duckduckgo_search.py','fallback')]),
+      T.dir('scraper/', '', [T.py('trafilatura_scraper.py','primary'), T.py('playwright_scraper.py','JS-rendered fallback'), T.py('beautifulsoup_scraper.py','simple HTML fallback')]),
+    ], true),
+    T.dir('scoring/', 'evidence weight formula', [
+      T.py('credibility_scorer.py','','loads credibility_tiers.json → CW per domain'),
+      T.py('temporal_scorer.py','','article age → TW · skips for HISTORY/SCIENCE domains'),
+      T.py('confidence_aggregator.py','','RS × CW × TW · domain diversity · count adjustment'),
+    ], true),
+    T.dir('verdict/', '', [
+      T.py('verdict_engine.py','','argmax(agg_sup, agg_ref, agg_neu) + label mapping'),
+      T.py('llm_verifier.py','','Groq API · neutral_only policy · llama-3.3-70b-versatile'),
+      T.py('explainer.py','','top evidence chain + conflict flag for output'),
+    ], true),
+  ], true),
+
+  T.dir('api/', 'FastAPI layer', [
+    T.py('main.py','',''),
+    T.dir('routes/', '', [
+      T.py('claim.py','','POST /check-claim'),
+      T.py('image.py','','POST /check-image'),
+      T.py('feedback.py','','POST /feedback — log wrong verdicts for future training data'),
+      T.py('health.py','','GET /health'),
+    ], true),
+    T.dir('schemas/', '', [T.py('claim_input.py','Pydantic'), T.py('verdict_output.py','Pydantic')]),
+  ], true),
+
+  T.dir('benchmarks/', 'end-to-end evaluation', [
+    T.dir('datasets/', '', [
+      T.dir('fever_test/',''), T.dir('clef_2023_test/',''),
+      T.dir('indicnli_test/','per language'), T.dir('custom_indian_claims/','hand-curated 100 claims'),
+    ], true),
+    T.py('run_full_benchmark.py','','full pipeline pass on test sets'),
+    T.dir('results/','holds JSON outputs per run'),
+  ], true),
+
+  T.dir('tests/', '', [
+    T.dir('unit/','checkability / context / relevance / stance isolated'),
+    T.dir('integration/','full pipeline EN + ML end-to-end'),
+    T.dir('fixtures/','sample claims per language + sample images'),
+  ]),
+
+  T.dir('utils/', '', [
+    T.py('text_cleaner.py',''), T.py('language_utils.py',''), T.py('domain_utils.py',''),
+    T.py('date_extractor.py','extracts publication dates from scraped HTML'),
+    T.py('logging_utils.py',''),
+  ]),
+
+  T.dir('logs/', '', [
+    T.dir('pipeline/','per-claim trace'), T.dir('errors/','scrape failures + API errors + circuit breaks'), T.dir('feedback/','wrong verdict reports'),
+  ]),
+];
+
+function render(nodes, container) {
+  nodes.forEach(n => {
+    const wrap = document.createElement('div');
+    wrap.className = 'node';
+    const row = document.createElement('div');
+    row.className = 'row ' + (n.type === 'dir' ? 't-dir' : (n.cls || 't-file'));
+
+    if (n.type === 'dir') {
+      const caret = document.createElement('span');
+      caret.className = 'caret' + (n.open ? ' open' : '');
+      caret.textContent = '▶';
+      row.appendChild(caret);
+    } else {
+      const sp = document.createElement('span');
+      sp.className = 'spacer';
+      row.appendChild(sp);
+    }
+
+    const name = document.createElement('span');
+    name.className = 'name';
+    name.textContent = n.name;
+    row.appendChild(name);
+
+    if (n.badge) {
+      const b = document.createElement('span');
+      b.className = 'badge ' + n.badge;
+      b.textContent = n.badge === 'b-exists' ? 'existing' : n.badge === 'b-new' ? 'train' : n.badge === 'b-train' ? 'notebook' : n.badge === 'b-pipe' ? 'runtime' : n.badge === 'b-cfg' ? 'config' : '';
+      if(b.textContent) row.appendChild(b);
+    }
+
+    if (n.tag) {
+      const t = document.createElement('span');
+      t.className = 'tag';
+      t.textContent = '// ' + n.tag;
+      row.appendChild(t);
+    }
+
+    wrap.appendChild(row);
+
+    if (n.type === 'dir' && n.children && n.children.length) {
+      const indent = document.createElement('div');
+      indent.className = 'indent' + (n.open ? '' : ' collapsed');
+      render(n.children, indent);
+      wrap.appendChild(indent);
+
+      row.addEventListener('click', () => {
+        const open = !indent.classList.contains('collapsed');
+        indent.classList.toggle('collapsed', open);
+        row.querySelector('.caret').classList.toggle('open', !open);
+      });
+    }
+
+    container.appendChild(wrap);
+  });
+}
+
+render(tree, document.getElementById('tree'));
+</script>

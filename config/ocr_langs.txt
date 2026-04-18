@@ -1,0 +1,13 @@
+eng
+hin
+ben
+tam
+tel
+kan
+mal
+ori
+pun
+guj
+urd
+mar
+asm

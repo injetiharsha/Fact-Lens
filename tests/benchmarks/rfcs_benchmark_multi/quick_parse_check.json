@@ -1,0 +1,77 @@
+{
+  "n": 10,
+  "llm_triggered": 9,
+  "parse_fail": 6,
+  "rows": [
+    {
+      "i": 1,
+      "pred": "neutral",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "i": 2,
+      "pred": "neutral",
+      "exp": "refute",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "i": 3,
+      "pred": "support",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "Multiple sources explicitly state that OpenAI, the organization that created ChatGPT, was founded in 2015."
+    },
+    {
+      "i": 4,
+      "pred": "support",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "\"All provided sources state that the Mysore Odayar dynasty was founded in the"
+    },
+    {
+      "i": 5,
+      "pred": "neutral",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "i": 6,
+      "pred": "support",
+      "exp": "support",
+      "llm_triggered": false,
+      "llm_reason": "not_triggered"
+    },
+    {
+      "i": 7,
+      "pred": "neutral",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "i": 8,
+      "pred": "support",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "\"Multiple Tamil-language sources explicitly state that"
+    },
+    {
+      "i": 9,
+      "pred": "neutral",
+      "exp": "support",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "i": 10,
+      "pred": "neutral",
+      "exp": "neutral",
+      "llm_triggered": true,
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    }
+  ]
+}

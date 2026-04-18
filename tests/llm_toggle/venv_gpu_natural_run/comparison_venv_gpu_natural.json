@@ -1,0 +1,19 @@
+{
+  "claim": "The Earth revolves around the Sun.",
+  "language": "en",
+  "llm_off": {
+    "verdict": "support",
+    "confidence": 0.6724407448442895,
+    "evidence_count": 9
+  },
+  "llm_on": {
+    "verdict": "support",
+    "confidence": 0.6724407448442895,
+    "evidence_count": 9
+  },
+  "changed": {
+    "verdict_changed": false,
+    "confidence_delta": 0.0,
+    "evidence_count_delta": 0
+  }
+}

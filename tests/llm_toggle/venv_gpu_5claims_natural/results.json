@@ -1,0 +1,743 @@
+{
+  "language": "en",
+  "total_claims": 5,
+  "claims_with_verdict_change": 0,
+  "claims_with_llm_triggered": 0,
+  "rows": [
+    {
+      "id": 1,
+      "claim": "Vitamin C supplements can fully cure all viral infections in adults.",
+      "off": {
+        "verdict": "refute",
+        "confidence": 0.7017854346473344,
+        "evidence_count": 8,
+        "details": {
+          "checkability": "Checkable",
+          "context": "HEALTH/nutrition",
+          "sources_checked": 6,
+          "evidence_count": 8,
+          "llm_verifier": {
+            "enabled": false,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 8 evidence sources. Support: 0%, Refute: 70%, Neutral: 1%. Moderate evidence refutes this claim. Moderate confidence (70%).",
+        "evidence_top5": [
+          {
+            "text": "| Subjects with NCDs |  | Subjects with noncommunicable diseases (NCDs) and frail, elderly subjects are recognized as being at high risk of viral infections. Vitamin C supplementation (0.2–1 g/day) can reduce inflammation and, although direct evidence is still lacking, it may decrease the susceptibility to infections and/or the severity of the disease. Vitamin C supplementation (0.2 g/day) may reduce the respiratory symptoms in elderly patients. | [...] vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+            "source": "The Long History of Vitamin C: From Prevention of the ... - Frontiers",
+            "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2020.574029/full",
+            "relevance": 0.9926388263702393,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6948471784591674
+          },
+          {
+            "text": "### Vitamin A\n\nVitamin A has been known to be important for preventing infection almost since its discovery, and was initially known as the anti-infective vitamin. Today we know that it has a number of effects on different cells of the immune system and is critical for a robust and well-modulated innate immune response. Vitamin A deficiency is a clear factor in decreased resistance to infectious disease, and this may be true even for subclinical (not obvious) deficiencies. [...] ### Vitamin K2\n\nThis vitamin synergizes with both vitamins A and D and is important in allowing the body to utilize both of the above effectively. Though it doesn’t appear to have any direct anti-infective properties at this time there is some evidence that it does have an influence over the immune system. There is currently no known toxic dose but the requirement for vitamin K2 is relatively small. 100-200 micrograms daily is sufficient.\n\n### Vitamin C [...] ### Vitamin D\n\nVitamin D is an important vitamin for a number of different body functions, including proper immune function. Though vitamin D has been studied for its influence on autoimmune conditions, it is also known to support the innate immune system. The innate immune system is nonspecific and protects us from infection by destroying microbes before they can penetrate and infect our cells. This vitamin helps support our innate immune system by increasing cell production of antimicrobial peptides. Vitamin D has been found specifically to reduce respiratory infections in patients with asthma, as well as to increase positive outcomes in patients with sepsis.",
+            "source": "Nutrients for Viral Infections | Whole Systems Healthcare",
+            "url": "https://wshcare.org/nutrients-for-viral-infections/",
+            "relevance": 0.9848212599754333,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6893748819828033
+          },
+          {
+            "text": "The mixed efficacy of vitamin supplementation extends to other infections, too. Despite data indicating that low vitamin D is associated with worse infection outcomes, there is insufficient evidence00348-6/fulltext#xd_co_f=NTcyY2FhNGUtODMwMC00Y2U1LTllODgtODUyZjVmMWRhYjFi~) to suggest that supplementation helps combat COVID-19 or other viral respiratory infections. Some research indicates that vitamin C supplementation is associated with a reduced risk of developing a cold. However, depending on the study, the association is linked to exposure to extreme physical stress (e.g., running marathons), sex or having inadequate starting vitamin C levels; its broad efficacy is less clear.",
+            "source": "Can Taking Vitamins Combat Infection?",
+            "url": "https://asm.org/articles/2025/may/can-taking-vitamins-combat-infection",
+            "relevance": 0.9824736714363098,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6877315700054168
+          },
+          {
+            "text": "Vitamin C has been found to be effective in recovery and prevention from infection in animal experiments, and this effect is thought to be the same for humans (5,6,13). In some studies conducted in humans, vitamin C is also helpful for prevention and treatment of common colds, viral and bacterial infection (5,6,13,16,30,31). Hunt et al. found an 85% lower mortality in the vitamin C group compared with the placebo group. However, this comparison was made based on a small number of cases (six cases) (32). Mochalkin et al.’s study reported that the duration of recovery was reduced from 23.7 days in the control group to 4.6 days (19%) in the low-dose vitamin C group and 8.6 days (36%) in the high-dose vitamin C group (33). The use of vitamin C in restraint-stressed mice with H1N1 [...] Viral pneumonia is a lung infection caused by a virus identified by sputum culture and PCR. The study patients were administered with 2 g of intravenous vitamin C every 8 hours for 4 days or until ICU discharge. We decided to give 6 grams of vitamin C (divided into three equal doses) per day because intravenous vitamin C normalizes leukocyte vitamin C levels in respiratory infections at a dose of 6 g/day (19). In addition, vitamin C 6 g/day has been used recently with reference to other studies (13) (Table S1). The ICU admission and treatment data of eligible patients were obtained from hospital electronic medical records. The data included age, sex, body weight, hospital and ICU admission date, ICU admission diagnosis, site of admission, comorbidities, presence of immunosuppression, use [...] The use of vitamin C in restraint-stressed mice with H1N1 virus-induced pneumonia resulted in the improvement of survival rates and prolonged survival time (15). This finding suggests that vitamin C may be effective in improving the prognosis of patients with influenza. Fowler Iii et al. showed that administration of high-dose intravenous vitamin C into a patient with enterovirus/rhinovirus-induced acute respiratory distress syndrome (ARDS) was associated with rapid resolution of lung injury with no evidence of post-ARDS fibroproliferative sequelae (34). After influenza infection, bacterial pneumonia is likely to follow as a complication (35). It is thought that vitamin C can play a role in both bacterial and viral infections, so it is thought that it may be effective in preventing",
+            "source": "The effectiveness of vitamin C for patients with severe viral pneumonia in respiratory failure - Lee - Journal of Thoracic Disease",
+            "url": "https://jtd.amegroups.org/article/view/46968/html",
+            "relevance": 0.9800831079483032,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6860581755638122
+          },
+          {
+            "text": "Although vitamin C doesn’t have miraculous disease-curing properties, some research has also shown it can help the immune system fight off bacteria and viruses. Its role in protecting against viral infections was shown in a recent review which found that immune cells need vitamin C to produce proteins that activate the immune system throughout the body against virus attacks. [...] These slight effects of vitamin C on the coronavirus that causes the common cold have spurred a new clinical trial looking to cure COVID-19 infections using very high intravenous doses of vitamin C. These trials have just started and no results are yet posted. Intravenous application of vitamin C will result in much higher and faster levels of the vitamin in the blood than any amount found in vitamin C supplements taken orally. Though this approach could increase vitamin C’s mild protective effect, this is yet hypothetical and intravenous injection comes with its own risks, such as infection, blood vessel damage, air embolism or blood clots. [...] So let’s cut to the chase. Can vitamin C cure the coronavirus? Considering that novel coronavirus belongs to the same family of viruses – coronaviruses – as the common cold and flu, it’s unlikely that taking vitamin C will prevent or cure you of a COVID-19 infection.\n\nI have written before that using vitamin C to treat the common cold was an idea popularised by double Nobel Prize-winning chemist, Linus Pauling, and further promoted by the dietary supplements industry. Unfortunately, ever since Pauling’s claim in the 1970s, there has been little evidence to back it up.",
+            "source": "Coronavirus: it’s time to debunk claims that vitamin C could cure it",
+            "url": "https://theconversation.com/coronavirus-its-time-to-debunk-claims-that-vitamin-c-could-cure-it-132803",
+            "relevance": 0.9776010513305664,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6843207359313964
+          }
+        ]
+      },
+      "on": {
+        "verdict": "refute",
+        "confidence": 0.7149130924395969,
+        "evidence_count": 8,
+        "details": {
+          "checkability": "Checkable",
+          "context": "HEALTH/nutrition",
+          "sources_checked": 6,
+          "evidence_count": 8,
+          "llm_verifier": {
+            "enabled": true,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 8 evidence sources. Support: 0%, Refute: 71%, Neutral: 1%. Moderate evidence refutes this claim. Moderate confidence (71%).",
+        "evidence_top5": [
+          {
+            "text": "| Subjects with NCDs |  | Subjects with noncommunicable diseases (NCDs) and frail, elderly subjects are recognized as being at high risk of viral infections. Vitamin C supplementation (0.2–1 g/day) can reduce inflammation and, although direct evidence is still lacking, it may decrease the susceptibility to infections and/or the severity of the disease. Vitamin C supplementation (0.2 g/day) may reduce the respiratory symptoms in elderly patients. | [...] vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+            "source": "The Long History of Vitamin C: From Prevention of the ... - Frontiers",
+            "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2020.574029/full",
+            "relevance": 0.9926388263702393,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6948471784591674
+          },
+          {
+            "text": "### Vitamin A\n\nVitamin A has been known to be important for preventing infection almost since its discovery, and was initially known as the anti-infective vitamin. Today we know that it has a number of effects on different cells of the immune system and is critical for a robust and well-modulated innate immune response. Vitamin A deficiency is a clear factor in decreased resistance to infectious disease, and this may be true even for subclinical (not obvious) deficiencies. [...] ### Vitamin K2\n\nThis vitamin synergizes with both vitamins A and D and is important in allowing the body to utilize both of the above effectively. Though it doesn’t appear to have any direct anti-infective properties at this time there is some evidence that it does have an influence over the immune system. There is currently no known toxic dose but the requirement for vitamin K2 is relatively small. 100-200 micrograms daily is sufficient.\n\n### Vitamin C [...] ### Vitamin D\n\nVitamin D is an important vitamin for a number of different body functions, including proper immune function. Though vitamin D has been studied for its influence on autoimmune conditions, it is also known to support the innate immune system. The innate immune system is nonspecific and protects us from infection by destroying microbes before they can penetrate and infect our cells. This vitamin helps support our innate immune system by increasing cell production of antimicrobial peptides. Vitamin D has been found specifically to reduce respiratory infections in patients with asthma, as well as to increase positive outcomes in patients with sepsis.",
+            "source": "Nutrients for Viral Infections | Whole Systems Healthcare",
+            "url": "https://wshcare.org/nutrients-for-viral-infections/",
+            "relevance": 0.9848212599754333,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6893748819828033
+          },
+          {
+            "text": "The mixed efficacy of vitamin supplementation extends to other infections, too. Despite data indicating that low vitamin D is associated with worse infection outcomes, there is insufficient evidence00348-6/fulltext#xd_co_f=NTcyY2FhNGUtODMwMC00Y2U1LTllODgtODUyZjVmMWRhYjFi~) to suggest that supplementation helps combat COVID-19 or other viral respiratory infections. Some research indicates that vitamin C supplementation is associated with a reduced risk of developing a cold. However, depending on the study, the association is linked to exposure to extreme physical stress (e.g., running marathons), sex or having inadequate starting vitamin C levels; its broad efficacy is less clear.",
+            "source": "Can Taking Vitamins Combat Infection?",
+            "url": "https://asm.org/articles/2025/may/can-taking-vitamins-combat-infection",
+            "relevance": 0.9824736714363098,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6877315700054168
+          },
+          {
+            "text": "Vitamin C has been found to be effective in recovery and prevention from infection in animal experiments, and this effect is thought to be the same for humans (5,6,13). In some studies conducted in humans, vitamin C is also helpful for prevention and treatment of common colds, viral and bacterial infection (5,6,13,16,30,31). Hunt et al. found an 85% lower mortality in the vitamin C group compared with the placebo group. However, this comparison was made based on a small number of cases (six cases) (32). Mochalkin et al.’s study reported that the duration of recovery was reduced from 23.7 days in the control group to 4.6 days (19%) in the low-dose vitamin C group and 8.6 days (36%) in the high-dose vitamin C group (33). The use of vitamin C in restraint-stressed mice with H1N1 [...] Viral pneumonia is a lung infection caused by a virus identified by sputum culture and PCR. The study patients were administered with 2 g of intravenous vitamin C every 8 hours for 4 days or until ICU discharge. We decided to give 6 grams of vitamin C (divided into three equal doses) per day because intravenous vitamin C normalizes leukocyte vitamin C levels in respiratory infections at a dose of 6 g/day (19). In addition, vitamin C 6 g/day has been used recently with reference to other studies (13) (Table S1). The ICU admission and treatment data of eligible patients were obtained from hospital electronic medical records. The data included age, sex, body weight, hospital and ICU admission date, ICU admission diagnosis, site of admission, comorbidities, presence of immunosuppression, use [...] The use of vitamin C in restraint-stressed mice with H1N1 virus-induced pneumonia resulted in the improvement of survival rates and prolonged survival time (15). This finding suggests that vitamin C may be effective in improving the prognosis of patients with influenza. Fowler Iii et al. showed that administration of high-dose intravenous vitamin C into a patient with enterovirus/rhinovirus-induced acute respiratory distress syndrome (ARDS) was associated with rapid resolution of lung injury with no evidence of post-ARDS fibroproliferative sequelae (34). After influenza infection, bacterial pneumonia is likely to follow as a complication (35). It is thought that vitamin C can play a role in both bacterial and viral infections, so it is thought that it may be effective in preventing",
+            "source": "The effectiveness of vitamin C for patients with severe viral pneumonia in respiratory failure - Lee - Journal of Thoracic Disease",
+            "url": "https://jtd.amegroups.org/article/view/46968/html",
+            "relevance": 0.9800831079483032,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6860581755638122
+          },
+          {
+            "text": "Although vitamin C doesn’t have miraculous disease-curing properties, some research has also shown it can help the immune system fight off bacteria and viruses. Its role in protecting against viral infections was shown in a recent review which found that immune cells need vitamin C to produce proteins that activate the immune system throughout the body against virus attacks. [...] These slight effects of vitamin C on the coronavirus that causes the common cold have spurred a new clinical trial looking to cure COVID-19 infections using very high intravenous doses of vitamin C. These trials have just started and no results are yet posted. Intravenous application of vitamin C will result in much higher and faster levels of the vitamin in the blood than any amount found in vitamin C supplements taken orally. Though this approach could increase vitamin C’s mild protective effect, this is yet hypothetical and intravenous injection comes with its own risks, such as infection, blood vessel damage, air embolism or blood clots. [...] So let’s cut to the chase. Can vitamin C cure the coronavirus? Considering that novel coronavirus belongs to the same family of viruses – coronaviruses – as the common cold and flu, it’s unlikely that taking vitamin C will prevent or cure you of a COVID-19 infection.\n\nI have written before that using vitamin C to treat the common cold was an idea popularised by double Nobel Prize-winning chemist, Linus Pauling, and further promoted by the dietary supplements industry. Unfortunately, ever since Pauling’s claim in the 1970s, there has been little evidence to back it up.",
+            "source": "Coronavirus: it’s time to debunk claims that vitamin C could cure it",
+            "url": "https://theconversation.com/coronavirus-its-time-to-debunk-claims-that-vitamin-c-could-cure-it-132803",
+            "relevance": 0.9776010513305664,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6843207359313964
+          }
+        ]
+      },
+      "diff": {
+        "verdict_changed": false,
+        "confidence_delta": 0.013127657792262437,
+        "evidence_count_delta": 0,
+        "llm_triggered_on": false,
+        "llm_reason_on": "not_triggered"
+      }
+    },
+    {
+      "id": 2,
+      "claim": "Drinking warm water every hour prevents influenza and common cold symptoms.",
+      "off": {
+        "verdict": "refute",
+        "confidence": 0.5698368631939319,
+        "evidence_count": 8,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 8,
+          "llm_verifier": {
+            "enabled": false,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 8 evidence sources. Support: 0%, Refute: 57%, Neutral: 1%. Moderate evidence refutes this claim. Moderate confidence (57%).",
+        "evidence_top5": [
+          {
+            "text": "## Best Times to Drink Hot Water\n\nTiming optimises the benefits of drinking hot water. Here are the best times:\n\nMorning (Upon Waking):\n\n Stimulates digestion and metabolism for the day ahead\n Aids bowel movements and helps prevent morning constipation\n Jump-starts the day with a comforting ritual and hydration boost\n Optimal: 1-2 cups first thing after waking, 30 minutes before breakfast\n\nBefore Meals:\n\n Drinking warm water before meals increases satiety and aids portion control\n Supports digestion and nutrient absorption\n Optimal: 1 cup 15-30 minutes before each meal\n\nBetween Meals:\n\n Maintains hydration throughout the day\n Provides energy and refreshment without calories\n Optimal: Every 2-3 hours for continuous hydration\n\nBefore Bedtime:",
+            "source": "18 Benefits of Drinking Hot Water: How Can It Help Your Health?",
+            "url": "https://www.nanavatimaxhospital.org/blogs/benefits-of-drinking-hot-water",
+            "relevance": 0.9961220622062683,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.49806103110313416
+          },
+          {
+            "text": "Getting enough liquids becomes all the more important when your immune system is fighting off an infection. When you catch a virus — whether it’s influenza, COVID-19, or the common cold — your body requires even more fluids to maintain optimal function.\n\nAs urgent care specialists who diagnose and treat common illnesses every day at our walk-in clinic in Orangevale, California, our team at American River Urgent Care gives the same key advice to everyone we see: don’t skimp on the liquids. Here’s why.\n\n## Hydration and your health [...] ### Cold symptoms are dehydrating\n\nMany common cold symptoms — including a stuffy or runny nose, sneezing, post-nasal drip, and watery eyes — are generated by your immune system using water. Unless you replenish those fluids consistently, your cold symptoms can be dehydrating.\n\nMucus production is the main dehydrating symptom of a cold virus, but other infections and illnesses can diminish your fluid reserves through fever and sweating, diarrhea, vomiting, and loss of appetite.\n\n### Hydration helps you feel better\n\nIt’s not just that you shouldn’t skimp on liquids when you have a cold — you should increase your fluid intake to ensure your body has all the water it needs to both function normally and kill the invading virus before it leads to a sinus infection or a chest cold. [...] These recommendations consider the fact that drinking water isn’t the only way to get water: your total fluid intake includes the water you drink, the fluids that come from other beverages, and the water found in fruits, vegetables, and other foods. About 80% of your daily fluid intake comes from drinks, and the remaining 20% comes from foods.\n\n## Staying hydrated when you’re sick\n\nWhen you’re fighting off a viral infection like a cold, your immune system shifts into overdrive to vanquish the cell-invading microbes and restore normal health. To do that, it triggers a wide range of symptoms designed to help your body shed as much of the virus as possible.\n\n### Cold symptoms are dehydrating",
+            "source": "Why You Shouldn’t Skimp on Liquids When You Have a Cold: American River Urgent Care: Urgent Care",
+            "url": "https://www.americanriverurgentcare.com/blog/why-you-shouldnt-skimp-on-liquids-when-you-have-a-cold",
+            "relevance": 0.9948744177818298,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.4974372088909149
+          },
+          {
+            "text": "### 1. When you have sinus congestion.\n\nIf you have a cold, flu, or nasal allergies that cause your sinuses to clog up, drinking warm or hot water may help ease your symptoms and make breathing easier. By contrast, drinking cold water may make you feel worse by thickening nasal mucus.\n\n### 2. When you want to promote digestion.\n\nIf you eat a meal of heavy foods, your stomach has more difficulty processing them. However, room temperature or slightly warmer water helps dissolve these foods, making them easier to digest.\n\n### 3. When you want to boost your metabolism and be less thirsty.",
+            "source": "What's Better For You: Cold Water or Room Temperature Water?",
+            "url": "https://foothillsrehab.com/blog/cold-water-or-room-temperature-water/",
+            "relevance": 0.9931702613830566,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.4965851306915283
+          },
+          {
+            "text": "a hot drink on common cold and flu symptoms. Martin et al. reported that application of either cold (4-6°C) or warm water (44-52°C) to the oral mucosa in healthy subjects caused an increase in nasal airway resistance, but that application of tepid water (26-28°C) did not alter nasal resistance (2). Saketkhoo et al. reported that drinking hot water or soup (65°C) increased nasal mucus velocity in healthy subjects, but did not change nasal airway resistance (3). Recently, Lal et al. reported that ingestion of hot water (82°C) decreases nasal cross sectional area as measured by acoustic rhinometry in healthy subjects (4). With these contrast-ing results from previous studies, and the fact that none of the previous studies included any subject suffering from common cold, the effects of hot [...] study were from the staff and student population of Cardiff University. In order to qualify for entry to the study patients had to be aged 18 years and above, suffering from symptoms of common cold/flu like illness of less than 7 days duration, suffering from at least three common cold symptoms (runny nose, sneezing, blocked nose, sore throat, cough) and scoring at least two symptoms as moderate on a four point ordinal scale (0- not present, 1- mild, 2- moderate, 3- severe). Subjects were excluded from the study if they were suffering from any nasal disease (nasal polyps, chronic rhinitis, severe septal devi-Hot drinks are a common treatment for common cold and flu but there are no studies reported in the scientific and clinical literature on this mode of treatment. This study [...] Rhinology, 46, 271-275, 2008 Received for publication: March 19, 2008; accepted: June 3, 2008 INTRODUCTION Acute rhinosinusitis associated with common cold and flu is one of the most common diseases (1). Despite the widespread folk-lore that hot drinks are an effective treatment for colds and flu, and the use of hot drink formulations for many current com-mon cold medicines, there appears to be no evidence base in the medical literature supporting the efficacy of this common treatment for common cold and flu. There are a few studies that have investigated the effects of hot drink on nasal resistance and other nasal functions in healthy subjects, but surprisingly, no reports have been found in the literature on the effects of a hot drink on common cold and flu symptoms. Martin et al.",
+            "source": "[PDF] The effects of a hot drink on nasal airflow and symptoms ... - Rhinology",
+            "url": "https://www.rhinologyjournal.com/Rhinology_issues/719.pdf",
+            "relevance": 0.9926567673683167,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6948597371578216
+          },
+          {
+            "text": "Drinking warm water in the morning is a simple, evidence-based habit that can aid digestion, relieve congestion, and support hydration without the shock of ice-cold fluids. Research suggests that warm water may help relax the esophagus, improve swallowing in certain conditions, and temporarily increase nasal mucus velocity, making it a soothing start to the day.\n\nYou’ve probably heard the advice from a grandmother, a yoga teacher, or a wellness influencer: Start your day with a glass of warm water. It sounds simple—almost too simple to be effective. Can changing the temperature of your morning hydration really impact your digestion, energy, or metabolism? [...] Warm water acts as a \"gentle wake-up call\" for the gut. By hydrating the colon and relaxing the intestinal walls, it can help trigger a bowel movement more comfortably than cold water or caffeine alone. If you struggle with morning regularity or feelings of incompleteness, swapping your first glass of cold water for a warm one could be a simple, non-pharmacological strategy to try.\n\n## Your New Morning Ritual: A Step-by-Step Guide\n\nReady to test it out? Here is a simple protocol to integrate warm water into your morning without it feeling like a chore.\n\n### Step 1: The Right Temperature\n\nYou don't want boiling water—that can damage tissue in the mouth and esophagus. You want warm to hot, similar to tea but drinkable. [...] Myth: It significantly boosts metabolism.\n  + Fact: While there is a concept called \"water-induced thermogenesis,\" the metabolic boost from drinking water (hot or cold) is minor—burning only a few extra calories per glass. A study published in the Journal of Clinical Endocrinology & Metabolism found that drinking water increased metabolic rate by up to 30%, but this effect was transient, peaking within 30-40 minutes (JCEM, 2003). It contributes to your Total Daily Energy Expenditure (TDEE), but it's not a standalone weight loss method.",
+            "source": "Drinking Warm Water in the Morning: Benefits & Guide | BodySpec",
+            "url": "https://www.bodyspec.com/blog/post/drinking_warm_water_in_the_morning_benefits_guide",
+            "relevance": 0.9902268648147583,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.49511343240737915
+          }
+        ]
+      },
+      "on": {
+        "verdict": "refute",
+        "confidence": 0.5698368631939319,
+        "evidence_count": 8,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 8,
+          "llm_verifier": {
+            "enabled": true,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 8 evidence sources. Support: 0%, Refute: 57%, Neutral: 1%. Moderate evidence refutes this claim. Moderate confidence (57%).",
+        "evidence_top5": [
+          {
+            "text": "## Best Times to Drink Hot Water\n\nTiming optimises the benefits of drinking hot water. Here are the best times:\n\nMorning (Upon Waking):\n\n Stimulates digestion and metabolism for the day ahead\n Aids bowel movements and helps prevent morning constipation\n Jump-starts the day with a comforting ritual and hydration boost\n Optimal: 1-2 cups first thing after waking, 30 minutes before breakfast\n\nBefore Meals:\n\n Drinking warm water before meals increases satiety and aids portion control\n Supports digestion and nutrient absorption\n Optimal: 1 cup 15-30 minutes before each meal\n\nBetween Meals:\n\n Maintains hydration throughout the day\n Provides energy and refreshment without calories\n Optimal: Every 2-3 hours for continuous hydration\n\nBefore Bedtime:",
+            "source": "18 Benefits of Drinking Hot Water: How Can It Help Your Health?",
+            "url": "https://www.nanavatimaxhospital.org/blogs/benefits-of-drinking-hot-water",
+            "relevance": 0.9961220622062683,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.49806103110313416
+          },
+          {
+            "text": "Getting enough liquids becomes all the more important when your immune system is fighting off an infection. When you catch a virus — whether it’s influenza, COVID-19, or the common cold — your body requires even more fluids to maintain optimal function.\n\nAs urgent care specialists who diagnose and treat common illnesses every day at our walk-in clinic in Orangevale, California, our team at American River Urgent Care gives the same key advice to everyone we see: don’t skimp on the liquids. Here’s why.\n\n## Hydration and your health [...] ### Cold symptoms are dehydrating\n\nMany common cold symptoms — including a stuffy or runny nose, sneezing, post-nasal drip, and watery eyes — are generated by your immune system using water. Unless you replenish those fluids consistently, your cold symptoms can be dehydrating.\n\nMucus production is the main dehydrating symptom of a cold virus, but other infections and illnesses can diminish your fluid reserves through fever and sweating, diarrhea, vomiting, and loss of appetite.\n\n### Hydration helps you feel better\n\nIt’s not just that you shouldn’t skimp on liquids when you have a cold — you should increase your fluid intake to ensure your body has all the water it needs to both function normally and kill the invading virus before it leads to a sinus infection or a chest cold. [...] These recommendations consider the fact that drinking water isn’t the only way to get water: your total fluid intake includes the water you drink, the fluids that come from other beverages, and the water found in fruits, vegetables, and other foods. About 80% of your daily fluid intake comes from drinks, and the remaining 20% comes from foods.\n\n## Staying hydrated when you’re sick\n\nWhen you’re fighting off a viral infection like a cold, your immune system shifts into overdrive to vanquish the cell-invading microbes and restore normal health. To do that, it triggers a wide range of symptoms designed to help your body shed as much of the virus as possible.\n\n### Cold symptoms are dehydrating",
+            "source": "Why You Shouldn’t Skimp on Liquids When You Have a Cold: American River Urgent Care: Urgent Care",
+            "url": "https://www.americanriverurgentcare.com/blog/why-you-shouldnt-skimp-on-liquids-when-you-have-a-cold",
+            "relevance": 0.9948744177818298,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.4974372088909149
+          },
+          {
+            "text": "### 1. When you have sinus congestion.\n\nIf you have a cold, flu, or nasal allergies that cause your sinuses to clog up, drinking warm or hot water may help ease your symptoms and make breathing easier. By contrast, drinking cold water may make you feel worse by thickening nasal mucus.\n\n### 2. When you want to promote digestion.\n\nIf you eat a meal of heavy foods, your stomach has more difficulty processing them. However, room temperature or slightly warmer water helps dissolve these foods, making them easier to digest.\n\n### 3. When you want to boost your metabolism and be less thirsty.",
+            "source": "What's Better For You: Cold Water or Room Temperature Water?",
+            "url": "https://foothillsrehab.com/blog/cold-water-or-room-temperature-water/",
+            "relevance": 0.9931702613830566,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.4965851306915283
+          },
+          {
+            "text": "a hot drink on common cold and flu symptoms. Martin et al. reported that application of either cold (4-6°C) or warm water (44-52°C) to the oral mucosa in healthy subjects caused an increase in nasal airway resistance, but that application of tepid water (26-28°C) did not alter nasal resistance (2). Saketkhoo et al. reported that drinking hot water or soup (65°C) increased nasal mucus velocity in healthy subjects, but did not change nasal airway resistance (3). Recently, Lal et al. reported that ingestion of hot water (82°C) decreases nasal cross sectional area as measured by acoustic rhinometry in healthy subjects (4). With these contrast-ing results from previous studies, and the fact that none of the previous studies included any subject suffering from common cold, the effects of hot [...] study were from the staff and student population of Cardiff University. In order to qualify for entry to the study patients had to be aged 18 years and above, suffering from symptoms of common cold/flu like illness of less than 7 days duration, suffering from at least three common cold symptoms (runny nose, sneezing, blocked nose, sore throat, cough) and scoring at least two symptoms as moderate on a four point ordinal scale (0- not present, 1- mild, 2- moderate, 3- severe). Subjects were excluded from the study if they were suffering from any nasal disease (nasal polyps, chronic rhinitis, severe septal devi-Hot drinks are a common treatment for common cold and flu but there are no studies reported in the scientific and clinical literature on this mode of treatment. This study [...] Rhinology, 46, 271-275, 2008 Received for publication: March 19, 2008; accepted: June 3, 2008 INTRODUCTION Acute rhinosinusitis associated with common cold and flu is one of the most common diseases (1). Despite the widespread folk-lore that hot drinks are an effective treatment for colds and flu, and the use of hot drink formulations for many current com-mon cold medicines, there appears to be no evidence base in the medical literature supporting the efficacy of this common treatment for common cold and flu. There are a few studies that have investigated the effects of hot drink on nasal resistance and other nasal functions in healthy subjects, but surprisingly, no reports have been found in the literature on the effects of a hot drink on common cold and flu symptoms. Martin et al.",
+            "source": "[PDF] The effects of a hot drink on nasal airflow and symptoms ... - Rhinology",
+            "url": "https://www.rhinologyjournal.com/Rhinology_issues/719.pdf",
+            "relevance": 0.9926567673683167,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6948597371578216
+          },
+          {
+            "text": "Drinking warm water in the morning is a simple, evidence-based habit that can aid digestion, relieve congestion, and support hydration without the shock of ice-cold fluids. Research suggests that warm water may help relax the esophagus, improve swallowing in certain conditions, and temporarily increase nasal mucus velocity, making it a soothing start to the day.\n\nYou’ve probably heard the advice from a grandmother, a yoga teacher, or a wellness influencer: Start your day with a glass of warm water. It sounds simple—almost too simple to be effective. Can changing the temperature of your morning hydration really impact your digestion, energy, or metabolism? [...] Warm water acts as a \"gentle wake-up call\" for the gut. By hydrating the colon and relaxing the intestinal walls, it can help trigger a bowel movement more comfortably than cold water or caffeine alone. If you struggle with morning regularity or feelings of incompleteness, swapping your first glass of cold water for a warm one could be a simple, non-pharmacological strategy to try.\n\n## Your New Morning Ritual: A Step-by-Step Guide\n\nReady to test it out? Here is a simple protocol to integrate warm water into your morning without it feeling like a chore.\n\n### Step 1: The Right Temperature\n\nYou don't want boiling water—that can damage tissue in the mouth and esophagus. You want warm to hot, similar to tea but drinkable. [...] Myth: It significantly boosts metabolism.\n  + Fact: While there is a concept called \"water-induced thermogenesis,\" the metabolic boost from drinking water (hot or cold) is minor—burning only a few extra calories per glass. A study published in the Journal of Clinical Endocrinology & Metabolism found that drinking water increased metabolic rate by up to 30%, but this effect was transient, peaking within 30-40 minutes (JCEM, 2003). It contributes to your Total Daily Energy Expenditure (TDEE), but it's not a standalone weight loss method.",
+            "source": "Drinking Warm Water in the Morning: Benefits & Guide | BodySpec",
+            "url": "https://www.bodyspec.com/blog/post/drinking_warm_water_in_the_morning_benefits_guide",
+            "relevance": 0.9902268648147583,
+            "credibility": 0.5,
+            "stance": "refute",
+            "score": 0.49511343240737915
+          }
+        ]
+      },
+      "diff": {
+        "verdict_changed": false,
+        "confidence_delta": 0.0,
+        "evidence_count_delta": 0,
+        "llm_triggered_on": false,
+        "llm_reason_on": "not_triggered"
+      }
+    },
+    {
+      "id": 3,
+      "claim": "The Great Wall of China is clearly visible from the Moon without aid.",
+      "off": {
+        "verdict": "refute",
+        "confidence": 0.5660062329701476,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": false,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 3%, Refute: 57%, Neutral: 8%. Moderate evidence refutes this claim. Moderate confidence (57%).",
+        "evidence_top5": [
+          {
+            "text": "8\n\nImage 6Image 7\n\nView all 6 replies\n\n[](\n\nCraig Collins\n\nI think when the phrase was coined, it meant “visible from space with the naked eye”- clearly if commercial imaging satellites can resolve optical imaging down to 1m resolution then a vast amount is now visible from space.\n\n   2y \n\n6\n\nImage 8\n\nView all 4 replies\n\n[](\n\nDan Hayes\n\nIf it's one road width wide, surely an 8-10 lane freeway should be more visible?\n\n   2y \n\n5\n\nImage 9\n\nView more comments\n\n3 of 10\n\nSee more on Facebook\n\nSee more on Facebook\n\nEmail or phone number\n\n \n\nPassword\n\n \n\nLog In\n\nForgot password?\n\nor\n\nCreate new account\n\nImage 10 [...] # Google Earth , Structures and Anomalies | I think most of us know it is a myth that the Great Wall of China is the only man-made structure that is visible from space | Facebook\n\nLog In\n\nLog In\n\nForgot Account?\n\nImage 1\n\nThe Great Wall of China visibility from space with Google Earth\n\nSummarized by AI from the post below\n\n.\n\nImage 3: No photo description available.\n\nImage 4\n\nImage 5\n\nAll reactions:\n\n7\n\n21 comments\n\nLike\n\nComment\n\nShare\n\nMost relevant\n\n[](\n\nNicky Onetime Minacore\n\nOf course it's a myth. Space is a myth. 50 miles up, you hit solid gold.\n\n   2y \n\n8\n\nImage 6Image 7\n\nView all 6 replies\n\n[](\n\nCraig Collins",
+            "source": "Google  Earth , Structures and Anomalies | I think most of us know it is a myth that the Great Wall of China is the only man-made structure that is visible from space | Facebook",
+            "url": "https://www.facebook.com/groups/253550249143357/posts/1142773493554357/",
+            "relevance": 0.9972248077392578,
+            "credibility": 0.25,
+            "stance": "refute",
+            "score": 0.24930620193481445
+          },
+          {
+            "text": "if we couldn't travel into space ourselves, we'd already constructed a man-made object of such large scale that it would surely be visible all the way from the moon). [...] > The only thing you can see from the moon is a beautiful sphere, mostly white (clouds), some blue (ocean), patches of yellow (deserts), and every once in a while some green vegetation. No man-made object is visible on this scale. In fact, when first leaving earth's orbit and only a few thousand miles away, no man-made object is visible at that point either.\"\n\n(The Great Wall of China can be discerned in radar images taken from space, but not in ordinary photographs.) [...] Whatever its source, since the Great Wall claim antedates man's launching of satellites (and thereby the possibility of photography from space) by decades, it was not the outgrowth of a misinterpreted photograph taken by satellite or a manned space mission. The Great Wall of China extends for some 1,500 miles (although it is actually a series of walls rather than one contiguous wall), and the claim that it is visible from the moon was probably an attempt to find a concise way of conveying the grand scale of the wall to people who had never seen it (outside of black-and-white photographs that could only reproduce small portions of the wall) and of asserting the triumph of man's mastery of the vastness of nature (i.e., even if we couldn't travel into space ourselves, we'd already",
+            "source": "Is the Great Wall of China Visible from the Moon? | Snopes.com",
+            "url": "https://www.snopes.com/fact-check/great-wall-from-moon/",
+            "relevance": 0.9966662526130676,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6976663768291473
+          },
+          {
+            "text": "Choose a legend: The Great Wall of China is the one of the few man-made structures visible from orbit. Or, more remarkably, it's the only human artifact on Earth visible from the moon. Both are false, say astronauts and remote-sensing specialists. Although the Great Wall spans some 4,500 miles (7,200 kilometers), it's constructed from materials that make it difficult to discern from space.  \n  \nThe unglamorous truth is that the wall is only visible from low orbit under a specific set of weather and lighting conditions. And many other structures that are less spectacular from an earthly vantage point—desert roads, for example—appear more prominent from an orbital perspective. [...] Misinformation about the barrier's visibility dates back decades. A 1932 Ripley's Believe It or Not! cartoon claimed that the wall is \"the mightiest work of man, the only one that would be visible to the human eye from the moon.\" The belief persisted into the Space Age. Since Neil Armstrong returned from the moon in 1969, he has been repeatedly asked whether he could see it.  \n  \nHis answer was relayed in a recent NASA Johnson Space Center oral history: He saw continents, lakes and splotches of white on blue. But he could not make out any man-made structures from the lunar surface, which averages a distance of 230,000 miles (370,000 kilometers) from Earth. [...] For the Chinese, the wall's visibility from space has long been a point of pride. When \"taikonaut\" Yang Liwei, China's first man in space, returned from the 14-orbit Shenzhou5 mission in 2003 and admitted to reporters that he had not seen the Great Wall, online forums exploded with disappointment. The Ministry of Education even moved to revise its elementary school textbooks, which had long claimed the ancient barricade was visible.",
+            "source": "Is China's Great Wall Visible from Space? | Scientific American",
+            "url": "https://www.scientificamerican.com/article/is-chinas-great-wall-visible-from-space/",
+            "relevance": 0.9961615800857544,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.697313106060028
+          },
+          {
+            "text": "if we couldn’t travel into space ourselves, we’d already constructed a man-made object of such large scale that it would surely be visible all the way from from the moon).” [...] > Whatever its source, since the Great Wall claim antedates man’s launching of satellites (and thereby the possibility of photography from space) by decades, it was not the outgrowth of a misinterpreted photograph taken by satellite or a manned space mission. The Great Wall of China extends for some 1,500 miles (although it is actually a series of walls rather than one contiguous wall), and the claim that it is visible from the moon was probably an attempt to find a concise way of conveying the grand scale of the wall to people who had never seen it (outside of black-and-white photographs that could only reproduce small portions of the wall) and of asserting the triumph of man’s mastery of the vastness of nature (i.e., even if we couldn’t travel into space ourselves, we’d already [...] > “As I turned southward from Kaifeng, once again to run along the banks of the Grand Canal, it seemed to me more incredible than ever that the Chinese had built that one great work of Man which scientists maintain can be recognized as human effort by the Man in Mars; and that, none the less, they should have such terrible roads in their country. Maybe the Man in Mars was looking down through his telescope the day I passed, and recorded the progress of some strange insect along the Canal banks.”\n\nSnopes says this:",
+            "source": "On Seeing the Great Wall of China from the Moon - Vatican Observatory",
+            "url": "https://www.vaticanobservatory.org/sacred-space-astronomy/on-seeing-the-great-wall-of-china-from-the-moon/",
+            "relevance": 0.9961153268814087,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.697280728816986
+          },
+          {
+            "text": "Apollo 12 Lunar Module Pilot Alan Bean is quoted as saying: \"The only thing you can see from the Moon is a beautiful sphere, mostly white, some blue and patches of yellow, and every once in a while some green vegetation.\n\n\"No man-made object is visible at this scale.\"\n\nBut what about seeing the Great Wall of China from the International Space Station?\n\nWell, on 24 November 2004, an image of the Great Wall of China was captured from low Earth orbit by US astronaut and International Space Station Commander Leroy Chiao.\n\nHis image can be seen below. It was captured with a digital camera and 180mm lens.\n\nImage 11: An image supposedly showing the Great Wall of China from space, captured by US astronaut Leroy Chiao from the International Space Station. Credit: NASA [...] # Can you see the Great Wall of China from space? | BBC Sky at Night Magazine\n\n.\n\nThis was famously mistranslated into English as \"canals\", leading some English speakers to believe that the Martian structures had been built by an intelligent native populace.\n\nSuch misinterpretation could have led to the conclusion that likewise similarly mammoth structures on Earth would be visible from elsewhere in the Solar System.\n\nImage 10: Apollo 12 astronaut Alan Bean on the surface of the Moon, 20 November 1969. Credit: NASA\n\nApollo 12 astronaut Alan Bean on the surface of the Moon, 20 November 1969. Credit: NASA\n\nIt was during the Apollo missions that the myth of being able to see the Great Wall of China from the surface of the Moon was empirically debunked. [...] The Great Wall of China at night. Credit: bjdlzx / Getty Images\n\nImage 18: Footer banner[](\n\n   Image 19Facebook\n   Image 20X-Platform\n   Image 21Instagram\n   Image 22Youtube\n\n   Contact us\n   Brands\n   Cookies\n   Privacy\n   Terms and conditions\n   Licensing\n   Subscribe\n   Manage preferences\n\nThis website is owned and published by Our Media Ltd. www.ourmedia.co.uk\n\n© Our Media 2026\n\nImage 24",
+            "source": "Can you see the Great Wall of China from space?",
+            "url": "https://www.skyatnightmagazine.com/space-science/can-you-see-great-wall-china-from-space",
+            "relevance": 0.9918780326843262,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6943146228790282
+          }
+        ]
+      },
+      "on": {
+        "verdict": "refute",
+        "confidence": 0.5660062329701476,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": true,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 3%, Refute: 57%, Neutral: 8%. Moderate evidence refutes this claim. Moderate confidence (57%).",
+        "evidence_top5": [
+          {
+            "text": "8\n\nImage 6Image 7\n\nView all 6 replies\n\n[](\n\nCraig Collins\n\nI think when the phrase was coined, it meant “visible from space with the naked eye”- clearly if commercial imaging satellites can resolve optical imaging down to 1m resolution then a vast amount is now visible from space.\n\n   2y \n\n6\n\nImage 8\n\nView all 4 replies\n\n[](\n\nDan Hayes\n\nIf it's one road width wide, surely an 8-10 lane freeway should be more visible?\n\n   2y \n\n5\n\nImage 9\n\nView more comments\n\n3 of 10\n\nSee more on Facebook\n\nSee more on Facebook\n\nEmail or phone number\n\n \n\nPassword\n\n \n\nLog In\n\nForgot password?\n\nor\n\nCreate new account\n\nImage 10 [...] # Google Earth , Structures and Anomalies | I think most of us know it is a myth that the Great Wall of China is the only man-made structure that is visible from space | Facebook\n\nLog In\n\nLog In\n\nForgot Account?\n\nImage 1\n\nThe Great Wall of China visibility from space with Google Earth\n\nSummarized by AI from the post below\n\n.\n\nImage 3: No photo description available.\n\nImage 4\n\nImage 5\n\nAll reactions:\n\n7\n\n21 comments\n\nLike\n\nComment\n\nShare\n\nMost relevant\n\n[](\n\nNicky Onetime Minacore\n\nOf course it's a myth. Space is a myth. 50 miles up, you hit solid gold.\n\n   2y \n\n8\n\nImage 6Image 7\n\nView all 6 replies\n\n[](\n\nCraig Collins",
+            "source": "Google  Earth , Structures and Anomalies | I think most of us know it is a myth that the Great Wall of China is the only man-made structure that is visible from space | Facebook",
+            "url": "https://www.facebook.com/groups/253550249143357/posts/1142773493554357/",
+            "relevance": 0.9972248077392578,
+            "credibility": 0.25,
+            "stance": "refute",
+            "score": 0.24930620193481445
+          },
+          {
+            "text": "if we couldn't travel into space ourselves, we'd already constructed a man-made object of such large scale that it would surely be visible all the way from the moon). [...] > The only thing you can see from the moon is a beautiful sphere, mostly white (clouds), some blue (ocean), patches of yellow (deserts), and every once in a while some green vegetation. No man-made object is visible on this scale. In fact, when first leaving earth's orbit and only a few thousand miles away, no man-made object is visible at that point either.\"\n\n(The Great Wall of China can be discerned in radar images taken from space, but not in ordinary photographs.) [...] Whatever its source, since the Great Wall claim antedates man's launching of satellites (and thereby the possibility of photography from space) by decades, it was not the outgrowth of a misinterpreted photograph taken by satellite or a manned space mission. The Great Wall of China extends for some 1,500 miles (although it is actually a series of walls rather than one contiguous wall), and the claim that it is visible from the moon was probably an attempt to find a concise way of conveying the grand scale of the wall to people who had never seen it (outside of black-and-white photographs that could only reproduce small portions of the wall) and of asserting the triumph of man's mastery of the vastness of nature (i.e., even if we couldn't travel into space ourselves, we'd already",
+            "source": "Is the Great Wall of China Visible from the Moon? | Snopes.com",
+            "url": "https://www.snopes.com/fact-check/great-wall-from-moon/",
+            "relevance": 0.9966662526130676,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6976663768291473
+          },
+          {
+            "text": "Choose a legend: The Great Wall of China is the one of the few man-made structures visible from orbit. Or, more remarkably, it's the only human artifact on Earth visible from the moon. Both are false, say astronauts and remote-sensing specialists. Although the Great Wall spans some 4,500 miles (7,200 kilometers), it's constructed from materials that make it difficult to discern from space.  \n  \nThe unglamorous truth is that the wall is only visible from low orbit under a specific set of weather and lighting conditions. And many other structures that are less spectacular from an earthly vantage point—desert roads, for example—appear more prominent from an orbital perspective. [...] Misinformation about the barrier's visibility dates back decades. A 1932 Ripley's Believe It or Not! cartoon claimed that the wall is \"the mightiest work of man, the only one that would be visible to the human eye from the moon.\" The belief persisted into the Space Age. Since Neil Armstrong returned from the moon in 1969, he has been repeatedly asked whether he could see it.  \n  \nHis answer was relayed in a recent NASA Johnson Space Center oral history: He saw continents, lakes and splotches of white on blue. But he could not make out any man-made structures from the lunar surface, which averages a distance of 230,000 miles (370,000 kilometers) from Earth. [...] For the Chinese, the wall's visibility from space has long been a point of pride. When \"taikonaut\" Yang Liwei, China's first man in space, returned from the 14-orbit Shenzhou5 mission in 2003 and admitted to reporters that he had not seen the Great Wall, online forums exploded with disappointment. The Ministry of Education even moved to revise its elementary school textbooks, which had long claimed the ancient barricade was visible.",
+            "source": "Is China's Great Wall Visible from Space? | Scientific American",
+            "url": "https://www.scientificamerican.com/article/is-chinas-great-wall-visible-from-space/",
+            "relevance": 0.9961615800857544,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.697313106060028
+          },
+          {
+            "text": "if we couldn’t travel into space ourselves, we’d already constructed a man-made object of such large scale that it would surely be visible all the way from from the moon).” [...] > Whatever its source, since the Great Wall claim antedates man’s launching of satellites (and thereby the possibility of photography from space) by decades, it was not the outgrowth of a misinterpreted photograph taken by satellite or a manned space mission. The Great Wall of China extends for some 1,500 miles (although it is actually a series of walls rather than one contiguous wall), and the claim that it is visible from the moon was probably an attempt to find a concise way of conveying the grand scale of the wall to people who had never seen it (outside of black-and-white photographs that could only reproduce small portions of the wall) and of asserting the triumph of man’s mastery of the vastness of nature (i.e., even if we couldn’t travel into space ourselves, we’d already [...] > “As I turned southward from Kaifeng, once again to run along the banks of the Grand Canal, it seemed to me more incredible than ever that the Chinese had built that one great work of Man which scientists maintain can be recognized as human effort by the Man in Mars; and that, none the less, they should have such terrible roads in their country. Maybe the Man in Mars was looking down through his telescope the day I passed, and recorded the progress of some strange insect along the Canal banks.”\n\nSnopes says this:",
+            "source": "On Seeing the Great Wall of China from the Moon - Vatican Observatory",
+            "url": "https://www.vaticanobservatory.org/sacred-space-astronomy/on-seeing-the-great-wall-of-china-from-the-moon/",
+            "relevance": 0.9961153268814087,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.697280728816986
+          },
+          {
+            "text": "Apollo 12 Lunar Module Pilot Alan Bean is quoted as saying: \"The only thing you can see from the Moon is a beautiful sphere, mostly white, some blue and patches of yellow, and every once in a while some green vegetation.\n\n\"No man-made object is visible at this scale.\"\n\nBut what about seeing the Great Wall of China from the International Space Station?\n\nWell, on 24 November 2004, an image of the Great Wall of China was captured from low Earth orbit by US astronaut and International Space Station Commander Leroy Chiao.\n\nHis image can be seen below. It was captured with a digital camera and 180mm lens.\n\nImage 11: An image supposedly showing the Great Wall of China from space, captured by US astronaut Leroy Chiao from the International Space Station. Credit: NASA [...] # Can you see the Great Wall of China from space? | BBC Sky at Night Magazine\n\n.\n\nThis was famously mistranslated into English as \"canals\", leading some English speakers to believe that the Martian structures had been built by an intelligent native populace.\n\nSuch misinterpretation could have led to the conclusion that likewise similarly mammoth structures on Earth would be visible from elsewhere in the Solar System.\n\nImage 10: Apollo 12 astronaut Alan Bean on the surface of the Moon, 20 November 1969. Credit: NASA\n\nApollo 12 astronaut Alan Bean on the surface of the Moon, 20 November 1969. Credit: NASA\n\nIt was during the Apollo missions that the myth of being able to see the Great Wall of China from the surface of the Moon was empirically debunked. [...] The Great Wall of China at night. Credit: bjdlzx / Getty Images\n\nImage 18: Footer banner[](\n\n   Image 19Facebook\n   Image 20X-Platform\n   Image 21Instagram\n   Image 22Youtube\n\n   Contact us\n   Brands\n   Cookies\n   Privacy\n   Terms and conditions\n   Licensing\n   Subscribe\n   Manage preferences\n\nThis website is owned and published by Our Media Ltd. www.ourmedia.co.uk\n\n© Our Media 2026\n\nImage 24",
+            "source": "Can you see the Great Wall of China from space?",
+            "url": "https://www.skyatnightmagazine.com/space-science/can-you-see-great-wall-china-from-space",
+            "relevance": 0.9918780326843262,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6943146228790282
+          }
+        ]
+      },
+      "diff": {
+        "verdict_changed": false,
+        "confidence_delta": 0.0,
+        "evidence_count_delta": 0,
+        "llm_triggered_on": false,
+        "llm_reason_on": "not_triggered"
+      }
+    },
+    {
+      "id": 4,
+      "claim": "COVID-19 vaccines cause infertility in all women of reproductive age.",
+      "off": {
+        "verdict": "refute",
+        "confidence": 0.6624534202242576,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": false,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 1%, Refute: 66%, Neutral: 22%. Moderate evidence refutes this claim. Moderate confidence (66%).",
+        "evidence_top5": [
+          {
+            "text": "Professional medical organizations12345 serving people of reproductive age, including adolescents, emphasize that there is no evidence that COVID-19 vaccination causes problems with fertility.\n\n### Did you know?\n\nEvidence continues to grow showing that COVID-19 vaccination is safe and effective before and during pregnancy.\n\n### Pregnancy After Vaccination [...] ## What to know\n\n CDC recommends everyone ages 6 months and older get an updated COVID-19 vaccine, including if you are pregnant, breastfeeding, trying to get pregnant now, or might become pregnant in the future. Learn which vaccines are available by age and how to stay up to date with your COVID-19 vaccination.\n There is currently no evidence that any vaccines, including COVID-19 vaccines, cause fertility problems (problems trying to get pregnant) in women or men.\n COVID-19 can make you very sick during pregnancy. Additionally, if you have COVID-19 during pregnancy, you are at increased risk of complications that can affect your pregnancy and developing baby.\n\n## Recommendations\n\n### CDC and Medical Professionals Recommend COVID-19 Vaccination for People Who Want to Have Children [...] ### No Evidence That COVID-19 Vaccines Affect Fertility\n\nThere is currently no evidence that vaccine ingredients or antibodies made following COVID-19 vaccination would cause any problems with becoming pregnant now or in the future.\n\n Recent studies have found no differences in pregnancy success rates among women who had antibodies from COVID-19 vaccines or from a recent COVID-19 infection and women who had no antibodies, including for patients undergoing assisted reproductive technology procedures (for example, in vitro fertilization)91011.\n A study of more than 2,000 females aged 21-45 years and their partners found that COVID-19 vaccination of either partner did not affect the likelihood of becoming pregnant12.",
+            "source": "COVID-19 Vaccination for People Who Would Like to Have a Baby | COVID-19 | CDC",
+            "url": "https://www.cdc.gov/covid/vaccines/planning-for-pregnancy.html",
+            "relevance": 0.9963462948799133,
+            "credibility": 1.0,
+            "stance": "neutral",
+            "score": 0.9963462948799133
+          },
+          {
+            "text": "cause infertility and miscarriage in pregnant women have been widely shared on social media [59, 71]. These erroneous messages cause infertile patients to hesitate to receive a vaccine . A research report has shown that the vaccination rate of women receiving assisted reproductive technology (ART) treatment is significantly lower than that of the general population . Fortunately, some researchers have discussed the impact of COVID-19 vaccine on human fertility [16, 90, 32, 65, 54, 35]. However, owing to the earlier publication period, they were unable to summarize sufficient research reports. With the increasing administration of vaccines, the relevant evidence is also gradually increasing. Therefore, we reviewed these articles and analyzed the impact of the COVID-19 vaccine on human [...] (. Accessed 10 April, 2023). As the number of vaccinated individuals increase, concerns regarding vaccine safety continue to increase. As the population is generally vulnerable to COVID-19, almost everyone is an adaptation of the vaccine, regardless of sex, age, race, or occupation, which naturally includes individuals who have a pregnancy plan in the short term. The reason for their concern is that the COVID-19 vaccine development cycle is short, and more importantly, the related clinical trials did not include pregnant women or those who may have pregnancies in the short-term. Concerns about the adverse effects on fertility have become the main cause of vaccination hesitation in the United States . Claims that COVID-19 vaccine cause infertility and miscarriage in pregnant women have [...] probability. As to female without pregnancy, it is believed that vaccination will not affect fertility; however, more research is needed to explore the short-term impact. Vaccination during any trimester is considered safe in pregnant women.",
+            "source": "Effects of COVID-19 vaccination on human fertility: a post-pandemic literature review - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10538453/",
+            "relevance": 0.9927190542221069,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9927190542221069
+          },
+          {
+            "text": "Learn about PFAS in Delaware Public Drinking Water\nLearn more\nabout this alert.\n\nDelaware's Coronavirus Official Website Home\nDelaware's (COVID-19) Response - We're in this together.\n\n# Myth or Fact – The COVID-19 vaccine causes infertility\n\n## Myth or Fact?\n\n### The COVID-19 vaccine causes infertility.\n\nFact is – COVID-19 vaccination does not reduce chances of conception.\n\n### Resources\n\nHere is a list of studies and sources to reference on the COVID-19 vaccines’ effect on fertility.\n\nView More Myths or Facts\n\nLearn to Fact Check\n\n## Stats on COVID-19\n\nFor more data on Delaware COVID-19 cases including demographic breakdowns, go to My Healthy Community\n\nDelaware Division of Public Health, Coronavirus Response\n\n## Delaware's Government [...] ## Delaware's Government\n\nDelaware's Governor  \nState Directory  \nElected Officials\n\nPhone Directory  \nLocations Directory  \nDelaware Public Meetings  \nVoting & Elections  \nTransparency  \nChoose Health DE  \nTax Center  \nPersonal Income Tax  \nPrivacy Policy  \nWeather & Travel\n\nContact State Agencies  \nCorporations  \nFranchise Tax  \nGross Receipts Tax  \nWithholding Tax  \nGuides to Services  \nHelp Center  \nMobile Apps  \nE-mail / Text Alerts  \nSocial Media\n\nState Seal of Delaware\nBuilt by the Government Information Center (GIC)\n\nBuilt by the Government Information Center  \n©MMXXVI Delaware.gov",
+            "source": "Myth or Fact - The COVID-19 vaccine causes infertility - Delaware's Coronavirus Official Website",
+            "url": "https://coronavirus.delaware.gov/covid-19-myth-or-fact/myth-or-fact-the-covid-19-vaccine-causes-infertility/",
+            "relevance": 0.9882895946502686,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9882895946502686
+          },
+          {
+            "text": "following vaccination. Additionally, given that there are only 20 different types of amino acids that make up proteins, it is not surprising that many proteins share some similarities. Synctin-1 shares short amino acid sequences with many proteins, not just the SARS-CoV-2 spike protein. Dr. Stephanie Langel, an immunologist and expert in maternal and neonatal immunity at Duke University, has stated: “The two proteins share only a minuscule stretch of material; mixing them up would be akin to mistaking a rhinoceros for a jaguar because they are wearing the same collar.” Where did this claim come from? The claim that COVID-19 vaccine causes infertility appears to originate from a blog called Health and Money News in December of 2020. The blog’s unfounded claims and the misinformation it [...] North Dakota Department of Health and Human Services 600 East Boulevard Avenue, Dept 325 Bismarck N.D. 58505 (701) 328-2310 • Toll-free: (800) 472-2622 • www.hhs.nd.gov COVID-19 Vaccine & Fertility There is no evidence that any of the COVID-19 vaccines can cause infertility. The American College of Obstetricians and Gynecologists (ACOG), Johns Hopkins Medicine, the American Medical Association, and Harvard Medical School are just a few of the organizations that have addressed favorable comments towards the topic of COVID-19 vaccination and pregnancy. The links highlighted provide further depth. Can you tell me more about the COVID-19 vaccine and infertility claim? The Claim: The Pfizer and Moderna mRNA COVID-19 vaccines work by providing our cells with temporary instructions for how to [...] the company in 2011, eight years before the start of the COVID-19 pandemic. Do we have any data on the use of COVID-19 vaccine and infertility? COVID-19 vaccines are both safe and effective. Over 452 million doses of vaccine have been administered in the U.S. under the most intensive safety monitoring in our history. Results from these monitoring efforts are reassuring that COVID-19 vaccine is not associated with infertility, as thousands of women have become pregnant following vaccination. Additionally, the CDC is monitoring over 177,000 pregnant women who have received a COVID-19 vaccine. No unexpected pregnancy or infant outcomes have been observed, including miscarriages, related to COVID-19 vaccination during pregnancy. Development and reproductive toxicity (DART) studies, which use",
+            "source": "[PDF] COVID-19 Vaccine & Fertility",
+            "url": "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/COVID-19_Vaccine_Fertility.pdf",
+            "relevance": 0.9847059845924377,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9847059845924377
+          },
+          {
+            "text": "Sponsored by Zap Surgical Systems\n\nReal-Time Adaptive Motion Management on Helical and Robotic RT Platforms\n\nSponsored by Accuray, Inc.\n\nCureus Journal of Medical Science\n\n#### Browse\n\n#### Specialties\n\n#### For Authors & Reviewers\n\n#### About Channels\n\n#### Browse Channels\n\n#### Cureus Partnerships\n\nOffering a variety of advertising and sponsorship options for reaching influential specialists from targeted demographic splits.\n\n###### Learn more\n\n#### Institutional Partners\n\n#### Advertising & Sponsorships\n\n#### Competitions\n\n#### Browse\n\n#### Highlights\n\n#### About Cureus\n\nCureus provides an equitable, efficient publishing and peer reviewing experience without sacrificing publication times.\n\n###### Learn more\n\n#### Who We Are\n\n#### Contributors\n\n#### More From Cureus\n\n#### Competitions [...] #### Browse\n\n#### Specialties\n\n#### About\n\n#### For Authors & Reviewers\n\n#### About\n\n#### Browse\n\n#### Cureus Partnerships\n\nOffering a variety of advertising and sponsorship options for reaching influential specialists from targeted demographic splits.\n\n#### Institutional Partners\n\n#### Advertising & Sponsorship\n\n#### Competitions\n\n#### Browse\n\n#### Highlights\n\n#### About Cureus\n\nCureus provides an equitable, efficient publishing and peer reviewing experience without sacrificing publication times.\n\n#### Who We Are\n\n#### Contributors\n\n#### More From Cureus\n\n#### Competitions\n\nGenerate broad awareness and deliver relevant, peer-reviewed clinical experiences directly to potential customers.\n\nDedicated Cranial Radiosurgery: Clinical Experience with New & Innovative SRS Technologies [...] #### More From Cureus\n\n#### Competitions\n\nGenerate broad awareness and deliver relevant, peer-reviewed clinical experiences directly to potential customers.\n\n###### Learn more\n\n#### Ongoing Competitions\n\nDedicated Cranial Radiosurgery: Clinical Experience with New & Innovative SRS Technologies\n\nSponsored by Zap Surgical Systems\n\nReal-Time Adaptive Motion Management on Helical and Robotic RT Platforms\n\nSponsored by Accuray, Inc.\n\n#### Enter your email address to receive your free PDF download.\n\nPlease note that by doing so you agree to be added to our monthly email newsletter distribution list.\n\n### Sign in to Cureus\n\n### Sign up for Cureus\n\n#### Email Communication and Personal Data\n\nBy joining Cureus, you agree to our\nPrivacy Policy\nand\nTerms of Use.\n\n### Download Cureus Media Kit",
+            "source": "The Multi-faceted Effects of COVID-19 on Female Reproductive Health: An Updated Narrative Review | Cureus",
+            "url": "https://www.cureus.com/articles/196918-the-multi-faceted-effects-of-covid-19-on-female-reproductive-health-an-updated-narrative-review",
+            "relevance": 0.9805027842521667,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6863519489765166
+          }
+        ]
+      },
+      "on": {
+        "verdict": "refute",
+        "confidence": 0.6624534202242576,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "GENERAL_FACTUAL/general",
+          "sources_checked": 4,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": true,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 1%, Refute: 66%, Neutral: 22%. Moderate evidence refutes this claim. Moderate confidence (66%).",
+        "evidence_top5": [
+          {
+            "text": "Professional medical organizations12345 serving people of reproductive age, including adolescents, emphasize that there is no evidence that COVID-19 vaccination causes problems with fertility.\n\n### Did you know?\n\nEvidence continues to grow showing that COVID-19 vaccination is safe and effective before and during pregnancy.\n\n### Pregnancy After Vaccination [...] ## What to know\n\n CDC recommends everyone ages 6 months and older get an updated COVID-19 vaccine, including if you are pregnant, breastfeeding, trying to get pregnant now, or might become pregnant in the future. Learn which vaccines are available by age and how to stay up to date with your COVID-19 vaccination.\n There is currently no evidence that any vaccines, including COVID-19 vaccines, cause fertility problems (problems trying to get pregnant) in women or men.\n COVID-19 can make you very sick during pregnancy. Additionally, if you have COVID-19 during pregnancy, you are at increased risk of complications that can affect your pregnancy and developing baby.\n\n## Recommendations\n\n### CDC and Medical Professionals Recommend COVID-19 Vaccination for People Who Want to Have Children [...] ### No Evidence That COVID-19 Vaccines Affect Fertility\n\nThere is currently no evidence that vaccine ingredients or antibodies made following COVID-19 vaccination would cause any problems with becoming pregnant now or in the future.\n\n Recent studies have found no differences in pregnancy success rates among women who had antibodies from COVID-19 vaccines or from a recent COVID-19 infection and women who had no antibodies, including for patients undergoing assisted reproductive technology procedures (for example, in vitro fertilization)91011.\n A study of more than 2,000 females aged 21-45 years and their partners found that COVID-19 vaccination of either partner did not affect the likelihood of becoming pregnant12.",
+            "source": "COVID-19 Vaccination for People Who Would Like to Have a Baby | COVID-19 | CDC",
+            "url": "https://www.cdc.gov/covid/vaccines/planning-for-pregnancy.html",
+            "relevance": 0.9963462948799133,
+            "credibility": 1.0,
+            "stance": "neutral",
+            "score": 0.9963462948799133
+          },
+          {
+            "text": "cause infertility and miscarriage in pregnant women have been widely shared on social media [59, 71]. These erroneous messages cause infertile patients to hesitate to receive a vaccine . A research report has shown that the vaccination rate of women receiving assisted reproductive technology (ART) treatment is significantly lower than that of the general population . Fortunately, some researchers have discussed the impact of COVID-19 vaccine on human fertility [16, 90, 32, 65, 54, 35]. However, owing to the earlier publication period, they were unable to summarize sufficient research reports. With the increasing administration of vaccines, the relevant evidence is also gradually increasing. Therefore, we reviewed these articles and analyzed the impact of the COVID-19 vaccine on human [...] (. Accessed 10 April, 2023). As the number of vaccinated individuals increase, concerns regarding vaccine safety continue to increase. As the population is generally vulnerable to COVID-19, almost everyone is an adaptation of the vaccine, regardless of sex, age, race, or occupation, which naturally includes individuals who have a pregnancy plan in the short term. The reason for their concern is that the COVID-19 vaccine development cycle is short, and more importantly, the related clinical trials did not include pregnant women or those who may have pregnancies in the short-term. Concerns about the adverse effects on fertility have become the main cause of vaccination hesitation in the United States . Claims that COVID-19 vaccine cause infertility and miscarriage in pregnant women have [...] probability. As to female without pregnancy, it is believed that vaccination will not affect fertility; however, more research is needed to explore the short-term impact. Vaccination during any trimester is considered safe in pregnant women.",
+            "source": "Effects of COVID-19 vaccination on human fertility: a post-pandemic literature review - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10538453/",
+            "relevance": 0.9927190542221069,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9927190542221069
+          },
+          {
+            "text": "Learn about PFAS in Delaware Public Drinking Water\nLearn more\nabout this alert.\n\nDelaware's Coronavirus Official Website Home\nDelaware's (COVID-19) Response - We're in this together.\n\n# Myth or Fact – The COVID-19 vaccine causes infertility\n\n## Myth or Fact?\n\n### The COVID-19 vaccine causes infertility.\n\nFact is – COVID-19 vaccination does not reduce chances of conception.\n\n### Resources\n\nHere is a list of studies and sources to reference on the COVID-19 vaccines’ effect on fertility.\n\nView More Myths or Facts\n\nLearn to Fact Check\n\n## Stats on COVID-19\n\nFor more data on Delaware COVID-19 cases including demographic breakdowns, go to My Healthy Community\n\nDelaware Division of Public Health, Coronavirus Response\n\n## Delaware's Government [...] ## Delaware's Government\n\nDelaware's Governor  \nState Directory  \nElected Officials\n\nPhone Directory  \nLocations Directory  \nDelaware Public Meetings  \nVoting & Elections  \nTransparency  \nChoose Health DE  \nTax Center  \nPersonal Income Tax  \nPrivacy Policy  \nWeather & Travel\n\nContact State Agencies  \nCorporations  \nFranchise Tax  \nGross Receipts Tax  \nWithholding Tax  \nGuides to Services  \nHelp Center  \nMobile Apps  \nE-mail / Text Alerts  \nSocial Media\n\nState Seal of Delaware\nBuilt by the Government Information Center (GIC)\n\nBuilt by the Government Information Center  \n©MMXXVI Delaware.gov",
+            "source": "Myth or Fact - The COVID-19 vaccine causes infertility - Delaware's Coronavirus Official Website",
+            "url": "https://coronavirus.delaware.gov/covid-19-myth-or-fact/myth-or-fact-the-covid-19-vaccine-causes-infertility/",
+            "relevance": 0.9882895946502686,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9882895946502686
+          },
+          {
+            "text": "following vaccination. Additionally, given that there are only 20 different types of amino acids that make up proteins, it is not surprising that many proteins share some similarities. Synctin-1 shares short amino acid sequences with many proteins, not just the SARS-CoV-2 spike protein. Dr. Stephanie Langel, an immunologist and expert in maternal and neonatal immunity at Duke University, has stated: “The two proteins share only a minuscule stretch of material; mixing them up would be akin to mistaking a rhinoceros for a jaguar because they are wearing the same collar.” Where did this claim come from? The claim that COVID-19 vaccine causes infertility appears to originate from a blog called Health and Money News in December of 2020. The blog’s unfounded claims and the misinformation it [...] North Dakota Department of Health and Human Services 600 East Boulevard Avenue, Dept 325 Bismarck N.D. 58505 (701) 328-2310 • Toll-free: (800) 472-2622 • www.hhs.nd.gov COVID-19 Vaccine & Fertility There is no evidence that any of the COVID-19 vaccines can cause infertility. The American College of Obstetricians and Gynecologists (ACOG), Johns Hopkins Medicine, the American Medical Association, and Harvard Medical School are just a few of the organizations that have addressed favorable comments towards the topic of COVID-19 vaccination and pregnancy. The links highlighted provide further depth. Can you tell me more about the COVID-19 vaccine and infertility claim? The Claim: The Pfizer and Moderna mRNA COVID-19 vaccines work by providing our cells with temporary instructions for how to [...] the company in 2011, eight years before the start of the COVID-19 pandemic. Do we have any data on the use of COVID-19 vaccine and infertility? COVID-19 vaccines are both safe and effective. Over 452 million doses of vaccine have been administered in the U.S. under the most intensive safety monitoring in our history. Results from these monitoring efforts are reassuring that COVID-19 vaccine is not associated with infertility, as thousands of women have become pregnant following vaccination. Additionally, the CDC is monitoring over 177,000 pregnant women who have received a COVID-19 vaccine. No unexpected pregnancy or infant outcomes have been observed, including miscarriages, related to COVID-19 vaccination during pregnancy. Development and reproductive toxicity (DART) studies, which use",
+            "source": "[PDF] COVID-19 Vaccine & Fertility",
+            "url": "https://www.hhs.nd.gov/sites/www/files/documents/DOH%20Legacy/COVID-19_Vaccine_Fertility.pdf",
+            "relevance": 0.9847059845924377,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9847059845924377
+          },
+          {
+            "text": "Sponsored by Zap Surgical Systems\n\nReal-Time Adaptive Motion Management on Helical and Robotic RT Platforms\n\nSponsored by Accuray, Inc.\n\nCureus Journal of Medical Science\n\n#### Browse\n\n#### Specialties\n\n#### For Authors & Reviewers\n\n#### About Channels\n\n#### Browse Channels\n\n#### Cureus Partnerships\n\nOffering a variety of advertising and sponsorship options for reaching influential specialists from targeted demographic splits.\n\n###### Learn more\n\n#### Institutional Partners\n\n#### Advertising & Sponsorships\n\n#### Competitions\n\n#### Browse\n\n#### Highlights\n\n#### About Cureus\n\nCureus provides an equitable, efficient publishing and peer reviewing experience without sacrificing publication times.\n\n###### Learn more\n\n#### Who We Are\n\n#### Contributors\n\n#### More From Cureus\n\n#### Competitions [...] #### Browse\n\n#### Specialties\n\n#### About\n\n#### For Authors & Reviewers\n\n#### About\n\n#### Browse\n\n#### Cureus Partnerships\n\nOffering a variety of advertising and sponsorship options for reaching influential specialists from targeted demographic splits.\n\n#### Institutional Partners\n\n#### Advertising & Sponsorship\n\n#### Competitions\n\n#### Browse\n\n#### Highlights\n\n#### About Cureus\n\nCureus provides an equitable, efficient publishing and peer reviewing experience without sacrificing publication times.\n\n#### Who We Are\n\n#### Contributors\n\n#### More From Cureus\n\n#### Competitions\n\nGenerate broad awareness and deliver relevant, peer-reviewed clinical experiences directly to potential customers.\n\nDedicated Cranial Radiosurgery: Clinical Experience with New & Innovative SRS Technologies [...] #### More From Cureus\n\n#### Competitions\n\nGenerate broad awareness and deliver relevant, peer-reviewed clinical experiences directly to potential customers.\n\n###### Learn more\n\n#### Ongoing Competitions\n\nDedicated Cranial Radiosurgery: Clinical Experience with New & Innovative SRS Technologies\n\nSponsored by Zap Surgical Systems\n\nReal-Time Adaptive Motion Management on Helical and Robotic RT Platforms\n\nSponsored by Accuray, Inc.\n\n#### Enter your email address to receive your free PDF download.\n\nPlease note that by doing so you agree to be added to our monthly email newsletter distribution list.\n\n### Sign in to Cureus\n\n### Sign up for Cureus\n\n#### Email Communication and Personal Data\n\nBy joining Cureus, you agree to our\nPrivacy Policy\nand\nTerms of Use.\n\n### Download Cureus Media Kit",
+            "source": "The Multi-faceted Effects of COVID-19 on Female Reproductive Health: An Updated Narrative Review | Cureus",
+            "url": "https://www.cureus.com/articles/196918-the-multi-faceted-effects-of-covid-19-on-female-reproductive-health-an-updated-narrative-review",
+            "relevance": 0.9805027842521667,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6863519489765166
+          }
+        ]
+      },
+      "diff": {
+        "verdict_changed": false,
+        "confidence_delta": 0.0,
+        "evidence_count_delta": 0,
+        "llm_triggered_on": false,
+        "llm_reason_on": "not_triggered"
+      }
+    },
+    {
+      "id": 5,
+      "claim": "NASA officially confirmed discovering active microbial life on Mars in 2025.",
+      "off": {
+        "verdict": "refute",
+        "confidence": 0.7977600672140835,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "SPACE_ASTRONOMY/planets",
+          "sources_checked": 6,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": false,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 3%, Refute: 80%, Neutral: 6%. Strong evidence refutes this claim. High confidence (80%).",
+        "evidence_top5": [
+          {
+            "text": "NASA Says Mars Rover Discovered Potential Biosignatures\n\nAfter a year’s worth of scientific scrutiny, the “Sapphire Canyon” rock sample uncovered in July 2024 remains the mission’s best candidate for containing signs of ancient microbial life processes.\n\nRead About the Discovery about NASA Says Mars Rover Discovered Potential Biosignatures\n\nImage 38: NASAs Perseverance Mars rover took this selfie, made up of 62 individual images, on July 23. A rock nicknamed Cheyava Falls, which has features that may bear on the question of whether the Red Planet was long ago home to microscopic life, is to the left of the rover near the center of the image.\n\nWhat's New? Peer Review [...] SPECIAL EDITION: September 2025\n\nLast summer NASA's Perseverance Mars rover investigated its “most puzzling, complex, and potentially important rock yet,” according to one mission scientist. It showed signs of past water, organic material, and clues suggesting chemical reactions by microbial life.\n\nNow, after a rigorous, yearlong peer-review process, during which outside scientists scrutinized the Mars 2020 team’s data and analysis, the journal Nature has published the validated results:Perseverance’s “Sapphire Canyon” sample indeed contains potential biosignatures — clues that suggest past life may have been present, but that require more data or further study before any conclusions about the absence or presence of life.\n\nNASA Says Mars Rover Discovered Potential Biosignatures [...] Search  Search \n\nSort:Publish date\n\nTitle Publish date Last modified date Relevance\n\nOrder:Descending\n\nAscending Descending\n\nImage 43\n\nThe Mars Report: September 2025 — Special Edition\n\n 1 min read \n\nSPECIAL EDITION: September 2025 Last summer NASA’s Perseverance Mars rover investigated its “most puzzling, complex, and potentially important rock yet,” according to one mission scientist. It showed signs of past water, organic material, and clues suggesting chemical reactions by microbial…\n\nTopic\n\nImage 44\n\nMars Report: Perseverance Rover Captures Dust Devils Whirling Across Mars\n\n 2 min read",
+            "source": "The Mars Report: September 2025 — Special Edition - NASA Science",
+            "url": "https://science.nasa.gov/mars/the-mars-report/2025-september-special-edition/",
+            "relevance": 0.9950156807899475,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9950156807899475
+          },
+          {
+            "text": "\"This finding is the direct result of NASA’s effort to strategically plan, develop and execute a mission able to deliver exactly this type of science – the identification of a potential biosignature on Mars,\" says Nicky Fox, associate administrator, Science Mission Directorate at NASA Headquarters in Washington.\n\n\"With the publication of this peer-reviewed result, NASA makes this data available to the wider science community for further study to confirm or refute its biological potential.\"\n\nNASA's Perseverance rover captured this selfie on 23 July 2024, near a rock known as Cheyava Falls, which shows evidence that it may have once been home to microbial life. Credit: NASA/JPL-Caltech/MSSS [...] # NASA rover finds evidence of ancient life on Mars. Here's what it means\n\nIain Todd\n\nA NASA rover operating on the surface of Mars may have found evidence of ancient microbial life on the Red Planet, the space agency has said.\n\nThe NASA Perseverance Mars rover has collected samples from an ancient dry riverbed in Jezero Crater, which it has been investigating since landing in February 2021 until late 2024.\n\n### More on Perseverance rover\n\nImage from NASA’s Mars Perseverance rover showing the ‘Skull Hill’ dark-toned float rock, 11 April 2025. Credit: NASA/JPL-Caltech/ASU\n\nTaken from a rock called 'Cheyava Falls' in 2024, the sample is known as 'Sapphire Canyon' and contains potential 'biosignatures', which means it could have a biological origin. [...] But NASA says the rocks at Bright Angel don't show evidence they experienced high temperatures or acidic conditions.\n\nNASA's Perseverance rover was travelling in Neretva Vallis when it captured this view of an area on Mars nicknamed Bright Angel on 6 June 2024. Credit: NASA/JPL-Caltech\n\n## The vibrancy of youth\n\nIt had been thought that signs of ancient life on Mars would be restricted to older rock formations, but this discovery was made in some of the youngest sedimentary rocks Perseverance has analysed.\n\nThis could mean Mars may have been habitable for a longer period, or later in the planet’s history than previously thought.",
+            "source": "NASA rover finds evidence of ancient microbial life on Mars | BBC Sky at Night Magazine",
+            "url": "https://www.skyatnightmagazine.com/news/nasa-perseverance-cheyava-falls-biosignatures",
+            "relevance": 0.991908848285675,
+            "credibility": 0.85,
+            "stance": "refute",
+            "score": 0.8431225210428238
+          },
+          {
+            "text": "Astronomy Magazine logo\n\n# NASA announces strongest evidence yet for ancient life on Mars\n\nNASA announced Wednesday that its Perseverance rover discovered what scientists are calling a “potential biosignature” in a rock on Mars last year. This signature, which may have a biological origin but requires further study, represents the most compelling evidence to date for ancient microbial life on Mars, scientists and agency officials said in a press conference. [...] Initial analysis with the rover quickly confirmed the presence of organic molecules — carbon-based molecules that form the basic building blocks of life. But the true significance lay hidden in the chemistry of the spots themselves, which contained minerals thought to indicate the presence of microbial life billions of years ago. [...] The findings, detailed in a peer-reviewed paper published in the journal Nature, center on a unique, leopard-spotted rock named Cheyava Falls, found within the ancient Jezero Crater that Perseverance has been exploring since 2021. The rock contains a cocktail of organic molecules and minerals strongly associated with biological processes on Earth.\n\nThe announcement adds a layer of scientific rigor to a discovery first released by NASA last summer. The key development is the comprehensive analysis and peer review of data from Cheyava Falls.\n\n“This very well could be the clearest sign of life that we’ve ever found on Mars, which is incredibly exciting,” said Acting NASA Administrator Sean Duffy at Wednesday’s press conference.\n\n## A surprising discovery in an ancient riverbed",
+            "source": "Ancient life on Mars: Perseverance finds strongest evidence yet",
+            "url": "https://www.astronomy.com/science/nasa-announces-strongest-evidence-yet-for-ancient-life-on-mars/",
+            "relevance": 0.9918319582939148,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6942823708057403
+          },
+          {
+            "text": "On Sept. 10, 2025, NASA announced what it called the “closest we have ever come to discovering [ancient] life on Mars.” A Martian rock, studied by the agency’s Perseverance rover, appeared to show possible evidence of past microbial life. After investigating for months, NASA scientists published their conclusions: they could not come up with any other way to easily explain what they saw.",
+            "source": "Our best proof of life on Mars yet? A deep…",
+            "url": "https://www.planetary.org/articles/our-best-proof-of-life-on-mars-yet-a-deep-dive-into-cheyava-falls",
+            "relevance": 0.9901443719863892,
+            "credibility": 0.9,
+            "stance": "refute",
+            "score": 0.8911299347877503
+          },
+          {
+            "text": "In a recent study published in the journal Microbiology Spectrum, scientists have now worked out this sneaky bacterium’s secret: T. phoenicis can enter a state of deep hibernation—one that prevents scientists from detecting  its presence. “It is not dead. It was playing dead,” says Madhan Tirumalai, a microbiologist at the University of Houston and one of the study’s authors. “It is only dormant.”\n\nSince the discovery of T. phoenicis, more mysterious microbes have turned up in space agency clean rooms, and others still to be undiscovered could be hiding there. “A bunch of them could be problematic,” says William Widger, a biologist and biochemist at the University of Houston and another author of the study.\n\n(How NASA’s Cassini spacecraft met its fiery end.)\n\n## AUTUMN OFFER! [...] “There’s still a diverse microbiome even in clean rooms, and on spacecraft,” says Nils Averesch, a space biologist at the University of Florida who was not involved with the recent study. Microbes have even been found on the outside of the International Space Station, exposed to the excessively hostile nature of space itself.\n\nSome have survived by consuming the cleaning products that are supposed to be maiming them. Others can persist by developing spores: tough biological structures that act as shields. In spore form, bacteria “can remain [inert] for millions of years until they find the right conditions to germinate again,” says Tirumalai. [...] T. phoenicis falls into this last category.\n\n## Rise of the tiny phoenix\n\nIn 2007, engineers preparing NASA’s Phoenix Mars lander swabbed the floor of its assembly clean room at NASA’s Kennedy Space Center in Florida. Thanks to those swabs (along with testing for traces of DNA), scientists announced in 2013 that they had identified and detected the new bacterium, T. phoenicis, both at Kennedy and at the European Space Agency’s clean room in French Guiana 2,500 miles away. It marked the first time a new microbe had been found in two distant clean rooms.",
+            "source": "NASA discovered a bacteria that can ‘play dead’—and might have accidentally sent it to Mars | National Geographic",
+            "url": "https://www.nationalgeographic.com/science/article/clean-room-bacteria-nasa-spacecraft-dormant",
+            "relevance": 0.9856352806091309,
+            "credibility": 0.9,
+            "stance": "refute",
+            "score": 0.8870717525482178
+          }
+        ]
+      },
+      "on": {
+        "verdict": "refute",
+        "confidence": 0.7977600672140835,
+        "evidence_count": 7,
+        "details": {
+          "checkability": "Checkable",
+          "context": "SPACE_ASTRONOMY/planets",
+          "sources_checked": 6,
+          "evidence_count": 7,
+          "llm_verifier": {
+            "enabled": true,
+            "triggered": false,
+            "provider": "groq",
+            "model": "openai/gpt-oss-120b",
+            "neutral_only": true,
+            "conf_threshold": 0.55,
+            "reason": "not_triggered"
+          }
+        },
+        "reasoning": "Analyzed 7 evidence sources. Support: 3%, Refute: 80%, Neutral: 6%. Strong evidence refutes this claim. High confidence (80%).",
+        "evidence_top5": [
+          {
+            "text": "NASA Says Mars Rover Discovered Potential Biosignatures\n\nAfter a year’s worth of scientific scrutiny, the “Sapphire Canyon” rock sample uncovered in July 2024 remains the mission’s best candidate for containing signs of ancient microbial life processes.\n\nRead About the Discovery about NASA Says Mars Rover Discovered Potential Biosignatures\n\nImage 38: NASAs Perseverance Mars rover took this selfie, made up of 62 individual images, on July 23. A rock nicknamed Cheyava Falls, which has features that may bear on the question of whether the Red Planet was long ago home to microscopic life, is to the left of the rover near the center of the image.\n\nWhat's New? Peer Review [...] SPECIAL EDITION: September 2025\n\nLast summer NASA's Perseverance Mars rover investigated its “most puzzling, complex, and potentially important rock yet,” according to one mission scientist. It showed signs of past water, organic material, and clues suggesting chemical reactions by microbial life.\n\nNow, after a rigorous, yearlong peer-review process, during which outside scientists scrutinized the Mars 2020 team’s data and analysis, the journal Nature has published the validated results:Perseverance’s “Sapphire Canyon” sample indeed contains potential biosignatures — clues that suggest past life may have been present, but that require more data or further study before any conclusions about the absence or presence of life.\n\nNASA Says Mars Rover Discovered Potential Biosignatures [...] Search  Search \n\nSort:Publish date\n\nTitle Publish date Last modified date Relevance\n\nOrder:Descending\n\nAscending Descending\n\nImage 43\n\nThe Mars Report: September 2025 — Special Edition\n\n 1 min read \n\nSPECIAL EDITION: September 2025 Last summer NASA’s Perseverance Mars rover investigated its “most puzzling, complex, and potentially important rock yet,” according to one mission scientist. It showed signs of past water, organic material, and clues suggesting chemical reactions by microbial…\n\nTopic\n\nImage 44\n\nMars Report: Perseverance Rover Captures Dust Devils Whirling Across Mars\n\n 2 min read",
+            "source": "The Mars Report: September 2025 — Special Edition - NASA Science",
+            "url": "https://science.nasa.gov/mars/the-mars-report/2025-september-special-edition/",
+            "relevance": 0.9950156807899475,
+            "credibility": 1.0,
+            "stance": "refute",
+            "score": 0.9950156807899475
+          },
+          {
+            "text": "\"This finding is the direct result of NASA’s effort to strategically plan, develop and execute a mission able to deliver exactly this type of science – the identification of a potential biosignature on Mars,\" says Nicky Fox, associate administrator, Science Mission Directorate at NASA Headquarters in Washington.\n\n\"With the publication of this peer-reviewed result, NASA makes this data available to the wider science community for further study to confirm or refute its biological potential.\"\n\nNASA's Perseverance rover captured this selfie on 23 July 2024, near a rock known as Cheyava Falls, which shows evidence that it may have once been home to microbial life. Credit: NASA/JPL-Caltech/MSSS [...] # NASA rover finds evidence of ancient life on Mars. Here's what it means\n\nIain Todd\n\nA NASA rover operating on the surface of Mars may have found evidence of ancient microbial life on the Red Planet, the space agency has said.\n\nThe NASA Perseverance Mars rover has collected samples from an ancient dry riverbed in Jezero Crater, which it has been investigating since landing in February 2021 until late 2024.\n\n### More on Perseverance rover\n\nImage from NASA’s Mars Perseverance rover showing the ‘Skull Hill’ dark-toned float rock, 11 April 2025. Credit: NASA/JPL-Caltech/ASU\n\nTaken from a rock called 'Cheyava Falls' in 2024, the sample is known as 'Sapphire Canyon' and contains potential 'biosignatures', which means it could have a biological origin. [...] But NASA says the rocks at Bright Angel don't show evidence they experienced high temperatures or acidic conditions.\n\nNASA's Perseverance rover was travelling in Neretva Vallis when it captured this view of an area on Mars nicknamed Bright Angel on 6 June 2024. Credit: NASA/JPL-Caltech\n\n## The vibrancy of youth\n\nIt had been thought that signs of ancient life on Mars would be restricted to older rock formations, but this discovery was made in some of the youngest sedimentary rocks Perseverance has analysed.\n\nThis could mean Mars may have been habitable for a longer period, or later in the planet’s history than previously thought.",
+            "source": "NASA rover finds evidence of ancient microbial life on Mars | BBC Sky at Night Magazine",
+            "url": "https://www.skyatnightmagazine.com/news/nasa-perseverance-cheyava-falls-biosignatures",
+            "relevance": 0.991908848285675,
+            "credibility": 0.85,
+            "stance": "refute",
+            "score": 0.8431225210428238
+          },
+          {
+            "text": "Astronomy Magazine logo\n\n# NASA announces strongest evidence yet for ancient life on Mars\n\nNASA announced Wednesday that its Perseverance rover discovered what scientists are calling a “potential biosignature” in a rock on Mars last year. This signature, which may have a biological origin but requires further study, represents the most compelling evidence to date for ancient microbial life on Mars, scientists and agency officials said in a press conference. [...] Initial analysis with the rover quickly confirmed the presence of organic molecules — carbon-based molecules that form the basic building blocks of life. But the true significance lay hidden in the chemistry of the spots themselves, which contained minerals thought to indicate the presence of microbial life billions of years ago. [...] The findings, detailed in a peer-reviewed paper published in the journal Nature, center on a unique, leopard-spotted rock named Cheyava Falls, found within the ancient Jezero Crater that Perseverance has been exploring since 2021. The rock contains a cocktail of organic molecules and minerals strongly associated with biological processes on Earth.\n\nThe announcement adds a layer of scientific rigor to a discovery first released by NASA last summer. The key development is the comprehensive analysis and peer review of data from Cheyava Falls.\n\n“This very well could be the clearest sign of life that we’ve ever found on Mars, which is incredibly exciting,” said Acting NASA Administrator Sean Duffy at Wednesday’s press conference.\n\n## A surprising discovery in an ancient riverbed",
+            "source": "Ancient life on Mars: Perseverance finds strongest evidence yet",
+            "url": "https://www.astronomy.com/science/nasa-announces-strongest-evidence-yet-for-ancient-life-on-mars/",
+            "relevance": 0.9918319582939148,
+            "credibility": 0.7,
+            "stance": "refute",
+            "score": 0.6942823708057403
+          },
+          {
+            "text": "On Sept. 10, 2025, NASA announced what it called the “closest we have ever come to discovering [ancient] life on Mars.” A Martian rock, studied by the agency’s Perseverance rover, appeared to show possible evidence of past microbial life. After investigating for months, NASA scientists published their conclusions: they could not come up with any other way to easily explain what they saw.",
+            "source": "Our best proof of life on Mars yet? A deep…",
+            "url": "https://www.planetary.org/articles/our-best-proof-of-life-on-mars-yet-a-deep-dive-into-cheyava-falls",
+            "relevance": 0.9901443719863892,
+            "credibility": 0.9,
+            "stance": "refute",
+            "score": 0.8911299347877503
+          },
+          {
+            "text": "In a recent study published in the journal Microbiology Spectrum, scientists have now worked out this sneaky bacterium’s secret: T. phoenicis can enter a state of deep hibernation—one that prevents scientists from detecting  its presence. “It is not dead. It was playing dead,” says Madhan Tirumalai, a microbiologist at the University of Houston and one of the study’s authors. “It is only dormant.”\n\nSince the discovery of T. phoenicis, more mysterious microbes have turned up in space agency clean rooms, and others still to be undiscovered could be hiding there. “A bunch of them could be problematic,” says William Widger, a biologist and biochemist at the University of Houston and another author of the study.\n\n(How NASA’s Cassini spacecraft met its fiery end.)\n\n## AUTUMN OFFER! [...] “There’s still a diverse microbiome even in clean rooms, and on spacecraft,” says Nils Averesch, a space biologist at the University of Florida who was not involved with the recent study. Microbes have even been found on the outside of the International Space Station, exposed to the excessively hostile nature of space itself.\n\nSome have survived by consuming the cleaning products that are supposed to be maiming them. Others can persist by developing spores: tough biological structures that act as shields. In spore form, bacteria “can remain [inert] for millions of years until they find the right conditions to germinate again,” says Tirumalai. [...] T. phoenicis falls into this last category.\n\n## Rise of the tiny phoenix\n\nIn 2007, engineers preparing NASA’s Phoenix Mars lander swabbed the floor of its assembly clean room at NASA’s Kennedy Space Center in Florida. Thanks to those swabs (along with testing for traces of DNA), scientists announced in 2013 that they had identified and detected the new bacterium, T. phoenicis, both at Kennedy and at the European Space Agency’s clean room in French Guiana 2,500 miles away. It marked the first time a new microbe had been found in two distant clean rooms.",
+            "source": "NASA discovered a bacteria that can ‘play dead’—and might have accidentally sent it to Mars | National Geographic",
+            "url": "https://www.nationalgeographic.com/science/article/clean-room-bacteria-nasa-spacecraft-dormant",
+            "relevance": 0.9856352806091309,
+            "credibility": 0.9,
+            "stance": "refute",
+            "score": 0.8870717525482178
+          }
+        ]
+      },
+      "diff": {
+        "verdict_changed": false,
+        "confidence_delta": 0.0,
+        "evidence_count_delta": 0,
+        "llm_triggered_on": false,
+        "llm_reason_on": "not_triggered"
+      }
+    }
+  ]
+}

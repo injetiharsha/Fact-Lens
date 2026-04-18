@@ -1,0 +1,141 @@
+{
+  "summary": {
+    "n": 10,
+    "parse_fail": 7,
+    "empty_content": 6,
+    "truncated_content": 4,
+    "finish_length": 10
+  },
+  "rows": [
+    {
+      "i": 1,
+      "expected": "support",
+      "evidence_count": 1,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 657,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    },
+    {
+      "i": 2,
+      "expected": "refute",
+      "evidence_count": 4,
+      "finish_reason": "length",
+      "content_len": 8,
+      "reasoning_len": 686,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "truncated_content",
+      "content_head": "{   \"ver"
+    },
+    {
+      "i": 3,
+      "expected": "support",
+      "evidence_count": 6,
+      "finish_reason": "length",
+      "content_len": 253,
+      "reasoning_len": 443,
+      "parse_ok": true,
+      "parse_mode": "plaintext",
+      "parse_error": "",
+      "mode": "truncated_content",
+      "content_head": "{   \"verdict\": \"support\",   \"confidence\": 0.99,   \"reason\": \"Multiple sources explicitly state that OpenAI, the organization that created Ch"
+    },
+    {
+      "i": 4,
+      "expected": "support",
+      "evidence_count": 5,
+      "finish_reason": "length",
+      "content_len": 137,
+      "reasoning_len": 514,
+      "parse_ok": true,
+      "parse_mode": "plaintext",
+      "parse_error": "",
+      "mode": "truncated_content",
+      "content_head": "{   \"verdict\": \"support\",   \"confidence\": 0.98,   \"reason\": \"All provided sources state that the Mysore Odayar dynasty was founded in the "
+    },
+    {
+      "i": 5,
+      "expected": "support",
+      "evidence_count": 8,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 857,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    },
+    {
+      "i": 6,
+      "expected": "support",
+      "evidence_count": 9,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 684,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    },
+    {
+      "i": 7,
+      "expected": "support",
+      "evidence_count": 4,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 812,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    },
+    {
+      "i": 8,
+      "expected": "support",
+      "evidence_count": 9,
+      "finish_reason": "length",
+      "content_len": 75,
+      "reasoning_len": 574,
+      "parse_ok": true,
+      "parse_mode": "plaintext",
+      "parse_error": "",
+      "mode": "truncated_content",
+      "content_head": "{   \"verdict\": \"support\",   \"confidence\": 0.98,   \"reason\": \"Multiple Tamil"
+    },
+    {
+      "i": 9,
+      "expected": "support",
+      "evidence_count": 6,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 617,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    },
+    {
+      "i": 10,
+      "expected": "neutral",
+      "evidence_count": 5,
+      "finish_reason": "length",
+      "content_len": 0,
+      "reasoning_len": 725,
+      "parse_ok": false,
+      "parse_mode": "json",
+      "parse_error": "No recognizable verdict token in LLM response",
+      "mode": "empty_content",
+      "content_head": ""
+    }
+  ]
+}

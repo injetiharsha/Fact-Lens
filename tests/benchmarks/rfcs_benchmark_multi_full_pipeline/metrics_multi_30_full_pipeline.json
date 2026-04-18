@@ -1,0 +1,40 @@
+{
+  "total_claims": 30,
+  "correct_predictions": 4,
+  "incorrect_predictions": 26,
+  "accuracy": 0.13333333333333333,
+  "neutral_predictions": 30,
+  "neutral_rate": 1.0,
+  "expected_distribution": {
+    "support": 20,
+    "refute": 6,
+    "neutral": 4
+  },
+  "predicted_distribution": {
+    "neutral": 30
+  },
+  "confusion_matrix": {
+    "labels": [
+      "support",
+      "refute",
+      "neutral"
+    ],
+    "matrix": [
+      [
+        0,
+        0,
+        20
+      ],
+      [
+        0,
+        0,
+        6
+      ],
+      [
+        0,
+        0,
+        4
+      ]
+    ]
+  }
+}

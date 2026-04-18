@@ -1,0 +1,22 @@
+experiment_name: stance_multi_indic_eval
+model_name: microsoft/mdeberta-v3-base
+language_group: indic
+
+data:
+  train_file: data/processed/stance/indic_fever_mix_cleaned/train.jsonl
+  validation_file: data/processed/stance/indic_fever_mix_cleaned/val.jsonl
+  test_file: data/processed/stance/indic_fever_mix_cleaned/test.jsonl
+  text_a_column: claim
+  text_b_column: evidence
+  label_column: label
+
+labels:
+  - support
+  - refute
+  - neutral
+
+training:
+  output_dir: checkpoints/stance/multi/multi-indic-fever
+  per_device_eval_batch_size: 16
+  max_seq_length: 512
+

@@ -1,0 +1,115 @@
+{
+  "total_claims": 30,
+  "correct_predictions": 10,
+  "incorrect_predictions": 20,
+  "accuracy": 0.3333333333333333,
+  "neutral_predictions": 18,
+  "neutral_rate": 0.6,
+  "expected_distribution": {
+    "support": 20,
+    "refute": 6,
+    "neutral": 4
+  },
+  "predicted_distribution": {
+    "neutral": 18,
+    "support": 12
+  },
+  "confusion_matrix": {
+    "labels": [
+      "support",
+      "refute",
+      "neutral"
+    ],
+    "matrix": [
+      [
+        8,
+        0,
+        12
+      ],
+      [
+        2,
+        0,
+        4
+      ],
+      [
+        2,
+        0,
+        2
+      ]
+    ]
+  },
+  "context_accuracy": {
+    "ECONOMICS_BUSINESS": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    "ENTERTAINMENT": {
+      "total": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "ENVIRONMENT_CLIMATE": {
+      "total": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "GENERAL_FACTUAL": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "GEOGRAPHY": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    "HEALTH": {
+      "total": 3,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "HISTORY": {
+      "total": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "LAW_CRIME": {
+      "total": 2,
+      "correct": 2,
+      "accuracy": 1.0
+    },
+    "POLITICS_GOVERNMENT": {
+      "total": 2,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "SCIENCE": {
+      "total": 3,
+      "correct": 0,
+      "accuracy": 0.0
+    },
+    "SOCIETY_CULTURE": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    "SPACE_ASTRONOMY": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    "SPORTS": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    },
+    "TECHNOLOGY": {
+      "total": 2,
+      "correct": 1,
+      "accuracy": 0.5
+    }
+  },
+  "split": "multi",
+  "generated_at_utc": "2026-04-17T15:21:25.979077+00:00"
+}

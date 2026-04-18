@@ -1,0 +1,9 @@
+under_6_months: 1.00
+between_6_12_months: 0.90
+between_1_2_years: 0.80
+between_2_5_years: 0.65
+between_5_10_years: 0.50
+over_10_years_or_unknown: 0.40
+exceptions:
+  - HISTORY
+  - SCIENCE

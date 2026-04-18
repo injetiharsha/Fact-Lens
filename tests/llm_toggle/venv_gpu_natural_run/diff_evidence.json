@@ -1,0 +1,12 @@
+{
+  "verdict_changed": false,
+  "confidence_off": 0.6724407448442895,
+  "confidence_on": 0.6724407448442895,
+  "confidence_delta": 0.0,
+  "evidence_count_off": 9,
+  "evidence_count_on": 9,
+  "evidence_count_delta": 0,
+  "evidence_only_off": [],
+  "evidence_only_on": [],
+  "evidence_common_changed": []
+}

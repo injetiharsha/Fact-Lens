@@ -1,0 +1,23 @@
+﻿{
+    "claim":  "The Earth revolves around the Sun.",
+    "language":  "en",
+    "llm_off":  {
+                    "verdict":  "refute",
+                    "confidence":  0.2887720192775786,
+                    "evidence_count":  6
+                },
+    "llm_on":  {
+                   "verdict":  "support",
+                   "confidence":  0.99,
+                   "evidence_count":  6
+               },
+    "changed":  {
+                    "verdict_changed":  true,
+                    "confidence_delta":  0.70122798072242132,
+                    "evidence_count_delta":  0
+                },
+    "files":  {
+                  "off":  "tests\\llm_toggle\\manual_run\\test_llm_off.json",
+                  "on":  "tests\\llm_toggle\\manual_run\\test_llm_on.json"
+              }
+}

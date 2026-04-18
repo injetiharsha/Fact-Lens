@@ -1,0 +1,1056 @@
+{
+  "summary": {
+    "generated_at_utc": "2026-04-18T00:16:24.917587+00:00",
+    "claims_run": 10,
+    "correct": 4,
+    "accuracy": 0.4,
+    "parser_fail_count": 0,
+    "parser_fail_ids": [],
+    "tavily_slot_usage_histogram": {
+      "1": 20,
+      "2": 20,
+      "3": 10,
+      "4": 10,
+      "5": 10
+    },
+    "tavily_total_calls": 40
+  },
+  "rows": [
+    {
+      "index": 1,
+      "id": 31,
+      "language": "te",
+      "expected": "support",
+      "claim": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.5,
+      "evidence_count": 7,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:10:32.645410+00:00",
+      "ended_utc": "2026-04-18T00:10:55.996766+00:00",
+      "duration_sec": 23.351356,
+      "tavily_events": [
+        {
+          "query": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4410,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "వెలుతురు వేగం సెకనుకు లక్షల కిలోమీటర్లు ఇది",
+          "ok": true,
+          "error": "",
+          "duration_ms": 5946,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4602,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "వెలుతురు వేగం సెకనుకు లక్షల కిలోమీటర్లు ఇది",
+          "ok": true,
+          "error": "",
+          "duration_ms": 313,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": 32,
+      "language": "hi",
+      "expected": "refute",
+      "claim": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण पूरी तरह ठीक हो जाता है, यह WHO द्वारा प्रमाणित है।",
+      "predicted": "support",
+      "correct": false,
+      "confidence": 0.6435159520098951,
+      "evidence_count": 9,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": false,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "not_triggered"
+      },
+      "started_utc": "2026-04-18T00:11:10.201176+00:00",
+      "ended_utc": "2026-04-18T00:11:30.751366+00:00",
+      "duration_sec": 20.55019,
+      "tavily_events": [
+        {
+          "query": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण पूरी तरह ठीक हो जाता है, यह WHO द्वारा प्रमाणित है।",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4080,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3086,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण पूरी तरह ठीक हो जाता है, यह WHO द्वारा प्रमाणित है।",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3994,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण",
+          "ok": true,
+          "error": "",
+          "duration_ms": 267,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": 33,
+      "language": "ta",
+      "expected": "support",
+      "claim": "ChatGPT ஐ உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு நிறுவப்பட்டது.",
+      "predicted": "support",
+      "correct": true,
+      "confidence": 0.98,
+      "evidence_count": 9,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "Multiple sources state that OpenAI, the organization that created ChatGPT, was founded in December 2015 as a nonprofit (e.g., sources",
+        "verdict": "support",
+        "confidence": 0.98
+      },
+      "started_utc": "2026-04-18T00:11:41.791499+00:00",
+      "ended_utc": "2026-04-18T00:12:05.323309+00:00",
+      "duration_sec": 23.53181,
+      "tavily_events": [
+        {
+          "query": "ChatGPT ஐ உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு நிறுவப்பட்டது.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 2765,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ChatGPT உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4200,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ChatGPT ஐ உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு நிறுவப்பட்டது.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3991,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "ChatGPT உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு",
+          "ok": true,
+          "error": "",
+          "duration_ms": 305,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": 34,
+      "language": "kn",
+      "expected": "support",
+      "claim": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.5,
+      "evidence_count": 5,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:12:17.934926+00:00",
+      "ended_utc": "2026-04-18T00:12:33.454401+00:00",
+      "duration_sec": 15.519475,
+      "tavily_events": [
+        {
+          "query": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4309,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 1171,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4713,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 303,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": 35,
+      "language": "ml",
+      "expected": "support",
+      "claim": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു കമ്മ്യൂണിസ്റ്റ് സർക്കാർ അധികാരത്തിൽ വന്ന സംസ്ഥാനമാണ്.",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.5,
+      "evidence_count": 8,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:12:44.746098+00:00",
+      "ended_utc": "2026-04-18T00:13:10.964764+00:00",
+      "duration_sec": 26.218666,
+      "tavily_events": [
+        {
+          "query": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു കമ്മ്യൂണിസ്റ്റ് സർക്കാർ അധികാരത്തിൽ വന്ന സംസ്ഥാനമാണ്.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4917,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു",
+          "ok": true,
+          "error": "",
+          "duration_ms": 6147,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു കമ്മ്യൂണിസ്റ്റ് സർക്കാർ അധികാരത്തിൽ വന്ന സംസ്ഥാനമാണ്.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4397,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു",
+          "ok": true,
+          "error": "",
+          "duration_ms": 315,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": 36,
+      "language": "hi",
+      "expected": "support",
+      "claim": "भारत में GST लागू होने से पहले केंद्र और राज्य मिलाकर 17 से अधिक अलग-अलग कर थे।",
+      "predicted": "support",
+      "correct": true,
+      "confidence": 0.7065636300797807,
+      "evidence_count": 7,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": false,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "not_triggered"
+      },
+      "started_utc": "2026-04-18T00:13:22.986957+00:00",
+      "ended_utc": "2026-04-18T00:13:50.054103+00:00",
+      "duration_sec": 27.067146,
+      "tavily_events": [
+        {
+          "query": "भारत में GST लागू होने से पहले केंद्र और राज्य मिलाकर 17 से अधिक अलग-अलग कर थे।",
+          "ok": true,
+          "error": "",
+          "duration_ms": 9419,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "भारत में GST लागू होने से",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3277,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "भारत में GST लागू होने से पहले केंद्र और राज्य मिलाकर 17 से अधिक अलग-अलग कर थे।",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3639,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "भारत में GST लागू होने से",
+          "ok": true,
+          "error": "",
+          "duration_ms": 355,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": 37,
+      "language": "te",
+      "expected": "support",
+      "claim": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.5,
+      "evidence_count": 5,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:14:07.702737+00:00",
+      "ended_utc": "2026-04-18T00:14:35.524669+00:00",
+      "duration_sec": 27.821932,
+      "tavily_events": [
+        {
+          "query": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 5716,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 1227,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4200,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 306,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": 38,
+      "language": "ta",
+      "expected": "support",
+      "claim": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023 ஆகஸ்டு மாதம் வெற்றிகரமாக தரையிறங்கியது.",
+      "predicted": "support",
+      "correct": true,
+      "confidence": 0.99,
+      "evidence_count": 9,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "Multiple Tamil news sources (e.g., OneIndia, BBC",
+        "verdict": "support",
+        "confidence": 0.99
+      },
+      "started_utc": "2026-04-18T00:14:46.732023+00:00",
+      "ended_utc": "2026-04-18T00:15:12.518783+00:00",
+      "duration_sec": 25.78676,
+      "tavily_events": [
+        {
+          "query": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023 ஆகஸ்டு மாதம் வெற்றிகரமாக தரையிறங்கியது.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 6972,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3583,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023 ஆகஸ்டு மாதம் வெற்றிகரமாக தரையிறங்கியது.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4261,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023",
+          "ok": true,
+          "error": "",
+          "duration_ms": 267,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "id": 39,
+      "language": "kn",
+      "expected": "support",
+      "claim": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500 GW ನವೀಕರಣ ಇಂಧನ ಸಾಮರ್ಥ್ಯ ಸಾಧಿಸಲು ಗುರಿ ಹೊಂದಿದೆ.",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.5,
+      "evidence_count": 4,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:15:24.501941+00:00",
+      "ended_utc": "2026-04-18T00:15:48.472473+00:00",
+      "duration_sec": 23.970532,
+      "tavily_events": [
+        {
+          "query": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500 GW ನವೀಕರಣ ಇಂಧನ ಸಾಮರ್ಥ್ಯ ಸಾಧಿಸಲು ಗುರಿ ಹೊಂದಿದೆ.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3601,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500",
+          "ok": true,
+          "error": "",
+          "duration_ms": 2457,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500 GW ನವೀಕರಣ ಇಂಧನ ಸಾಮರ್ಥ್ಯ ಸಾಧಿಸಲು ಗುರಿ ಹೊಂದಿದೆ.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3895,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500",
+          "ok": true,
+          "error": "",
+          "duration_ms": 303,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "id": 40,
+      "language": "ml",
+      "expected": "neutral",
+      "claim": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും ആഘോഷിക്കുന്ന ഒരു ദേശീയ ഉത്സവമാണ്.",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.5,
+      "evidence_count": 6,
+      "error": "",
+      "parser_error": "",
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: No recognizable verdict token in LLM response",
+        "verdict": "neutral",
+        "confidence": 0.5
+      },
+      "started_utc": "2026-04-18T00:16:00.906025+00:00",
+      "ended_utc": "2026-04-18T00:16:24.917587+00:00",
+      "duration_sec": 24.011562,
+      "tavily_events": [
+        {
+          "query": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും ആഘോഷിക്കുന്ന ഒരു ദേശീയ ഉത്സവമാണ്.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 4918,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 0,
+          "idx_after": 1,
+          "slot_attempt_order": [
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും",
+          "ok": true,
+          "error": "",
+          "duration_ms": 5232,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 1,
+          "idx_after": 2,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": []
+        },
+        {
+          "query": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും ആഘോഷിക്കുന്ന ഒരു ദേശീയ ഉത്സവമാണ്.",
+          "ok": true,
+          "error": "",
+          "duration_ms": 3677,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 2,
+          "idx_after": 6,
+          "slot_attempt_order": [
+            3,
+            4,
+            5,
+            1
+          ],
+          "blocked_slots_before": [],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "query": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും",
+          "ok": true,
+          "error": "",
+          "duration_ms": 305,
+          "result_count": 5,
+          "client_count": 5,
+          "idx_before": 6,
+          "idx_after": 7,
+          "slot_attempt_order": [
+            2
+          ],
+          "blocked_slots_before": [
+            3,
+            4,
+            5
+          ],
+          "blocked_slots_after": [
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  ]
+}

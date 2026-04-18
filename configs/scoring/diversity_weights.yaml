@@ -1,0 +1,4 @@
+first_from_domain: 1.00
+second_from_same_domain: 0.70
+third_from_same_domain: 0.50
+max_per_domain: 3

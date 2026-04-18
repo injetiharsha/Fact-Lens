@@ -1,0 +1,4 @@
+support_refute_strong: 0.75
+support_refute_likely: 0.55
+relevance_drop_threshold: 0.30
+evidence_weight_drop_threshold: 0.15

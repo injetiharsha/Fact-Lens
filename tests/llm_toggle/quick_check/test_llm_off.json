@@ -1,0 +1,15 @@
+{
+  "mode": "llm_off",
+  "claim": "The Earth revolves around the Sun.",
+  "language": "en",
+  "verdict": "neutral",
+  "confidence": 0.3,
+  "reasoning": "No evidence found from available sources.",
+  "details": {
+    "checkability": "Checkable",
+    "context": "GENERAL_FACTUAL/general",
+    "sources_checked": 3,
+    "evidence_count": 0
+  },
+  "evidence_count": 0
+}

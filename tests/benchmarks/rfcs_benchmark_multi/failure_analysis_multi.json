@@ -1,0 +1,164 @@
+{
+  "total": 30,
+  "fails": 19,
+  "reason_counts": {
+    "llm_parse_fail_to_neutral": 14,
+    "stance_or_relevance_misclassification": 2,
+    "neutral_expected_but_forced": 2,
+    "no_evidence": 1
+  },
+  "failed_claims": [
+    {
+      "claim": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 6,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण पूरी तरह ठीक हो जाता है, यह WHO द्वारा प्रमाणित है।",
+      "expected": "refute",
+      "predicted": "support",
+      "evidence_count": 9,
+      "reason": "stance_or_relevance_misclassification",
+      "llm_reason": "not_triggered"
+    },
+    {
+      "claim": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 5,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു കമ്മ്യൂണിസ്റ്റ് സർക്കാർ അധികാരത്തിൽ വന്ന സംസ്ഥാനമാണ്.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 7,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 5,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023 ஆகஸ்டு மாதம் வெற்றிகரமாக தரையிறங்கியது.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 8,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "भारत में बाल विवाह पूरी तरह से प्रतिबंधित है और इसके लिए कोई धार्मिक छूट नहीं है।",
+      "expected": "neutral",
+      "predicted": "support",
+      "evidence_count": 5,
+      "reason": "neutral_expected_but_forced",
+      "llm_reason": "not_triggered"
+    },
+    {
+      "claim": "தமிழ் திரைப்படம் 'ஜெய் பீம்' IMDb இல் உலகின் மிகவும் அதிகமாக மதிப்பிடப்பட்ட திரைப்படங்களில் ஒன்றாக இடம்பெற்றது.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 6,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "മനുഷ്യ ശരീരത്തിലെ ഏറ്റവും ദൃഢമായ അസ്ഥി തലയോടിന്റെ മുൻഭാഗത്തെ ललाट അസ്ഥിയാണ്.",
+      "expected": "refute",
+      "predicted": "neutral",
+      "evidence_count": 10,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "रोज़ 10,000 कदम चलना हृदय रोग और मधुमेह के खतरे को वैज्ञानिक रूप से सिद्ध तरीके से कम करता है।",
+      "expected": "neutral",
+      "predicted": "support",
+      "evidence_count": 7,
+      "reason": "neutral_expected_but_forced",
+      "llm_reason": "not_triggered"
+    },
+    {
+      "claim": "சங்க இலக்கியம் குறைந்தது 2,000 ஆண்டுகள் பழமையானது என்று வரலாற்று ஆய்வாளர்கள் கூறுகின்றனர்.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 9,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "ಕರ್ನಾಟಕ ರಾಜ್ಯ ವಿಧಾನಸಭೆಯಲ್ಲಿ 225 ಶಾಸನಸಭಾ ಸ್ಥಾನಗಳಿವೆ.",
+      "expected": "refute",
+      "predicted": "neutral",
+      "evidence_count": 4,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "കേരളത്തിലെ ഏറ്റവും വലിയ വരുമാന സ്രോതസ്സ് NRI പണമയക്കലാണ്, ടൂറിസമല്ല.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 2,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "ఆదిత్య-L1 అనేది సూర్యుడిని అధ్యయనం చేయడానికి ఇస్రో పంపిన మొదటి మిషన్.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 9,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "தமிழ்நாட்டில் நீலகிரி மாவட்டத்தில் உள்ள காடுகள் UNESCO உலக பாரம்பரிய தளமாக அறிவிக்கப்பட்டுள்ளன.",
+      "expected": "refute",
+      "predicted": "neutral",
+      "evidence_count": 5,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "भारत ने 1983 के क्रिकेट विश्व कप में इंग्लैंड को हराकर खिताब जीता था।",
+      "expected": "refute",
+      "predicted": "support",
+      "evidence_count": 9,
+      "reason": "stance_or_relevance_misclassification",
+      "llm_reason": "not_triggered"
+    },
+    {
+      "claim": "తెలుగు సినిమా 'బాహుబలి 2: ది కన్క్లూజన్' బాలీవుడ్ వెలుపల భారతదేశంలో అత్యధిక వసూళ్లు సాధించిన మొదటి చిత్రం.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 8,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "ಒಂದು ನ್ಯೂಟ್ರಾನ್ ನಕ್ಷತ್ರದ ಒಂದು ಚಮಚ ವಸ್ತುವಿನ ತೂಕ ಸರಿಸುಮಾರು ಒಂದು ಬಿಲಿಯನ್ ಟನ್ ಆಗಿರುತ್ತದೆ.",
+      "expected": "support",
+      "predicted": "neutral",
+      "evidence_count": 3,
+      "reason": "llm_parse_fail_to_neutral",
+      "llm_reason": "groq verify call failed: No recognizable verdict token in LLM response"
+    },
+    {
+      "claim": "ആഡിനോവൈറസ് ഒരു RNA വൈറസ് ആണ്.",
+      "expected": "refute",
+      "predicted": "neutral",
+      "evidence_count": 0,
+      "reason": "no_evidence",
+      "llm_reason": ""
+    }
+  ]
+}

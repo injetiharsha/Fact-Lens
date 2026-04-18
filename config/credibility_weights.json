@@ -1,0 +1,11 @@
+{
+  "news": 0.8,
+  "scientific": 1.0,
+  "social_media": 0.5,
+  "government": 0.95,
+  "health": 0.9,
+  "finance": 0.85,
+  "sports": 0.7,
+  "entertainment": 0.6,
+  "other": 0.65
+}

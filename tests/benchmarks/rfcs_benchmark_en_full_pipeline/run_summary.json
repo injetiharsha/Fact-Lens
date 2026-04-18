@@ -1,0 +1,47 @@
+{
+  "generated_at_utc": "2026-04-18T04:59:22.883184+00:00",
+  "mode": "full_pipeline_all_sources",
+  "claims": 1,
+  "metrics": {
+    "total_claims": 1,
+    "correct_predictions": 1,
+    "incorrect_predictions": 0,
+    "accuracy": 1.0,
+    "neutral_predictions": 0,
+    "neutral_rate": 0.0,
+    "expected_distribution": {
+      "support": 1
+    },
+    "predicted_distribution": {
+      "support": 1
+    },
+    "confusion_matrix": {
+      "labels": [
+        "support",
+        "refute",
+        "neutral"
+      ],
+      "matrix": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "outputs": {
+    "predictions": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_full_pipeline\\predictions_en_30_full_pipeline.json",
+    "metrics": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_full_pipeline\\metrics_en_30_full_pipeline.json"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "mode": "llm_on",
+  "claim": "The Earth revolves around the Sun.",
+  "language": "en",
+  "verdict": "support",
+  "confidence": 0.6252211956194675,
+  "reasoning": "Analyzed 6 evidence sources. Support: 63%, Refute: 13%, Neutral: 3%. Moderate evidence supports this claim. Moderate confidence (63%).",
+  "details": {
+    "checkability": "Checkable",
+    "context": "GENERAL_FACTUAL/general",
+    "sources_checked": 3,
+    "evidence_count": 6
+  },
+  "evidence_count": 6
+}

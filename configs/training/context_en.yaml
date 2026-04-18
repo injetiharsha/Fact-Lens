@@ -1,0 +1,58 @@
+experiment_name: context_en_v1
+model_name: microsoft/deberta-v3-base
+language_group: en
+
+data:
+  train_file: data/processed/context/en_dist14k/train.jsonl
+  validation_file: data/processed/context/en_dist14k/val.jsonl
+  test_file: data/processed/context/en_dist14k/test.jsonl
+  text_column: text
+  label_column: label
+
+labels:
+  - SCIENCE
+  - HEALTH
+  - TECHNOLOGY
+  - HISTORY
+  - POLITICS_GOVERNMENT
+  - ECONOMICS_BUSINESS
+  - GEOGRAPHY
+  - SPACE_ASTRONOMY
+  - ENVIRONMENT_CLIMATE
+  - SOCIETY_CULTURE
+  - LAW_CRIME
+  - SPORTS
+  - ENTERTAINMENT
+  - GENERAL_FACTUAL
+
+training:
+  output_dir: checkpoints/context/en/context_en_v1
+  num_train_epochs: 4
+  learning_rate: 2.0e-5
+  weight_decay: 0.01
+  warmup_ratio: 0.1
+  per_device_train_batch_size: 8
+  per_device_eval_batch_size: 16
+  gradient_accumulation_steps: 4
+  max_seq_length: 256
+  fp16: true
+  gradient_checkpointing: false
+  max_grad_norm: 1.0
+  lr_scheduler_type: linear
+  seed: 42
+  dataloader_num_workers: 2
+
+strategy:
+  evaluation_strategy: steps
+  eval_steps: 50
+  save_strategy: steps
+  save_steps: 50
+  logging_strategy: steps
+  logging_steps: 50
+  logging_first_step: true
+  eval_on_start: true
+  load_best_model_at_end: true
+  metric_for_best_model: macro_f1
+  greater_is_better: true
+  save_total_limit: 2
+  early_stopping_patience: 2

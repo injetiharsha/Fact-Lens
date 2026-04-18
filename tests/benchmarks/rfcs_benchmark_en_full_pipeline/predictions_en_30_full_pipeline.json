@@ -1,0 +1,38 @@
+[
+  {
+    "index": 1,
+    "id": 1,
+    "claim": "The speed of light in a vacuum is exactly 299,792,458 metres per second.",
+    "expected": "support",
+    "predicted": "support",
+    "correct": true,
+    "confidence": 0.99,
+    "evidence_count": 5,
+    "error": "",
+    "details": {
+      "checkability": "Checkable",
+      "context": "TECHNOLOGY/general",
+      "sources_checked": 5,
+      "evidence_count": 5,
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "pre_llm_verdict": "support",
+        "pre_llm_confidence": 0.3624157104088062,
+        "reason": "Official SI definition sets c = 299,792,458 m/s exactly.",
+        "verdict": "support",
+        "confidence": 0.99,
+        "post_llm_verdict": "support",
+        "post_llm_confidence": 0.99
+      }
+    },
+    "started_utc": "2026-04-18T04:56:37.471281+00:00",
+    "ended_utc": "2026-04-18T04:59:22.868729+00:00",
+    "duration_sec": 165.397448,
+    "mode": "full_pipeline_all_sources"
+  }
+]

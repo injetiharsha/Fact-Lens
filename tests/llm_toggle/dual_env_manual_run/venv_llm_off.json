@@ -1,0 +1,63 @@
+{
+  "env": "venv",
+  "mode": "llm_off",
+  "claim": "The Earth revolves around the Sun.",
+  "language": "en",
+  "verdict": "support",
+  "confidence": 0.6709129146352476,
+  "reasoning": "Analyzed 9 evidence sources. Support: 67%, Refute: 11%, Neutral: 3%. Moderate evidence supports this claim. Moderate confidence (67%).",
+  "details": {
+    "checkability": "Checkable",
+    "context": "GENERAL_FACTUAL/general",
+    "sources_checked": 4,
+    "evidence_count": 9
+  },
+  "evidence_count": 9,
+  "evidence_top5": [
+    {
+      "text": "frame where the Sun does go around the Earth – it will just have a bunch of epicycles, and so on. [...] But important unanswered questions remain.  Perhaps the most glaring is this: Does the Earth orbit the Sun, or is it the other way around?  Or do they orbit each other around a central point?  The Sun’s motion in the sky relative to the stars, which exhibits a yearly cycle, indicates (when combined with evidence that the stars are, on yearly time scales, fixed) that one of these three must be true, at least roughly.  But which one is it?\n\nWe saw that the Earth satisfies Kepler’s law for objects orbiting the Sun; meanwhile the Sun does not satisfy the similar law for objects orbiting the Earth.  This argues that Earth orbits the Sun due to the latter’s gravity, but the logic is circumstantial. Isn’t there something more direct, more obvious or intuitive, that we can appeal to? [...] What do you mean by “Earth goes around the Sun”? In the coordinate system that makes calculations the simplest, then this is true. However, I can construct a coordinate system in a non-inertial frame where the Earth is stationary and the sun is in motion. Maybe we should rephrase the question as “how do we show that the frame of reference where the Earth is in motion around the Sun is the most reasonable choice?”. But I’d then argue that what you label as circumstantial evidence – Kepler’s laws applying for the Earth orbiting the Sun, but not the Sun orbiting the Earth – shows precisely that the heliocentric coordinate system is indeed the most reasonable choice. But I can still ultimately always choose to have a non-inertial frame where the Sun does go around the Earth – it will just",
+      "source": "Earth Goes Around the Sun? What's Your Best Evidence?",
+      "url": "https://profmattstrassler.com/2022/04/28/earth-goes-around-the-sun-whats-your-best-evidence/",
+      "relevance": 0.9973920583724976,
+      "credibility": 0.7,
+      "stance": "refute",
+      "score": 0.6981744408607482
+    },
+    {
+      "text": "sun rising from behind the earth\n\nEarth is always moving. Each day, the Earth makes one complete rotation on its axis. The axis is the imaginary line through the earth that extends from the North Pole to the South Pole.\n\nAs Earth rotates, it seems like the sun is moving across the sky, but it’s really the Earth that is spinning. It takes 24 hours to complete one rotation, which is why there are 24 hours in one day.\n\nIn other words, if the sun is visible in the morning starting around 6:00 AM, the Earth will spin completely around by the next morning at 6:00 AM and you will see the sun in about the same place.\n\n### The Earth orbits around the sun every 365.25 days.\n\ndiagram of earth's orbit around the sun taking 365.25 days [...] Logo\nlogo\n\n# Earth’s Rotation & Orbit Made Easy!\n\nWatch the clip and read more below.\n\nA science lesson and fun video on Earth’s rotation around the sun for kids in 3rd, 4th and 5th grade!\n\nThe Earth moves in two different ways. Earth orbits the sun once a year and rotates on its axis once a day. The Earth’s orbit makes a circle around the sun. At the same time the Earth orbits around the sun, it also spins. In science, we call that rotating on its axis. Since the Earth orbits the sun AND rotates on its axis at the same time we experience seasons, day and night, and changing shadows throughout the day.\n\nTo better understand Earth’s rotation around the sun….\n\n## LET’S BREAK IT DOWN!\n\n### Earth’s rotation on its axis occurs every 24 hours.\n\nsun rising from behind the earth [...] diagram of earth's orbit around the sun taking 365.25 days\n\nWhile the Earth is rotating on its axis, it also orbits the sun. It takes a little more than 365 days for the Earth to make a complete trip around the sun.\n\nOther planets have different orbital times. It takes only 87 days for Mercury to orbit the sun, but 12 years for Jupiter to make the journey.\n\nScientists used to think that the Earth was the center of the universe, but phenomena such as stellar parallax have proven that this is not true because the position of some stars change as we orbit.\n\n### Earth's rotation causes observable patterns like night and day.\n\nview of earth from space showing daytime and night",
+      "source": "Earth's Orbit and Rotation | Science Lesson For Kids in Grades 3-5",
+      "url": "https://www.generationgenius.com/blog/earth-rotation-and-orbit/",
+      "relevance": 0.9969736337661743,
+      "credibility": 0.5,
+      "stance": "support",
+      "score": 0.49848681688308716
+    },
+    {
+      "text": "Daily changes in light and temperature are caused by the rotation of the Earth, and seasonal changes are caused by the tilt of the Earth. As the Earth orbits the Sun, the Earth is pulled by the gravitational forces of the Sun, Moon, and large planets in the solar system, primarily Jupiter and Saturn. Over long periods of time, the gravitational pull of other members of our solar system slowly change Earth’s spin, tilt, and orbit. Over approximately 100,000 – 400,000 years, gravitational forces slowly change Earth’s orbit between more circular and elliptical shapes, as indicated by the blue and yellow dashed ovals in the figure to the right. Over 19,000 – 24,000 years, the direction of Earth’s tilt shifts (spins). Additionally, how much Earth’s axis is tilted towards or away from the Sun [...] Infographic showing that Earth's orbit is the ellipse that it travels around the sun, Earth's tilt is the number of degrees that Earth's axis is tilted relative to perpendicular to the plane of its orbit (currently 23.5 degrees, and has varied between 21.5 and 24.5 degrees), and Earth's spin is the rotation of the axis of tilt.\n\nAdapted from Universe Today. [...] much Earth’s axis is tilted towards or away from the Sun changes through time, over approximately 41,000 year cycles. Small changes in Earth’s spin, tilt, and orbit over these long periods of time can change the amount of sunlight received (and therefore absorbed and re-radiated) by different parts of the Earth. Over 10s to 100s of thousands of years, these small changes in the position of the Earth in relationship to the Sun can change the amount of solar radiation, also known as insolation, received by different parts of the Earth. In turn, changes in insolation over these long periods of time can change regional climates and the length and intensity of the seasons. The Earth’s spin, tilt, and orbit continue to change today, but do not explain the current rapid climate change.",
+      "source": "Earth's spin, tilt and orbit - Understanding Global Change",
+      "url": "https://ugc.berkeley.edu/background-content/earths-spin-tilt-orbit/",
+      "relevance": 0.9969004392623901,
+      "credibility": 0.95,
+      "stance": "support",
+      "score": 0.9470554172992706
+    },
+    {
+      "text": "### Revolution of Earth\n\nEarth revolves in orbit around the Sun in 365 days, 6 hours, 9 minutes with reference to the stars, at a speed ranging from 29.29 to 30.29 km/s. The 6 hours, 9 minutes adds up to about an extra day every fourth year, which is designated a leap year, with the extra day added as February 29th. Earth's orbit is elliptical and reaches its closest approach to the Sun, a perihelion of 147,090,000 km, on about January fourth of each year. Aphelion comes six months later at 152,100,000 km.\n\n### Shorter-term Polar Motion",
+      "source": "Chapter 2: Reference Systems - NASA Science",
+      "url": "https://science.nasa.gov/learn/basics-of-space-flight/chapter2-1/",
+      "relevance": 0.9966922998428345,
+      "credibility": 1.0,
+      "stance": "support",
+      "score": 0.9966922998428345
+    },
+    {
+      "text": "## Transcript\n\nNARRATOR: Earth spins on its axis. It rotates once every 24 hours. That means a point on the Equator travels a complete circle each day, a distance equal to 40,075 kilometers or almost 1,670 kilometers per hour.   \n   \nEarth revolves around an enormous source of energy: the Sun. It orbits the Sun every 365 and one-quarter days.   \n   \nIt spins on an axis that is tilted 23 and a half degrees to the plane of its orbit. This axial tilt remains steady throughout the year. Depending on the time of year, some parts of the Earth are tilted more toward the direct rays of the Sun than others. Bright parts get warmer; darker parts cool off. The differences in the amount of light and heat available at the planet's surface at different parts of the year determine the seasons.",
+      "source": "How Earth's Orbit & Tilt Create Seasons | Britannica",
+      "url": "https://www.britannica.com/video/role-orbit-axis-Earth-seasons/-162755",
+      "relevance": 0.9944703578948975,
+      "credibility": 0.7,
+      "stance": "support",
+      "score": 0.6961292505264282
+    }
+  ]
+}

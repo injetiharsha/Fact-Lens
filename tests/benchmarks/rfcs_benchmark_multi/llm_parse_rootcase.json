@@ -1,0 +1,46 @@
+{
+  "claim_index": 1,
+  "claim": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+  "evidence_count": 1,
+  "raw_content": "",
+  "response": {
+    "id": "chatcmpl-d507dfb5-20bc-4868-b12f-79e645ba9c13",
+    "object": "chat.completion",
+    "created": 1776453554,
+    "model": "openai/gpt-oss-120b",
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "",
+          "reasoning": "We need to evaluate claim: \"వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.\" Means: \"The speed of light is 300,000 kilometers per second — this is the speed limit in the universe that no object can exceed.\"\n\nEvidence: source says \"light speed is 300,000 km/s, same as electromagnetic wave speed, thus electricity flows at light speed, 300,000 km/s.\"\n\nWe need to verify claim. The claim is that speed of light is 300,000 km/s and it's the universal speed limit. This is scientifically correct: speed of light in vacuum is approximately 299,792 km/s, often rounded to 300,000 km/s. And according to relativity, no object"
+        },
+        "logprobs": null,
+        "finish_reason": "length"
+      }
+    ],
+    "usage": {
+      "queue_time": 0.261586996,
+      "prompt_tokens": 336,
+      "prompt_time": 8.463830139,
+      "completion_tokens": 180,
+      "completion_time": 0.394471755,
+      "total_tokens": 516,
+      "total_time": 8.858301894,
+      "prompt_tokens_details": {
+        "cached_tokens": 256
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 178
+      }
+    },
+    "usage_breakdown": null,
+    "system_fingerprint": "fp_e10890e4b9",
+    "x_groq": {
+      "id": "req_01kpee3v3je4ftzpz45pjw20dw",
+      "seed": 1293884183
+    },
+    "service_tier": "on_demand"
+  }
+}

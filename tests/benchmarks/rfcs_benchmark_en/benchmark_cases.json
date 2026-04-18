@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SCIENCE",
+    "type": "Numerical",
+    "claim": "The speed of light in a vacuum is exactly 299,792,458 metres per second.",
+    "expected": "support"
+  },
+  {
+    "id": 2,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "HEALTH",
+    "type": "Factual",
+    "claim": "The mRNA COVID-19 vaccines alter the human body's DNA permanently.",
+    "expected": "refute"
+  },
+  {
+    "id": 3,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "TECHNOLOGY",
+    "type": "Factual",
+    "claim": "Python surpassed JavaScript as the most-used programming language on GitHub in 2023.",
+    "expected": "support"
+  },
+  {
+    "id": 4,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "HISTORY",
+    "type": "Factual",
+    "claim": "World War II ended in 1945 when Japan surrendered following atomic bombings of Hiroshima and Nagasaki.",
+    "expected": "support"
+  },
+  {
+    "id": 5,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "POLITICS_GOVERNMENT",
+    "type": "Factual",
+    "claim": "India has a bicameral parliament consisting of the Lok Sabha and the Rajya Sabha.",
+    "expected": "support"
+  },
+  {
+    "id": 6,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ECONOMICS_BUSINESS",
+    "type": "Numerical",
+    "claim": "India's GDP surpassed the United Kingdom's to become the world's fifth-largest economy in 2022.",
+    "expected": "support"
+  },
+  {
+    "id": 7,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "GEOGRAPHY",
+    "type": "Factual",
+    "claim": "The Amazon River flows into the Pacific Ocean.",
+    "expected": "refute"
+  },
+  {
+    "id": 8,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SPACE_ASTRONOMY",
+    "type": "Numerical",
+    "claim": "The James Webb Space Telescope is stationed at the L2 Lagrange point, approximately 1.5 million km from Earth.",
+    "expected": "support"
+  },
+  {
+    "id": 9,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ENVIRONMENT_CLIMATE",
+    "type": "Numerical",
+    "claim": "Global average surface temperature has risen by more than 1.1°C above pre-industrial levels as of 2023.",
+    "expected": "support"
+  },
+  {
+    "id": 10,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SOCIETY_CULTURE",
+    "type": "Mixed",
+    "claim": "The caste system in India was legally abolished under the Constitution of 1950.",
+    "expected": "neutral"
+  },
+  {
+    "id": 11,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "LAW_CRIME",
+    "type": "Factual",
+    "claim": "Section 377 of the Indian Penal Code was struck down by the Supreme Court of India in 2018.",
+    "expected": "support"
+  },
+  {
+    "id": 12,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SPORTS",
+    "type": "Numerical",
+    "claim": "India has won the ICC Cricket World Cup three times.",
+    "expected": "refute"
+  },
+  {
+    "id": 13,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ENTERTAINMENT",
+    "type": "Factual",
+    "claim": "The film RRR won the Academy Award for Best Original Song in 2023.",
+    "expected": "support"
+  },
+  {
+    "id": 14,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "GENERAL_FACTUAL",
+    "type": "Factual",
+    "claim": "Mount Everest is the tallest mountain on Earth when measured from sea level.",
+    "expected": "support"
+  },
+  {
+    "id": 15,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SCIENCE",
+    "type": "Factual",
+    "claim": "Humans use only 10% of their brain at any given time.",
+    "expected": "refute"
+  },
+  {
+    "id": 16,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "HEALTH",
+    "type": "Factual",
+    "claim": "Drinking eight glasses of water daily is a scientifically proven medical requirement for all adults.",
+    "expected": "neutral"
+  },
+  {
+    "id": 17,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "TECHNOLOGY",
+    "type": "Factual",
+    "claim": "5G networks emit radiation that has been scientifically proven to suppress the human immune system.",
+    "expected": "refute"
+  },
+  {
+    "id": 18,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "HISTORY",
+    "type": "Logical",
+    "claim": "Cleopatra lived closer in time to the Moon landing than to the construction of the Great Pyramid of Giza.",
+    "expected": "support"
+  },
+  {
+    "id": 19,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "POLITICS_GOVERNMENT",
+    "type": "Numerical",
+    "claim": "The United Nations Security Council has five permanent members with veto power.",
+    "expected": "support"
+  },
+  {
+    "id": 20,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ECONOMICS_BUSINESS",
+    "type": "Numerical",
+    "claim": "Bitcoin's total supply is capped at 21 million coins by its protocol.",
+    "expected": "support"
+  },
+  {
+    "id": 21,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "GEOGRAPHY",
+    "type": "Mixed",
+    "claim": "Vatican City is the world's smallest country by both area and population.",
+    "expected": "neutral"
+  },
+  {
+    "id": 22,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SPACE_ASTRONOMY",
+    "type": "Factual",
+    "claim": "Mars has two moons named Phobos and Deimos.",
+    "expected": "support"
+  },
+  {
+    "id": 23,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ENVIRONMENT_CLIMATE",
+    "type": "Numerical",
+    "claim": "Plastic straws account for more than 50% of all ocean plastic pollution.",
+    "expected": "refute"
+  },
+  {
+    "id": 24,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SOCIETY_CULTURE",
+    "type": "Mixed",
+    "claim": "Yoga originated in ancient India and is documented in texts dating back over 5,000 years.",
+    "expected": "neutral"
+  },
+  {
+    "id": 25,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "LAW_CRIME",
+    "type": "Factual",
+    "claim": "Under Indian law, the Right to Information Act applies to private corporations listed on the stock exchange.",
+    "expected": "refute"
+  },
+  {
+    "id": 26,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SPORTS",
+    "type": "Factual",
+    "claim": "Neeraj Chopra won India's first-ever Olympic gold medal in an athletics track and field event at Tokyo 2020.",
+    "expected": "support"
+  },
+  {
+    "id": 27,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "ENTERTAINMENT",
+    "type": "Factual",
+    "claim": "Shah Rukh Khan holds the Guinness World Record for having the most fan mail received by a film actor.",
+    "expected": "neutral"
+  },
+  {
+    "id": 28,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "GENERAL_FACTUAL",
+    "type": "Factual",
+    "claim": "Honey never spoils and edible honey has been found in ancient Egyptian tombs.",
+    "expected": "support"
+  },
+  {
+    "id": 29,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "SCIENCE",
+    "type": "Factual",
+    "claim": "The Great Wall of China is visible to the naked eye from the International Space Station.",
+    "expected": "refute"
+  },
+  {
+    "id": 30,
+    "lang_bucket": "EN",
+    "lang_label": "English",
+    "language": "en",
+    "context": "HEALTH",
+    "type": "Factual",
+    "claim": "Vitamin C supplementation prevents the common cold in the general population.",
+    "expected": "refute"
+  },
+  {
+    "id": 31,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "SCIENCE",
+    "type": "Numerical",
+    "claim": "వెలుతురు వేగం సెకనుకు 3 లక్షల కిలోమీటర్లు — ఇది విశ్వంలో ఏ వస్తువూ దాటలేని వేగపరిమితి.",
+    "expected": "support"
+  },
+  {
+    "id": 32,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "HEALTH",
+    "type": "Factual",
+    "claim": "आयुर्वेदिक काढ़ा पीने से COVID-19 संक्रमण पूरी तरह ठीक हो जाता है, यह WHO द्वारा प्रमाणित है।",
+    "expected": "refute"
+  },
+  {
+    "id": 33,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "TECHNOLOGY",
+    "type": "Factual",
+    "claim": "ChatGPT ஐ உருவாக்கிய OpenAI நிறுவனம் 2015ஆம் ஆண்டு நிறுவப்பட்டது.",
+    "expected": "support"
+  },
+  {
+    "id": 34,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "HISTORY",
+    "type": "Factual",
+    "claim": "ಮೈಸೂರು ಒಡೆಯರ್ ರಾಜವಂಶವು 14ನೇ ಶತಮಾನದಲ್ಲಿ ಸ್ಥಾಪಿಸಲ್ಪಟ್ಟಿತು.",
+    "expected": "support"
+  },
+  {
+    "id": 35,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "POLITICS_GOVERNMENT",
+    "type": "Factual",
+    "claim": "കേരളം ഇന്ത്യയിൽ ആദ്യമായി ജനാധിപത്യ രീതിയിൽ ഒരു കമ്മ്യൂണിസ്റ്റ് സർക്കാർ അധികാരത്തിൽ വന്ന സംസ്ഥാനമാണ്.",
+    "expected": "support"
+  },
+  {
+    "id": 36,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "ECONOMICS_BUSINESS",
+    "type": "Numerical",
+    "claim": "भारत में GST लागू होने से पहले केंद्र और राज्य मिलाकर 17 से अधिक अलग-अलग कर थे।",
+    "expected": "support"
+  },
+  {
+    "id": 37,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "GEOGRAPHY",
+    "type": "Factual",
+    "claim": "తెలంగాణ రాష్ట్రంలో అత్యంత పొడవైన నది గోదావరి.",
+    "expected": "support"
+  },
+  {
+    "id": 38,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "SPACE_ASTRONOMY",
+    "type": "Factual",
+    "claim": "சந்திரயான்-3 விண்கலம் சந்திரனின் தெற்கு துருவத்தில் 2023 ஆகஸ்டு மாதம் வெற்றிகரமாக தரையிறங்கியது.",
+    "expected": "support"
+  },
+  {
+    "id": 39,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "ENVIRONMENT_CLIMATE",
+    "type": "Numerical",
+    "claim": "ಅರ್ಥಾಗ್ ವರ್ಷ 2030ರ ಹೊತ್ತಿಗೆ ಭಾರತ 500 GW ನವೀಕರಣ ಇಂಧನ ಸಾಮರ್ಥ್ಯ ಸಾಧಿಸಲು ಗುರಿ ಹೊಂದಿದೆ.",
+    "expected": "support"
+  },
+  {
+    "id": 40,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "SOCIETY_CULTURE",
+    "type": "Mixed",
+    "claim": "ഓണം കേരളത്തിൽ മതഭേദമില്ലാതെ എല്ലാ വിഭാഗം ജനങ്ങളും ആഘോഷിക്കുന്ന ഒരു ദേശീയ ഉത്സവമാണ്.",
+    "expected": "neutral"
+  },
+  {
+    "id": 41,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "LAW_CRIME",
+    "type": "Mixed",
+    "claim": "भारत में बाल विवाह पूरी तरह से प्रतिबंधित है और इसके लिए कोई धार्मिक छूट नहीं है।",
+    "expected": "neutral"
+  },
+  {
+    "id": 42,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "SPORTS",
+    "type": "Factual",
+    "claim": "పివి సింధు బ్యాడ్మింటన్‌లో వరుసగా రెండు ఒలింపిక్ పతకాలు సాధించిన మొదటి భారతీయ మహిళ.",
+    "expected": "support"
+  },
+  {
+    "id": 43,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "ENTERTAINMENT",
+    "type": "Factual",
+    "claim": "தமிழ் திரைப்படம் 'ஜெய் பீம்' IMDb இல் உலகின் மிகவும் அதிகமாக மதிப்பிடப்பட்ட திரைப்படங்களில் ஒன்றாக இடம்பெற்றது.",
+    "expected": "support"
+  },
+  {
+    "id": 44,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "GENERAL_FACTUAL",
+    "type": "Factual",
+    "claim": "ಕನ್ನಡ ಭಾಷೆಯು ಭಾರತ ಸರ್ಕಾರದಿಂದ ಶಾಸ್ತ್ರೀಯ ಭಾಷೆ ಎಂದು ಮಾನ್ಯತೆ ಪಡೆದಿದೆ.",
+    "expected": "support"
+  },
+  {
+    "id": 45,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "SCIENCE",
+    "type": "Factual",
+    "claim": "മനുഷ്യ ശരീരത്തിലെ ഏറ്റവും ദൃഢമായ അസ്ഥി തലയോടിന്റെ മുൻഭാഗത്തെ ललाट അസ്ഥിയാണ്.",
+    "expected": "refute"
+  },
+  {
+    "id": 46,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "HEALTH",
+    "type": "Mixed",
+    "claim": "रोज़ 10,000 कदम चलना हृदय रोग और मधुमेह के खतरे को वैज्ञानिक रूप से सिद्ध तरीके से कम करता है।",
+    "expected": "neutral"
+  },
+  {
+    "id": 47,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "TECHNOLOGY",
+    "type": "Factual",
+    "claim": "UPI (యూనిఫైడ్ పేమెంట్స్ ఇంటర్‌ఫేస్)ను నేషనల్ పేమెంట్స్ కార్పొరేషన్ ఆఫ్ ఇండియా (NPCI) అభివృద్ధి చేసింది.",
+    "expected": "support"
+  },
+  {
+    "id": 48,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "HISTORY",
+    "type": "Factual",
+    "claim": "சங்க இலக்கியம் குறைந்தது 2,000 ஆண்டுகள் பழமையானது என்று வரலாற்று ஆய்வாளர்கள் கூறுகின்றனர்.",
+    "expected": "support"
+  },
+  {
+    "id": 49,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "POLITICS_GOVERNMENT",
+    "type": "Numerical",
+    "claim": "ಕರ್ನಾಟಕ ರಾಜ್ಯ ವಿಧಾನಸಭೆಯಲ್ಲಿ 225 ಶಾಸನಸಭಾ ಸ್ಥಾನಗಳಿವೆ.",
+    "expected": "refute"
+  },
+  {
+    "id": 50,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "ECONOMICS_BUSINESS",
+    "type": "Factual",
+    "claim": "കേരളത്തിലെ ഏറ്റവും വലിയ വരുമാന സ്രോതസ്സ് NRI പണമയക്കലാണ്, ടൂറിസമല്ല.",
+    "expected": "support"
+  },
+  {
+    "id": 51,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "GEOGRAPHY",
+    "type": "Factual",
+    "claim": "भारत में सबसे लंबी तटरेखा वाला राज्य गुजरात है।",
+    "expected": "support"
+  },
+  {
+    "id": 52,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "SPACE_ASTRONOMY",
+    "type": "Factual",
+    "claim": "ఆదిత్య-L1 అనేది సూర్యుడిని అధ్యయనం చేయడానికి ఇస్రో పంపిన మొదటి మిషన్.",
+    "expected": "support"
+  },
+  {
+    "id": 53,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "ENVIRONMENT_CLIMATE",
+    "type": "Factual",
+    "claim": "தமிழ்நாட்டில் நீலகிரி மாவட்டத்தில் உள்ள காடுகள் UNESCO உலக பாரம்பரிய தளமாக அறிவிக்கப்பட்டுள்ளன.",
+    "expected": "refute"
+  },
+  {
+    "id": 54,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "SOCIETY_CULTURE",
+    "type": "Factual",
+    "claim": "ಭಾರತದಲ್ಲಿ ಯೋಗ ದಿನವನ್ನು ಪ್ರತಿ ವರ್ಷ ಜೂನ್ 21ರಂದು ಆಚರಿಸಲಾಗುತ್ತದೆ.",
+    "expected": "support"
+  },
+  {
+    "id": 55,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "LAW_CRIME",
+    "type": "Mixed",
+    "claim": "കേരള പൊലീസ് നിയമം 2011 പ്രകാരം ഏതൊരു പൗരനും ഏത് പൊലീസ് സ്റ്റേഷനിലും FIR രജിസ്റ്റർ ചെയ്യാം.",
+    "expected": "neutral"
+  },
+  {
+    "id": 56,
+    "lang_bucket": "MULTI",
+    "lang_label": "Hindi",
+    "language": "hi",
+    "context": "SPORTS",
+    "type": "Factual",
+    "claim": "भारत ने 1983 के क्रिकेट विश्व कप में इंग्लैंड को हराकर खिताब जीता था।",
+    "expected": "refute"
+  },
+  {
+    "id": 57,
+    "lang_bucket": "MULTI",
+    "lang_label": "Telugu",
+    "language": "te",
+    "context": "ENTERTAINMENT",
+    "type": "Factual",
+    "claim": "తెలుగు సినిమా 'బాహుబలి 2: ది కన్క్లూజన్' బాలీవుడ్ వెలుపల భారతదేశంలో అత్యధిక వసూళ్లు సాధించిన మొదటి చిత్రం.",
+    "expected": "support"
+  },
+  {
+    "id": 58,
+    "lang_bucket": "MULTI",
+    "lang_label": "Tamil",
+    "language": "ta",
+    "context": "GENERAL_FACTUAL",
+    "type": "Factual",
+    "claim": "தமிழ் மொழி உலகின் தொன்மையான செம்மொழிகளில் ஒன்றாக, குறைந்தது 2,000 ஆண்டுகள் பழமையான இலக்கிய பாரம்பரியத்தை கொண்டுள்ளது.",
+    "expected": "support"
+  },
+  {
+    "id": 59,
+    "lang_bucket": "MULTI",
+    "lang_label": "Kannada",
+    "language": "kn",
+    "context": "SCIENCE",
+    "type": "Numerical",
+    "claim": "ಒಂದು ನ್ಯೂಟ್ರಾನ್ ನಕ್ಷತ್ರದ ಒಂದು ಚಮಚ ವಸ್ತುವಿನ ತೂಕ ಸರಿಸುಮಾರು ಒಂದು ಬಿಲಿಯನ್ ಟನ್ ಆಗಿರುತ್ತದೆ.",
+    "expected": "support"
+  },
+  {
+    "id": 60,
+    "lang_bucket": "MULTI",
+    "lang_label": "Malayalam",
+    "language": "ml",
+    "context": "HEALTH",
+    "type": "Factual",
+    "claim": "ആഡിനോവൈറസ് ഒരു RNA വൈറസ് ആണ്.",
+    "expected": "refute"
+  }
+]

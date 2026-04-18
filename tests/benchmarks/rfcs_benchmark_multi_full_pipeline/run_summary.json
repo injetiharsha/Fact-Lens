@@ -1,0 +1,63 @@
+{
+  "generated_at_utc": "2026-04-18T02:32:47.828095+00:00",
+  "mode": "full_pipeline_all_sources_multi",
+  "claims": 30,
+  "metrics": {
+    "total_claims": 30,
+    "correct_predictions": 4,
+    "incorrect_predictions": 26,
+    "accuracy": 0.13333333333333333,
+    "neutral_predictions": 30,
+    "neutral_rate": 1.0,
+    "expected_distribution": {
+      "support": 20,
+      "refute": 6,
+      "neutral": 4
+    },
+    "predicted_distribution": {
+      "neutral": 30
+    },
+    "confusion_matrix": {
+      "labels": [
+        "support",
+        "refute",
+        "neutral"
+      ],
+      "matrix": [
+        [
+          0,
+          0,
+          20
+        ],
+        [
+          0,
+          0,
+          6
+        ],
+        [
+          0,
+          0,
+          4
+        ]
+      ]
+    }
+  },
+  "llm_confidence_summary": {
+    "pre_llm_confidence": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "avg": null
+    },
+    "post_llm_confidence": {
+      "count": 0,
+      "min": null,
+      "max": null,
+      "avg": null
+    }
+  },
+  "outputs": {
+    "predictions": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\predictions_multi_30_full_pipeline.json",
+    "metrics": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\metrics_multi_30_full_pipeline.json"
+  }
+}

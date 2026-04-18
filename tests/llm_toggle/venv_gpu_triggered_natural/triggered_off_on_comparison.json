@@ -1,0 +1,146 @@
+{
+  "claim": "Vitamin C cures all viral infections.",
+  "off": {
+    "verdict": "neutral",
+    "confidence": 0.6053612899835815,
+    "evidence_count": 8,
+    "details": {
+      "checkability": "Checkable",
+      "context": "GENERAL_FACTUAL/general",
+      "sources_checked": 4,
+      "evidence_count": 8,
+      "llm_verifier": {
+        "enabled": false,
+        "triggered": false,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "not_triggered"
+      }
+    },
+    "reasoning": "Analyzed 8 evidence sources. Support: 1%, Refute: 20%, Neutral: 61%. Evidence is inconclusive or mixed. Moderate confidence (61%).",
+    "evidence_top5": [
+      {
+        "text": "Vitamin C has been extensively applied in the treatment of viral infections, with studies revealing that patients with pneumonia and sepsis have low levels of vitamin C and elevated oxidative stress.( Owing to the direct inhibitory effect thereof on pathogens, there is sufficient evidence to suggest that vitamin C is effective in the treatment of pneumonia and infection.( Further, vitamin C has been shown to reduce the severity and duration of pneumonia,( while meta-analysis of 12 trials in 1766 patients calculated that vitamin C reduced ICU stay by an average of 8%.( Another meta-analysis found that vitamin C reduced the duration of mechanical ventilation in ICU patients.( Novel coronavirus pneumonia is a new respiratory disease caused by COVID-19, and is severely infectious.( Thus, [...] Vitamin C can improve the resistance of white blood cells to viruses, has an antioxidant effect, and can induce interferon production in vivo.( In viral infections, vitamin C can attenuate pro-inflammatory response, enhance epithelial barrier function, increase alveolar fluid clearance rate, and prevent sepsis related coagulation abnormalities.( The implementation of high-dose vitamin C treatment can significantly reduce the demand for high-dose corticosteroids, antibiotics, and antiviral drugs, as these drugs may have the effects of immunosuppression, adrenal suppression and toxicity, complicating the course of the disease.( Combined with traditional Chinese medicine, Yali used a large dose of vitamin C (20 g/60 kg per day) to treat COVID-19.( As a result of Yali treatment, the symptoms [...] Also known as L-ascorbic acid, vitamin C is a kind of water-soluble vitamin that exists in blood and cells in the form of reduced ascorbic acid. Clinically, vitamin C is mainly used for the treatment of scurvy, and also for the adjuvant treatment of various acute and chronic infectious diseases.( Vitamin C is an essential vitamin for human immune system, which can enhance the body's immunity to viruses in a number of ways. High concentration of vitamin C can enhance the antiviral ability, especially in the form of dehydroascorbic acid, which can inhibit influenza A virus.( As revealed by prior research, vitamin C has a strong antiviral effect only in large doses,( and serum vitamin C levels are low in most critically ill patients with COVID-19.( Hence, the use of high-dose vitamin C in",
+        "source": "High-dose vitamin C intravenous infusion in the treatment... : Medicine",
+        "url": "https://journals.lww.com/md-journal/fulltext/2021/05140/high_dose_vitamin_c_intravenous_infusion_in_the.62.aspx",
+        "relevance": 0.9955306649208069,
+        "credibility": 0.9,
+        "stance": "neutral",
+        "score": 0.8959775984287263
+      },
+      {
+        "text": "vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] Keywords: vitamin C supplementation, viral infections, COVID-19, pneumonia, immune function, athletes, non-communicable diseases, frail elderly subjects\n\n## Introduction [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+        "source": "The Long History of Vitamin C: From Prevention of the Common Cold to Potential Aid in the Treatment of COVID-19 - PMC",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7655735/",
+        "relevance": 0.9924108982086182,
+        "credibility": 1.0,
+        "stance": "neutral",
+        "score": 0.9924108982086182
+      },
+      {
+        "text": "vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] published in the seventies. According to Pauling, a daily vitamin C intake of 1,000 mg can reduce the incidence of colds by about 45% and the optimal daily intake of vitamin C to live healthily and prevent disease should be at least 2.3 g (115, 116). The response of the US market to this pioneering point of view was immediate and the sales of vitamin C dietary supplements almost doubled over a couple of years (117). However, other clinical studies with similar aims failed to demonstrate its efficacy (118–121) and, in general, contemporary authors completely refuted Pauling’s ideas, mainly based on non-randomized controlled trials or incorrect application of animal background to humans (122, 123). Although a high daily dose of vitamin C does not seem to prevent viral infections in the [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+        "source": "Frontiers | The Long History of Vitamin C: From Prevention of the Common Cold to Potential Aid in the Treatment of COVID-19",
+        "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2020.574029/full",
+        "relevance": 0.9894717335700989,
+        "credibility": 0.7,
+        "stance": "neutral",
+        "score": 0.6926302134990692
+      },
+      {
+        "text": "Nobel Prize-winner Linus Pauling championed vitamin C as a cold cure decades ago, but research remains mixed. Some studies suggest that taking 500 mg twice daily can help prevent colds but not cure them. Other research has found that vitamin C may not prevent viral respiratory infections but can speed recovery.  Not in dispute: Vitamin C is vital for the function of leukocytes – white blood cells that help fight infections – and you need a lot more when you’re sick. There’s some evidence that it may help with certain symptoms that develop in critically ill patients with COVID-19 (such as acute respiratory distress syndrome and sepsis). Doctors in China are experimenting with intravenous vitamin C for patients with moderate to severe COVID-19. While vitamin C doesn’t build up in your body, [...] COVID-19. While vitamin C doesn’t build up in your body, a daily dose of 2,000 mg or more could cause diarrhea. [...] ###### Vitamin C:\n\nVitamin C:",
+        "source": "Using Vitamins and Minerals to Fight Viruses and Support Immunity",
+        "url": "https://www.arthritis.org/health-wellness/treatment/complementary-therapies/supplements-and-vitamins/vitamins-to-fight-viruses",
+        "relevance": 0.989281177520752,
+        "credibility": 0.9,
+        "stance": "neutral",
+        "score": 0.8903530597686767
+      },
+      {
+        "text": "### Clinical Evidence Supporting Antiviral Activity\n\nClinical studies have consistently highlighted the antiviral efficacy of Vitamin C, particularly when administered in high doses. The potency of Vitamin C in combating viral infections is well-documented, with various research indicating significant benefits in both oral and intravenous forms.\n\n Vitamin C has shown to inhibit the production of certain viral components, effectively reducing viral replication.\n High-dose Vitamin C therapy has been used to treat a range of viral infections, with numerous studies reporting positive outcomes.\n The strategic administration of Vitamin C, whether oral or intravenous, is crucial for maximizing its antiviral effects. [...] The evidence presented underscores the significant antiviral properties of Vitamin C, particularly when administered in high doses. Clinical studies have consistently shown that Vitamin C can improve respiratory symptoms, reduce mortality rates in severe cases, and may even function as a preventative measure against various viral infections. Its role in enhancing immune responses and potentially acting as a functional immunization against influenza strains highlights its importance in holistic healthcare strategies. Moreover, Vitamin C’s accessibility and cost-effectiveness make it a vital resource for populations with limited healthcare options. As we continue to face challenges from viral pathogens, including the SARS-CoV-2 virus, the incorporation of Vitamin C into treatment protocols [...] The potential for new therapeutic applications of Vitamin C is vast, with ongoing studies poised to uncover groundbreaking methods to enhance its efficacy and broaden its use in the fight against viral diseases.",
+        "source": "Holistic Healthcare: What Effect Does Vitamin C Have on Viruses – AIHCP",
+        "url": "https://aihcp.net/2024/03/05/holistic-healthcare/",
+        "relevance": 0.9740610718727112,
+        "credibility": 0.7,
+        "stance": "neutral",
+        "score": 0.6818427503108978
+      }
+    ]
+  },
+  "on": {
+    "verdict": "neutral",
+    "confidence": 0.5,
+    "evidence_count": 8,
+    "details": {
+      "checkability": "Checkable",
+      "context": "GENERAL_FACTUAL/general",
+      "sources_checked": 4,
+      "evidence_count": 8,
+      "llm_verifier": {
+        "enabled": true,
+        "triggered": true,
+        "provider": "groq",
+        "model": "openai/gpt-oss-120b",
+        "neutral_only": true,
+        "conf_threshold": 0.55,
+        "reason": "groq verify call failed: Expecting value: line 3 column 16 (char 40)",
+        "verdict": "neutral",
+        "confidence": 0.5
+      }
+    },
+    "reasoning": "Analyzed 8 evidence sources. Support: 1%, Refute: 20%, Neutral: 61%. Evidence is inconclusive or mixed. Moderate confidence (61%). LLM verifier (groq) reason: groq verify call failed: Expecting value: line 3 column 16 (char 40).",
+    "evidence_top5": [
+      {
+        "text": "Vitamin C has been extensively applied in the treatment of viral infections, with studies revealing that patients with pneumonia and sepsis have low levels of vitamin C and elevated oxidative stress.( Owing to the direct inhibitory effect thereof on pathogens, there is sufficient evidence to suggest that vitamin C is effective in the treatment of pneumonia and infection.( Further, vitamin C has been shown to reduce the severity and duration of pneumonia,( while meta-analysis of 12 trials in 1766 patients calculated that vitamin C reduced ICU stay by an average of 8%.( Another meta-analysis found that vitamin C reduced the duration of mechanical ventilation in ICU patients.( Novel coronavirus pneumonia is a new respiratory disease caused by COVID-19, and is severely infectious.( Thus, [...] Vitamin C can improve the resistance of white blood cells to viruses, has an antioxidant effect, and can induce interferon production in vivo.( In viral infections, vitamin C can attenuate pro-inflammatory response, enhance epithelial barrier function, increase alveolar fluid clearance rate, and prevent sepsis related coagulation abnormalities.( The implementation of high-dose vitamin C treatment can significantly reduce the demand for high-dose corticosteroids, antibiotics, and antiviral drugs, as these drugs may have the effects of immunosuppression, adrenal suppression and toxicity, complicating the course of the disease.( Combined with traditional Chinese medicine, Yali used a large dose of vitamin C (20 g/60 kg per day) to treat COVID-19.( As a result of Yali treatment, the symptoms [...] Also known as L-ascorbic acid, vitamin C is a kind of water-soluble vitamin that exists in blood and cells in the form of reduced ascorbic acid. Clinically, vitamin C is mainly used for the treatment of scurvy, and also for the adjuvant treatment of various acute and chronic infectious diseases.( Vitamin C is an essential vitamin for human immune system, which can enhance the body's immunity to viruses in a number of ways. High concentration of vitamin C can enhance the antiviral ability, especially in the form of dehydroascorbic acid, which can inhibit influenza A virus.( As revealed by prior research, vitamin C has a strong antiviral effect only in large doses,( and serum vitamin C levels are low in most critically ill patients with COVID-19.( Hence, the use of high-dose vitamin C in",
+        "source": "High-dose vitamin C intravenous infusion in the treatment... : Medicine",
+        "url": "https://journals.lww.com/md-journal/fulltext/2021/05140/high_dose_vitamin_c_intravenous_infusion_in_the.62.aspx",
+        "relevance": 0.9955306649208069,
+        "credibility": 0.9,
+        "stance": "neutral",
+        "score": 0.8959775984287263
+      },
+      {
+        "text": "vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] Keywords: vitamin C supplementation, viral infections, COVID-19, pneumonia, immune function, athletes, non-communicable diseases, frail elderly subjects\n\n## Introduction [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+        "source": "The Long History of Vitamin C: From Prevention of the Common Cold to Potential Aid in the Treatment of COVID-19 - PMC",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7655735/",
+        "relevance": 0.9924108982086182,
+        "credibility": 1.0,
+        "stance": "neutral",
+        "score": 0.9924108982086182
+      },
+      {
+        "text": "vitamin C does not seem to prevent viral infections in the general population, some categories of subjects with potentially higher risk of viral infection may require particular consideration. These subjects include individuals undergoing a daily heavy physical workload such as soldiers and athletes, who may develop an immune stress condition. [...] published in the seventies. According to Pauling, a daily vitamin C intake of 1,000 mg can reduce the incidence of colds by about 45% and the optimal daily intake of vitamin C to live healthily and prevent disease should be at least 2.3 g (115, 116). The response of the US market to this pioneering point of view was immediate and the sales of vitamin C dietary supplements almost doubled over a couple of years (117). However, other clinical studies with similar aims failed to demonstrate its efficacy (118–121) and, in general, contemporary authors completely refuted Pauling’s ideas, mainly based on non-randomized controlled trials or incorrect application of animal background to humans (122, 123). Although a high daily dose of vitamin C does not seem to prevent viral infections in the [...] have not been expressed regarding the use of oral vitamin C to prevent SARS-CoV2 infection in extreme exercisers. However, a vitamin C supplementation may be effective for improving the health status of patients considered at high risk of viral infections (171).",
+        "source": "Frontiers | The Long History of Vitamin C: From Prevention of the Common Cold to Potential Aid in the Treatment of COVID-19",
+        "url": "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2020.574029/full",
+        "relevance": 0.9894717335700989,
+        "credibility": 0.7,
+        "stance": "neutral",
+        "score": 0.6926302134990692
+      },
+      {
+        "text": "Nobel Prize-winner Linus Pauling championed vitamin C as a cold cure decades ago, but research remains mixed. Some studies suggest that taking 500 mg twice daily can help prevent colds but not cure them. Other research has found that vitamin C may not prevent viral respiratory infections but can speed recovery.  Not in dispute: Vitamin C is vital for the function of leukocytes – white blood cells that help fight infections – and you need a lot more when you’re sick. There’s some evidence that it may help with certain symptoms that develop in critically ill patients with COVID-19 (such as acute respiratory distress syndrome and sepsis). Doctors in China are experimenting with intravenous vitamin C for patients with moderate to severe COVID-19. While vitamin C doesn’t build up in your body, [...] COVID-19. While vitamin C doesn’t build up in your body, a daily dose of 2,000 mg or more could cause diarrhea. [...] ###### Vitamin C:\n\nVitamin C:",
+        "source": "Using Vitamins and Minerals to Fight Viruses and Support Immunity",
+        "url": "https://www.arthritis.org/health-wellness/treatment/complementary-therapies/supplements-and-vitamins/vitamins-to-fight-viruses",
+        "relevance": 0.989281177520752,
+        "credibility": 0.9,
+        "stance": "neutral",
+        "score": 0.8903530597686767
+      },
+      {
+        "text": "### Clinical Evidence Supporting Antiviral Activity\n\nClinical studies have consistently highlighted the antiviral efficacy of Vitamin C, particularly when administered in high doses. The potency of Vitamin C in combating viral infections is well-documented, with various research indicating significant benefits in both oral and intravenous forms.\n\n Vitamin C has shown to inhibit the production of certain viral components, effectively reducing viral replication.\n High-dose Vitamin C therapy has been used to treat a range of viral infections, with numerous studies reporting positive outcomes.\n The strategic administration of Vitamin C, whether oral or intravenous, is crucial for maximizing its antiviral effects. [...] The evidence presented underscores the significant antiviral properties of Vitamin C, particularly when administered in high doses. Clinical studies have consistently shown that Vitamin C can improve respiratory symptoms, reduce mortality rates in severe cases, and may even function as a preventative measure against various viral infections. Its role in enhancing immune responses and potentially acting as a functional immunization against influenza strains highlights its importance in holistic healthcare strategies. Moreover, Vitamin C’s accessibility and cost-effectiveness make it a vital resource for populations with limited healthcare options. As we continue to face challenges from viral pathogens, including the SARS-CoV-2 virus, the incorporation of Vitamin C into treatment protocols [...] The potential for new therapeutic applications of Vitamin C is vast, with ongoing studies poised to uncover groundbreaking methods to enhance its efficacy and broaden its use in the fight against viral diseases.",
+        "source": "Holistic Healthcare: What Effect Does Vitamin C Have on Viruses – AIHCP",
+        "url": "https://aihcp.net/2024/03/05/holistic-healthcare/",
+        "relevance": 0.9740610718727112,
+        "credibility": 0.7,
+        "stance": "neutral",
+        "score": 0.6818427503108978
+      }
+    ]
+  },
+  "diff": {
+    "verdict_changed": false,
+    "confidence_delta": -0.10536128998358152,
+    "evidence_count_delta": 0
+  }
+}

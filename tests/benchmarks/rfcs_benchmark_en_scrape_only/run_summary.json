@@ -1,0 +1,51 @@
+{
+  "generated_at_utc": "2026-04-18T01:22:44.839029+00:00",
+  "mode": "scrape_only_no_search_api",
+  "claims": 30,
+  "metrics": {
+    "total_claims": 30,
+    "correct_predictions": 18,
+    "incorrect_predictions": 12,
+    "accuracy": 0.6,
+    "neutral_predictions": 10,
+    "neutral_rate": 0.3333333333333333,
+    "expected_distribution": {
+      "support": 16,
+      "refute": 9,
+      "neutral": 5
+    },
+    "predicted_distribution": {
+      "support": 9,
+      "refute": 11,
+      "neutral": 10
+    },
+    "confusion_matrix": {
+      "labels": [
+        "support",
+        "refute",
+        "neutral"
+      ],
+      "matrix": [
+        [
+          8,
+          1,
+          7
+        ],
+        [
+          0,
+          8,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ]
+      ]
+    }
+  },
+  "outputs": {
+    "predictions": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_scrape_only\\predictions_en_30_scrape_only.json",
+    "metrics": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_scrape_only\\metrics_en_30_scrape_only.json"
+  }
+}

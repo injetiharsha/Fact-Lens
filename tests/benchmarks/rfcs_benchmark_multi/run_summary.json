@@ -1,0 +1,14 @@
+{
+  "split": "multi",
+  "cases": 30,
+  "en_cases": 30,
+  "multi_cases": 30,
+  "outputs": {
+    "metrics_en": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\metrics_en.json",
+    "metrics_multi": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\metrics_multi.json",
+    "metrics_all": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\metrics_all.json",
+    "predictions_en": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\predictions_en.json",
+    "predictions_multi": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\predictions_multi.json",
+    "predictions_all": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi\\predictions_all.json"
+  }
+}
