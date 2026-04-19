@@ -32,7 +32,7 @@ let basePreview = "";
 let analysisTimer = null;
 let analysisStartedAt = null;
 let latestResultPayload = null;
-let claimPreviewOriginal = "Submit a claim or image to preview extracted claim text.";
+let claimPreviewOriginal = "Submit a claim, image, or PDF to preview extracted claim text.";
 let claimPreviewTranslated = "";
 let claimPreviewShowingTranslated = false;
 let imageClaimLocked = false;
@@ -40,11 +40,13 @@ let imageClaimLocked = false;
 const modeTips = {
   claim: "Tip: include a concrete subject, timeframe, and measurable fact for better evidence retrieval.",
   image: "Tip: clearer text and tighter crops improve OCR precision and evidence ranking quality.",
+  pdf: "Tip: text-based PDFs work best. Scanned PDFs may need OCR-enabled extraction.",
 };
 
 const defaultWorkflowStages = {
   claim: ["Input", "Checkability", "Context", "Domain Routing", "Evidence Gathering", "Relevance", "Stance", "Verdict"],
   image: ["Input", "OCR", "Checkability", "Context", "Domain Routing", "Evidence Gathering", "Relevance", "Stance", "Verdict"],
+  pdf: ["Input", "PDF Extract", "Checkability", "Context", "Domain Routing", "Evidence Gathering", "Relevance", "Stance", "Verdict"],
 };
 
 function moveTabIndicatorToActive() {
@@ -69,9 +71,12 @@ function setMode(nextMode) {
   if (mode === "image") {
     setClaimPreviewText("Submit image to preview OCR-extracted claim text.");
     imageClaimLocked = false;
+  } else if (mode === "pdf") {
+    setClaimPreviewText("Submit PDF to preview extracted claim text.");
+    imageClaimLocked = false;
   } else {
     const text = document.getElementById("claim-text")?.value?.trim() || "";
-    setClaimPreviewText(text || "Submit a claim or image to preview extracted claim text.");
+    setClaimPreviewText(text || "Submit a claim, image, or PDF to preview extracted claim text.");
     imageClaimLocked = false;
   }
   if (originalBtn) originalBtn.hidden = true;
@@ -153,7 +158,7 @@ if (claimTextNode) {
   claimTextNode.addEventListener("input", () => setClaimWarning(""));
   claimTextNode.addEventListener("input", () => {
     const text = claimTextNode.value.trim();
-    setClaimPreviewText(text || "Submit a claim or image to preview extracted claim text.");
+    setClaimPreviewText(text || "Submit a claim, image, or PDF to preview extracted claim text.");
   });
 }
 
@@ -170,7 +175,7 @@ if (topEvidenceCountNode) {
 if (translateBtn) {
   translateBtn.addEventListener("click", async () => {
     const text = (claimPreviewOriginal || "").trim();
-    if (!text || text === "Submit a claim or image to preview extracted claim text.") return;
+    if (!text || text === "Submit a claim, image, or PDF to preview extracted claim text.") return;
     if (claimPreviewTextNode) claimPreviewTextNode.textContent = "Translating...";
     try {
       const out = await postJson("/api/translate-preview", { text, target_language: "en" });
@@ -248,6 +253,16 @@ form.addEventListener("submit", async (event) => {
     }
     setClaimPreviewText("OCR in progress...");
     imageClaimLocked = false;
+  } else if (mode === "pdf") {
+    const file = document.getElementById("pdf-file").files[0];
+    if (!file) {
+      statusNode.textContent = "Please choose a PDF.";
+      runBtn.disabled = false;
+      cancelBtn.hidden = true;
+      return;
+    }
+    setClaimPreviewText("PDF extraction in progress...");
+    imageClaimLocked = false;
   }
 
   const progressId = createProgressId();
@@ -318,7 +333,9 @@ function buildPlaceholderWorkflow() {
 function startProgressForCurrentInput(progressId) {
   if (processPanel) processPanel.hidden = false;
   progressStartedAt = Date.now();
-  basePreview = mode === "claim" ? "Claim analysis in progress" : "Image analysis in progress";
+  basePreview = mode === "claim"
+    ? "Claim analysis in progress"
+    : (mode === "image" ? "Image analysis in progress" : "PDF analysis in progress");
   if (previewNode) previewNode.textContent = basePreview;
   renderWorkflow(buildPlaceholderWorkflow());
 }
@@ -330,6 +347,14 @@ function enrichProgressWithResponse(data) {
     // Keep preview stable after OCR lock so analyzed claim does not appear to "jump".
     if (!imageClaimLocked) {
       const previewText = data.claim || data.summary_claim || data.ocr_text || "";
+      if (previewText) {
+        setClaimPreviewText(previewText);
+        imageClaimLocked = true;
+      }
+    }
+  } else if (mode === "pdf") {
+    if (!imageClaimLocked) {
+      const previewText = data.claim || data.summary_claim || data.pdf_text || "";
       if (previewText) {
         setClaimPreviewText(previewText);
         imageClaimLocked = true;
@@ -348,7 +373,7 @@ function completeProgress() {
 function resetProgressPanel() {
   stopProgressTimers();
   if (processPanel) processPanel.hidden = true;
-  if (previewNode) previewNode.textContent = "Submit a claim or image to start.";
+  if (previewNode) previewNode.textContent = "Submit a claim, image, or PDF to start.";
   if (stepsNode) stepsNode.innerHTML = "";
   basePreview = "";
 }
@@ -417,6 +442,7 @@ function renderResult(data) {
   const avgRel = formatPct(evidenceInsights.avgRelevance);
   const avgCred = formatPct(evidenceInsights.avgCredibility);
   const stanceMix = `S:${evidenceInsights.stance.support} R:${evidenceInsights.stance.refute} N:${evidenceInsights.stance.neutral}`;
+  const warnings = Array.isArray(data.warnings) ? data.warnings.filter(Boolean) : [];
 
   let html = `
     ${cardHtml("Final Verdict", `
@@ -473,6 +499,29 @@ function renderResult(data) {
       </div>
     `)}
   `;
+
+  if (Number(data.page_count || 0) > 0 || data.extraction_engine) {
+    html += cardHtml("Document Metadata", `
+      <div class="kpi">
+        <div class="tile">
+          <div class="meta">Pages Processed</div>
+          <strong>${num(data.page_count || 0)}</strong>
+        </div>
+        <div class="tile">
+          <div class="meta">Extractor</div>
+          <strong>${escapeHtml(String(data.extraction_engine || "N/A"))}</strong>
+        </div>
+      </div>
+    `);
+  }
+
+  if (warnings.length) {
+    html += cardHtml("Warnings", `
+      <ul>
+        ${warnings.map((w) => `<li>${escapeHtml(String(w))}</li>`).join("")}
+      </ul>
+    `);
+  }
 
   if (evidence.length > 0) {
     const evidenceHtml = evidence.map((ev, idx) => {
@@ -656,7 +705,7 @@ function dedupeEvidenceRows(rows) {
 function setClaimPreviewText(text) {
   if (!claimPreviewTextNode) return;
   const value = truncateText(String(text || "").replace(/\s+/g, " ").trim(), 400);
-  claimPreviewOriginal = value || "Submit a claim or image to preview extracted claim text.";
+  claimPreviewOriginal = value || "Submit a claim, image, or PDF to preview extracted claim text.";
   claimPreviewTranslated = "";
   claimPreviewShowingTranslated = false;
   claimPreviewTextNode.textContent = claimPreviewOriginal;
@@ -687,35 +736,70 @@ async function callApiForMode(signal, progressId = null) {
     if (!claim) throw new Error("Please enter a claim.");
     return postJson("/api/analyze", { claim }, signal);
   }
-  
-  // Image mode
-  const file = document.getElementById("image-file").files[0];
-  if (!file) throw new Error("Please choose an image.");
 
-  statusNode.textContent = "OCR extracting...";
-  const ocrPreview = await postFile(
-    "/api/extract-ocr-preview",
-    file,
+  if (mode === "image") {
+    const file = document.getElementById("image-file").files[0];
+    if (!file) throw new Error("Please choose an image.");
+
+    statusNode.textContent = "OCR extracting...";
+    const ocrPreview = await postFile(
+      "/api/extract-ocr-preview",
+      file,
+      signal,
+      {},
+      { language: "auto" },
+      "image",
+    );
+    const ocrClaim = String(ocrPreview?.claim_text || ocrPreview?.ocr_text || "").trim();
+    if (ocrClaim) {
+      setClaimPreviewText(ocrClaim);
+      imageClaimLocked = true;
+    }
+
+    statusNode.textContent = "Analyzing...";
+    return postFile(
+      "/api/analyze-image",
+      file,
+      signal,
+      {},
+      {
+        language: "auto",
+        claim: ocrClaim,
+      },
+      "image",
+    );
+  }
+
+  // PDF mode
+  const pdfFile = document.getElementById("pdf-file").files[0];
+  if (!pdfFile) throw new Error("Please choose a PDF.");
+
+  statusNode.textContent = "Extracting PDF text...";
+  const pdfPreview = await postFile(
+    "/api/extract-pdf-preview",
+    pdfFile,
     signal,
     {},
     { language: "auto" },
+    "pdf",
   );
-  const ocrClaim = String(ocrPreview?.claim_text || ocrPreview?.ocr_text || "").trim();
-  if (ocrClaim) {
-    setClaimPreviewText(ocrClaim);
+  const pdfClaim = String(pdfPreview?.claim_text || pdfPreview?.pdf_text || "").trim();
+  if (pdfClaim) {
+    setClaimPreviewText(pdfClaim);
     imageClaimLocked = true;
   }
 
   statusNode.textContent = "Analyzing...";
   return postFile(
-    "/api/analyze-image",
-    file,
+    "/api/analyze-pdf",
+    pdfFile,
     signal,
     {},
     {
       language: "auto",
-      claim: ocrClaim,
+      claim: pdfClaim,
     },
+    "pdf",
   );
 }
 
@@ -729,9 +813,9 @@ async function postJson(url, body, signal = null, headers = {}) {
   return handleResponse(response);
 }
 
-async function postFile(url, file, signal = null, headers = {}, fields = {}) {
+async function postFile(url, file, signal = null, headers = {}, fields = {}, fileField = "image") {
   const formData = new FormData();
-  formData.append("image", file);
+  formData.append(fileField, file);
   Object.entries(fields || {}).forEach(([key, value]) => {
     if (value != null && String(value).trim()) formData.append(key, String(value).trim());
   });

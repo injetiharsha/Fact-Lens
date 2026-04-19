@@ -11,6 +11,7 @@ A multi-model, multi-language pipeline for verifying claims using contextual evi
 - **Stance Detection**: NLI models for support/refute/neutral classification
 - **Multi-Language Support**: English and Indic language models
 - **OCR Support**: Image-to-text processing with Tesseract
+- **PDF Support**: Text-based PDF extraction for claim/document analysis
 - **REST API**: FastAPI-based HTTP interface
 
 ## Quick Start
@@ -67,6 +68,20 @@ curl -X POST http://localhost:8000/analyze \
   }
 ```
 
+### Image Analysis
+```bash
+curl -X POST http://localhost:8000/api/analyze-image \
+  -F "image=@sample.png" \
+  -F "language=auto"
+```
+
+### PDF Analysis
+```bash
+curl -X POST http://localhost:8000/api/analyze-pdf \
+  -F "pdf=@sample.pdf" \
+  -F "language=auto"
+```
+
 ## Project Structure
 
 - `config/`: Configuration files (weights, routing, thresholds)
@@ -75,6 +90,7 @@ curl -X POST http://localhost:8000/analyze \
 - `pipeline/`: Core verification logic
   - `claim_pipeline.py`: claim-level pipeline entry
   - `document_pipeline.py`: document-level pipeline entry
+  - `ingestion/`: input extraction layer (image/pdf)
 - `training/`: Model training scripts
 - `api/`: REST API implementation
 - `tests/`: Unit and integration tests
@@ -101,6 +117,10 @@ curl -X POST http://localhost:8000/analyze \
 - Use `.venv-gpu` for training/eval tasks.
 - If Playwright scraping is needed, run:
   - `.venv-gpu\Scripts\python -m playwright install chromium`
+- PDF warnings:
+  - Scanned/image-only PDFs may return low/empty extracted text without OCR fallback.
+  - Default extraction is intentionally limited (`PDF_MAX_PAGES=5`, `PDF_MAX_EXTRACTED_CHARS=30000`) to keep runtime/cost bounded.
+  - If claims get truncated, increase limits gradually instead of unlimited extraction.
 
 ## License
 

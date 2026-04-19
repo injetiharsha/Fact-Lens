@@ -63,3 +63,32 @@ class ImageAnalysisResponse(BaseModel):
 
     # present for error mode
     error: Optional[str] = None
+
+
+class PDFAnalysisResponse(BaseModel):
+    """Stable frontend contract for PDF analysis endpoint."""
+
+    # mode: single_claim | document | error
+    mode: str
+    verdict: str
+    confidence: float
+
+    # present for single-claim mode
+    evidence: List[EvidenceItem] = []
+    reasoning: Optional[str] = None
+    details: Optional[AnalysisDetails] = None
+
+    # present for document mode
+    claims: List[DocumentClaimItem] = []
+    summary_verdict: Optional[str] = None
+    summary_confidence: Optional[float] = None
+    summary_claim: Optional[str] = None
+
+    # PDF/meta common fields
+    pdf_text: str = ""
+    page_count: int = 0
+    extraction_engine: str = ""
+    warnings: List[str] = []
+
+    # present for error mode
+    error: Optional[str] = None

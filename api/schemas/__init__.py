@@ -5,4 +5,5 @@ from .verdict_output import (
     VerdictResponse,
     DocumentClaimItem,
     ImageAnalysisResponse,
+    PDFAnalysisResponse,
 )

@@ -6,6 +6,7 @@ Restructured claim/document analysis pipeline.
 - `claim_pipeline.py`: claim-level analysis flow.
 - `document_pipeline.py`: document-level analysis flow.
 - `orchestrator.py`: orchestration layer for pipeline execution.
+- `ingestion/`: input extraction (image OCR + PDF text extraction).
 - `core/`: shared NLP components (normalization, context, stance, etc.).
 - `evidence/`: evidence collection components and providers.
 - `scoring/`: credibility/temporal/confidence aggregation.

@@ -12,6 +12,7 @@ from api.schemas import (
     EvidenceItem,
     AnalysisDetails,
     ImageAnalysisResponse,
+    PDFAnalysisResponse,
 )
 from api.runtime_limits import GlobalRequestLimiter
 
@@ -488,6 +489,44 @@ async def extract_ocr_preview(
         REQUEST_LIMITER.release()
 
 
+@router.post("/extract-pdf-preview")
+async def extract_pdf_preview(
+    pdf: UploadFile = File(...),
+    claim: str = Form(""),
+    language: str = Form("auto"),
+):
+    """Extract PDF text preview only for frontend claim preview."""
+    import tempfile
+    from pipeline.ingestion.pdf import PDFInputPipeline
+
+    await REQUEST_LIMITER.acquire()
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp:
+            content = await pdf.read()
+            tmp.write(content)
+            tmp_path = tmp.name
+
+        try:
+            pdf_pipeline = PDFInputPipeline()
+            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim)
+            claim_text_out = pdf_result.claim_text or ""
+            effective_language = _auto_detect_language(claim_text_out, language)
+            return {
+                "pdf_text": pdf_result.extracted_text,
+                "claim_text": claim_text_out,
+                "page_count": pdf_result.page_count,
+                "extraction_engine": pdf_result.extraction_engine,
+                "warnings": pdf_result.warnings,
+                "effective_language": effective_language,
+                "multi_claim_candidate": _looks_multi_claim_text(claim_text_out),
+            }
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
+    finally:
+        REQUEST_LIMITER.release()
+
+
 @router.post("/translate-preview")
 async def translate_preview(payload: dict = Body(...)):
     """Translate preview text to English for frontend display."""
@@ -574,5 +613,126 @@ async def analyze_document(
             "summary_confidence": result.summary_confidence,
             "claims": result.claims,
         }
+    finally:
+        REQUEST_LIMITER.release()
+
+
+@router.post("/analyze-pdf", response_model=PDFAnalysisResponse)
+async def analyze_pdf(
+    pdf: UploadFile = File(...),
+    claim: str = Form(""),
+    language: str = Form("auto"),
+    recency_mode: str = Form("general"),
+    recency_start: str = Form(""),
+    recency_end: str = Form(""),
+):
+    """Analyze a PDF by extracting text and running claim/document pipeline."""
+    import tempfile
+    from pipeline.ingestion.pdf import PDFInputPipeline
+    from pipeline.document_pipeline import DocumentPipeline
+
+    await REQUEST_LIMITER.acquire()
+    try:
+        suffix = ".pdf"
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
+            content = await pdf.read()
+            tmp.write(content)
+            tmp_path = tmp.name
+
+        try:
+            pdf_pipeline = PDFInputPipeline()
+            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim)
+
+            extracted_text = pdf_result.extracted_text
+            claim_text = pdf_result.claim_text
+            effective_language = _auto_detect_language(claim_text, language)
+            explicit_claim_provided = bool(str(claim or "").strip())
+            force_single_when_claim = _env_bool(
+                "PDF_FORCE_SINGLE_CLAIM_WHEN_CLAIM_PROVIDED",
+                True,
+            )
+
+            if not claim_text:
+                return PDFAnalysisResponse(
+                    mode="error",
+                    verdict="neutral",
+                    confidence=0.0,
+                    error="No text found in PDF. If this is a scanned PDF, OCR pipeline is needed.",
+                    pdf_text=extracted_text,
+                    page_count=pdf_result.page_count,
+                    extraction_engine=pdf_result.extraction_engine,
+                    warnings=pdf_result.warnings,
+                )
+
+            if (not (explicit_claim_provided and force_single_when_claim)) and _looks_multi_claim_text(claim_text):
+                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language))
+                doc_result = doc_pipeline.analyze_text(text=claim_text, language=effective_language)
+                best_claim = None
+                if doc_result.claims:
+                    best_claim = max(
+                        doc_result.claims,
+                        key=lambda row: float(row.get("confidence", 0.0)),
+                    )
+
+                best_evidence = []
+                best_reasoning = None
+                best_details = None
+                best_verdict = doc_result.summary_verdict
+                best_confidence = doc_result.summary_confidence
+                if best_claim and best_claim.get("claim"):
+                    best_result = get_claim_pipeline(effective_language).analyze(
+                        claim=str(best_claim.get("claim")),
+                        language=effective_language,
+                        recency_mode=str(recency_mode or "general"),
+                        recency_start=str(recency_start or ""),
+                        recency_end=str(recency_end or ""),
+                    )
+                    best_evidence = best_result.evidence
+                    best_reasoning = best_result.reasoning
+                    best_details = best_result.details
+                    best_verdict = best_result.verdict
+                    best_confidence = best_result.confidence
+
+                return PDFAnalysisResponse(
+                    mode="document",
+                    summary_verdict=doc_result.summary_verdict,
+                    summary_confidence=doc_result.summary_confidence,
+                    summary_claim=(best_claim or {}).get("claim"),
+                    verdict=best_verdict,
+                    confidence=best_confidence,
+                    evidence=best_evidence,
+                    reasoning=best_reasoning,
+                    details=best_details,
+                    claims=doc_result.claims,
+                    pdf_text=extracted_text,
+                    page_count=pdf_result.page_count,
+                    extraction_engine=pdf_result.extraction_engine,
+                    warnings=pdf_result.warnings,
+                )
+
+            pipeline = get_claim_pipeline(effective_language)
+            result = pipeline.analyze(
+                claim=claim_text,
+                language=effective_language,
+                recency_mode=str(recency_mode or "general"),
+                recency_start=str(recency_start or ""),
+                recency_end=str(recency_end or ""),
+            )
+
+            return PDFAnalysisResponse(
+                mode="single_claim",
+                verdict=result.verdict,
+                confidence=result.confidence,
+                evidence=result.evidence,
+                reasoning=result.reasoning,
+                details=result.details,
+                pdf_text=extracted_text,
+                page_count=pdf_result.page_count,
+                extraction_engine=pdf_result.extraction_engine,
+                warnings=pdf_result.warnings,
+            )
+        finally:
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
     finally:
         REQUEST_LIMITER.release()

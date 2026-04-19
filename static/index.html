@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20260419-4">
+  <link rel="stylesheet" href="./style.css?v=20260419-5">
 </head>
 <body>
   <section id="welcome-screen" class="welcome-screen" aria-label="Welcome">
@@ -47,6 +47,7 @@
           <div class="tabs" role="tablist" aria-label="Analysis type">
             <button class="tab active" data-mode="claim" role="tab">Claim</button>
             <button class="tab" data-mode="image" role="tab">Image</button>
+            <button class="tab" data-mode="pdf" role="tab">PDF</button>
             <span class="tab-indicator" aria-hidden="true"></span>
           </div>
 
@@ -60,6 +61,11 @@
             <div class="field mode-block file mode-block-inline" data-mode="image">
               <label for="image-file">Upload image</label>
               <input id="image-file" type="file" accept=".png,.jpg,.jpeg">
+            </div>
+
+            <div class="field mode-block file mode-block-inline" data-mode="pdf">
+              <label for="pdf-file">Upload PDF</label>
+              <input id="pdf-file" type="file" accept=".pdf">
             </div>
 
             <p id="mode-tip" class="mode-hint">Tip: include a concrete subject, timeframe, and measurable fact for better evidence retrieval.</p>
@@ -104,7 +110,7 @@
                 <button id="original-btn" type="button" class="tool-btn tool-btn-inline" hidden>Original</button>
               </div>
             </div>
-            <p id="claim-preview-text" class="claim-preview-text">Submit a claim or image to preview extracted claim text.</p>
+            <p id="claim-preview-text" class="claim-preview-text">Submit a claim, image, or PDF to preview extracted claim text.</p>
           </div>
         </section>
       </aside>
@@ -113,6 +119,6 @@
     <section id="results" class="results"></section>
   </main>
 
-  <script src="./script.js?v=20260419-4"></script>
+  <script src="./script.js?v=20260419-5"></script>
 </body>
 </html>
