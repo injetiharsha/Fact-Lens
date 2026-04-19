@@ -68,15 +68,46 @@ class LLMVerifier:
         return "https://api.openai.com/v1"
 
     def _build_evidence_snippets(self, evidence: List[Dict[str, Any]]) -> str:
+        rows = evidence if isinstance(evidence, list) else []
         snippets = []
-        for idx, ev in enumerate(evidence[:5], start=1):
+        for idx, ev in enumerate(rows, start=1):
             text = (ev.get("text") or "").strip().replace("\n", " ")
             source = ev.get("source") or "unknown"
             rel = ev.get("relevance")
             snippets.append(
-                f"[{idx}] source={source}; relevance={rel}; text={text[:450]}"
+                f"[{idx}] source={source}; relevance={rel}; text={text[:320]}"
             )
         return "\n".join(snippets)
+
+    def _normalize_evidence_updates(self, raw_updates: Any, evidence: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Validate and normalize LLM-provided evidence updates."""
+        if not isinstance(raw_updates, list):
+            return []
+        max_idx = len(evidence if isinstance(evidence, list) else [])
+        out: List[Dict[str, Any]] = []
+        seen = set()
+        for row in raw_updates:
+            if not isinstance(row, dict):
+                continue
+            try:
+                idx = int(row.get("index"))
+            except Exception:
+                continue
+            if idx < 1 or idx > max_idx:
+                continue
+            if idx in seen:
+                continue
+            seen.add(idx)
+            stance = self._normalize_verdict(str(row.get("stance", "neutral")))
+            rel_raw = row.get("relevance")
+            relevance = None
+            if rel_raw is not None:
+                try:
+                    relevance = max(0.0, min(1.0, float(rel_raw)))
+                except Exception:
+                    relevance = None
+            out.append({"index": idx, "stance": stance, "relevance": relevance})
+        return out
 
     def _normalize_verdict(self, value: str) -> str:
         v = (value or "").strip().lower()
@@ -410,10 +441,13 @@ class LLMVerifier:
         is_multilingual_claim = self._looks_multilingual(str(claim))
         system_prompt = (
             "You are a strict fact-check verifier. "
-            "Return JSON only with keys: verdict, confidence, reason. "
+            "Return JSON only with keys: verdict, confidence, reason, evidence_updates. "
             "verdict must be one of support/refute/neutral. "
             "confidence must be float between 0 and 1. "
             "reason must be one short sentence (max 160 chars). "
+            "evidence_updates must be a JSON array (can be empty) with entries: "
+            "{index: integer, stance: support|refute|neutral, relevance: 0..1}. "
+            "index refers to Evidence [i] shown in prompt. "
             "IMPORTANT: Always output verdict exactly as one token: support or refute or neutral."
         )
         if is_multilingual_claim:
@@ -458,10 +492,20 @@ class LLMVerifier:
             confidence = float(parsed.get("confidence", 0.5))
             confidence = max(0.0, min(1.0, confidence))
             reason = str(parsed.get("reason", "LLM verification complete"))
-            return {"verdict": verdict, "confidence": confidence, "reason": reason}
+            evidence_updates = self._normalize_evidence_updates(
+                parsed.get("evidence_updates"),
+                evidence if isinstance(evidence, list) else [],
+            )
+            return {
+                "verdict": verdict,
+                "confidence": confidence,
+                "reason": reason,
+                "evidence_updates": evidence_updates,
+            }
         except Exception as exc:
             return {
                 "verdict": "neutral",
                 "confidence": 0.5,
                 "reason": f"{self.provider} verify call failed: {exc}",
+                "evidence_updates": [],
             }

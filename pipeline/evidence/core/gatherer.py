@@ -2,13 +2,17 @@
 
 import logging
 import os
+import re
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any, Dict, List, Optional, Set, Tuple
+from urllib.parse import urlparse, urlunparse
 
 from pipeline.evidence.providers.web_search import WebSearchEngine
 from pipeline.evidence.providers.structured_api import StructuredAPIClient
 from pipeline.evidence.providers.scraper import EvidenceScraper
 from pipeline.evidence.core.aggregator import EvidenceAggregator
+from pipeline.core.normalizer import ClaimNormalizer
 
 logger = logging.getLogger(__name__)
 
@@ -41,6 +45,12 @@ class EvidenceGatherer:
         self.parallel_sources = _env_bool("EVIDENCE_PARALLEL_SOURCES", True)
         self.source_workers = _env_int("EVIDENCE_PARALLEL_SOURCE_WORKERS", 4, minimum=1)
         self.enable_scraper_enrichment = _env_bool("EVIDENCE_ENABLE_SCRAPER_ENRICHMENT", True)
+        self.scraper_enrich_max_results = _env_int("EVIDENCE_SCRAPER_ENRICH_MAX_RESULTS", 6, minimum=1)
+        self.enable_translated_query_search = _env_bool("EVIDENCE_ENABLE_TRANSLATED_QUERY_SEARCH", True)
+        self.translated_query_cap = _env_int("EVIDENCE_TRANSLATED_QUERY_CAP", 2, minimum=1)
+        self.domain_diversity_enabled = _env_bool("EVIDENCE_DOMAIN_DIVERSITY_ENABLED", True)
+        self.domain_max_per_host = _env_int("EVIDENCE_DOMAIN_MAX_PER_HOST", 2, minimum=1)
+        self.normalizer = ClaimNormalizer()
         self.live_progress = _env_bool("EVIDENCE_LIVE_PROGRESS", False)
 
     def _emit(self, msg: str) -> None:
@@ -53,7 +63,8 @@ class EvidenceGatherer:
         queries: List[str],
         sources: List[Dict],
         language: str = "en",
-        max_evidence: int = 10
+        max_evidence: int = 10,
+        scraper_enrichment_override: Optional[bool] = None,
     ) -> List[Dict]:
         """
         Gather evidence from multiple sources.
@@ -69,6 +80,13 @@ class EvidenceGatherer:
             List of evidence dicts with text, source, url, metadata
         """
         logger.info(f"Gathering evidence for claim: {claim[:50]}...")
+        queries = self._augment_queries_with_translation(claim, queries, language)
+        enrichment_enabled = (
+            self.enable_scraper_enrichment
+            if scraper_enrichment_override is None
+            else bool(scraper_enrichment_override)
+        )
+
         self._emit(
             f"start lang={language} max_evidence={max_evidence} queries={len(queries)} routed_sources={len(sources)}"
         )
@@ -115,10 +133,14 @@ class EvidenceGatherer:
         # Scrape discovered URLs (inclusive enrichment).
         discovered_urls = self._collect_urls(all_evidence)
         self._emit(
-            f"scrape_enrichment enabled={self.enable_scraper_enrichment} discovered_urls={len(discovered_urls)}"
+            f"scrape_enrichment enabled={enrichment_enabled} discovered_urls={len(discovered_urls)}"
         )
-        if self.enable_scraper_enrichment and discovered_urls:
-            scraped = self.scraper.scrape_urls(discovered_urls, claim=claim, max_results=3)
+        if enrichment_enabled and discovered_urls:
+            scraped = self.scraper.scrape_urls(
+                discovered_urls,
+                claim=claim,
+                max_results=self.scraper_enrich_max_results,
+            )
             normalized_scraped = self._normalize_evidence_list(scraped, default_type="scraping")
             all_evidence.extend(normalized_scraped)
             self._emit(
@@ -137,10 +159,17 @@ class EvidenceGatherer:
             return []
         
         # Remove duplicates
-        unique_evidence = self.aggregator.deduplicate(all_evidence)
+        unique_evidence = self._dedupe_canonical_evidence(all_evidence)
+        unique_evidence = self.aggregator.deduplicate(unique_evidence)
         
         # Rank by quality indicators
         ranked_evidence = self.aggregator.rank(unique_evidence, claim)
+        if self.domain_diversity_enabled:
+            ranked_evidence = self._apply_domain_diversity(
+                ranked_evidence,
+                max_items=max_evidence,
+                per_host_cap=self.domain_max_per_host,
+            )
         out = ranked_evidence[:max_evidence]
         self._emit(
             f"done raw_total={len(all_evidence)} unique={len(unique_evidence)} ranked={len(ranked_evidence)} returned={len(out)}"
@@ -148,6 +177,116 @@ class EvidenceGatherer:
         
         # Return top N
         return out
+
+    def _augment_queries_with_translation(self, claim: str, queries: List[str], language: str) -> List[str]:
+        """For non-English claims, add a small set of translated English queries for retrieval breadth."""
+        base = [q for q in (queries or []) if str(q).strip()]
+        if not self.enable_translated_query_search:
+            return base
+        lang = (language or "en").strip().lower()
+        if lang.startswith("en"):
+            return base
+        try:
+            translated = self.normalizer._translate_indic_to_english(claim, language=lang)  # pylint: disable=protected-access
+        except Exception:
+            translated = ""
+        translated = str(translated or "").strip()
+        if not translated:
+            return base
+        extra = self.normalizer.rephrase_for_search(translated, language="en")
+        explicit_q = f"Is it true that {translated.rstrip(' .?!')}?"
+        extra = [explicit_q] + list(extra)
+        extra = [q for q in extra if str(q).strip()][: self.translated_query_cap]
+        # Keep translated queries first so WEB_SEARCH_MAX_QUERIES slicing still includes them.
+        out: List[str] = []
+        seen = set()
+        for q in extra + base:
+            key = str(q).strip().lower()
+            if not key or key in seen:
+                continue
+            seen.add(key)
+            out.append(str(q).strip())
+        return out
+
+    def _canonicalize_url(self, url: str) -> str:
+        raw = str(url or "").strip()
+        if not raw:
+            return ""
+        try:
+            p = urlparse(raw)
+            cleaned = p._replace(query="", fragment="")
+            return urlunparse(cleaned).rstrip("/").lower()
+        except Exception:
+            return raw.lower()
+
+    def _dedupe_canonical_evidence(self, rows: List[Dict]) -> List[Dict]:
+        """Strong in-gathering dedupe: canonical URL first, fallback to normalized text key."""
+        out: List[Dict] = []
+        seen = set()
+        for row in rows or []:
+            url_key = self._canonicalize_url(row.get("url"))
+            text_key = " ".join(str(row.get("text") or "").strip().lower().split())[:240]
+            key = url_key or text_key
+            if not key:
+                continue
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(row)
+        return out
+
+    def _host_from_url(self, url: str) -> str:
+        try:
+            return (urlparse(str(url or "")).netloc or "").lower().split(":")[0].strip(".")
+        except Exception:
+            return ""
+
+    def _title_key(self, row: Dict[str, Any]) -> str:
+        title = str(row.get("title") or "").strip().lower()
+        title = re.sub(r"\s+", " ", title)
+        if len(title) < 24:
+            return ""
+        return title[:200]
+
+    def _apply_domain_diversity(self, rows: List[Dict], max_items: int, per_host_cap: int) -> List[Dict]:
+        """Prefer host diversity in top evidence while preserving quality order as much as possible."""
+        if not rows:
+            return rows
+        selected: List[Dict] = []
+        host_counts: Dict[str, int] = {}
+        seen_title: Set[str] = set()
+
+        # First pass: pick high quality rows with host cap and title dedupe.
+        for row in rows:
+            if len(selected) >= max_items:
+                break
+            host = self._host_from_url(row.get("url"))
+            if host and host_counts.get(host, 0) >= per_host_cap:
+                continue
+            tkey = self._title_key(row)
+            if tkey and tkey in seen_title:
+                continue
+            selected.append(row)
+            if host:
+                host_counts[host] = host_counts.get(host, 0) + 1
+            if tkey:
+                seen_title.add(tkey)
+
+        # Second pass: fill if we under-filled because of strict diversity.
+        if len(selected) < max_items:
+            for row in rows:
+                if len(selected) >= max_items:
+                    break
+                if row in selected:
+                    continue
+                tkey = self._title_key(row)
+                if tkey and tkey in seen_title:
+                    continue
+                selected.append(row)
+                if tkey:
+                    seen_title.add(tkey)
+
+        return selected
 
     def _gather_one_source(
         self,
@@ -293,6 +432,16 @@ class EvidenceGatherer:
             row,
             keys=["published_at", "published", "date", "pub_date", "timestamp", "time"],
         )
+        date_source = "explicit" if published_at else "none"
+        if not published_at:
+            published_at = self._extract_date_from_text(
+                " ".join(x for x in [title, snippet, text] if x)
+            )
+            if published_at:
+                date_source = "inferred"
+        published_at = self._normalize_published_at(published_at)
+        if not published_at:
+            date_source = "none"
 
         score = self._to_float(row.get("score"))
         if score is None:
@@ -313,6 +462,7 @@ class EvidenceGatherer:
             "lang": self._pick_text(row, keys=["lang", "language"]) or "",
             "metadata": {"raw_keys": sorted(row.keys())},
         }
+        normalized["metadata"]["date_source"] = date_source
         return normalized
 
     def _pick_text(self, row: Dict[str, Any], keys: List[str]) -> str:
@@ -332,3 +482,66 @@ class EvidenceGatherer:
             return float(value)
         except Exception:
             return None
+
+    def _extract_date_from_text(self, text: str) -> str:
+        """Best-effort date extraction from snippet/title text."""
+        src = str(text or "")
+        if not src:
+            return ""
+
+        # December 11, 2022 / Dec 11, 2022
+        m = re.search(
+            r"\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|"
+            r"Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{1,2},\s+\d{4}\b",
+            src,
+            flags=re.IGNORECASE,
+        )
+        if m:
+            return m.group(0)
+
+        # 11 December 2022
+        m = re.search(
+            r"\b\d{1,2}\s+(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|"
+            r"Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+\d{4}\b",
+            src,
+            flags=re.IGNORECASE,
+        )
+        if m:
+            return m.group(0)
+
+        # ISO-like formats: 2022-12-11 or 2022/12/11
+        m = re.search(r"\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b", src)
+        if m:
+            return m.group(0)
+
+        return ""
+
+    def _normalize_published_at(self, value: str) -> str:
+        """Normalize many date strings to ISO datetime."""
+        raw = str(value or "").strip()
+        if not raw:
+            return ""
+
+        # try common direct parse formats first
+        formats = [
+            "%Y-%m-%d",
+            "%Y/%m/%d",
+            "%Y-%m-%dT%H:%M:%S",
+            "%Y-%m-%dT%H:%M:%SZ",
+            "%Y-%m-%d %H:%M:%S",
+            "%B %d, %Y",
+            "%b %d, %Y",
+            "%d %B %Y",
+            "%d %b %Y",
+        ]
+        for fmt in formats:
+            try:
+                dt = datetime.strptime(raw, fmt)
+                return dt.isoformat()
+            except Exception:
+                continue
+
+        # fallback: keep original if it already looks like ISO-ish
+        if re.match(r"^\d{4}-\d{1,2}-\d{1,2}", raw):
+            return raw
+        return ""

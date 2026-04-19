@@ -13,6 +13,12 @@ const claimWarningNode = document.getElementById("claim-warning");
 const processPanel = document.getElementById("process-panel");
 const previewNode = document.getElementById("process-preview");
 const stepsNode = document.getElementById("process-steps");
+const evidenceFilterNode = document.getElementById("evidence-filter");
+const topEvidenceCountNode = document.getElementById("top-evidence-count");
+const translateBtn = document.getElementById("translate-btn");
+const originalBtn = document.getElementById("original-btn");
+const analysisTimerNode = document.getElementById("analysis-timer");
+const claimPreviewTextNode = document.getElementById("claim-preview-text");
 
 const appMainNode = document.getElementById("app-main");
 const welcomeNode = document.getElementById("welcome-screen");
@@ -23,6 +29,13 @@ let currentController = null;
 let progressTimer = null;
 let progressStartedAt = null;
 let basePreview = "";
+let analysisTimer = null;
+let analysisStartedAt = null;
+let latestResultPayload = null;
+let claimPreviewOriginal = "Submit a claim or image to preview extracted claim text.";
+let claimPreviewTranslated = "";
+let claimPreviewShowingTranslated = false;
+let imageClaimLocked = false;
 
 const modeTips = {
   claim: "Tip: include a concrete subject, timeframe, and measurable fact for better evidence retrieval.",
@@ -53,6 +66,15 @@ function setMode(nextMode) {
   tabs.forEach((t) => t.classList.toggle("active", t.dataset.mode === mode));
   blocks.forEach((b) => b.classList.toggle("active", b.dataset.mode === mode));
   if (modeTipNode) modeTipNode.textContent = modeTips[mode] || modeTips.claim;
+  if (mode === "image") {
+    setClaimPreviewText("Submit image to preview OCR-extracted claim text.");
+    imageClaimLocked = false;
+  } else {
+    const text = document.getElementById("claim-text")?.value?.trim() || "";
+    setClaimPreviewText(text || "Submit a claim or image to preview extracted claim text.");
+    imageClaimLocked = false;
+  }
+  if (originalBtn) originalBtn.hidden = true;
   moveTabIndicatorToActive();
 
   if (controlsPanel) {
@@ -129,6 +151,52 @@ setMode(mode);
 const claimTextNode = document.getElementById("claim-text");
 if (claimTextNode) {
   claimTextNode.addEventListener("input", () => setClaimWarning(""));
+  claimTextNode.addEventListener("input", () => {
+    const text = claimTextNode.value.trim();
+    setClaimPreviewText(text || "Submit a claim or image to preview extracted claim text.");
+  });
+}
+
+if (evidenceFilterNode) {
+  evidenceFilterNode.addEventListener("change", () => {
+    if (latestResultPayload) renderResult(latestResultPayload);
+  });
+}
+if (topEvidenceCountNode) {
+  topEvidenceCountNode.addEventListener("change", () => {
+    if (latestResultPayload) renderResult(latestResultPayload);
+  });
+}
+if (translateBtn) {
+  translateBtn.addEventListener("click", async () => {
+    const text = (claimPreviewOriginal || "").trim();
+    if (!text || text === "Submit a claim or image to preview extracted claim text.") return;
+    if (claimPreviewTextNode) claimPreviewTextNode.textContent = "Translating...";
+    try {
+      const out = await postJson("/api/translate-preview", { text, target_language: "en" });
+      const translated = String(out?.translated_text || "").trim();
+      if (out?.translated || out?.source_language === "en") {
+        claimPreviewTranslated = translated || "";
+      } else {
+        claimPreviewTranslated = text;
+      }
+      if (claimPreviewTranslated) {
+        claimPreviewShowingTranslated = true;
+        if (claimPreviewTextNode) claimPreviewTextNode.textContent = claimPreviewTranslated;
+        if (originalBtn) originalBtn.hidden = false;
+      }
+    } catch (err) {
+      if (claimPreviewTextNode) claimPreviewTextNode.textContent = claimPreviewOriginal;
+    }
+  });
+}
+
+if (originalBtn) {
+  originalBtn.addEventListener("click", () => {
+    claimPreviewShowingTranslated = false;
+    if (claimPreviewTextNode) claimPreviewTextNode.textContent = claimPreviewOriginal;
+    originalBtn.hidden = true;
+  });
 }
 
 cancelBtn.addEventListener("click", () => {
@@ -144,6 +212,11 @@ form.addEventListener("submit", async (event) => {
   cancelBtn.hidden = false;
   statusNode.textContent = "Analyzing...";
   resultsNode.innerHTML = "";
+  latestResultPayload = null;
+  claimPreviewTranslated = "";
+  claimPreviewShowingTranslated = false;
+  if (originalBtn) originalBtn.hidden = true;
+  startAnalysisTimer();
 
   if (mode === "claim") {
     const claim = document.getElementById("claim-text").value.trim();
@@ -173,6 +246,8 @@ form.addEventListener("submit", async (event) => {
       cancelBtn.hidden = true;
       return;
     }
+    setClaimPreviewText("OCR in progress...");
+    imageClaimLocked = false;
   }
 
   const progressId = createProgressId();
@@ -181,6 +256,7 @@ form.addEventListener("submit", async (event) => {
 
   try {
     const data = await callApiForMode(currentController.signal, progressId);
+    latestResultPayload = data;
     enrichProgressWithResponse(data);
     completeProgress();
     renderResult(data);
@@ -214,6 +290,7 @@ form.addEventListener("submit", async (event) => {
     }
   } finally {
     stopProgressTimers();
+    stopAnalysisTimer();
     currentController = null;
     runBtn.disabled = false;
     cancelBtn.hidden = true;
@@ -239,16 +316,29 @@ function buildPlaceholderWorkflow() {
 }
 
 function startProgressForCurrentInput(progressId) {
-  processPanel.hidden = false;
+  if (processPanel) processPanel.hidden = false;
   progressStartedAt = Date.now();
   basePreview = mode === "claim" ? "Claim analysis in progress" : "Image analysis in progress";
-  previewNode.textContent = basePreview;
+  if (previewNode) previewNode.textContent = basePreview;
   renderWorkflow(buildPlaceholderWorkflow());
 }
 
 function enrichProgressWithResponse(data) {
   const verdict = extractVerdict(data);
-  previewNode.textContent = `${basePreview} | Final verdict: ${verdict}`;
+  if (previewNode) previewNode.textContent = `${basePreview} | Final verdict: ${verdict}`;
+  if (mode === "image") {
+    // Keep preview stable after OCR lock so analyzed claim does not appear to "jump".
+    if (!imageClaimLocked) {
+      const previewText = data.claim || data.summary_claim || data.ocr_text || "";
+      if (previewText) {
+        setClaimPreviewText(previewText);
+        imageClaimLocked = true;
+      }
+    }
+  } else {
+    const previewText = document.getElementById("claim-text")?.value || "";
+    if (previewText) setClaimPreviewText(previewText);
+  }
 }
 
 function completeProgress() {
@@ -257,9 +347,9 @@ function completeProgress() {
 
 function resetProgressPanel() {
   stopProgressTimers();
-  processPanel.hidden = true;
-  previewNode.textContent = "Submit a claim or image to start.";
-  stepsNode.innerHTML = "";
+  if (processPanel) processPanel.hidden = true;
+  if (previewNode) previewNode.textContent = "Submit a claim or image to start.";
+  if (stepsNode) stepsNode.innerHTML = "";
   basePreview = "";
 }
 
@@ -271,6 +361,7 @@ function stopProgressTimers() {
 }
 
 function renderWorkflow(payload) {
+  if (!stepsNode) return;
   const allStages = Array.isArray(payload?.stages) ? payload.stages : [];
   const stages = allStages.filter((stage) => {
     const status = String(stage?.status || "pending");
@@ -310,7 +401,9 @@ function renderResult(data) {
   const verdictLabel = escapeHtml(data.verdict || "Unknown");
   const confidence = data.confidence || 0;
   const confidenceLabel = formatPct(confidence);
-  const evidence = data.evidence || [];
+  const evidenceRaw = Array.isArray(data.evidence) ? data.evidence : [];
+  const evidenceFiltered = applyEvidenceControls(evidenceRaw);
+  const evidence = evidenceFiltered;
   const reasoning = escapeHtml(data.reasoning || "No reasoning available");
   
   const details = data.details || {};
@@ -320,7 +413,7 @@ function renderResult(data) {
     ? (llm.triggered ? `Triggered (${escapeHtml(llm.provider || "provider")} / ${escapeHtml(llm.model || "model")})` : "Enabled (not triggered)")
     : "Disabled";
 
-  const evidenceInsights = summarizeEvidence(evidence);
+  const evidenceInsights = summarizeEvidence(evidenceRaw);
   const avgRel = formatPct(evidenceInsights.avgRelevance);
   const avgCred = formatPct(evidenceInsights.avgCredibility);
   const stanceMix = `S:${evidenceInsights.stance.support} R:${evidenceInsights.stance.refute} N:${evidenceInsights.stance.neutral}`;
@@ -358,7 +451,7 @@ function renderResult(data) {
         </div>
         <div class="tile">
           <div class="meta">Evidence</div>
-          <strong>${num(evidenceCount)} items</strong>
+          <strong>${num(evidence.length || evidenceCount)} items</strong>
         </div>
       </div>
     `)}
@@ -395,25 +488,34 @@ function renderResult(data) {
       const sourceLink = sourceUrl
         ? `<a class="evidence-source-link" href="${escapeAttr(sourceUrl)}" target="_blank" rel="noopener noreferrer">${source}</a>`
         : `<span>${source}</span>`;
+      const llmAdjusted = Boolean(ev.llm_adjusted);
+      const llmAdjustedTag = llmAdjusted ? `<span class="pill neutral">LLM-adjusted</span>` : "";
       
       return `
         <details class="evidence-item" ${idx === 0 ? "open" : ""}>
           <summary>
             <div class="evidence-summary-head">
               <strong>${sourceLink}</strong>
-              <span class="pill ${escapeAttr(String(stance).toLowerCase())}">${stance}</span>
+              <span>
+                <span class="pill ${escapeAttr(String(stance).toLowerCase())}">${stance}</span>
+                ${llmAdjustedTag}
+              </span>
             </div>
             <div class="evidence-summary-meta">Relevance: ${relevance} | Credibility: ${credibility}</div>
           </summary>
           <div class="evidence-body">
-            <p class="evidence-preview">${previewText}</p>
-            ${cleanedText.length > 260 ? `<p class="meta">Full excerpt:</p><p>${fullText}</p>` : ""}
+            <p class="evidence-preview" data-original="${escapeAttr(cleanedText)}">${previewText}</p>
+            ${cleanedText.length > 260 ? `<p class="meta">Full excerpt:</p><p class="evidence-full-text" data-original="${escapeAttr(cleanedText)}">${fullText}</p>` : ""}
           </div>
         </details>
       `;
     }).join("");
 
     html += cardHtml("Evidence Found", `
+      <div class="evidence-tools">
+        <button id="evidence-translate-btn" type="button" class="tool-btn tool-btn-inline">Translate Evidence</button>
+        <button id="evidence-original-btn" type="button" class="tool-btn tool-btn-inline" hidden>Original</button>
+      </div>
       <div class="evidence-list">
         ${evidenceHtml}
       </div>
@@ -421,6 +523,7 @@ function renderResult(data) {
   }
 
   resultsNode.innerHTML = html;
+  bindEvidenceTranslateHandlers();
 }
 
 function cardHtml(title, content) {
@@ -518,6 +621,66 @@ function getEvidenceSourceUrl(ev) {
   return String(ev.url || ev.source_url || ev.link || "").trim();
 }
 
+function applyEvidenceControls(evidence) {
+  if (!Array.isArray(evidence)) return [];
+  let rows = dedupeEvidenceRows(evidence);
+
+  const stanceFilter = String(evidenceFilterNode?.value || "all").toLowerCase();
+  if (stanceFilter !== "all") {
+    rows = rows.filter((ev) => String(ev?.stance || "").toLowerCase().includes(stanceFilter));
+  }
+
+  const topN = String(topEvidenceCountNode?.value || "all").toLowerCase();
+  if (topN !== "all") {
+    const n = Math.max(1, parseInt(topN, 10) || 5);
+    rows = rows.slice(0, n);
+  }
+
+  return rows;
+}
+
+function dedupeEvidenceRows(rows) {
+  const out = [];
+  const seen = new Set();
+  for (const ev of (rows || [])) {
+    const urlKey = String(ev?.url || "").trim().toLowerCase();
+    const textKey = String(ev?.text || "").replace(/\s+/g, " ").trim().toLowerCase().slice(0, 220);
+    const key = urlKey || textKey;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(ev);
+  }
+  return out;
+}
+
+function setClaimPreviewText(text) {
+  if (!claimPreviewTextNode) return;
+  const value = truncateText(String(text || "").replace(/\s+/g, " ").trim(), 400);
+  claimPreviewOriginal = value || "Submit a claim or image to preview extracted claim text.";
+  claimPreviewTranslated = "";
+  claimPreviewShowingTranslated = false;
+  claimPreviewTextNode.textContent = claimPreviewOriginal;
+  if (originalBtn) originalBtn.hidden = true;
+}
+
+function startAnalysisTimer() {
+  stopAnalysisTimer();
+  analysisStartedAt = Date.now();
+  if (analysisTimerNode) analysisTimerNode.textContent = "Timer: 0.0s";
+  analysisTimer = setInterval(() => {
+    if (!analysisTimerNode || !analysisStartedAt) return;
+    const sec = (Date.now() - analysisStartedAt) / 1000;
+    analysisTimerNode.textContent = `Timer: ${sec.toFixed(1)}s`;
+  }, 100);
+}
+
+function stopAnalysisTimer() {
+  if (analysisTimer) {
+    clearInterval(analysisTimer);
+    analysisTimer = null;
+  }
+}
+
 async function callApiForMode(signal, progressId = null) {
   if (mode === "claim") {
     const claim = document.getElementById("claim-text").value.trim();
@@ -528,7 +691,32 @@ async function callApiForMode(signal, progressId = null) {
   // Image mode
   const file = document.getElementById("image-file").files[0];
   if (!file) throw new Error("Please choose an image.");
-  return postFile("/api/analyze-image", file, signal);
+
+  statusNode.textContent = "OCR extracting...";
+  const ocrPreview = await postFile(
+    "/api/extract-ocr-preview",
+    file,
+    signal,
+    {},
+    { language: "auto" },
+  );
+  const ocrClaim = String(ocrPreview?.claim_text || ocrPreview?.ocr_text || "").trim();
+  if (ocrClaim) {
+    setClaimPreviewText(ocrClaim);
+    imageClaimLocked = true;
+  }
+
+  statusNode.textContent = "Analyzing...";
+  return postFile(
+    "/api/analyze-image",
+    file,
+    signal,
+    {},
+    {
+      language: "auto",
+      claim: ocrClaim,
+    },
+  );
 }
 
 async function postJson(url, body, signal = null, headers = {}) {
@@ -567,4 +755,57 @@ async function handleResponse(response) {
     throw new Error(payload.error || `HTTP ${response.status}`);
   }
   return payload;
+}
+
+function bindEvidenceTranslateHandlers() {
+  const tBtn = document.getElementById("evidence-translate-btn");
+  const oBtn = document.getElementById("evidence-original-btn");
+  if (!tBtn) return;
+
+  const items = Array.from(resultsNode.querySelectorAll(".evidence-item")).map((item) => {
+    const previewNode = item.querySelector(".evidence-preview");
+    const fullNode = item.querySelector(".evidence-full-text");
+    const original = String(
+      (fullNode?.getAttribute("data-original"))
+      || (previewNode?.getAttribute("data-original"))
+      || ""
+    );
+    return { previewNode, fullNode, original };
+  }).filter((x) => x.previewNode && x.original);
+
+  const restoreOriginal = () => {
+    items.forEach((row) => {
+      const base = row.original || "";
+      if (row.previewNode) row.previewNode.textContent = truncateText(base, 260);
+      if (row.fullNode) row.fullNode.textContent = base;
+    });
+    if (oBtn) oBtn.hidden = true;
+  };
+
+  tBtn.addEventListener("click", async () => {
+    if (!items.length) return;
+    const texts = items.map((row) => String(row.original || "").trim());
+    tBtn.disabled = true;
+    try {
+      const out = await postJson("/api/translate-batch", { texts, target_language: "en" });
+      const translated = Array.isArray(out?.translated_texts) ? out.translated_texts : [];
+      items.forEach((row, i) => {
+        const v = String(translated[i] || "").trim();
+        if (!v) return;
+        if (row.previewNode) row.previewNode.textContent = truncateText(v, 260);
+        if (row.fullNode) row.fullNode.textContent = v;
+      });
+      if (oBtn) oBtn.hidden = false;
+    } catch (_err) {
+      restoreOriginal();
+    } finally {
+      tBtn.disabled = false;
+    }
+  });
+
+  if (oBtn) {
+    oBtn.addEventListener("click", () => {
+      restoreOriginal();
+    });
+  }
 }

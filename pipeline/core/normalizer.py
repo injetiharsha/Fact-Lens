@@ -5,6 +5,7 @@ import os
 import re
 import string
 import threading
+import requests
 from typing import List
 
 logger = logging.getLogger(__name__)
@@ -20,6 +21,7 @@ class ClaimNormalizer:
     _i2e_model = None
     _i2e_ip = None
     _i2e_device = "cpu"
+    _i2e_llm_cooldown_until = 0.0
 
     def normalize(self, claim: str) -> str:
         """Normalize claim text - clean whitespace, punctuation, encoding."""
@@ -58,7 +60,7 @@ class ClaimNormalizer:
         if compact and compact != claim:
             queries.append(compact)
 
-        return self._dedupe_queries(queries, cap=4)
+        return self._dedupe_queries(queries, cap=6)
 
     def _rephrase_for_search_multi(self, claim: str, language: str) -> list:
         """Multilingual query formulation with ASCII anchors."""
@@ -89,7 +91,7 @@ class ClaimNormalizer:
                     queries.append(translated_kw)
 
         # Indic claims skip question wrapper to avoid noisy translations.
-        return self._dedupe_queries(queries, cap=4)
+        return self._dedupe_queries(queries, cap=6)
 
     def _dedupe_queries(self, queries: List[str], cap: int = 4) -> List[str]:
         out: List[str] = []
@@ -173,7 +175,10 @@ class ClaimNormalizer:
         if lang in {"", "en"}:
             return ""
         if not self._ensure_indic_to_en_translator():
-            return ""
+            web = self._translate_indic_to_english_web(text)
+            if web:
+                return web
+            return self._translate_indic_to_english_llm(text)
 
         try:
             pre = self.__class__._i2e_ip.preprocess_batch(
@@ -204,13 +209,131 @@ class ClaimNormalizer:
             )
             out = self.__class__._i2e_ip.postprocess_batch(dec, lang="eng_Latn")
             translated = (out[0] if out else "").strip()
+            if self._is_english_like(translated):
+                return translated
+            web = self._translate_indic_to_english_web(text)
+            if web:
+                return web
             return translated
         except Exception as exc:
             logger.warning("Indic->EN query translation failed; skipping fallback: %s", exc)
+            web = self._translate_indic_to_english_web(text)
+            if web:
+                return web
+            return self._translate_indic_to_english_llm(text)
+
+    def _translate_indic_to_english_web(self, text: str) -> str:
+        """
+        Non-LLM fallback using public Google translate endpoint.
+        Avoids LLM 429 dependency for query translation.
+        """
+        if os.getenv("MULTI_QUERY_TRANSLATION_WEB_ENABLE", "1").strip().lower() not in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }:
+            return ""
+        try:
+            url = "https://translate.googleapis.com/translate_a/single"
+            params = {
+                "client": "gtx",
+                "sl": "auto",
+                "tl": "en",
+                "dt": "t",
+                "q": text,
+            }
+            timeout_s = max(2, int(os.getenv("MULTI_QUERY_TRANSLATION_WEB_TIMEOUT_SECONDS", "8")))
+            resp = requests.get(url, params=params, timeout=timeout_s)
+            resp.raise_for_status()
+            data = resp.json()
+            # Expected: [[["translated","original",...],...], ...]
+            chunks = data[0] if isinstance(data, list) and data else []
+            out = "".join(
+                str(c[0]) for c in chunks
+                if isinstance(c, list) and len(c) > 0 and c[0] is not None
+            ).strip()
+            return out if self._is_english_like(out) else ""
+        except Exception as exc:
+            logger.warning("Web query translation fallback failed: %s", exc)
+            return ""
+
+    def _translate_indic_to_english_llm(self, text: str) -> str:
+        """LLM translation fallback for query generation when local model is unavailable."""
+        import time
+        if time.time() < float(getattr(self.__class__, "_i2e_llm_cooldown_until", 0.0)):
+            return ""
+        provider = str(os.getenv("LLM_VERIFIER_PROVIDER", "openai")).strip().lower()
+        model = str(os.getenv("LLM_VERIFIER_MODEL", "gpt-4o-mini")).strip()
+        base_url = str(os.getenv("LLM_VERIFIER_BASE_URL", "")).strip()
+        if not base_url:
+            if provider == "groq":
+                base_url = "https://api.groq.com/openai/v1"
+            elif provider == "openrouter":
+                base_url = "https://openrouter.ai/api/v1"
+            else:
+                base_url = "https://api.openai.com/v1"
+
+        if provider == "groq":
+            api_key = os.getenv("GROQ_API_KEY", "").strip()
+        elif provider == "openrouter":
+            api_key = os.getenv("OPENROUTER_API_KEY", "").strip()
+        else:
+            api_key = os.getenv("OPENAI_API_KEY", "").strip()
+        if not api_key:
+            return ""
+
+        endpoint = f"{base_url.rstrip('/')}/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": model,
+            "temperature": 0,
+            "max_tokens": 256,
+            "messages": [
+                {
+                    "role": "system",
+                    "content": "Translate to concise English for web search. Return only translated text.",
+                },
+                {"role": "user", "content": text},
+            ],
+        }
+        try:
+            resp = requests.post(endpoint, headers=headers, json=payload, timeout=20)
+            resp.raise_for_status()
+            data = resp.json() if resp.content else {}
+            out = str(
+                (data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")
+            ).strip()
+            return out if self._is_english_like(out) else ""
+        except Exception as exc:
+            logger.warning("LLM query translation fallback failed: %s", exc)
+            # Cool down retries on rate-limit bursts.
+            try:
+                msg = str(exc)
+                if "429" in msg or "Too Many Requests" in msg:
+                    self.__class__._i2e_llm_cooldown_until = time.time() + float(
+                        os.getenv("MULTI_QUERY_TRANSLATION_LLM_COOLDOWN_SEC", "300")
+                    )
+            except Exception:
+                pass
             return ""
 
     def _ensure_indic_to_en_translator(self) -> bool:
         cls = self.__class__
+        local_enable = os.getenv("MULTI_QUERY_TRANSLATION_LOCAL_ENABLE", "0").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        if not local_enable:
+            cls._i2e_initialized = True
+            cls._i2e_enabled = False
+            cls._i2e_error = "local translator disabled by env"
+            return False
         if cls._i2e_initialized:
             return cls._i2e_enabled
 

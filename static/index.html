@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20260417-3">
+  <link rel="stylesheet" href="./style.css?v=20260419-4">
 </head>
 <body>
   <section id="welcome-screen" class="welcome-screen" aria-label="Welcome">
@@ -73,16 +73,46 @@
         </section>
       </div>
 
-      <aside class="panel process-panel" id="process-panel" hidden>
-        <h3>Fact-Check Progress</h3>
-        <p id="process-preview" class="meta">Submit a claim or image to start.</p>
-        <ul id="process-steps" class="steps"></ul>
+      <aside class="right-stack">
+        <section class="panel analysis-tools" id="analysis-tools">
+          <div class="tools-row">
+            <label class="tool-item" for="evidence-filter">
+              <span>Filter</span>
+              <select id="evidence-filter">
+                <option value="all">All</option>
+                <option value="support">Support</option>
+                <option value="refute">Refute</option>
+                <option value="neutral">Neutral</option>
+              </select>
+            </label>
+            <label class="tool-item" for="top-evidence-count">
+              <span>Top Evidence</span>
+              <select id="top-evidence-count">
+                <option value="3">Top 3</option>
+                <option value="5">Top 5</option>
+                <option value="10">Top 10</option>
+                <option value="all" selected>All</option>
+              </select>
+            </label>
+            <span id="analysis-timer" class="tool-timer">Timer: 0.0s</span>
+          </div>
+          <div class="claim-preview-wrap">
+            <div class="claim-preview-head">
+              <p class="meta">Claim Preview</p>
+              <div class="claim-preview-actions">
+                <button id="translate-btn" type="button" class="tool-btn tool-btn-inline">Translate</button>
+                <button id="original-btn" type="button" class="tool-btn tool-btn-inline" hidden>Original</button>
+              </div>
+            </div>
+            <p id="claim-preview-text" class="claim-preview-text">Submit a claim or image to preview extracted claim text.</p>
+          </div>
+        </section>
       </aside>
     </section>
 
     <section id="results" class="results"></section>
   </main>
 
-  <script src="./script.js?v=20260417-3"></script>
+  <script src="./script.js?v=20260419-4"></script>
 </body>
 </html>

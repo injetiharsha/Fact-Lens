@@ -3,7 +3,9 @@
 from api.schemas import (
     AnalysisDetails,
     ClaimRequest,
+    DocumentClaimItem,
     EvidenceItem,
+    ImageAnalysisResponse,
     ImageUploadRequest,
     VerdictResponse,
 )
@@ -13,5 +15,7 @@ __all__ = [
     "ImageUploadRequest",
     "EvidenceItem",
     "AnalysisDetails",
+    "DocumentClaimItem",
+    "ImageAnalysisResponse",
     "VerdictResponse",
 ]

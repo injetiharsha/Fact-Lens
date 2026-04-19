@@ -2,9 +2,11 @@
 .env
 .env.local
 .env.*.local
+!.env.example
 
 .venv
 .venv-gpu
+.qwen/
 cuda.py
 .llm_verifier_rate_limit.sqlite
 
@@ -34,15 +36,19 @@ wheels/
 *.egg
 
 # Data and Models
+data/
 data/raw/
 data/processed/
 data/interim/
-checkpoints/*/
+checkpoints/
 models/
 old_checkpoints/
 *.pth
 *.pt
 *.bin
+*.safetensors
+*.ckpt
+*.onnx
 
 # IDE
 .vscode/
@@ -60,13 +66,32 @@ Thumbs.db
 logs/
 .pytest_cache/
 .coverage
+coverage/
+.mypy_cache/
+.ruff_cache/
+.cache/
 
 # Benchmarks and Results
 benchmarks/results/*.jsonl
 benchmarks/reports/*.csv
 tests/benchmarks/*/parallel_like_results_*.json
+tests/benchmarks/**/metrics_*.json
+tests/benchmarks/**/predictions_*.json
+tests/benchmarks/**/run_summary.json
+tests/benchmarks/**/failure_analysis*.json
+tests/benchmarks/**/trace_*/
+tests/llm_toggle/**/comparison*.json
+tests/llm_toggle/**/test_llm_*.json
+tests/llm_toggle/**/results.json
+test_llm_off.json
+test_llm_on.json
+temp_*.py
+*.tmp.json
 tmp_arch_doc/
 tmp_arch_doc.zip
 tmp_arch_doc_snippets.txt
 temp_*.docx
 temp_*.txt
+
+# Jupyter
+.ipynb_checkpoints/

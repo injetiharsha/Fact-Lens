@@ -54,7 +54,7 @@ TEMPORAL_DECAY = {
 class EvidenceScorer:
     """Calculate composite evidence scores."""
     
-    def calculate_weight(self, evidence: Dict) -> float:
+    def calculate_weight(self, evidence: Dict, recency_policy: Dict | None = None) -> float:
         """
         Calculate evidence weight = relevance × credibility × temporal.
         
@@ -66,13 +66,27 @@ class EvidenceScorer:
         """
         relevance = evidence.get("relevance", 0.5)
         credibility = self._get_credibility(evidence)
-        temporal = self._get_temporal_weight(evidence)
+        temporal = self._get_temporal_weight(evidence, recency_policy=recency_policy)
+
+        # High relevance should not be over-penalized by medium/low credibility sources.
+        # Useful for local/regional factual reporting.
+        try:
+            rel_f = float(relevance)
+            cred_f = float(credibility)
+            if rel_f >= 0.95 and cred_f < 0.82:
+                credibility = min(0.82, cred_f + 0.15)
+        except Exception:
+            pass
+
+        # Keep recency internal via temporal decay only (no extra bonus/compare boost).
+        recency_bonus = 1.0
         
         # Composite score
-        weight = relevance * credibility * temporal
+        weight = relevance * credibility * temporal * recency_bonus
         
         evidence["credibility"] = credibility
         evidence["temporal_weight"] = temporal
+        evidence["recency_bonus"] = recency_bonus
         evidence["evidence_weight"] = weight
         
         return weight
@@ -118,14 +132,15 @@ class EvidenceScorer:
         
         return 0.5  # Scraping/fallback
     
-    def _get_temporal_weight(self, evidence: Dict) -> float:
+    def _get_temporal_weight(self, evidence: Dict, recency_policy: Dict | None = None) -> float:
         """
         Calculate temporal weight based on recency.
         
         Uses exponential decay based on context type.
         """
         context = evidence.get("context", "GENERAL_FACTUAL")
-        date_str = evidence.get("date")
+        date_str = evidence.get("date") or evidence.get("published_at")
+        relevance = float(evidence.get("relevance", 0.0) or 0.0)
         
         # Get half-life for this context
         half_life_months = TEMPORAL_DECAY.get(context, 999)
@@ -146,6 +161,16 @@ class EvidenceScorer:
             
             # Exponential decay: weight = 0.5^(months_ago / half_life)
             weight = 0.5 ** (months_ago / half_life_months)
+
+            # Recency balance policy:
+            # higher relevance softens recency penalty.
+            # thresholds requested: >95, >90, >80.
+            if relevance >= 0.95:
+                weight = min(1.0, weight + 0.35)
+            elif relevance >= 0.90:
+                weight = min(1.0, weight + 0.25)
+            elif relevance >= 0.80:
+                weight = min(1.0, weight + 0.10)
             
             # Clamp to 0.4-1.0 range
             return max(weight, 0.4)
@@ -153,6 +178,10 @@ class EvidenceScorer:
         except Exception as e:
             logger.warning(f"Failed to calculate temporal weight: {e}")
             return 0.8  # Default
+
+    def _get_recency_bonus(self, evidence: Dict, recency_policy: Dict | None = None) -> float:
+        """Deprecated path retained for compatibility; bonus disabled by policy."""
+        return 1.0
 
 
 class ScoringCalculator:

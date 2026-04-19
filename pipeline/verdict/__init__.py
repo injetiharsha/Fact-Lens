@@ -1,6 +1,7 @@
 """Final verdict aggregation and scoring."""
 
 import logging
+import os
 from typing import Dict, List
 
 logger = logging.getLogger(__name__)
@@ -8,6 +9,12 @@ logger = logging.getLogger(__name__)
 
 class VerdictEngine:
     """Aggregate evidence scores into final verdict."""
+    def __init__(self):
+        self.conflict_neutral_enabled = os.getenv(
+            "CONFLICT_NEUTRAL_ENABLED", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.conflict_support_threshold = float(os.getenv("CONFLICT_SUPPORT_THRESHOLD", "0.40"))
+        self.conflict_refute_threshold = float(os.getenv("CONFLICT_REFUTE_THRESHOLD", "0.40"))
     
     def compute(self, evidence_list: List[Dict], claim: str) -> Dict:
         """
@@ -51,7 +58,11 @@ class VerdictEngine:
             agg_neutral /= total_weight
         
         # Conflict detection
-        conflict = (agg_support > 0.40 and agg_refute > 0.40)
+        conflict = (
+            self.conflict_neutral_enabled
+            and (agg_support > self.conflict_support_threshold)
+            and (agg_refute > self.conflict_refute_threshold)
+        )
         
         # Evidence count adjustment
         evidence_count = len(evidence_list)

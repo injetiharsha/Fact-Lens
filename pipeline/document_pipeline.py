@@ -1,5 +1,6 @@
 """Document-level pipeline entrypoint."""
 
+import re
 from dataclasses import dataclass
 from typing import Dict, List
 
@@ -21,9 +22,55 @@ class DocumentPipeline:
         self.claim_pipeline = ClaimPipeline(config)
 
     def _extract_claim_candidates(self, text: str) -> List[str]:
-        chunks = [c.strip() for c in text.split(".") if c.strip()]
-        # Keep simple deterministic extraction for now.
-        return chunks[:20]
+        if not text:
+            return []
+
+        cleaned = text.replace("\r", "\n")
+        # Normalize common OCR abbreviation spacing.
+        cleaned = re.sub(r"\b([A-Za-z])\.\s+([A-Za-z])\.\b", r"\1.\2.", cleaned)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
+
+        # Protect dotted abbreviations (e.g., U.S., U.K.) during sentence split.
+        abbr_map = {}
+        def _protect_abbr(match: re.Match) -> str:
+            token = match.group(0)
+            key = f"__ABBR_{len(abbr_map)}__"
+            abbr_map[key] = token
+            return key
+        cleaned = re.sub(r"\b(?:[A-Za-z]\.){2,}", _protect_abbr, cleaned)
+
+        # Split on strong sentence boundaries and line breaks.
+        raw_chunks = re.split(r"[\n]+|(?<=[.!?])\s+", cleaned)
+
+        out: List[str] = []
+        seen = set()
+        for chunk in raw_chunks:
+            s = chunk.strip(" \t\n\r-–—•*")
+            if not s:
+                continue
+            for key, token in abbr_map.items():
+                s = s.replace(key, token)
+
+            # Drop known OCR overlay/watermark prefixes.
+            s = re.sub(r"^(?:py\)|@o\d+|ocr|ai)\s*[:\-)]?\s*", "", s, flags=re.IGNORECASE).strip()
+            # Drop OCR artifact fragments.
+            if len(s) < 20:
+                continue
+            if len(s.split()) < 5:
+                continue
+            if re.fullmatch(r"[\W_]+", s):
+                continue
+            # Require at least one alphabetic character.
+            if not re.search(r"[A-Za-z\u0900-\u097F\u0B80-\u0BFF\u0C00-\u0CFF\u0D00-\u0D7F]", s):
+                continue
+
+            key = s.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(s)
+
+        return out[:20]
 
     def analyze_text(self, text: str, language: str = "en") -> DocumentResult:
         candidates = self._extract_claim_candidates(text)
@@ -48,4 +95,3 @@ class DocumentPipeline:
             summary_verdict=best["verdict"],
             summary_confidence=float(best["confidence"]),
         )
-

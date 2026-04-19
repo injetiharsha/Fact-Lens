@@ -3,6 +3,7 @@
 import logging
 import os
 from typing import Dict, List
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 from pipeline.evidence.search import (
     DuckDuckGoSearchAdapter,
@@ -57,7 +58,11 @@ class WebSearchEngine:
         self.enable_ddg = _env_bool("WEB_SEARCH_ENABLE_DDG", True)
         self.enable_newsapi = _env_bool("WEB_SEARCH_ENABLE_NEWSAPI", False)
         self.provider_fail_fast = _env_bool("WEB_SEARCH_PROVIDER_FAIL_FAST", True)
+        self.min_providers_before_stop = _env_int("WEB_SEARCH_MIN_PROVIDERS_BEFORE_STOP", 2, minimum=1)
         self.provider_order = self._resolve_provider_order()
+        self.bad_domains = self._load_bad_domains()
+        self.block_wordpress = _env_bool("WEB_SEARCH_BLOCK_WORDPRESS", True)
+        self.blocked_url_tokens = self._load_blocked_url_tokens()
         self.live_progress = _env_bool("EVIDENCE_LIVE_PROGRESS", False)
         logger.info(
             "WebSearch config: order=%s max_queries=%d min_results_before_fallback=%d max_total_results=%d fail_fast=%s",
@@ -113,8 +118,12 @@ class WebSearchEngine:
                     logger.error(f"News API search failed: {e}")
                     self._emit(f"newsapi:error err={e}")
 
+        attempted_providers = 0
         for provider in self.provider_order:
-            if len(all_results) >= self.min_results_before_fallback:
+            if (
+                len(all_results) >= self.min_results_before_fallback
+                and attempted_providers >= self.min_providers_before_stop
+            ):
                 self._emit(
                     f"fallback_stop reason=min_results_reached total={len(all_results)} min={self.min_results_before_fallback}"
                 )
@@ -125,6 +134,7 @@ class WebSearchEngine:
                 )
                 break
             before = len(all_results)
+            attempted_providers += 1
             all_results.extend(
                 self._search_provider(
                     provider=provider,
@@ -137,6 +147,7 @@ class WebSearchEngine:
             self._emit(f"provider_done provider={provider} added={len(all_results)-before} total={len(all_results)}")
 
         all_results = self._dedupe_by_url(all_results)
+        all_results = self._filter_bad_domains(all_results)
         all_results = _apply_result_cap(all_results)
         self._emit(f"done deduped_total={len(all_results)}")
         
@@ -199,6 +210,79 @@ class WebSearchEngine:
             if key in seen:
                 continue
             seen.add(key)
+            out.append(row)
+        return out
+
+    def _load_bad_domains(self) -> set[str]:
+        """Load blocked domains for web-search evidence rows."""
+        raw = os.getenv("WEB_SEARCH_BAD_DOMAINS", "").strip() or os.getenv("SCRAPER_BAD_DOMAINS", "").strip()
+        # Default low-signal domains for fact-check retrieval.
+        defaults = {
+            "testbook.com",
+            "soundcloud.com",
+            "spotify.com",
+            "gaana.com",
+            "jiosaavn.com",
+            "wynk.in",
+            "hungama.com",
+            "apple.com",  # apple podcasts pages are mostly audio metadata
+        }
+        if not raw:
+            return defaults
+        out = set()
+        for tok in raw.split(","):
+            d = tok.strip().lower().strip(".")
+            if d:
+                out.add(d)
+        out.update(defaults)
+        return out
+
+    def _load_blocked_url_tokens(self) -> List[str]:
+        raw = os.getenv(
+            "WEB_SEARCH_BLOCKED_URL_TOKENS",
+            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio",
+        )
+        out: List[str] = []
+        for tok in str(raw).split(","):
+            t = tok.strip().lower()
+            if t:
+                out.append(t)
+        return out
+
+    def _is_bad_domain(self, host: str) -> bool:
+        for d in self.bad_domains:
+            if host == d or host.endswith("." + d):
+                return True
+        return False
+
+    def _filter_bad_domains(self, rows: List[Dict]) -> List[Dict]:
+        """Drop rows whose URL matches blocked domains."""
+        if not self.bad_domains:
+            # still allow wordpress heuristic block
+            if not self.block_wordpress:
+                return rows
+        out: List[Dict] = []
+        for row in rows:
+            url = str(row.get("url") or "").strip()
+            if not url:
+                out.append(row)
+                continue
+            try:
+                host = (urlparse(url).netloc or "").lower().split(":")[0].strip(".")
+            except Exception:
+                host = ""
+            if self.block_wordpress:
+                url_l = url.lower()
+                if ("wordpress" in host) or ("/wp-content/" in url_l) or ("/wp-json/" in url_l):
+                    self._emit(f"domain_blocked_wordpress host={host or 'unknown'}")
+                    continue
+            url_l = url.lower()
+            if any(tok in url_l for tok in self.blocked_url_tokens):
+                self._emit(f"url_blocked_pattern host={host or 'unknown'}")
+                continue
+            if host and self._is_bad_domain(host):
+                self._emit(f"domain_blocked host={host}")
+                continue
             out.append(row)
         return out
 

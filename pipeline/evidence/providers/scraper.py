@@ -52,6 +52,8 @@ class EvidenceScraper:
         self.parallel_urls = _env_bool("SCRAPER_PARALLEL_URLS", True)
         self.url_workers = _env_int("SCRAPER_PARALLEL_WORKERS", 4, minimum=1)
         self.bad_domains = self._load_bad_domains()
+        self.block_wordpress = _env_bool("SCRAPER_BLOCK_WORDPRESS", True)
+        self.blocked_url_tokens = self._load_blocked_url_tokens()
     
     def scrape(
         self,
@@ -138,6 +140,15 @@ class EvidenceScraper:
             host = (parsed.netloc or "").lower().split(":")[0].strip(".")
             if not host:
                 return False
+            if self.block_wordpress:
+                url_l = url.lower()
+                if ("wordpress" in host) or ("/wp-content/" in url_l) or ("/wp-json/" in url_l):
+                    logger.info("Skipping wordpress-like domain/url: %s", host or url)
+                    return False
+            url_l = url.lower()
+            if any(tok in url_l for tok in self.blocked_url_tokens):
+                logger.info("Skipping blocked scrape URL pattern: %s", url)
+                return False
             if self._is_bad_domain(host):
                 logger.info("Skipping bad scrape domain: %s", host)
                 return False
@@ -147,7 +158,15 @@ class EvidenceScraper:
 
     def _load_bad_domains(self) -> Set[str]:
         """Load blocked scrape domains from env with safe defaults."""
-        defaults = {"dailymotion.com"}
+        defaults = {
+            "dailymotion.com",
+            "testbook.com",
+            "soundcloud.com",
+            "spotify.com",
+            "gaana.com",
+            "jiosaavn.com",
+            "wynk.in",
+        }
         raw = os.getenv("SCRAPER_BAD_DOMAINS", "")
         if not raw.strip():
             return defaults
@@ -157,6 +176,18 @@ class EvidenceScraper:
             if d:
                 out.add(d)
         return out or defaults
+
+    def _load_blocked_url_tokens(self) -> Set[str]:
+        raw = os.getenv(
+            "SCRAPER_BLOCKED_URL_TOKENS",
+            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio",
+        )
+        out: Set[str] = set()
+        for token in str(raw).split(","):
+            t = token.strip().lower()
+            if t:
+                out.add(t)
+        return out
 
     def _is_bad_domain(self, host: str) -> bool:
         """Match blocked domain or any of its subdomains."""

@@ -26,3 +26,40 @@ class VerdictResponse(BaseModel):
     evidence: List[EvidenceItem]
     reasoning: str
     details: AnalysisDetails
+
+
+class DocumentClaimItem(BaseModel):
+    claim: str
+    verdict: str
+    confidence: float
+    evidence_count: int
+
+
+class ImageAnalysisResponse(BaseModel):
+    """Stable frontend contract for image analysis endpoint."""
+
+    # mode: single_claim | document | error
+    mode: str
+    verdict: str
+    confidence: float
+
+    # present for single-claim mode
+    evidence: List[EvidenceItem] = []
+    reasoning: Optional[str] = None
+    details: Optional[AnalysisDetails] = None
+
+    # present for document mode
+    claims: List[DocumentClaimItem] = []
+    summary_verdict: Optional[str] = None
+    summary_confidence: Optional[float] = None
+    summary_claim: Optional[str] = None
+
+    # OCR/meta common fields
+    ocr_text: str = ""
+    ocr_engine: str = ""
+    ocr_confidence: float = 0.0
+    image_quality: dict = {}
+    warnings: List[str] = []
+
+    # present for error mode
+    error: Optional[str] = None

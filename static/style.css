@@ -223,7 +223,7 @@ body.app-mode {
 .workspace {
   margin-top: 10px;
   display: grid;
-  grid-template-columns: 1.24fr 0.76fr;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: 16px;
   align-items: start;
 }
@@ -231,6 +231,12 @@ body.app-mode {
 .left-stack {
   display: grid;
   gap: 14px;
+}
+
+.right-stack {
+  display: grid;
+  gap: 14px;
+  align-content: start;
 }
 
 .controls-head h3 {
@@ -416,6 +422,118 @@ input[type="file"] {
 .process-panel {
   position: sticky;
   top: 16px;
+}
+
+.analysis-tools {
+  margin-top: 20px;
+  position: sticky;
+  top: 16px;
+}
+
+.tools-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+
+.recency-custom-row {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.recency-custom-item input[type="date"] {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+}
+
+
+.tool-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 130px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+.tool-item select {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+  color: var(--ink);
+}
+
+.tool-btn {
+  border: 1px solid var(--line);
+  background: #fefdf7;
+  color: var(--ink);
+  font-weight: 700;
+  padding: 9px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.tool-timer {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.claim-preview-wrap {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px dashed #95ada9;
+  border-radius: 10px;
+  background: #f8fcfb;
+}
+
+.claim-preview-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.claim-preview-actions {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.tool-btn-inline {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+}
+
+.claim-preview-text {
+  margin: 6px 0 0;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-height: 96px;
+  overflow: auto;
+}
+
+@media (max-width: 1040px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .analysis-tools {
+    position: static;
+    margin-top: 8px;
+  }
+  .recency-custom-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .process-panel h3 {
@@ -918,6 +1036,13 @@ input[type="file"] {
 .evidence-list {
   display: grid;
   gap: 10px;
+}
+
+.evidence-tools {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-bottom: 8px;
 }
 
 .evidence-item {

@@ -38,12 +38,13 @@ class DuckDuckGoSearchAdapter:
 
             out: List[Dict] = []
             for row in rows:
+                link = row.get("href") or row.get("url") or row.get("link") or ""
                 out.append(
                     {
                         "text": row.get("body", ""),
                         "title": row.get("title", "DuckDuckGo"),
                         "source": row.get("title", "DuckDuckGo"),
-                        "url": row.get("href", ""),
+                        "url": link,
                         "score": 0.4,
                         "type": "web_search",
                     }

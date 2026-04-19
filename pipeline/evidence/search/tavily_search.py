@@ -14,6 +14,7 @@ class TavilySearchAdapter:
         self._idx = 0
         self._blocked_slots = set()
         self.timeout_s = max(1, int(os.getenv("WEB_SEARCH_TAVILY_TIMEOUT_SECONDS", "15")))
+        self.max_query_len = max(64, int(os.getenv("TAVILY_MAX_QUERY_LENGTH", "400")))
         self.enabled = False
         if not api_keys:
             return
@@ -45,6 +46,21 @@ class TavilySearchAdapter:
     def _is_usage_limit_error(self, exc: Exception) -> bool:
         msg = str(exc).lower()
         return "exceeds your plan" in msg or "usage limit" in msg
+
+    def _is_query_too_long_error(self, exc: Exception) -> bool:
+        msg = str(exc).lower()
+        return "query is too long" in msg or "max query length" in msg
+
+    def _truncate_query(self, query: str) -> str:
+        q = str(query or "").strip()
+        if len(q) <= self.max_query_len:
+            return q
+        clipped = q[: self.max_query_len]
+        # Prefer word boundary.
+        last_space = clipped.rfind(" ")
+        if last_space >= int(self.max_query_len * 0.6):
+            clipped = clipped[:last_space]
+        return clipped.strip(" ,.;:!?-")
 
     def _call_search(self, client: object, query: str, max_results: int, depth: str) -> List[Dict]:
         def _invoke() -> Dict:
@@ -79,6 +95,7 @@ class TavilySearchAdapter:
     def search(self, query: str, max_results: int) -> List[Dict]:
         if not self.clients:
             return []
+        query = self._truncate_query(query)
         last_exc: Exception | None = None
         attempted = 0
         total_active = len(self.clients) - len(self._blocked_slots)
@@ -103,6 +120,27 @@ class TavilySearchAdapter:
                     )
                 return out
             except Exception as exc:
+                # Retry once with truncated query for length errors.
+                if self._is_query_too_long_error(exc):
+                    try:
+                        short_q = self._truncate_query(query)
+                        if short_q and short_q != query:
+                            out = self._call_search(
+                                client=client,
+                                query=short_q,
+                                max_results=max_results,
+                                depth="advanced",
+                            )
+                            logger.info(
+                                "Tavily query truncated from %d to %d chars and retried successfully (slot %d).",
+                                len(query),
+                                len(short_q),
+                                slot + 1,
+                            )
+                            return out
+                        # If already clipped but still rejected, continue fallback handling.
+                    except Exception as trunc_exc:
+                        last_exc = trunc_exc
                 last_exc = exc
                 # Some Tavily plans reject "advanced" but still allow "basic".
                 if self._is_usage_limit_error(exc):
