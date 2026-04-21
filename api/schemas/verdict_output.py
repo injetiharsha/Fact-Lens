@@ -83,10 +83,13 @@ class PDFAnalysisResponse(BaseModel):
     summary_verdict: Optional[str] = None
     summary_confidence: Optional[float] = None
     summary_claim: Optional[str] = None
+    selected_claim: Optional[str] = None
 
     # PDF/meta common fields
     pdf_text: str = ""
     page_count: int = 0
+    selected_pages: List[int] = []
+    selected_page_spec: str = ""
     extraction_engine: str = ""
     warnings: List[str] = []
 

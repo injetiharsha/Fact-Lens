@@ -96,7 +96,27 @@ def _select_checkpoint(component: str, language: str) -> str | None:
     return None
 
 
-def _pipeline_config(language: str) -> dict:
+def _pipeline_config(language: str, mode: str = "claim") -> dict:
+    mode_l = str(mode or "claim").strip().lower()
+    doc_min_words_default = 15
+    doc_max_words_default = 80
+    doc_checkability_default = True
+    min_words_key = "DOCUMENT_MIN_WORDS"
+    max_words_key = "DOCUMENT_MAX_WORDS"
+    checkability_key = "ENABLE_DOCUMENT_CHECKABILITY_FILTER"
+    if mode_l == "image":
+        # Keep image OCR claim extraction looser than PDF/doc text extraction.
+        doc_min_words_default = 8
+        doc_max_words_default = 100
+        doc_checkability_default = False
+        min_words_key = "IMAGE_DOCUMENT_MIN_WORDS"
+        max_words_key = "IMAGE_DOCUMENT_MAX_WORDS"
+        checkability_key = "IMAGE_ENABLE_DOCUMENT_CHECKABILITY_FILTER"
+    elif mode_l == "pdf":
+        min_words_key = "PDF_DOCUMENT_MIN_WORDS"
+        max_words_key = "PDF_DOCUMENT_MAX_WORDS"
+        checkability_key = "PDF_ENABLE_DOCUMENT_CHECKABILITY_FILTER"
+
     return {
         "claim_checkability_checkpoint": _select_checkpoint("checkability", language),
         "context_checkpoint": _select_checkpoint("context", language),
@@ -115,6 +135,21 @@ def _pipeline_config(language: str) -> dict:
             float(os.getenv("RELEVANCE_DROP_THRESHOLD", "0.60")),
         ),
         "stance_checkpoint": _select_checkpoint("stance", language),
+        "enable_checkability_stage": _env_bool("ENABLE_CHECKABILITY_STAGE", True),
+        "enable_document_checkability_filter": _env_bool(
+            checkability_key,
+            _env_bool("ENABLE_DOCUMENT_CHECKABILITY_FILTER", doc_checkability_default),
+        ),
+        "document_min_words": _env_int(
+            min_words_key,
+            _env_int("DOCUMENT_MIN_WORDS", doc_min_words_default, minimum=3),
+            minimum=3,
+        ),
+        "document_max_words": _env_int(
+            max_words_key,
+            _env_int("DOCUMENT_MAX_WORDS", doc_max_words_default, minimum=10),
+            minimum=10,
+        ),
         "enable_llm_verifier": _env_bool("ENABLE_LLM_VERIFIER", True),
         "llm_provider": os.getenv("LLM_VERIFIER_PROVIDER", "openai"),
         "llm_model": os.getenv("LLM_VERIFIER_MODEL", "gpt-4o-mini"),
@@ -252,6 +287,66 @@ def _translate_text_to_en(text: str, source_language: str | None = None) -> tupl
     return translated, bool(translated != value or src == "en")
 
 
+def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
+    """Pick the most verifiable claim from candidate list using LLM; fallback empty on any failure."""
+    cands = [str(c or "").strip() for c in (candidates or []) if str(c or "").strip()]
+    if len(cands) < 2:
+        return cands[0] if cands else ""
+
+    provider = str(_env_or_file("LLM_VERIFIER_PROVIDER", "openai")).strip().lower()
+    model = str(_env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini")).strip()
+    base_url = str(_env_or_file("LLM_VERIFIER_BASE_URL", "")).strip()
+    if not base_url:
+        if provider == "groq":
+            base_url = "https://api.groq.com/openai/v1"
+        elif provider == "openrouter":
+            base_url = "https://openrouter.ai/api/v1"
+        else:
+            base_url = "https://api.openai.com/v1"
+
+    if provider == "groq":
+        api_key = _env_or_file("GROQ_API_KEY")
+    elif provider == "openrouter":
+        api_key = _env_or_file("OPENROUTER_API_KEY")
+    else:
+        api_key = _env_or_file("OPENAI_API_KEY")
+    if not api_key:
+        return ""
+
+    prompt_rows = "\n".join([f"{i+1}. {c}" for i, c in enumerate(cands[:8])])
+    endpoint = f"{base_url.rstrip('/')}/chat/completions"
+    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    payload = {
+        "model": model,
+        "temperature": 0,
+        "max_tokens": 16,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "Pick one best verifiable factual claim from numbered candidates. "
+                    "Return only the number."
+                ),
+            },
+            {"role": "user", "content": f"Language={language}\nCandidates:\n{prompt_rows}"},
+        ],
+    }
+    try:
+        resp = requests.post(endpoint, headers=headers, json=payload, timeout=12)
+        resp.raise_for_status()
+        data = resp.json() if resp.content else {}
+        out = str((data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")).strip()
+        m = re.search(r"\b(\d+)\b", out)
+        if not m:
+            return ""
+        idx = int(m.group(1)) - 1
+        if 0 <= idx < len(cands[:8]):
+            return cands[idx]
+    except Exception as exc:
+        logger.warning("LLM claim selection fallback failed: %s", exc)
+    return ""
+
+
 def get_claim_pipeline(language: str):
     from pipeline.claim_pipeline import ClaimPipeline
 
@@ -363,7 +458,7 @@ async def analyze_image(
             if (not (explicit_claim_provided and force_single_when_claim)) and _looks_multi_claim_text(claim_text):
                 from pipeline.document_pipeline import DocumentPipeline
 
-                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language))
+                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language, mode="image"))
                 doc_result = doc_pipeline.analyze_text(text=claim_text, language=effective_language)
                 best_claim = None
                 if doc_result.claims:
@@ -393,6 +488,25 @@ async def analyze_image(
                     best_details = best_result.details
                     best_verdict = best_result.verdict
                     best_confidence = best_result.confidence
+                elif not best_claim:
+                    # Image OCR can be noisy; if multi-claim extraction produced nothing,
+                    # fallback to single-claim analysis on full OCR claim text.
+                    fallback_result = get_claim_pipeline(effective_language).analyze(
+                        claim=claim_text,
+                        language=effective_language,
+                        image_path=tmp_path,
+                        recency_mode=str(recency_mode or "general"),
+                        recency_start=str(recency_start or ""),
+                        recency_end=str(recency_end or ""),
+                    )
+                    best_evidence = fallback_result.evidence
+                    best_reasoning = fallback_result.reasoning
+                    best_details = fallback_result.details
+                    best_verdict = fallback_result.verdict
+                    best_confidence = fallback_result.confidence
+                    image_result.warnings.append(
+                        "WARN: No strong mini-claim extracted from OCR; used full OCR claim fallback."
+                    )
 
                 return ImageAnalysisResponse(
                     mode="document",
@@ -494,6 +608,7 @@ async def extract_pdf_preview(
     pdf: UploadFile = File(...),
     claim: str = Form(""),
     language: str = Form("auto"),
+    page_spec: str = Form(""),
 ):
     """Extract PDF text preview only for frontend claim preview."""
     import tempfile
@@ -508,13 +623,15 @@ async def extract_pdf_preview(
 
         try:
             pdf_pipeline = PDFInputPipeline()
-            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim)
+            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim, page_spec=page_spec)
             claim_text_out = pdf_result.claim_text or ""
             effective_language = _auto_detect_language(claim_text_out, language)
             return {
                 "pdf_text": pdf_result.extracted_text,
                 "claim_text": claim_text_out,
                 "page_count": pdf_result.page_count,
+                "selected_pages": pdf_result.selected_pages,
+                "selected_page_spec": pdf_result.selected_page_spec,
                 "extraction_engine": pdf_result.extraction_engine,
                 "warnings": pdf_result.warnings,
                 "effective_language": effective_language,
@@ -606,7 +723,7 @@ async def analyze_document(
 
     await REQUEST_LIMITER.acquire()
     try:
-        pipeline = DocumentPipeline(_pipeline_config(language))
+        pipeline = DocumentPipeline(_pipeline_config(language, mode="document"))
         result = pipeline.analyze_text(text=text, language=language)
         return {
             "summary_verdict": result.summary_verdict,
@@ -622,6 +739,7 @@ async def analyze_pdf(
     pdf: UploadFile = File(...),
     claim: str = Form(""),
     language: str = Form("auto"),
+    page_spec: str = Form(""),
     recency_mode: str = Form("general"),
     recency_start: str = Form(""),
     recency_end: str = Form(""),
@@ -641,7 +759,7 @@ async def analyze_pdf(
 
         try:
             pdf_pipeline = PDFInputPipeline()
-            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim)
+            pdf_result = pdf_pipeline.process(pdf_path=tmp_path, claim_text=claim, page_spec=page_spec)
 
             extracted_text = pdf_result.extracted_text
             claim_text = pdf_result.claim_text
@@ -658,14 +776,17 @@ async def analyze_pdf(
                     verdict="neutral",
                     confidence=0.0,
                     error="No text found in PDF. If this is a scanned PDF, OCR pipeline is needed.",
+                    selected_claim=None,
                     pdf_text=extracted_text,
                     page_count=pdf_result.page_count,
+                    selected_pages=pdf_result.selected_pages,
+                    selected_page_spec=pdf_result.selected_page_spec,
                     extraction_engine=pdf_result.extraction_engine,
                     warnings=pdf_result.warnings,
                 )
 
             if (not (explicit_claim_provided and force_single_when_claim)) and _looks_multi_claim_text(claim_text):
-                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language))
+                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language, mode="pdf"))
                 doc_result = doc_pipeline.analyze_text(text=claim_text, language=effective_language)
                 best_claim = None
                 if doc_result.claims:
@@ -680,13 +801,38 @@ async def analyze_pdf(
                 best_verdict = doc_result.summary_verdict
                 best_confidence = doc_result.summary_confidence
                 if best_claim and best_claim.get("claim"):
-                    best_result = get_claim_pipeline(effective_language).analyze(
-                        claim=str(best_claim.get("claim")),
-                        language=effective_language,
-                        recency_mode=str(recency_mode or "general"),
-                        recency_start=str(recency_start or ""),
-                        recency_end=str(recency_end or ""),
-                    )
+                    # Try top candidates until one is not uncheckable.
+                    ordered_claims = [str(best_claim.get("claim"))]
+                    for row in doc_result.claims:
+                        c = str(row.get("claim") or "")
+                        if c and c not in ordered_claims:
+                            ordered_claims.append(c)
+
+                    best_result = None
+                    for c in ordered_claims[:5]:
+                        probe = get_claim_pipeline(effective_language).analyze(
+                            claim=c,
+                            language=effective_language,
+                            recency_mode=str(recency_mode or "general"),
+                            recency_start=str(recency_start or ""),
+                            recency_end=str(recency_end or ""),
+                        )
+                        check_meta = str((probe.details or {}).get("checkability", ""))
+                        if not check_meta.lower().startswith("uncheckable"):
+                            best_result = probe
+                            best_claim = {"claim": c}
+                            break
+                        if best_result is None:
+                            best_result = probe
+
+                    if best_result is None:
+                        best_result = get_claim_pipeline(effective_language).analyze(
+                            claim=str(best_claim.get("claim")),
+                            language=effective_language,
+                            recency_mode=str(recency_mode or "general"),
+                            recency_start=str(recency_start or ""),
+                            recency_end=str(recency_end or ""),
+                        )
                     best_evidence = best_result.evidence
                     best_reasoning = best_result.reasoning
                     best_details = best_result.details
@@ -698,6 +844,7 @@ async def analyze_pdf(
                     summary_verdict=doc_result.summary_verdict,
                     summary_confidence=doc_result.summary_confidence,
                     summary_claim=(best_claim or {}).get("claim"),
+                    selected_claim=(best_claim or {}).get("claim"),
                     verdict=best_verdict,
                     confidence=best_confidence,
                     evidence=best_evidence,
@@ -706,13 +853,33 @@ async def analyze_pdf(
                     claims=doc_result.claims,
                     pdf_text=extracted_text,
                     page_count=pdf_result.page_count,
+                    selected_pages=pdf_result.selected_pages,
+                    selected_page_spec=pdf_result.selected_page_spec,
                     extraction_engine=pdf_result.extraction_engine,
                     warnings=pdf_result.warnings,
                 )
 
+            doc_pipeline = DocumentPipeline(_pipeline_config(effective_language, mode="pdf"))
+            ranked_candidates = doc_pipeline.rank_claim_candidates(
+                claim_text,
+                language=effective_language,
+            )
+            selected_claim = (ranked_candidates[0] if ranked_candidates else "") or claim_text
+            llm_claim_pick_enabled = _env_bool("PDF_LLM_CLAIM_SELECTION_ENABLE", True)
+            if llm_claim_pick_enabled and len(ranked_candidates) > 1:
+                llm_pick = _llm_pick_best_claim(
+                    candidates=ranked_candidates[:6],
+                    language=effective_language,
+                )
+                if llm_pick:
+                    selected_claim = llm_pick
+                    pdf_result.warnings.append("WARN: LLM-assisted claim selection applied for PDF.")
+            if selected_claim != claim_text:
+                pdf_result.warnings.append("WARN: Auto-selected a verifiable mini-claim from PDF text.")
+
             pipeline = get_claim_pipeline(effective_language)
             result = pipeline.analyze(
-                claim=claim_text,
+                claim=selected_claim,
                 language=effective_language,
                 recency_mode=str(recency_mode or "general"),
                 recency_start=str(recency_start or ""),
@@ -723,11 +890,14 @@ async def analyze_pdf(
                 mode="single_claim",
                 verdict=result.verdict,
                 confidence=result.confidence,
+                selected_claim=selected_claim,
                 evidence=result.evidence,
                 reasoning=result.reasoning,
                 details=result.details,
                 pdf_text=extracted_text,
                 page_count=pdf_result.page_count,
+                selected_pages=pdf_result.selected_pages,
+                selected_page_spec=pdf_result.selected_page_spec,
                 extraction_engine=pdf_result.extraction_engine,
                 warnings=pdf_result.warnings,
             )

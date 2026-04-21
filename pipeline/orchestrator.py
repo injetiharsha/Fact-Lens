@@ -64,9 +64,29 @@ class FactCheckingPipeline:
         self.evidence_scorer = EvidenceScorer()
         self.verdict_engine = VerdictEngine()
         self.enable_llm_verifier = bool(config.get("enable_llm_verifier", True))
+        self.enable_checkability_stage = bool(config.get("enable_checkability_stage", True))
         self.llm_neutral_only = bool(config.get("llm_neutral_only", True))
         self.relevance_drop_threshold = float(config.get("relevance_drop_threshold", 0.30))
         self.relevance_min_keep = max(1, int(os.getenv("RELEVANCE_MIN_KEEP", "3")))
+        self.relevance_min_keep_multi = max(
+            self.relevance_min_keep,
+            int(os.getenv("RELEVANCE_MIN_KEEP_MULTI", "5")),
+        )
+        self.domain_diversity_max_per_host = max(
+            1, int(os.getenv("EVIDENCE_MAX_PER_DOMAIN", "2"))
+        )
+        self.neutral_recovery_enable = os.getenv(
+            "NEUTRAL_RECOVERY_ENABLE", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.neutral_recovery_max_queries = max(
+            1, int(os.getenv("NEUTRAL_RECOVERY_MAX_QUERIES", "2"))
+        )
+        self.neutral_recovery_max_results = max(
+            1, int(os.getenv("NEUTRAL_RECOVERY_MAX_RESULTS", "6"))
+        )
+        self.neutral_recovery_keep_threshold = max(
+            1, int(os.getenv("NEUTRAL_RECOVERY_KEEP_THRESHOLD", "3"))
+        )
         self.multi_tavily_boost_enable = os.getenv(
             "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE", "1"
         ).strip().lower() in {"1", "true", "yes", "on"}
@@ -126,7 +146,7 @@ class FactCheckingPipeline:
         self.polarity_neutral_floor = float(os.getenv("POLARITY_NEUTRAL_FLOOR", "0.20"))
         self.polarity_shift = float(os.getenv("POLARITY_SHIFT", "0.12"))
         self.llm_only_high_quality_neutral = os.getenv(
-            "LLM_ONLY_HIGH_QUALITY_NEUTRAL", "1"
+            "LLM_ONLY_HIGH_QUALITY_NEUTRAL", "0"
         ).strip().lower() in {"1", "true", "yes", "on"}
         self.llm_hq_neutral_min_relevance = float(
             os.getenv("LLM_HQ_NEUTRAL_MIN_RELEVANCE", "0.90")
@@ -134,6 +154,15 @@ class FactCheckingPipeline:
         self.llm_hq_neutral_min_credibility = float(
             os.getenv("LLM_HQ_NEUTRAL_MIN_CREDIBILITY", "0.70")
         )
+        self.llm_use_verdict_fallback = os.getenv(
+            "LLM_VERIFIER_USE_VERDICT_FALLBACK", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.llm_verdict_fallback_min_conf = float(
+            os.getenv("LLM_VERIFIER_VERDICT_FALLBACK_MIN_CONF", "0.55")
+        )
+        self.enable_relevance_noise_guard = os.getenv(
+            "ENABLE_RELEVANCE_NOISE_GUARD", "0"
+        ).strip().lower() in {"1", "true", "yes", "on"}
         
         logger.info("Pipeline initialized.")
     
@@ -175,26 +204,37 @@ class FactCheckingPipeline:
         # Stage 2: Checkability
         _emit("stage2_checkability:start")
         t = time.perf_counter()
-        is_checkable, checkability_reason = self.checkability.classify(normalized_claim)
-        timings["stage2_checkability"] = round(time.perf_counter() - t, 4)
-        _emit(
-            f"stage2_checkability:done sec={timings['stage2_checkability']} checkable={is_checkable}"
-        )
-        if not is_checkable:
-            timings["total_pipeline"] = round(time.perf_counter() - t_all, 4)
-            _emit(f"pipeline:done early_uncheckable total_sec={timings['total_pipeline']}")
-            return PipelineResult(
-                verdict="neutral",
-                confidence=0.0,
-                evidence=[],
-                reasoning=f"Claim uncheckable: {checkability_reason}",
-                details={
-                    "checkability": f"Uncheckable ({checkability_reason})",
-                    "context": "N/A",
-                    "sources_checked": 0,
-                    "evidence_count": 0,
-                    "timings": timings,
-                }
+        if self.enable_checkability_stage:
+            is_checkable, checkability_reason = self.checkability.classify(normalized_claim)
+            timings["stage2_checkability"] = round(time.perf_counter() - t, 4)
+            msg = (
+                f"stage2_checkability:done sec={timings['stage2_checkability']} "
+                f"checkable={is_checkable}"
+            )
+            if not is_checkable and checkability_reason:
+                msg += f" reason='{checkability_reason}'"
+            _emit(msg)
+            if not is_checkable:
+                timings["total_pipeline"] = round(time.perf_counter() - t_all, 4)
+                _emit(f"pipeline:done early_uncheckable total_sec={timings['total_pipeline']}")
+                return PipelineResult(
+                    verdict="neutral",
+                    confidence=0.0,
+                    evidence=[],
+                    reasoning=f"Claim uncheckable: {checkability_reason}",
+                    details={
+                        "checkability": f"Uncheckable ({checkability_reason})",
+                        "context": "N/A",
+                        "sources_checked": 0,
+                        "evidence_count": 0,
+                        "timings": timings,
+                    }
+                )
+        else:
+            timings["stage2_checkability"] = round(time.perf_counter() - t, 4)
+            checkability_reason = "disabled"
+            _emit(
+                f"stage2_checkability:done sec={timings['stage2_checkability']} checkable=True (disabled)"
             )
         
         # Stage 3: Context classification (hierarchical)
@@ -279,10 +319,12 @@ class FactCheckingPipeline:
         filtered_evidence = [
             ev for ev in scored_evidence if float(ev.get("relevance", 0.0)) >= self.relevance_drop_threshold
         ]
-        filtered_evidence = self._apply_relevance_noise_guard(filtered_evidence, normalized_claim)
+        if self.enable_relevance_noise_guard:
+            filtered_evidence = self._apply_relevance_noise_guard(filtered_evidence, normalized_claim)
+        min_keep_target = self._resolve_relevance_min_keep(language=language, is_image_mode=is_image_mode)
         if filtered_evidence:
             # Keep floor of evidence rows to avoid over-pruning in multilingual/OCR cases.
-            if len(filtered_evidence) < self.relevance_min_keep:
+            if len(filtered_evidence) < min_keep_target:
                 merged = list(filtered_evidence)
                 seen = set(
                     self._canonicalize_url(str(ev.get("url") or "").strip()) or
@@ -290,7 +332,7 @@ class FactCheckingPipeline:
                     for ev in merged
                 )
                 for ev in scored_evidence:
-                    if len(merged) >= self.relevance_min_keep:
+                    if len(merged) >= min_keep_target:
                         break
                     key = self._canonicalize_url(str(ev.get("url") or "").strip()) or \
                         " ".join(str(ev.get("text") or "").strip().lower().split())[:220]
@@ -303,7 +345,12 @@ class FactCheckingPipeline:
                 scored_evidence = filtered_evidence
         else:
             # Avoid hard-failing the pipeline if calibration is off.
-            scored_evidence = scored_evidence[: min(self.relevance_min_keep, len(scored_evidence))]
+            scored_evidence = scored_evidence[: min(min_keep_target, len(scored_evidence))]
+        if not is_image_mode:
+            scored_evidence = self._apply_domain_diversity(
+                scored_evidence,
+                max_per_host=self.domain_diversity_max_per_host,
+            )
         timings["stage6_relevance"] = round(time.perf_counter() - t, 4)
         _emit(
             f"stage6_relevance:done sec={timings['stage6_relevance']} kept={len(scored_evidence)}"
@@ -376,7 +423,7 @@ class FactCheckingPipeline:
             if should_verify:
                 llm_status["triggered"] = True
                 llm_limit = max(0, int(os.getenv("LLM_VERIFIER_EVIDENCE_LIMIT", "0")))
-                llm_min_neutral = max(0, int(os.getenv("LLM_VERIFIER_MIN_NEUTRAL_EVIDENCE", "3")))
+                llm_min_neutral = max(0, int(os.getenv("LLM_VERIFIER_MIN_NEUTRAL_EVIDENCE", "0")))
                 indexed_rows = list(enumerate(scored_evidence))
                 neutral_idx = [i for i, ev in indexed_rows if str(ev.get("stance", "neutral")).lower() == "neutral"]
                 if self.llm_only_high_quality_neutral:
@@ -455,7 +502,7 @@ class FactCheckingPipeline:
                     )
                 if not llm_input:
                     llm_status["used"] = False
-                    llm_status["reason"] = "no high-quality neutral evidence for LLM re-stance"
+                    llm_status["reason"] = "no neutral evidence for LLM re-stance"
                     llm_status["verdict"] = str(verdict_result.get("verdict", "neutral"))
                     llm_status["confidence"] = float(verdict_result.get("confidence", 0.0))
                     llm_updates = []
@@ -518,10 +565,29 @@ class FactCheckingPipeline:
                         )
                         llm_status["used"] = True
                     else:
-                        llm_status["used"] = False
-                        llm_status["reason"] = (
-                            f"{llm_status['reason']} (ignored; no valid evidence updates)"
-                        )
+                        llm_verdict = str(llm_result.get("verdict", "neutral")).lower()
+                        llm_conf = float(llm_result.get("confidence", 0.0) or 0.0)
+                        if (
+                            self.llm_use_verdict_fallback
+                            and llm_verdict in {"support", "refute"}
+                            and llm_conf >= self.llm_verdict_fallback_min_conf
+                        ):
+                            verdict_result["verdict"] = llm_verdict
+                            verdict_result["confidence"] = llm_conf
+                            verdict_result["reasoning"] = (
+                                f"{verdict_result.get('reasoning','')} "
+                                f"LLM verifier ({self.llm_verifier.provider}) applied verdict fallback: "
+                                f"{llm_verdict} ({llm_conf:.2f})."
+                            ).strip()
+                            llm_status["used"] = True
+                            llm_status["reason"] = (
+                                f"{llm_status['reason']} (verdict fallback applied)"
+                            )
+                        else:
+                            llm_status["used"] = False
+                            llm_status["reason"] = (
+                                f"{llm_status['reason']} (ignored; no valid evidence updates)"
+                            )
             # Image + multi fallback: if still neutral after LLM, run one English web-search pass,
             # then rescore/recompute once (no loopback).
             post_llm_verdict_now = str(verdict_result.get("verdict", "neutral")).lower()
@@ -581,6 +647,65 @@ class FactCheckingPipeline:
                     "stage10b_image_multi_en_fallback:done "
                     f"sec={timings['stage10b_image_multi_en_fallback']} "
                     f"added={llm_status['image_multi_en_fallback_added']}"
+                )
+            # Text-only neutral recovery: one extra retrieval pass for low-evidence neutral outcomes.
+            neutral_now = str(verdict_result.get("verdict", "neutral")).lower() == "neutral"
+            if (
+                self.neutral_recovery_enable
+                and (not is_image_mode)
+                and str(language or "en").lower() != "en"
+                and neutral_now
+                and len(scored_evidence) <= self.neutral_recovery_keep_threshold
+            ):
+                _emit("stage10c_neutral_recovery:start")
+                t_recover = time.perf_counter()
+                recovery_rows = self._neutral_recovery_boost(
+                    normalized_claim=normalized_claim,
+                    language=language,
+                    queries=search_queries,
+                )
+                llm_status["neutral_recovery_attempted"] = True
+                llm_status["neutral_recovery_added"] = len(recovery_rows)
+                if recovery_rows:
+                    combined_raw = list(raw_evidence) + recovery_rows
+                    rescored = self.relevance_scorer.rank_evidence(
+                        claim=normalized_claim,
+                        evidence_list=combined_raw,
+                        language=language,
+                    )
+                    rescored = self._dedupe_ranked_evidence(rescored)
+                    filtered = [
+                        ev
+                        for ev in rescored
+                        if float(ev.get("relevance", 0.0)) >= self.relevance_drop_threshold
+                    ]
+                    min_keep_target = self._resolve_relevance_min_keep(
+                        language=language,
+                        is_image_mode=is_image_mode,
+                    )
+                    rescored = filtered if filtered else rescored[: min(min_keep_target, len(rescored))]
+                    rescored = self._apply_domain_diversity(
+                        rescored,
+                        max_per_host=self.domain_diversity_max_per_host,
+                    )
+                    for ev in rescored:
+                        stance_probs = self.stance_detector.detect(normalized_claim, ev["text"])
+                        if self.enable_polarity_adjust:
+                            stance_probs = self._apply_polarity_adjustment(normalized_claim, ev, stance_probs)
+                        ev["stance_probs"] = stance_probs
+                        ev["stance"] = max(stance_probs, key=stance_probs.get)
+                        ev["evidence_weight"] = self.evidence_scorer.calculate_weight(
+                            ev, recency_policy=recency_policy
+                        )
+                        ev["weighted_stance"] = self.evidence_scorer.weight_stance(ev)
+                    rescored = self._dedupe_scored_evidence(rescored)
+                    scored_evidence = rescored
+                    verdict_result = self.verdict_engine.compute(scored_evidence, normalized_claim)
+                timings["stage10c_neutral_recovery"] = round(time.perf_counter() - t_recover, 4)
+                _emit(
+                    "stage10c_neutral_recovery:done "
+                    f"sec={timings['stage10c_neutral_recovery']} "
+                    f"added={llm_status.get('neutral_recovery_added', 0)}"
                 )
             timings["stage10_llm_verify"] = round(time.perf_counter() - t, 4)
             _emit(
@@ -702,6 +827,33 @@ class FactCheckingPipeline:
                 count += 1
         return count
 
+    def _resolve_relevance_min_keep(self, language: str, is_image_mode: bool) -> int:
+        lang = str(language or "en").lower()
+        if (not is_image_mode) and lang != "en":
+            return self.relevance_min_keep_multi
+        return self.relevance_min_keep
+
+    def _apply_domain_diversity(self, rows: List[Dict], max_per_host: int) -> List[Dict]:
+        if max_per_host <= 0:
+            return rows
+        host_counts: Dict[str, int] = {}
+        out: List[Dict] = []
+        for row in rows or []:
+            host = ""
+            try:
+                host = (urlparse(str(row.get("url") or "")).netloc or "").lower().split(":")[0].strip(".")
+            except Exception:
+                host = ""
+            if not host:
+                out.append(row)
+                continue
+            count = host_counts.get(host, 0)
+            if count >= max_per_host:
+                continue
+            host_counts[host] = count + 1
+            out.append(row)
+        return out
+
     def _cap_image_en_fallback_rows(self, rows: List[Dict], max_keep: int) -> List[Dict]:
         if max_keep < 0:
             return rows
@@ -752,6 +904,83 @@ class FactCheckingPipeline:
                 continue
             seen.add(key)
             out.append(r)
+        return out
+
+    def _neutral_recovery_boost(self, normalized_claim: str, language: str, queries: List[str]) -> List[Dict]:
+        """
+        One-shot low-evidence neutral recovery:
+        run additional native + translated English web search and normalize rows.
+        """
+        native_query = str(normalized_claim or "").strip()
+        translated = ""
+        try:
+            translated = self.normalizer._translate_indic_to_english(  # pylint: disable=protected-access
+                text=native_query,
+                language=language,
+            )
+        except Exception:
+            translated = ""
+        translated = str(translated or "").strip()
+
+        combined_queries: List[str] = []
+        if native_query:
+            combined_queries.append(native_query)
+        for q in (queries or []):
+            qv = str(q or "").strip()
+            if qv and qv not in combined_queries:
+                combined_queries.append(qv)
+        if translated:
+            en_probe = f"Is it true that {translated}"
+            for qv in (translated, en_probe):
+                qv = qv.strip()
+                if qv and qv not in combined_queries:
+                    combined_queries.append(qv)
+        combined_queries = combined_queries[: self.neutral_recovery_max_queries]
+        if not combined_queries:
+            return []
+
+        rows: List[Dict] = []
+        # Native-language search
+        try:
+            rows.extend(
+                self.evidence_gatherer.web_search.search(
+                    claim=native_query or normalized_claim,
+                    queries=combined_queries,
+                    subtype=None,
+                    language=language,
+                    max_results=self.neutral_recovery_max_results,
+                )
+            )
+        except Exception as exc:
+            logger.warning("Neutral recovery native search failed: %s", exc)
+        # English translated search
+        if translated:
+            try:
+                rows.extend(
+                    self.evidence_gatherer.web_search.search(
+                        claim=translated,
+                        queries=combined_queries,
+                        subtype=None,
+                        language="en",
+                        max_results=self.neutral_recovery_max_results,
+                    )
+                )
+            except Exception as exc:
+                logger.warning("Neutral recovery English search failed: %s", exc)
+        if not rows:
+            return []
+        normalized = self.evidence_gatherer._normalize_evidence_list(rows, default_type="web_search")
+        out: List[Dict] = []
+        seen = set()
+        for row in normalized or []:
+            key = (
+                str(row.get("url") or "").strip(),
+                str(row.get("text") or "")[:180].strip().lower(),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(row)
         return out
 
     def _dedupe_ranked_evidence(self, rows: List[Dict]) -> List[Dict]:

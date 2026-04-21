@@ -226,6 +226,10 @@ class WebSearchEngine:
             "wynk.in",
             "hungama.com",
             "apple.com",  # apple podcasts pages are mostly audio metadata
+            "brainly.com",
+            "quora.com",
+            "answers.com",
+            "wikihow.com",
         }
         if not raw:
             return defaults
@@ -240,7 +244,7 @@ class WebSearchEngine:
     def _load_blocked_url_tokens(self) -> List[str]:
         raw = os.getenv(
             "WEB_SEARCH_BLOCKED_URL_TOKENS",
-            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio",
+            "/questions/,/question/,/questiosn/,/qna/,/qa/,/mcq,mcq/,quiz,quizzes,podcast,audio,/shorts/,/reel/,/reels/,/watch?,/video/",
         )
         out: List[str] = []
         for tok in str(raw).split(","):

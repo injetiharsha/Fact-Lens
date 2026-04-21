@@ -54,13 +54,7 @@ class ClaimNormalizer:
         if question_form and question_form != claim:
             queries.append(question_form)
 
-        # Add a cleaner compact phrase (drop punctuation but keep word order).
-        compact = re.sub(r"[^\w\s]", " ", claim)
-        compact = re.sub(r"\s+", " ", compact).strip()
-        if compact and compact != claim:
-            queries.append(compact)
-
-        return self._dedupe_queries(queries, cap=6)
+        return self._dedupe_queries(queries, cap=3)
 
     def _rephrase_for_search_multi(self, claim: str, language: str) -> list:
         """Multilingual query formulation with ASCII anchors."""
@@ -86,12 +80,9 @@ class ClaimNormalizer:
             translated = self._translate_indic_to_english(claim, language=language)
             if translated:
                 queries.append(translated)
-                translated_kw = self._extract_keywords(translated)
-                if translated_kw:
-                    queries.append(translated_kw)
 
         # Indic claims skip question wrapper to avoid noisy translations.
-        return self._dedupe_queries(queries, cap=6)
+        return self._dedupe_queries(queries, cap=4)
 
     def _dedupe_queries(self, queries: List[str], cap: int = 4) -> List[str]:
         out: List[str] = []

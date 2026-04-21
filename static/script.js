@@ -19,6 +19,7 @@ const translateBtn = document.getElementById("translate-btn");
 const originalBtn = document.getElementById("original-btn");
 const analysisTimerNode = document.getElementById("analysis-timer");
 const claimPreviewTextNode = document.getElementById("claim-preview-text");
+const analysisWarningNode = document.getElementById("run-warning");
 
 const appMainNode = document.getElementById("app-main");
 const welcomeNode = document.getElementById("welcome-screen");
@@ -80,6 +81,7 @@ function setMode(nextMode) {
     imageClaimLocked = false;
   }
   if (originalBtn) originalBtn.hidden = true;
+  setAnalysisWarning("");
   moveTabIndicatorToActive();
 
   if (controlsPanel) {
@@ -221,6 +223,7 @@ form.addEventListener("submit", async (event) => {
   claimPreviewTranslated = "";
   claimPreviewShowingTranslated = false;
   if (originalBtn) originalBtn.hidden = true;
+  setAnalysisWarning("");
   startAnalysisTimer();
 
   if (mode === "claim") {
@@ -260,6 +263,29 @@ form.addEventListener("submit", async (event) => {
       runBtn.disabled = false;
       cancelBtn.hidden = true;
       return;
+    }
+    const pageSpec = String(document.getElementById("pdf-page-spec")?.value || "").trim();
+    const parsed = parsePdfPageSpec(pageSpec);
+    if (!parsed.ok) {
+      const msg = "HIGH: Invalid page selector. Use '1' or '1-2'.";
+      setAnalysisWarning(msg, "high");
+      statusNode.textContent = "";
+      runBtn.disabled = false;
+      cancelBtn.hidden = true;
+      return;
+    }
+    if ((parsed.pages || []).some((p) => p > 5 || p < 1)) {
+      const msg = "HIGH: Page selector out of allowed range (1-5).";
+      setAnalysisWarning(msg, "high");
+      statusNode.textContent = "";
+      runBtn.disabled = false;
+      cancelBtn.hidden = true;
+      return;
+    }
+    if (parsed.count === 4) {
+      setAnalysisWarning("WARN: 4 pages selected. This run may be time-extensive.", "warn");
+    } else if (parsed.count >= 5) {
+      setAnalysisWarning("WARN: 5 pages selected. Runtime may be high.", "warn");
     }
     setClaimPreviewText("PDF extraction in progress...");
     imageClaimLocked = false;
@@ -501,26 +527,41 @@ function renderResult(data) {
   `;
 
   if (Number(data.page_count || 0) > 0 || data.extraction_engine) {
+    const selectedSpec = String(data.selected_page_spec || "").trim();
+    const processedCount = Array.isArray(data.selected_pages) ? data.selected_pages.length : 0;
+    const selectedClaim = String(data.selected_claim || data.summary_claim || "").trim();
+    const contextPreview = truncateText(String(data.pdf_text || "").replace(/\s+/g, " ").trim(), 260);
     html += cardHtml("Document Metadata", `
       <div class="kpi">
         <div class="tile">
           <div class="meta">Pages Processed</div>
+          <strong>${num(processedCount || 0)}</strong>
+        </div>
+        <div class="tile">
+          <div class="meta">Total Pages</div>
           <strong>${num(data.page_count || 0)}</strong>
+        </div>
+        <div class="tile">
+          <div class="meta">Pages Selected</div>
+          <strong>${escapeHtml(selectedSpec || "default")}</strong>
         </div>
         <div class="tile">
           <div class="meta">Extractor</div>
           <strong>${escapeHtml(String(data.extraction_engine || "N/A"))}</strong>
         </div>
       </div>
+      ${selectedClaim ? `<p class="meta" style="margin-top:10px;">Claim Used</p><p>${escapeHtml(selectedClaim)}</p>` : ""}
+      ${contextPreview ? `<p class="meta" style="margin-top:8px;">Page Context</p><p>${escapeHtml(contextPreview)}</p>` : ""}
     `);
   }
-
   if (warnings.length) {
-    html += cardHtml("Warnings", `
-      <ul>
-        ${warnings.map((w) => `<li>${escapeHtml(String(w))}</li>`).join("")}
-      </ul>
-    `);
+    const high = warnings.find((w) => String(w).startsWith("HIGH:"));
+    const warn = warnings.find((w) => String(w).startsWith("WARN:"));
+    const msg = String(high || warn || warnings[0] || "");
+    const level = msg.startsWith("HIGH:") ? "high" : (msg.startsWith("WARN:") ? "warn" : "info");
+    setAnalysisWarning(msg, level);
+  } else {
+    setAnalysisWarning("");
   }
 
   if (evidence.length > 0) {
@@ -639,6 +680,37 @@ function setClaimWarning(message) {
   const text = String(message || "").trim();
   claimWarningNode.textContent = text;
   claimWarningNode.hidden = !text;
+}
+
+function setAnalysisWarning(message, level = "info") {
+  if (!analysisWarningNode) return;
+  const text = String(message || "").trim();
+  analysisWarningNode.textContent = text;
+  analysisWarningNode.hidden = !text;
+  analysisWarningNode.classList.remove("warn", "high");
+  if (text) {
+    if (level === "high") analysisWarningNode.classList.add("high");
+    else if (level === "warn") analysisWarningNode.classList.add("warn");
+  }
+}
+
+function parsePdfPageSpec(spec) {
+  const raw = String(spec || "").trim();
+  if (!raw) return { ok: true, pages: [], count: 0, mode: "default" };
+  if (/^\d+$/.test(raw)) {
+    const n = parseInt(raw, 10);
+    return { ok: true, pages: [n], count: 1, mode: "single" };
+  }
+  const m = raw.match(/^(\d+)\s*-\s*(\d+)$/);
+  if (m) {
+    let a = parseInt(m[1], 10);
+    let b = parseInt(m[2], 10);
+    if (a > b) [a, b] = [b, a];
+    const pages = [];
+    for (let i = a; i <= b; i += 1) pages.push(i);
+    return { ok: true, pages, count: pages.length, mode: "range" };
+  }
+  return { ok: false, pages: [], count: 0, mode: "invalid" };
 }
 
 function countWords(text) {
@@ -773,6 +845,7 @@ async function callApiForMode(signal, progressId = null) {
   // PDF mode
   const pdfFile = document.getElementById("pdf-file").files[0];
   if (!pdfFile) throw new Error("Please choose a PDF.");
+  const pageSpec = String(document.getElementById("pdf-page-spec")?.value || "").trim();
 
   statusNode.textContent = "Extracting PDF text...";
   const pdfPreview = await postFile(
@@ -780,7 +853,7 @@ async function callApiForMode(signal, progressId = null) {
     pdfFile,
     signal,
     {},
-    { language: "auto" },
+    { language: "auto", page_spec: pageSpec },
     "pdf",
   );
   const pdfClaim = String(pdfPreview?.claim_text || pdfPreview?.pdf_text || "").trim();
@@ -798,6 +871,7 @@ async function callApiForMode(signal, progressId = null) {
     {
       language: "auto",
       claim: pdfClaim,
+      page_spec: pageSpec,
     },
     "pdf",
   );

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20260419-5">
+  <link rel="stylesheet" href="./style.css?v=20260421-1">
 </head>
 <body>
   <section id="welcome-screen" class="welcome-screen" aria-label="Welcome">
@@ -66,6 +66,8 @@
             <div class="field mode-block file mode-block-inline" data-mode="pdf">
               <label for="pdf-file">Upload PDF</label>
               <input id="pdf-file" type="file" accept=".pdf">
+              <label for="pdf-page-spec" style="margin-top:8px;">Pages</label>
+              <input id="pdf-page-spec" type="text" placeholder="Examples: 1 or 1-2">
             </div>
 
             <p id="mode-tip" class="mode-hint">Tip: include a concrete subject, timeframe, and measurable fact for better evidence retrieval.</p>
@@ -75,6 +77,7 @@
               <button id="cancel-btn" type="button" class="danger" hidden>Cancel</button>
               <span id="status" class="status" aria-live="polite"></span>
             </div>
+            <p id="run-warning" class="run-warning" hidden></p>
           </form>
         </section>
       </div>
@@ -119,6 +122,6 @@
     <section id="results" class="results"></section>
   </main>
 
-  <script src="./script.js?v=20260419-5"></script>
+  <script src="./script.js?v=20260421-1"></script>
 </body>
 </html>

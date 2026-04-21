@@ -879,6 +879,54 @@ input[type="file"] {
   background: #fff7e2;
 }
 
+.run-warning {
+  margin: 4px 0 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(104, 128, 132, 0.35);
+  background: #f6f9f8;
+  color: #2f454c;
+  font-size: 0.88rem;
+}
+
+.run-warning.warn {
+  border-color: rgba(143, 98, 0, 0.35);
+  background: #fff5dc;
+  color: #6b5200;
+}
+
+.run-warning.high {
+  border-color: rgba(172, 29, 29, 0.45);
+  background: #fde8e8;
+  color: #7a1d1d;
+}
+
+.warning-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+}
+
+.warning-item {
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(104, 128, 132, 0.35);
+  background: #f6f9f8;
+}
+
+.warning-item.high {
+  border-color: rgba(172, 29, 29, 0.45);
+  background: #fde8e8;
+  color: #7a1d1d;
+}
+
+.warning-item.warn {
+  border-color: rgba(143, 98, 0, 0.35);
+  background: #fff5dc;
+  color: #6b5200;
+}
+
 .document-stat-strip p {
   margin: 0;
   color: #30464d;

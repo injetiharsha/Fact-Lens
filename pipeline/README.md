@@ -26,3 +26,13 @@ Restructured claim/document analysis pipeline.
   - `pipeline/evidence/scraper/beautifulsoup_scraper.py` (tier-3)
 - Added publication-date extraction utility:
   - `utils/date_extractor.py`
+
+## Recent Progression (April 2026)
+- Stage5 (evidence gather) remains the dominant runtime bottleneck in benchmarks.
+- EN pipeline currently reaches high benchmark stability (25/30 latest run).
+- Multi pipeline accuracy remains lower due to retrieval + stance ambiguity on Indic claims.
+- Recent pipeline-level updates include:
+  - LLM verifier verdict fallback (when structured evidence updates are not returned),
+  - MMR-style reranking support in gatherer (`EVIDENCE_MMR_*`),
+  - tighter query variant strategy (EN and multi paths),
+  - translated query cap control for multi (`EVIDENCE_TRANSLATED_QUERY_CAP`).

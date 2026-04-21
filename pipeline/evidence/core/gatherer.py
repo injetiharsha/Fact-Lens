@@ -3,6 +3,7 @@
 import logging
 import os
 import re
+import math
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any, Dict, List, Optional, Set, Tuple
@@ -47,9 +48,12 @@ class EvidenceGatherer:
         self.enable_scraper_enrichment = _env_bool("EVIDENCE_ENABLE_SCRAPER_ENRICHMENT", True)
         self.scraper_enrich_max_results = _env_int("EVIDENCE_SCRAPER_ENRICH_MAX_RESULTS", 6, minimum=1)
         self.enable_translated_query_search = _env_bool("EVIDENCE_ENABLE_TRANSLATED_QUERY_SEARCH", True)
-        self.translated_query_cap = _env_int("EVIDENCE_TRANSLATED_QUERY_CAP", 2, minimum=1)
+        self.translated_query_cap = _env_int("EVIDENCE_TRANSLATED_QUERY_CAP", 1, minimum=1)
         self.domain_diversity_enabled = _env_bool("EVIDENCE_DOMAIN_DIVERSITY_ENABLED", True)
         self.domain_max_per_host = _env_int("EVIDENCE_DOMAIN_MAX_PER_HOST", 2, minimum=1)
+        self.mmr_enabled = _env_bool("EVIDENCE_MMR_ENABLED", True)
+        self.mmr_lambda = max(0.0, min(1.0, float(os.getenv("EVIDENCE_MMR_LAMBDA", "0.75"))))
+        self.mmr_candidates_mult = max(1, _env_int("EVIDENCE_MMR_CANDIDATES_MULT", 3, minimum=1))
         self.normalizer = ClaimNormalizer()
         self.live_progress = _env_bool("EVIDENCE_LIVE_PROGRESS", False)
 
@@ -164,6 +168,13 @@ class EvidenceGatherer:
         
         # Rank by quality indicators
         ranked_evidence = self.aggregator.rank(unique_evidence, claim)
+        if self.mmr_enabled:
+            ranked_evidence = self._apply_mmr(
+                rows=ranked_evidence,
+                max_items=max_evidence,
+                lambda_coeff=self.mmr_lambda,
+                candidate_mult=self.mmr_candidates_mult,
+            )
         if self.domain_diversity_enabled:
             ranked_evidence = self._apply_domain_diversity(
                 ranked_evidence,
@@ -193,9 +204,7 @@ class EvidenceGatherer:
         translated = str(translated or "").strip()
         if not translated:
             return base
-        extra = self.normalizer.rephrase_for_search(translated, language="en")
-        explicit_q = f"Is it true that {translated.rstrip(' .?!')}?"
-        extra = [explicit_q] + list(extra)
+        extra = [translated]
         extra = [q for q in extra if str(q).strip()][: self.translated_query_cap]
         # Keep translated queries first so WEB_SEARCH_MAX_QUERIES slicing still includes them.
         out: List[str] = []
@@ -287,6 +296,68 @@ class EvidenceGatherer:
                     seen_title.add(tkey)
 
         return selected
+
+    def _tokenize_for_similarity(self, text: str) -> Set[str]:
+        tokens = re.findall(r"[A-Za-z\u0900-\u0D7F]{3,}", str(text or "").lower())
+        return set(tokens)
+
+    def _jaccard(self, a: Set[str], b: Set[str]) -> float:
+        if not a or not b:
+            return 0.0
+        inter = len(a.intersection(b))
+        union = len(a.union(b))
+        if union <= 0:
+            return 0.0
+        return inter / union
+
+    def _apply_mmr(
+        self,
+        rows: List[Dict],
+        max_items: int,
+        lambda_coeff: float = 0.75,
+        candidate_mult: int = 3,
+    ) -> List[Dict]:
+        """MMR rerank to balance relevance with diversity."""
+        if not rows:
+            return rows
+        if max_items <= 0:
+            return rows
+
+        cap = min(len(rows), max_items * max(1, candidate_mult))
+        candidates = rows[:cap]
+        if len(candidates) <= 1:
+            return candidates
+
+        toks = [
+            self._tokenize_for_similarity(
+                f"{r.get('title','')} {r.get('source','')} {r.get('text','')}"
+            )
+            for r in candidates
+        ]
+        selected_idx: List[int] = []
+        remaining = list(range(len(candidates)))
+
+        while remaining and len(selected_idx) < max_items:
+            best_idx = None
+            best_score = -math.inf
+            for i in remaining:
+                rel = float(candidates[i].get("score", candidates[i].get("relevance", 0.0)) or 0.0)
+                sim_penalty = 0.0
+                if selected_idx:
+                    sim_penalty = max(self._jaccard(toks[i], toks[j]) for j in selected_idx)
+                mmr = (lambda_coeff * rel) - ((1.0 - lambda_coeff) * sim_penalty)
+                if mmr > best_score:
+                    best_score = mmr
+                    best_idx = i
+            if best_idx is None:
+                break
+            selected_idx.append(best_idx)
+            remaining.remove(best_idx)
+
+        selected_rows = [candidates[i] for i in selected_idx]
+        leftovers = [candidates[i] for i in range(len(candidates)) if i not in selected_idx]
+        out = selected_rows + leftovers + rows[cap:]
+        return out
 
     def _gather_one_source(
         self,

@@ -77,6 +77,17 @@ def process_claim(i: int, row: Dict[str, Any], total: int, pipeline: ClaimPipeli
         "evidence_count": len(evidence),
         "time_seconds": elapsed,
         "details": details,
+        "evidence_preview": [
+            {
+                "source": ev.get("source"),
+                "url": ev.get("url"),
+                "stance": ev.get("stance"),
+                "relevance": ev.get("relevance"),
+                "credibility": ev.get("credibility"),
+                "text": str(ev.get("text", ""))[:240],
+            }
+            for ev in evidence[:3]
+        ],
         "error": error_text,
     }
 
@@ -140,6 +151,10 @@ def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
                     "predicted_verdict": pred,
                     "evidence_count": r.get("evidence_count"),
                     "time_seconds": r.get("time_seconds"),
+                    "context": ((r.get("details") or {}).get("context")),
+                    "llm_verifier": ((r.get("details") or {}).get("llm_verifier") or {}),
+                    "stage_timings_seconds": ((r.get("details") or {}).get("timings") or {}),
+                    "evidence_preview": r.get("evidence_preview", []),
                 }
             )
 

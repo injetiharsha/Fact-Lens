@@ -41,6 +41,7 @@ pytest==9.0.3
 python-dotenv==1.2.2
 python-multipart==0.0.26
 pypdf==5.9.0
+pymupdf==1.26.5
 PyYAML==6.0.3
 regex==2026.4.4
 requests==2.33.1

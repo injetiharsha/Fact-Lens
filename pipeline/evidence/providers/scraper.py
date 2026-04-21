@@ -44,11 +44,9 @@ class EvidenceScraper:
         self.trafilatura = TrafilaturaScraper(session=self.session)
         self.playwright = PlaywrightScraper()
         self.bs4 = BeautifulSoupScraper(session=self.session)
-        self.tier_order = [
-            ("trafilatura", self.trafilatura),
-            ("playwright", self.playwright),
-            ("beautifulsoup", self.bs4),
-        ]
+        self.parallel_methods = _env_bool("SCRAPER_PARALLEL_METHODS", True)
+        self.enable_playwright_fallback = _env_bool("SCRAPER_ENABLE_PLAYWRIGHT_FALLBACK", False)
+        self.playwright_on_short_text = _env_int("SCRAPER_PLAYWRIGHT_SHORT_TEXT_THRESHOLD", 300, minimum=1)
         self.parallel_urls = _env_bool("SCRAPER_PARALLEL_URLS", True)
         self.url_workers = _env_int("SCRAPER_PARALLEL_WORKERS", 4, minimum=1)
         self.bad_domains = self._load_bad_domains()
@@ -117,19 +115,86 @@ class EvidenceScraper:
         return evidence
     
     def _scrape_url(self, url: str, claim: str) -> Dict:
-        """Scrape a single URL with tiered fallback stack."""
-        for name, scraper in self.tier_order:
-            if not getattr(scraper, "enabled", True):
-                continue
-            try:
-                row = scraper.scrape_url(url)
+        """Scrape a single URL with fast parallel extraction first, optional heavy fallback."""
+        primary_rows: List[Dict] = []
+        primary_methods = [
+            ("trafilatura", self.trafilatura),
+            ("beautifulsoup", self.bs4),
+        ]
+
+        if self.parallel_methods:
+            with ThreadPoolExecutor(max_workers=len(primary_methods)) as pool:
+                futures = {
+                    pool.submit(scraper.scrape_url, url): name
+                    for name, scraper in primary_methods
+                    if getattr(scraper, "enabled", True)
+                }
+                for future in as_completed(futures):
+                    name = futures[future]
+                    try:
+                        row = future.result()
+                    except Exception as exc:
+                        logger.debug("Scraper method %s failed for %s: %s", name, url, exc)
+                        continue
+                    if row and row.get("text"):
+                        row.setdefault("scrape_tier", name)
+                        primary_rows.append(row)
+        else:
+            for name, scraper in primary_methods:
+                if not getattr(scraper, "enabled", True):
+                    continue
+                try:
+                    row = scraper.scrape_url(url)
+                except Exception as exc:
+                    logger.debug("Scraper method %s failed for %s: %s", name, url, exc)
+                    continue
                 if row and row.get("text"):
                     row.setdefault("scrape_tier", name)
+                    primary_rows.append(row)
+
+        best = self._pick_best_scrape_row(primary_rows)
+        if best:
+            # Heavy fallback only when explicitly enabled and best text is too short.
+            text_len = len(str(best.get("text") or ""))
+            if (
+                self.enable_playwright_fallback
+                and text_len < self.playwright_on_short_text
+                and getattr(self.playwright, "enabled", True)
+            ):
+                try:
+                    pw_row = self.playwright.scrape_url(url)
+                    if pw_row and pw_row.get("text"):
+                        pw_row.setdefault("scrape_tier", "playwright")
+                        if self._scrape_row_quality(pw_row) > self._scrape_row_quality(best):
+                            return pw_row
+                except Exception as exc:
+                    logger.debug("Playwright fallback failed for %s: %s", url, exc)
+            return best
+
+        if self.enable_playwright_fallback and getattr(self.playwright, "enabled", True):
+            try:
+                row = self.playwright.scrape_url(url)
+                if row and row.get("text"):
+                    row.setdefault("scrape_tier", "playwright")
                     return row
             except Exception as exc:
-                logger.debug("Scraper tier %s failed for %s: %s", name, url, exc)
-        logger.error("Failed to scrape %s with all tiers", url)
+                logger.debug("Playwright fallback failed for %s: %s", url, exc)
+
+        logger.error("Failed to scrape %s with all enabled methods", url)
         return {}
+
+    def _pick_best_scrape_row(self, rows: List[Dict]) -> Dict:
+        if not rows:
+            return {}
+        best = max(rows, key=self._scrape_row_quality)
+        return best or {}
+
+    def _scrape_row_quality(self, row: Dict) -> float:
+        text = str(row.get("text") or "")
+        title = str(row.get("title") or "")
+        score = float(row.get("score", 0.0) or 0.0)
+        # Prefer richer extract and stable parser score.
+        return score + min(len(text), 4000) / 4000.0 + (0.05 if title else 0.0)
 
     def _is_http_url(self, url: str) -> bool:
         """Allow only http(s) URLs for scraping."""
