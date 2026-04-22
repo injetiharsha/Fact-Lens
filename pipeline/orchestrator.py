@@ -112,7 +112,7 @@ class FactCheckingPipeline:
             0, int(os.getenv("NEUTRAL_RECOVERY_MIN_NON_NEUTRAL", "1"))
         )
         self.multi_tavily_boost_enable = os.getenv(
-            "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE", "1"
+            "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE", "0"
         ).strip().lower() in {"1", "true", "yes", "on"}
         self.image_enable_tavily_boost = os.getenv(
             "IMAGE_ENABLE_TAVILY_BOOST", "0"

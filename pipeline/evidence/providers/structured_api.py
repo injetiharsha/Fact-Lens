@@ -71,8 +71,37 @@ class StructuredAPIClient:
             return self._query_wikipedia(queries[0], max_results)
         
         try:
-            q = queries[0] if queries else claim
-            return query_fn(q, max_results)
+            q_list = [str(q or "").strip() for q in (queries or []) if str(q or "").strip()]
+            if not q_list:
+                q_list = [str(claim or "").strip()]
+
+            max_q = max(1, int(os.getenv("STRUCTURED_API_MAX_QUERIES", "3")))
+            q_list = q_list[:max_q]
+
+            merged: List[Dict] = []
+            for q in q_list:
+                batch = query_fn(q, max_results)
+                if not isinstance(batch, list):
+                    continue
+                for row in batch:
+                    if isinstance(row, dict):
+                        row.setdefault("search_query", q)
+                merged.extend(batch)
+
+            if not merged:
+                return []
+
+            deduped: List[Dict] = []
+            seen = set()
+            for row in merged:
+                key = str(row.get("url") or "").strip() or str(row.get("text") or "")[:160].strip().lower()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                deduped.append(row)
+
+            deduped.sort(key=lambda x: float(x.get("score", 0.0) or 0.0), reverse=True)
+            return deduped[:max_results]
         except Exception as e:
             logger.error(f"API query failed for {subtype}: {e}")
             return []

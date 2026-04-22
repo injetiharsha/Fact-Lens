@@ -2,11 +2,11 @@
 
 import logging
 import os
-import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Set
 from urllib.parse import urlparse
 import requests
+from pipeline.evidence.policy import RetrievalPolicy
 from pipeline.evidence.scraper import (
     BeautifulSoupScraper,
     PlaywrightScraper,
@@ -51,10 +51,41 @@ class EvidenceScraper:
         self.parallel_urls = _env_bool("SCRAPER_PARALLEL_URLS", True)
         self.url_workers = _env_int("SCRAPER_PARALLEL_WORKERS", 4, minimum=1)
         self.url_candidate_mult = _env_int("SCRAPER_URL_CANDIDATE_MULT", 1, minimum=1)
-        self.bad_domains = self._load_bad_domains()
-        self.block_wordpress = _env_bool("SCRAPER_BLOCK_WORDPRESS", True)
-        self.block_explicit = _env_bool("SCRAPER_BLOCK_EXPLICIT", True)
-        self.blocked_url_tokens = self._load_blocked_url_tokens()
+        self.policy = RetrievalPolicy.from_env(
+            domain_env="SCRAPER_BAD_DOMAINS",
+            token_env="SCRAPER_BLOCKED_URL_TOKENS",
+            block_wordpress_env="SCRAPER_BLOCK_WORDPRESS",
+            block_explicit_env="SCRAPER_BLOCK_EXPLICIT",
+            default_bad_domains={
+                "dailymotion.com",
+                "testbook.com",
+                "soundcloud.com",
+                "spotify.com",
+                "gaana.com",
+                "jiosaavn.com",
+                "wynk.in",
+                "pornhub.com",
+                "xvideos.com",
+                "xnxx.com",
+                "xhamster.com",
+                "redtube.com",
+                "youporn.com",
+                "beeg.com",
+                "adultfriendfinder.com",
+            },
+            default_tokens={
+                "/questions/",
+                "/question/",
+                "/questiosn/",
+                "/mcq",
+                "mcq/",
+                "quiz",
+                "quizzes",
+                "podcast",
+                "audio",
+                "/categories/44/",
+            },
+        )
     
     def scrape(
         self,
@@ -211,16 +242,14 @@ class EvidenceScraper:
             host = (parsed.netloc or "").lower().split(":")[0].strip(".")
             if not host:
                 return False
-            if self.block_wordpress:
-                url_l = url.lower()
-                if ("wordpress" in host) or ("/wp-content/" in url_l) or ("/wp-json/" in url_l):
-                    logger.info("Skipping wordpress-like domain/url: %s", host or url)
-                    return False
+            if self.policy.is_wordpress_like(url, host):
+                logger.info("Skipping wordpress-like domain/url: %s", host or url)
+                return False
             url_l = url.lower()
             if self._is_explicit_url(url_l, host):
                 logger.info("Skipping explicit/unsafe scrape URL: %s", url)
                 return False
-            if any(tok in url_l for tok in self.blocked_url_tokens):
+            if self.policy.is_blocked_url_pattern(url_l):
                 logger.info("Skipping blocked scrape URL pattern: %s", url)
                 return False
             if self._is_bad_domain(host):
@@ -230,62 +259,9 @@ class EvidenceScraper:
         except Exception:
             return False
 
-    def _load_bad_domains(self) -> Set[str]:
-        """Load blocked scrape domains from env with safe defaults."""
-        defaults = {
-            "dailymotion.com",
-            "testbook.com",
-            "soundcloud.com",
-            "spotify.com",
-            "gaana.com",
-            "jiosaavn.com",
-            "wynk.in",
-            # Explicit/adult domains (safety hard-block).
-            "pornhub.com",
-            "xvideos.com",
-            "xnxx.com",
-            "xhamster.com",
-            "redtube.com",
-            "youporn.com",
-            "beeg.com",
-            "adultfriendfinder.com",
-        }
-        raw = os.getenv("SCRAPER_BAD_DOMAINS", "")
-        if not raw.strip():
-            return defaults
-        out: Set[str] = set()
-        for token in raw.split(","):
-            d = token.strip().lower().strip(".")
-            if d:
-                out.add(d)
-        return out or defaults
-
-    def _load_blocked_url_tokens(self) -> Set[str]:
-        raw = os.getenv(
-            "SCRAPER_BLOCKED_URL_TOKENS",
-            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio,/categories/44/",
-        )
-        out: Set[str] = set()
-        for token in str(raw).split(","):
-            t = token.strip().lower()
-            if t:
-                out.add(t)
-        return out
-
     def _is_explicit_url(self, url: str, host: str = "") -> bool:
-        if not self.block_explicit:
-            return False
-        value = f"{host} {url}".lower()
-        return bool(
-            re.search(
-                r"(?:^|[^a-z0-9])(xxx|porn|nsfw|hentai|sex-video|adult-video|erotic|nude)(?:[^a-z0-9]|$)",
-                value,
-            )
-        )
+        return self.policy.is_explicit_url(url, host)
 
     def _is_bad_domain(self, host: str) -> bool:
         """Match blocked domain or any of its subdomains."""
-        for domain in self.bad_domains:
-            if host == domain or host.endswith("." + domain):
-                return True
-        return False
+        return self.policy.is_bad_domain(host)

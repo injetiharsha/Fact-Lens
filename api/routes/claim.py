@@ -171,9 +171,11 @@ def _pipeline_config(language: str, mode: str = "claim") -> dict:
         "relevance_top_k": (
             int(os.getenv("RELEVANCE_TOP_K", "0")) if int(os.getenv("RELEVANCE_TOP_K", "0")) > 0 else None
         ),
-        "relevance_drop_threshold": max(
-            0.60,
-            float(os.getenv("RELEVANCE_DROP_THRESHOLD", "0.60")),
+        "relevance_drop_threshold": float(
+            os.getenv(
+                "RELEVANCE_KEEP_THRESHOLD",
+                os.getenv("RELEVANCE_DROP_THRESHOLD", "0.30"),
+            )
         ),
         "stance_checkpoint": _select_checkpoint("stance", language),
         "enable_checkability_stage": _env_bool("ENABLE_CHECKABILITY_STAGE", True),
