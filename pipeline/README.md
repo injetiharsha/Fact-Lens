@@ -36,3 +36,8 @@ Restructured claim/document analysis pipeline.
   - MMR-style reranking support in gatherer (`EVIDENCE_MMR_*`),
   - tighter query variant strategy (EN and multi paths),
   - translated query cap control for multi (`EVIDENCE_TRANSLATED_QUERY_CAP`).
+
+## Root-Cause Record
+
+- Architecture comparison and failure root-cause summary:
+  - `../ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md`

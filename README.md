@@ -140,6 +140,15 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
   - multilingual verifier/provider expansion (Sarvam integration assessment),
   - stage5 latency reduction without regressing EN accuracy.
 
+## Architecture Decision Record
+
+- Consolidated old-vs-new architecture and failure root-cause analysis:
+  - `ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md`
+- This file is the canonical reference for:
+  - why old Stage5/6 is not the default path,
+  - what failed in prior plans,
+  - current retrieval bottlenecks and project-level causes.
+
 ## Runtime Notes
 
 - Use `.venv-gpu` for training/eval tasks.
