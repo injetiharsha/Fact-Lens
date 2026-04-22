@@ -52,7 +52,7 @@ class DocumentPipeline:
             return key
 
         cleaned = re.sub(r"\b(?:[A-Za-z]\.){2,}", _protect_abbr, cleaned)
-        raw_chunks = re.split(r"[\n]+|(?<=[.!?।])\s+", cleaned)
+        raw_chunks = self._split_sentences_multilingual(cleaned)
 
         sentences: List[str] = []
         for chunk in raw_chunks:
@@ -84,15 +84,48 @@ class DocumentPipeline:
 
         out: List[str] = []
         seen = set()
+        token_seen: List[set[str]] = []
         for s in windowed:
             if not self._is_verifiable_claim(s):
                 continue
             key = " ".join(s.lower().split())
             if key in seen:
                 continue
+            # Drop near-duplicates by token overlap to keep atomic unique claims.
+            toks = set(re.findall(r"[A-Za-z\u0900-\u0D7F0-9%]+", key))
+            is_dup = False
+            for old in token_seen:
+                inter = len(toks.intersection(old))
+                union = len(toks.union(old)) or 1
+                if (inter / union) >= 0.78:
+                    is_dup = True
+                    break
+            if is_dup:
+                continue
             seen.add(key)
+            token_seen.append(toks)
             out.append(s)
         return out[:20]
+
+    def _split_sentences_multilingual(self, text: str) -> List[str]:
+        """Sentence splitting robust to Indic punctuation and OCR separators."""
+        value = str(text or "").strip()
+        if not value:
+            return []
+        # Normalize common OCR delimiters.
+        value = re.sub(r"[|]+", ". ", value)
+        value = re.sub(r"[•‣▪]+", ". ", value)
+        value = re.sub(r"[。॥]+", "। ", value)
+        # Keep decimal numbers intact.
+        value = re.sub(r"(\d)\.(\d)", r"\1__DECIMAL__\2", value)
+        # Split on line breaks and sentence punctuation across scripts.
+        chunks = re.split(r"[\n]+|(?<=[.!?।])\s+|(?<=;)\s+|(?<=:)\s+", value)
+        out: List[str] = []
+        for c in chunks:
+            s = c.replace("__DECIMAL__", ".").strip()
+            if s:
+                out.append(s)
+        return out
 
     def rank_claim_candidates(self, text: str, language: str = "en") -> List[str]:
         """Return claim candidates sorted by verifiability-oriented score."""

@@ -2,6 +2,7 @@
 
 import logging
 import os
+import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Dict, List, Set
 from urllib.parse import urlparse
@@ -49,8 +50,10 @@ class EvidenceScraper:
         self.playwright_on_short_text = _env_int("SCRAPER_PLAYWRIGHT_SHORT_TEXT_THRESHOLD", 300, minimum=1)
         self.parallel_urls = _env_bool("SCRAPER_PARALLEL_URLS", True)
         self.url_workers = _env_int("SCRAPER_PARALLEL_WORKERS", 4, minimum=1)
+        self.url_candidate_mult = _env_int("SCRAPER_URL_CANDIDATE_MULT", 1, minimum=1)
         self.bad_domains = self._load_bad_domains()
         self.block_wordpress = _env_bool("SCRAPER_BLOCK_WORDPRESS", True)
+        self.block_explicit = _env_bool("SCRAPER_BLOCK_EXPLICIT", True)
         self.blocked_url_tokens = self._load_blocked_url_tokens()
     
     def scrape(
@@ -88,6 +91,9 @@ class EvidenceScraper:
             seen.add(url)
             if self._is_http_url(url):
                 candidates.append(url)
+        # Hard-cap candidate fanout so scraper enrichment does not dominate stage5 latency.
+        candidate_cap = max(1, int(max_results)) * self.url_candidate_mult
+        candidates = candidates[:candidate_cap]
 
         if self.parallel_urls and len(candidates) > 1 and max_results > 1:
             workers = min(self.url_workers, len(candidates))
@@ -211,6 +217,9 @@ class EvidenceScraper:
                     logger.info("Skipping wordpress-like domain/url: %s", host or url)
                     return False
             url_l = url.lower()
+            if self._is_explicit_url(url_l, host):
+                logger.info("Skipping explicit/unsafe scrape URL: %s", url)
+                return False
             if any(tok in url_l for tok in self.blocked_url_tokens):
                 logger.info("Skipping blocked scrape URL pattern: %s", url)
                 return False
@@ -231,6 +240,15 @@ class EvidenceScraper:
             "gaana.com",
             "jiosaavn.com",
             "wynk.in",
+            # Explicit/adult domains (safety hard-block).
+            "pornhub.com",
+            "xvideos.com",
+            "xnxx.com",
+            "xhamster.com",
+            "redtube.com",
+            "youporn.com",
+            "beeg.com",
+            "adultfriendfinder.com",
         }
         raw = os.getenv("SCRAPER_BAD_DOMAINS", "")
         if not raw.strip():
@@ -245,7 +263,7 @@ class EvidenceScraper:
     def _load_blocked_url_tokens(self) -> Set[str]:
         raw = os.getenv(
             "SCRAPER_BLOCKED_URL_TOKENS",
-            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio",
+            "/questions/,/question/,/questiosn/,/mcq,mcq/,quiz,quizzes,podcast,audio,/categories/44/",
         )
         out: Set[str] = set()
         for token in str(raw).split(","):
@@ -253,6 +271,17 @@ class EvidenceScraper:
             if t:
                 out.add(t)
         return out
+
+    def _is_explicit_url(self, url: str, host: str = "") -> bool:
+        if not self.block_explicit:
+            return False
+        value = f"{host} {url}".lower()
+        return bool(
+            re.search(
+                r"(?:^|[^a-z0-9])(xxx|porn|nsfw|hentai|sex-video|adult-video|erotic|nude)(?:[^a-z0-9]|$)",
+                value,
+            )
+        )
 
     def _is_bad_domain(self, host: str) -> bool:
         """Match blocked domain or any of its subdomains."""

@@ -24,6 +24,21 @@ DEFAULT_OUTPUT = ROOT / "tests/benchmarks/rfcs_benchmark_multi_full_pipeline/par
 NUM_CLAIMS = 30
 
 
+def _safe_print(text: str) -> None:
+    """Print text safely on Windows consoles with non-UTF encodings."""
+    payload = str(text)
+    try:
+        print(payload)
+    except UnicodeEncodeError:
+        # Fallback for cp1252 terminals: write UTF-8 bytes directly.
+        buf = getattr(sys.stdout, "buffer", None)
+        if buf is not None:
+            buf.write((payload + "\n").encode("utf-8", errors="replace"))
+            buf.flush()
+        else:
+            print(payload.encode("ascii", errors="replace").decode("ascii"))
+
+
 def load_claim_batch(path: Path, n: int = NUM_CLAIMS) -> List[Dict[str, Any]]:
     rows = json.loads(path.read_text(encoding="utf-8"))
     rows = [r for r in rows if str(r.get("lang_bucket", "")).upper() == "MULTI"]
@@ -41,11 +56,7 @@ def process_claim(
     language = str(row.get("language") or "hi")
     print("\n==============================")
     print(f"Processing claim {i + 1}/{total}")
-    try:
-        print("Claim:", claim)
-    except UnicodeEncodeError:
-        # Windows cp1252 consoles can fail for Indic text; keep run alive.
-        print("Claim:", claim.encode("utf-8", errors="replace").decode("utf-8", errors="replace"))
+    _safe_print(f"Claim: {claim}")
 
     start = time.time()
     error_text = None
@@ -131,6 +142,8 @@ def run_benchmark(rows: List[Dict[str, Any]]) -> tuple[list[Dict[str, Any]], lis
 def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     correct = 0
     neutral = 0
+    neutral_correct = 0
+    expected_neutral = 0
     tp = tn = fp = fn = 0
     failed_by_expected = Counter()
     failed_by_predicted = Counter()
@@ -145,6 +158,10 @@ def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
             correct += 1
         if pred == "neutral":
             neutral += 1
+            if truth == "neutral":
+                neutral_correct += 1
+        if truth == "neutral":
+            expected_neutral += 1
 
         if truth in {"support", "refute"}:
             if pred == "support" and truth == "support":
@@ -181,12 +198,18 @@ def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     precision = tp / (tp + fp) if (tp + fp) else 0.0
     recall = tp / (tp + fn) if (tp + fn) else 0.0
     f1 = (2 * precision * recall / (precision + recall)) if (precision + recall) else 0.0
+    neutral_precision = (neutral_correct / neutral) if neutral else 0.0
+    neutral_recall = (neutral_correct / expected_neutral) if expected_neutral else 0.0
+    neutral_error_rate = ((neutral - neutral_correct) / total) if total else 0.0
 
     return {
         "total_claims": total,
         "correct_predictions": correct,
         "accuracy": round(correct / total, 3) if total else 0.0,
         "neutral_rate": round(neutral / total, 3) if total else 0.0,
+        "neutral_precision": round(neutral_precision, 3),
+        "neutral_recall": round(neutral_recall, 3),
+        "neutral_error_rate": round(neutral_error_rate, 3),
         "tp": tp,
         "tn": tn,
         "fp": fp,
@@ -264,11 +287,45 @@ def summarize_stage_timings(results: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def save_results(results: List[Dict[str, Any]], metrics: Dict[str, Any], claim_times: List[float], total_time: float, output_path: Path) -> None:
+    def _profile() -> Dict[str, Any]:
+        keys = [
+            "LLM_VERIFIER_PROVIDER_MULTI",
+            "LLM_VERIFIER_MODEL_MULTI",
+            "TRANSLATION_LLM_PROVIDER",
+            "STRUCTURED_API_PING",
+            "STRUCTURED_API_STRICT_HEALTH",
+            "STRUCTURED_API_ALLOWLIST",
+            "WEB_SEARCH_PROVIDER_ORDER",
+            "WEB_SEARCH_MIN_PROVIDERS_BEFORE_STOP",
+            "WEB_SEARCH_ENABLE_DDG",
+            "WEB_SEARCH_ENABLE_SERPAPI",
+            "WEB_SEARCH_ENABLE_TAVILY",
+            "WEB_SEARCH_MAX_QUERIES",
+            "WEB_SEARCH_MAX_TOTAL_RESULTS_MULTI",
+            "EVIDENCE_SCRAPER_ENRICH_MAX_RESULTS",
+            "EVIDENCE_MMR_ENABLED",
+            "EVIDENCE_MMR_IMAGE_ONLY",
+            "EVIDENCE_MMR_LAMBDA",
+            "EVIDENCE_DOMAIN_MAX_PER_HOST",
+            "SCRAPER_ENABLE_PLAYWRIGHT_FALLBACK",
+            "SCRAPER_PLAYWRIGHT_HEAVY_MODE",
+            "ENABLE_SARVAM_FINAL_RERANK",
+            "MULTI_PHASE2_MODE",
+            "MULTI_PHASE2_CANDIDATE_CAP",
+            "MULTI_PHASE1_GUARD_ENABLE",
+            "MULTI_PHASE3_TIERS_ENABLE",
+            "MULTI_PHASE4_LANE_WEIGHT_ENABLE",
+            "MULTI_PHASE5_GRAY_ZONE_ENABLE",
+            "MULTI_PHASE7_DECISIVE_VERDICT_ENABLE",
+        ]
+        return {k: os.getenv(k) for k in keys}
+
     stage_summary = summarize_stage_timings(results)
     output = {
         "benchmark_metrics": metrics,
         "total_time_seconds": total_time,
         "average_claim_time": round(sum(claim_times) / len(claim_times), 3) if claim_times else 0.0,
+        "run_profile": _profile(),
         "stage_timing_summary": stage_summary,
         "claims": results,
     }
@@ -291,6 +348,9 @@ def main() -> None:
         "correct_predictions",
         "accuracy",
         "neutral_rate",
+        "neutral_precision",
+        "neutral_recall",
+        "neutral_error_rate",
         "tp",
         "tn",
         "fp",

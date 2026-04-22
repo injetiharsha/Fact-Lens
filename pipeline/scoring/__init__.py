@@ -2,6 +2,9 @@
 
 import logging
 import math
+import os
+import re
+from urllib.parse import urlparse
 from datetime import datetime
 from typing import Dict
 
@@ -146,14 +149,18 @@ class EvidenceScorer:
         except Exception:
             pass
 
+        # Source trust tier (host/source heuristics) acts as a quality prior.
+        source_tier = self._get_source_tier_multiplier(evidence)
+
         # Keep recency internal via temporal decay only (no extra bonus/compare boost).
         recency_bonus = 1.0
         
         # Composite score
-        weight = relevance * credibility * temporal * recency_bonus
+        weight = relevance * credibility * temporal * recency_bonus * source_tier
         
         evidence["credibility"] = credibility
         evidence["temporal_weight"] = temporal
+        evidence["source_tier_multiplier"] = source_tier
         evidence["recency_bonus"] = recency_bonus
         evidence["evidence_weight"] = weight
         
@@ -199,6 +206,48 @@ class EvidenceScorer:
             return 0.7
         
         return 0.5  # Scraping/fallback
+
+    def _get_source_tier_multiplier(self, evidence: Dict) -> float:
+        """Additional trust prior based on host/source quality bands."""
+        source = str(evidence.get("source", "")).lower()
+        url = str(evidence.get("url", "")).strip().lower()
+        host = ""
+        try:
+            host = (urlparse(url).netloc or "").lower().split(":")[0].strip(".")
+        except Exception:
+            host = ""
+        text = f"{source} {host} {url}"
+
+        if os.getenv("SCORING_ENABLE_SOURCE_TIER_MULTIPLIER", "1").strip().lower() not in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }:
+            return 1.0
+
+        high_trust = {
+            "gov.in", "gov", "edu", "who.int", "cdc.gov", "nih.gov", "nasa.gov", "isro.gov.in",
+            "reuters.com", "apnews.com", "bbc.com", "ft.com", "wsj.com", "economist.com",
+            "nature.com", "science.org", "worldbank.org", "imf.org",
+        }
+        low_trust_tokens = {
+            "blogspot", "wordpress", "substack", "reddit", "quora", "facebook", "instagram",
+            "twitter", "x.com", "youtube", "dailymotion", "pinterest", "tiktok",
+            "rumor", "gossip", "forums", "forum", "thread",
+        }
+
+        for d in high_trust:
+            if host == d or host.endswith("." + d) or d in text:
+                return 1.05
+
+        if any(tok in text for tok in low_trust_tokens):
+            return 0.80
+
+        # Penalize question-only / UGC-heavy URLs lightly.
+        if re.search(r"/questions?/|/qna/|/forum/|/community/|/comments?/|/threads?/", url):
+            return 0.85
+        return 1.0
     
     def _get_temporal_weight(self, evidence: Dict, recency_policy: Dict | None = None) -> float:
         """

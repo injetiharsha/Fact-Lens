@@ -96,7 +96,42 @@ def _select_checkpoint(component: str, language: str) -> str | None:
     return None
 
 
+def _llm_provider_for_language(language: str) -> str:
+    lang_is_en = str(language or "en").lower().startswith("en")
+    if lang_is_en:
+        return str(
+            _env_or_file(
+                "LLM_VERIFIER_PROVIDER_EN",
+                _env_or_file("LLM_VERIFIER_PROVIDER", "openai"),
+            )
+        ).strip().lower()
+    return str(
+        _env_or_file(
+            "LLM_VERIFIER_PROVIDER_MULTI",
+            _env_or_file("LLM_VERIFIER_PROVIDER", "openai"),
+        )
+    ).strip().lower()
+
+
+def _llm_model_for_language(language: str) -> str:
+    lang_is_en = str(language or "en").lower().startswith("en")
+    if lang_is_en:
+        return str(
+            _env_or_file(
+                "LLM_VERIFIER_MODEL_EN",
+                _env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini"),
+            )
+        ).strip()
+    return str(
+        _env_or_file(
+            "LLM_VERIFIER_MODEL_MULTI",
+            _env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini"),
+        )
+    ).strip()
+
+
 def _pipeline_config(language: str, mode: str = "claim") -> dict:
+    lang_is_en = str(language or "en").lower().startswith("en")
     mode_l = str(mode or "claim").strip().lower()
     doc_min_words_default = 15
     doc_max_words_default = 80
@@ -108,7 +143,9 @@ def _pipeline_config(language: str, mode: str = "claim") -> dict:
         # Keep image OCR claim extraction looser than PDF/doc text extraction.
         doc_min_words_default = 8
         doc_max_words_default = 100
-        doc_checkability_default = False
+        # Image OCR is noisy; keep sentence-level checkability on by default
+        # to drop background/context-only fragments before verification.
+        doc_checkability_default = True
         min_words_key = "IMAGE_DOCUMENT_MIN_WORDS"
         max_words_key = "IMAGE_DOCUMENT_MAX_WORDS"
         checkability_key = "IMAGE_ENABLE_DOCUMENT_CHECKABILITY_FILTER"
@@ -121,7 +158,11 @@ def _pipeline_config(language: str, mode: str = "claim") -> dict:
         "claim_checkability_checkpoint": _select_checkpoint("checkability", language),
         "context_checkpoint": _select_checkpoint("context", language),
         "relevance_checkpoint": _select_checkpoint("relevance", language),
-        "max_evidence": _env_int("PIPELINE_MAX_EVIDENCE", 5, minimum=1),
+        "max_evidence": (
+            _env_int("PIPELINE_MAX_EVIDENCE_EN", _env_int("PIPELINE_MAX_EVIDENCE", 5, minimum=1), minimum=1)
+            if lang_is_en
+            else _env_int("PIPELINE_MAX_EVIDENCE_MULTI", _env_int("PIPELINE_MAX_EVIDENCE", 5, minimum=1), minimum=1)
+        ),
         "enable_two_stage_relevance": _env_bool("ENABLE_TWO_STAGE_RELEVANCE", True),
         "relevance_bi_encoder_model": os.getenv(
             "RELEVANCE_BI_ENCODER_MODEL", "intfloat/multilingual-e5-small"
@@ -151,8 +192,8 @@ def _pipeline_config(language: str, mode: str = "claim") -> dict:
             minimum=10,
         ),
         "enable_llm_verifier": _env_bool("ENABLE_LLM_VERIFIER", True),
-        "llm_provider": os.getenv("LLM_VERIFIER_PROVIDER", "openai"),
-        "llm_model": os.getenv("LLM_VERIFIER_MODEL", "gpt-4o-mini"),
+        "llm_provider": _llm_provider_for_language(language),
+        "llm_model": _llm_model_for_language(language),
         "llm_neutral_only": _env_bool("LLM_VERIFIER_NEUTRAL_ONLY", True),
         "llm_conf_threshold": float(os.getenv("LLM_VERIFIER_CONF_THRESHOLD", "0.55")),
     }
@@ -201,14 +242,26 @@ def _looks_multi_claim_text(text: str) -> bool:
 
 def _llm_translate_to_english(text: str) -> str:
     """Fallback translator via configured LLM verifier provider."""
-    provider = str(_env_or_file("LLM_VERIFIER_PROVIDER", "openai")).strip().lower()
-    model = str(_env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini")).strip()
-    base_url = str(_env_or_file("LLM_VERIFIER_BASE_URL", "")).strip()
+    provider = str(
+        _env_or_file(
+            "TRANSLATION_LLM_PROVIDER",
+            _env_or_file("LLM_VERIFIER_PROVIDER_EN", _env_or_file("LLM_VERIFIER_PROVIDER", "openai")),
+        )
+    ).strip().lower()
+    model = str(
+        _env_or_file(
+            "TRANSLATION_LLM_MODEL",
+            _env_or_file("LLM_VERIFIER_MODEL_EN", _env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini")),
+        )
+    ).strip()
+    base_url = str(_env_or_file("TRANSLATION_LLM_BASE_URL", "")).strip()
     if not base_url:
         if provider == "groq":
             base_url = "https://api.groq.com/openai/v1"
         elif provider == "openrouter":
             base_url = "https://openrouter.ai/api/v1"
+        elif provider == "sarvam":
+            base_url = "https://api.sarvam.ai/v1"
         else:
             base_url = "https://api.openai.com/v1"
 
@@ -217,17 +270,25 @@ def _llm_translate_to_english(text: str) -> str:
         api_key = _env_or_file("GROQ_API_KEY")
     elif provider == "openrouter":
         api_key = _env_or_file("OPENROUTER_API_KEY")
+    elif provider == "sarvam":
+        api_key = _env_or_file("SARVAM_API_SUBSCRIPTION_KEY") or _env_or_file("SARVAM_API_KEY")
     else:
         api_key = _env_or_file("OPENAI_API_KEY")
 
     if not api_key:
         return ""
 
-    endpoint = f"{base_url.rstrip('/')}/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json",
-    }
+    base = base_url.rstrip("/")
+    endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
+    headers = {"Content-Type": "application/json"}
+    if provider == "sarvam":
+        sub_key = str(_env_or_file("SARVAM_API_SUBSCRIPTION_KEY", "") or "").strip()
+        if sub_key:
+            headers["API-Subscription-Key"] = sub_key
+        else:
+            headers["Authorization"] = f"Bearer {api_key}"
+    else:
+        headers["Authorization"] = f"Bearer {api_key}"
     payload = {
         "model": model,
         "temperature": 0,
@@ -243,6 +304,9 @@ def _llm_translate_to_english(text: str) -> str:
             {"role": "user", "content": text},
         ],
     }
+    if provider == "sarvam":
+        payload["stream"] = False
+        payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
     try:
         resp = requests.post(endpoint, headers=headers, json=payload, timeout=25)
         resp.raise_for_status()
@@ -293,14 +357,16 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
     if len(cands) < 2:
         return cands[0] if cands else ""
 
-    provider = str(_env_or_file("LLM_VERIFIER_PROVIDER", "openai")).strip().lower()
-    model = str(_env_or_file("LLM_VERIFIER_MODEL", "gpt-4o-mini")).strip()
+    provider = _llm_provider_for_language(language)
+    model = _llm_model_for_language(language)
     base_url = str(_env_or_file("LLM_VERIFIER_BASE_URL", "")).strip()
     if not base_url:
         if provider == "groq":
             base_url = "https://api.groq.com/openai/v1"
         elif provider == "openrouter":
             base_url = "https://openrouter.ai/api/v1"
+        elif provider == "sarvam":
+            base_url = "https://api.sarvam.ai/v1"
         else:
             base_url = "https://api.openai.com/v1"
 
@@ -308,14 +374,25 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
         api_key = _env_or_file("GROQ_API_KEY")
     elif provider == "openrouter":
         api_key = _env_or_file("OPENROUTER_API_KEY")
+    elif provider == "sarvam":
+        api_key = _env_or_file("SARVAM_API_SUBSCRIPTION_KEY") or _env_or_file("SARVAM_API_KEY")
     else:
         api_key = _env_or_file("OPENAI_API_KEY")
     if not api_key:
         return ""
 
     prompt_rows = "\n".join([f"{i+1}. {c}" for i, c in enumerate(cands[:8])])
-    endpoint = f"{base_url.rstrip('/')}/chat/completions"
-    headers = {"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"}
+    base = base_url.rstrip("/")
+    endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
+    headers = {"Content-Type": "application/json"}
+    if provider == "sarvam":
+        sub_key = str(_env_or_file("SARVAM_API_SUBSCRIPTION_KEY", "") or "").strip()
+        if sub_key:
+            headers["API-Subscription-Key"] = sub_key
+        else:
+            headers["Authorization"] = f"Bearer {api_key}"
+    else:
+        headers["Authorization"] = f"Bearer {api_key}"
     payload = {
         "model": model,
         "temperature": 0,
@@ -331,6 +408,9 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
             {"role": "user", "content": f"Language={language}\nCandidates:\n{prompt_rows}"},
         ],
     }
+    if provider == "sarvam":
+        payload["stream"] = False
+        payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
     try:
         resp = requests.post(endpoint, headers=headers, json=payload, timeout=12)
         resp.raise_for_status()
@@ -345,6 +425,193 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
     except Exception as exc:
         logger.warning("LLM claim selection fallback failed: %s", exc)
     return ""
+
+
+def _llm_summarize_claim_text(text: str, language: str = "en") -> str:
+    """Rewrite a long/noisy OCR claim into one concise factual claim."""
+    src = str(text or "").strip()
+    if not src:
+        return ""
+
+    provider = _llm_provider_for_language(language)
+    model = _llm_model_for_language(language)
+    base_url = str(_env_or_file("LLM_VERIFIER_BASE_URL", "")).strip()
+    if not base_url:
+        if provider == "groq":
+            base_url = "https://api.groq.com/openai/v1"
+        elif provider == "openrouter":
+            base_url = "https://openrouter.ai/api/v1"
+        elif provider == "sarvam":
+            base_url = "https://api.sarvam.ai/v1"
+        else:
+            base_url = "https://api.openai.com/v1"
+
+    if provider == "groq":
+        api_key = _env_or_file("GROQ_API_KEY")
+    elif provider == "openrouter":
+        api_key = _env_or_file("OPENROUTER_API_KEY")
+    elif provider == "sarvam":
+        api_key = _env_or_file("SARVAM_API_SUBSCRIPTION_KEY") or _env_or_file("SARVAM_API_KEY")
+    else:
+        api_key = _env_or_file("OPENAI_API_KEY")
+    if not api_key:
+        return ""
+
+    base = base_url.rstrip("/")
+    endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
+    headers = {"Content-Type": "application/json"}
+    if provider == "sarvam":
+        sub_key = str(_env_or_file("SARVAM_API_SUBSCRIPTION_KEY", "") or "").strip()
+        if sub_key:
+            headers["API-Subscription-Key"] = sub_key
+        else:
+            headers["Authorization"] = f"Bearer {api_key}"
+    else:
+        headers["Authorization"] = f"Bearer {api_key}"
+
+    payload = {
+        "model": model,
+        "temperature": 0,
+        "max_tokens": 120,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "Rewrite OCR text as one factual claim in the same language. "
+                    "Remove duplicate or rhetorical lines. Keep entities, numbers, dates unchanged. "
+                    "Return only one sentence claim text."
+                ),
+            },
+            {"role": "user", "content": f"Language={language}\nText:\n{src}"},
+        ],
+    }
+    if provider == "sarvam":
+        payload["stream"] = False
+        payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
+    try:
+        resp = requests.post(endpoint, headers=headers, json=payload, timeout=16)
+        resp.raise_for_status()
+        data = resp.json() if resp.content else {}
+        out = str((data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")).strip()
+        out = re.sub(r"^\s*['\"`]+|['\"`]+\s*$", "", out).strip()
+        out = re.sub(r"\s+", " ", out)
+        # Safety: reject very short/empty rewrites.
+        if len(out) < 16:
+            return ""
+        return out
+    except Exception as exc:
+        logger.warning("LLM claim summarization fallback failed: %s", exc)
+        return ""
+
+
+def _maybe_summarize_image_claim(claim: str, language: str = "en") -> tuple[str, bool]:
+    """Summarize long OCR-derived claim when enabled and above threshold."""
+    src = str(claim or "").strip()
+    if not src:
+        return src, False
+    if not _env_bool("IMAGE_LLM_SUMMARIZATION_ENABLE", True):
+        return src, False
+    min_chars = _env_int("IMAGE_LLM_SUMMARIZE_MIN_CHARS", 180, minimum=80)
+    if len(src) < min_chars:
+        return src, False
+    summarized = _llm_summarize_claim_text(src, language=language)
+    if not summarized:
+        return src, False
+    return summarized, summarized != src
+
+
+def _summarize_image_candidates(candidates: list[str], language: str = "en", max_items: int = 2) -> tuple[list[str], int]:
+    """Optionally summarize long OCR candidates before downstream verification."""
+    rows = [str(c or "").strip() for c in (candidates or []) if str(c or "").strip()]
+    if not rows:
+        return [], 0
+    if not _env_bool("IMAGE_LLM_SUMMARIZE_CANDIDATES_ENABLE", True):
+        return rows[: max(1, int(max_items))], 0
+
+    min_chars = _env_int("IMAGE_LLM_SUMMARIZE_CANDIDATE_MIN_CHARS", 140, minimum=80)
+    out: list[str] = []
+    applied = 0
+    for cand in rows[: max(1, int(max_items))]:
+        item = cand
+        if len(cand) >= min_chars:
+            summarized, changed = _maybe_summarize_image_claim(cand, language=language)
+            if changed and summarized:
+                item = summarized
+                applied += 1
+        out.append(item)
+    out = _dedupe_and_limit_claims(out, max_items=max_items)
+    return out, applied
+
+
+def _dedupe_and_limit_claims(candidates: list[str], max_items: int = 2) -> list[str]:
+    """Keep a small set of distinct claim candidates.
+
+    Dedup policy:
+    - rank by informativeness first
+    - drop a candidate if >=60% overlap with an already-kept claim
+    - if nothing survives except overlap variants, keep exactly one best claim
+    """
+    from difflib import SequenceMatcher
+    import re as _re
+
+    rows = [str(c or "").strip() for c in (candidates or []) if str(c or "").strip()]
+    if not rows:
+        return []
+
+    limit = max(1, int(max_items))
+    overlap_threshold = 0.60
+
+    def _norm(s: str) -> str:
+        s = s.lower().strip()
+        s = _re.sub(r"\s+", " ", s)
+        return s
+
+    def _tokens(s: str) -> set[str]:
+        # Keep unicode word chars so Indic scripts are retained.
+        return set(_re.findall(r"\w+", s.lower(), flags=_re.UNICODE))
+
+    def _informativeness_score(s: str) -> tuple[int, int]:
+        toks = _tokens(s)
+        return (len(toks), len(s))
+
+    def _overlap(a: str, b: str) -> float:
+        an, bn = _norm(a), _norm(b)
+        if not an or not bn:
+            return 0.0
+
+        at, bt = _tokens(an), _tokens(bn)
+        tok_containment = 0.0
+        if at and bt:
+            tok_containment = max(
+                len(at & bt) / max(1, len(at)),
+                len(at & bt) / max(1, len(bt)),
+            )
+
+        # Sequence similarity catches OCR/window duplicates with small token drift.
+        seq = SequenceMatcher(a=an, b=bn).ratio()
+
+        # Substring containment in normalized strings.
+        sub = 0.0
+        if an in bn or bn in an:
+            short = min(len(an), len(bn))
+            long = max(len(an), len(bn))
+            sub = (short / long) if long > 0 else 0.0
+
+        return max(tok_containment, seq, sub)
+
+    ranked = sorted(rows, key=_informativeness_score, reverse=True)
+
+    kept: list[str] = []
+    for cand in ranked:
+        if any(_overlap(cand, k) >= overlap_threshold for k in kept):
+            continue
+        kept.append(cand)
+        if len(kept) >= limit:
+            break
+
+    if kept:
+        return kept
+    return [ranked[0]]
 
 
 def get_claim_pipeline(language: str):
@@ -417,6 +684,7 @@ async def analyze_image(
     """Analyze an image claim (quality check -> OCR -> pipeline)."""
     import tempfile
     from pipeline.ingestion.image import ImageInputPipeline
+    from pipeline.document_pipeline import DocumentPipeline
     
     await REQUEST_LIMITER.acquire()
     try:
@@ -441,6 +709,7 @@ async def analyze_image(
                 "IMAGE_FORCE_SINGLE_CLAIM_WHEN_CLAIM_PROVIDED",
                 True,
             )
+            doc_pipeline = DocumentPipeline(_pipeline_config(effective_language, mode="image"))
 
             if not claim_text:
                 return ImageAnalysisResponse(
@@ -455,11 +724,95 @@ async def analyze_image(
                     warnings=image_result.warnings,
                 )
 
-            if (not (explicit_claim_provided and force_single_when_claim)) and _looks_multi_claim_text(claim_text):
-                from pipeline.document_pipeline import DocumentPipeline
+            def _run_single_claim_mode(selected_claim: str, extra_warning: str | None = None) -> ImageAnalysisResponse:
+                claim_for_eval = (selected_claim or "").strip() or claim_text
+                summarized_claim, summarized = _maybe_summarize_image_claim(
+                    claim_for_eval,
+                    language=effective_language,
+                )
+                if summarized:
+                    claim_for_eval = summarized_claim
+                    image_result.warnings.append("WARN: LLM claim summarization applied for long OCR text.")
+                if extra_warning:
+                    image_result.warnings.append(extra_warning)
+                if claim_for_eval != claim_text:
+                    image_result.warnings.append(
+                        "WARN: Auto-selected a checkable mini-claim from OCR text."
+                    )
 
-                doc_pipeline = DocumentPipeline(_pipeline_config(effective_language, mode="image"))
-                doc_result = doc_pipeline.analyze_text(text=claim_text, language=effective_language)
+                pipeline = get_claim_pipeline(effective_language)
+                result = pipeline.analyze(
+                    claim=claim_for_eval,
+                    language=effective_language,
+                    image_path=tmp_path,
+                    recency_mode=str(recency_mode or "general"),
+                    recency_start=str(recency_start or ""),
+                    recency_end=str(recency_end or ""),
+                )
+
+                return ImageAnalysisResponse(
+                    mode="single_claim",
+                    verdict=result.verdict,
+                    confidence=result.confidence,
+                    evidence=result.evidence,
+                    reasoning=result.reasoning,
+                    details=result.details,
+                    ocr_text=extracted_text,
+                    ocr_engine=image_result.ocr_engine,
+                    ocr_confidence=image_result.ocr_confidence,
+                    image_quality=image_result.image_quality,
+                    warnings=image_result.warnings,
+                )
+
+            if (not (explicit_claim_provided and force_single_when_claim)) and _looks_multi_claim_text(claim_text):
+                ranked_candidates = doc_pipeline.rank_claim_candidates(
+                    claim_text,
+                    language=effective_language,
+                )
+                ranked_candidates = _dedupe_and_limit_claims(ranked_candidates, max_items=2)
+                ranked_candidates, doc_sum_applied = _summarize_image_candidates(
+                    ranked_candidates,
+                    language=effective_language,
+                    max_items=2,
+                )
+                if doc_sum_applied > 0:
+                    image_result.warnings.append(
+                        f"WARN: LLM claim summarization applied on {doc_sum_applied} image candidates."
+                    )
+                if not ranked_candidates:
+                    return _run_single_claim_mode(
+                        claim_text,
+                        extra_warning="WARN: No claim picked from multi-claim OCR; forced single-claim fallback.",
+                    )
+                doc_claim_rows = []
+                for cand in ranked_candidates:
+                    out = get_claim_pipeline(effective_language).analyze(
+                        claim=cand,
+                        language=effective_language,
+                        image_path=tmp_path,
+                        recency_mode=str(recency_mode or "general"),
+                        recency_start=str(recency_start or ""),
+                        recency_end=str(recency_end or ""),
+                    )
+                    doc_claim_rows.append(
+                        {
+                            "claim": cand,
+                            "verdict": out.verdict,
+                            "confidence": out.confidence,
+                            "evidence_count": len(out.evidence),
+                        }
+                    )
+                if doc_claim_rows:
+                    best_doc = max(doc_claim_rows, key=lambda row: float(row.get("confidence", 0.0)))
+                    from pipeline.document_pipeline import DocumentResult
+
+                    doc_result = DocumentResult(
+                        claims=doc_claim_rows,
+                        summary_verdict=str(best_doc.get("verdict", "neutral")),
+                        summary_confidence=float(best_doc.get("confidence", 0.0) or 0.0),
+                    )
+                else:
+                    doc_result = doc_pipeline.analyze_text(text=claim_text, language=effective_language)
                 best_claim = None
                 if doc_result.claims:
                     best_claim = max(
@@ -489,23 +842,11 @@ async def analyze_image(
                     best_verdict = best_result.verdict
                     best_confidence = best_result.confidence
                 elif not best_claim:
-                    # Image OCR can be noisy; if multi-claim extraction produced nothing,
-                    # fallback to single-claim analysis on full OCR claim text.
-                    fallback_result = get_claim_pipeline(effective_language).analyze(
-                        claim=claim_text,
-                        language=effective_language,
-                        image_path=tmp_path,
-                        recency_mode=str(recency_mode or "general"),
-                        recency_start=str(recency_start or ""),
-                        recency_end=str(recency_end or ""),
-                    )
-                    best_evidence = fallback_result.evidence
-                    best_reasoning = fallback_result.reasoning
-                    best_details = fallback_result.details
-                    best_verdict = fallback_result.verdict
-                    best_confidence = fallback_result.confidence
-                    image_result.warnings.append(
-                        "WARN: No strong mini-claim extracted from OCR; used full OCR claim fallback."
+                    return _run_single_claim_mode(
+                        claim_text,
+                        extra_warning=(
+                            "WARN: No strong mini-claim extracted from OCR; forced single-claim fallback."
+                        ),
                     )
 
                 return ImageAnalysisResponse(
@@ -528,29 +869,22 @@ async def analyze_image(
                 )
 
             # Single-claim path
-            pipeline = get_claim_pipeline(effective_language)
-            result = pipeline.analyze(
-                claim=claim_text,
+            ranked_candidates = doc_pipeline.rank_claim_candidates(
+                claim_text,
                 language=effective_language,
-                image_path=tmp_path,
-                recency_mode=str(recency_mode or "general"),
-                recency_start=str(recency_start or ""),
-                recency_end=str(recency_end or ""),
             )
-
-            return ImageAnalysisResponse(
-                mode="single_claim",
-                verdict=result.verdict,
-                confidence=result.confidence,
-                evidence=result.evidence,
-                reasoning=result.reasoning,
-                details=result.details,
-                ocr_text=extracted_text,
-                ocr_engine=image_result.ocr_engine,
-                ocr_confidence=image_result.ocr_confidence,
-                image_quality=image_result.image_quality,
-                warnings=image_result.warnings,
-            )
+            ranked_candidates = _dedupe_and_limit_claims(ranked_candidates, max_items=2)
+            selected_claim = (ranked_candidates[0] if ranked_candidates else "") or claim_text
+            llm_claim_pick_enabled = _env_bool("IMAGE_LLM_CLAIM_SELECTION_ENABLE", False)
+            if llm_claim_pick_enabled and len(ranked_candidates) > 1:
+                llm_pick = _llm_pick_best_claim(
+                    candidates=ranked_candidates[:6],
+                    language=effective_language,
+                )
+                if llm_pick:
+                    selected_claim = llm_pick
+                    image_result.warnings.append("WARN: LLM-assisted claim selection applied for image OCR.")
+            return _run_single_claim_mode(selected_claim)
 
         finally:
             # Cleanup temp file

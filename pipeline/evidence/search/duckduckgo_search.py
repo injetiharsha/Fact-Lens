@@ -24,9 +24,9 @@ class DuckDuckGoSearchAdapter:
     def search(self, query: str, max_results: int) -> List[Dict]:
         try:
             try:
-                from duckduckgo_search import DDGS
-            except ImportError:
                 from ddgs import DDGS
+            except ImportError:
+                from duckduckgo_search import DDGS
 
             try:
                 with DDGS(timeout=self.timeout_s) as ddgs:

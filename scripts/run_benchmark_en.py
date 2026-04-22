@@ -244,11 +244,36 @@ def summarize_stage_timings(results: List[Dict[str, Any]]) -> Dict[str, Any]:
 
 
 def save_results(results: List[Dict[str, Any]], metrics: Dict[str, Any], claim_times: List[float], total_time: float, output_path: Path) -> None:
+    def _profile() -> Dict[str, Any]:
+        keys = [
+            "LLM_VERIFIER_PROVIDER_EN",
+            "LLM_VERIFIER_MODEL_EN",
+            "STRUCTURED_API_PING",
+            "STRUCTURED_API_STRICT_HEALTH",
+            "STRUCTURED_API_ALLOWLIST",
+            "WEB_SEARCH_PROVIDER_ORDER",
+            "WEB_SEARCH_MIN_PROVIDERS_BEFORE_STOP",
+            "WEB_SEARCH_ENABLE_DDG",
+            "WEB_SEARCH_ENABLE_SERPAPI",
+            "WEB_SEARCH_ENABLE_TAVILY",
+            "WEB_SEARCH_MAX_QUERIES",
+            "WEB_SEARCH_MAX_TOTAL_RESULTS_EN",
+            "EVIDENCE_SCRAPER_ENRICH_MAX_RESULTS",
+            "EVIDENCE_MMR_ENABLED",
+            "EVIDENCE_MMR_IMAGE_ONLY",
+            "EVIDENCE_MMR_LAMBDA",
+            "EVIDENCE_DOMAIN_MAX_PER_HOST",
+            "SCRAPER_ENABLE_PLAYWRIGHT_FALLBACK",
+            "SCRAPER_PLAYWRIGHT_HEAVY_MODE",
+        ]
+        return {k: os.getenv(k) for k in keys}
+
     stage_summary = summarize_stage_timings(results)
     output = {
         "benchmark_metrics": metrics,
         "total_time_seconds": total_time,
         "average_claim_time": round(sum(claim_times) / len(claim_times), 3) if claim_times else 0.0,
+        "run_profile": _profile(),
         "stage_timing_summary": stage_summary,
         "claims": results,
     }

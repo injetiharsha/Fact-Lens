@@ -23,12 +23,19 @@ class LLMVerifier:
     def __init__(self, provider: str = "openai", model: str = "gpt-4o-mini"):
         self.provider = (provider or "openai").strip().lower()
         self.model = model
-        self.base_url = os.getenv("LLM_VERIFIER_BASE_URL", "").strip() or self._default_base_url()
+        self.base_url = self._resolve_base_url()
         self.api_key = self._resolve_api_key()
         self.timeout_s = float(os.getenv("LLM_VERIFIER_TIMEOUT_SECONDS", "25"))
         self.max_tokens = int(os.getenv("LLM_VERIFIER_MAX_TOKENS", "512"))
         rpm_default = os.getenv("GLOBAL_REQUESTS_PER_MINUTE", "30")
-        self.requests_per_minute = int(os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", rpm_default))  # 0 => unlimited
+        if self.provider == "sarvam":
+            rpm_value = os.getenv(
+                "SARVAM_REQUESTS_PER_MINUTE",
+                os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", "40"),
+            )
+        else:
+            rpm_value = os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", rpm_default)
+        self.requests_per_minute = int(rpm_value)  # 0 => unlimited
         self.global_rate_limit = os.getenv("LLM_VERIFIER_GLOBAL_RATE_LIMIT", "1").strip().lower() in {
             "1",
             "true",
@@ -58,6 +65,8 @@ class LLMVerifier:
             return os.getenv("GROQ_API_KEY")
         if self.provider == "openrouter":
             return os.getenv("OPENROUTER_API_KEY")
+        if self.provider == "sarvam":
+            return os.getenv("SARVAM_API_SUBSCRIPTION_KEY") or os.getenv("SARVAM_API_KEY")
         return None
 
     def _default_base_url(self) -> str:
@@ -65,7 +74,38 @@ class LLMVerifier:
             return "https://api.groq.com/openai/v1"
         if self.provider == "openrouter":
             return "https://openrouter.ai/api/v1"
+        if self.provider == "sarvam":
+            return "https://api.sarvam.ai/v1"
         return "https://api.openai.com/v1"
+
+    def _resolve_base_url(self) -> str:
+        """Resolve provider-specific base URL so EN and multi providers do not conflict."""
+        if self.provider == "sarvam":
+            return (
+                os.getenv("SARVAM_API_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL_MULTI", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "groq":
+            return (
+                os.getenv("GROQ_API_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL_EN", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "openrouter":
+            return (
+                os.getenv("OPENROUTER_API_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "openai":
+            return (
+                os.getenv("OPENAI_API_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        return os.getenv("LLM_VERIFIER_BASE_URL", "").strip() or self._default_base_url()
 
     def _build_evidence_snippets(self, evidence: List[Dict[str, Any]]) -> str:
         rows = evidence if isinstance(evidence, list) else []
@@ -428,11 +468,17 @@ class LLMVerifier:
                 "reason": f"{self.provider} API key not set",
             }
 
-        endpoint = f"{self.base_url.rstrip('/')}/chat/completions"
-        headers = {
-            "Authorization": f"Bearer {self.api_key}",
-            "Content-Type": "application/json",
-        }
+        base = self.base_url.rstrip("/")
+        endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
+        headers = {"Content-Type": "application/json"}
+        if self.provider == "sarvam":
+            sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
+            if sub_key:
+                headers["API-Subscription-Key"] = sub_key
+            else:
+                headers["Authorization"] = f"Bearer {self.api_key}"
+        else:
+            headers["Authorization"] = f"Bearer {self.api_key}"
         if self.provider == "openrouter":
             app_name = os.getenv("LLM_VERIFIER_APP_NAME", "rfcs")
             headers["X-Title"] = app_name
@@ -470,6 +516,9 @@ class LLMVerifier:
                 {"role": "user", "content": user_prompt},
             ],
         }
+        if self.provider == "sarvam":
+            payload["stream"] = False
+            payload["reasoning_effort"] = os.getenv("SARVAM_REASONING_EFFORT", "medium")
 
         try:
             data = self._post_completion(endpoint=endpoint, headers=headers, payload=payload)

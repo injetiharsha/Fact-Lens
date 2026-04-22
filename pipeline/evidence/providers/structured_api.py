@@ -46,6 +46,7 @@ class StructuredAPIClient:
             "gov_api": self._query_pib,
             "isro": self._query_nasa,
         }
+        self.unhealthy_subtypes: Set[str] = set()
         self.enabled_subtypes = self._resolve_enabled_subtypes()
     
     def query(
@@ -79,6 +80,13 @@ class StructuredAPIClient:
     def get_available_subtypes(self) -> Set[str]:
         """Return structured API subtypes currently considered healthy."""
         return set(self.enabled_subtypes)
+
+    def get_health_snapshot(self) -> Dict[str, List[str]]:
+        """Expose structured API health state for retrieval telemetry."""
+        return {
+            "enabled_subtypes": sorted(self.enabled_subtypes),
+            "unhealthy_subtypes": sorted(self.unhealthy_subtypes),
+        }
     
     def _query_nasa(self, query: str, max_results: int) -> List[Dict]:
         """Query NASA API."""
@@ -401,18 +409,25 @@ class StructuredAPIClient:
         if str(os.getenv("STRUCTURED_API_PING", "1")).strip().lower() in {"0", "false", "no"}:
             do_ping = False
 
+        strict_health = str(os.getenv("STRUCTURED_API_STRICT_HEALTH", "1")).strip().lower() in {
+            "1", "true", "yes", "on"
+        }
+
         if not do_ping:
             logger.info("Structured API ping disabled; using candidates: %s", sorted(candidates))
             return candidates
 
         healthy, unhealthy = self._health_check(candidates)
+        self.unhealthy_subtypes = set(unhealthy)
         if unhealthy:
             logger.warning("Structured APIs unavailable: %s", sorted(unhealthy))
         logger.info("Structured APIs enabled: %s", sorted(healthy))
 
         # Never return empty: keep wikipedia as a last fallback candidate.
-        if not healthy and "wikipedia" in candidates:
+        if not healthy and "wikipedia" in candidates and (not strict_health):
             return {"wikipedia"}
+        if strict_health:
+            return healthy
         return healthy or candidates
 
     def _health_check(self, candidates: Set[str]) -> Tuple[Set[str], Set[str]]:

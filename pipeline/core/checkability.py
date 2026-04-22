@@ -24,6 +24,8 @@ class CheckabilityClassifier:
         self.model = None
         self.tokenizer = None
         self.device = "cpu"
+        self.id2label = {}
+        self.checkable_ids = set()
         
         if model_path:
             self._load_model()
@@ -44,8 +46,23 @@ class CheckabilityClassifier:
             return
         try:
             import torch
-            from transformers import AutoTokenizer, AutoModelForSequenceClassification
+            from transformers import AutoTokenizer, AutoModelForSequenceClassification, AutoConfig
 
+            cfg = AutoConfig.from_pretrained(self.model_path)
+            raw_map = getattr(cfg, "id2label", {}) or {}
+            self.id2label = {int(k): str(v) for k, v in raw_map.items()}
+            # Default/fallback mapping:
+            # - binary heads often use label 1 as checkable
+            # - v5 multilingual checkpoint uses FACTUAL_CLAIM as checkable (label 0)
+            self.checkable_ids = {1}
+            if self.id2label:
+                normalized = {i: lbl.strip().lower() for i, lbl in self.id2label.items()}
+                factual_like = {
+                    i for i, lbl in normalized.items()
+                    if lbl in {"factual_claim", "checkable", "factual", "claim_checkable"}
+                }
+                if factual_like:
+                    self.checkable_ids = factual_like
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
             self.tokenizer = AutoTokenizer.from_pretrained(self.model_path, use_fast=False)
             self.model = AutoModelForSequenceClassification.from_pretrained(self.model_path).to(self.device)
@@ -61,7 +78,9 @@ class CheckabilityClassifier:
         Returns: (is_checkable, reason_if_not)
         """
         # Heuristic checks (fast, no model needed)
-        if len(claim.split()) < MIN_CLAIM_WORDS:
+        # Keep hard short-claim rejection only when model is unavailable.
+        # For meme/image text, model-based checkability should still run.
+        if (self.model is None) and len(claim.split()) < MIN_CLAIM_WORDS:
             return False, self.UNCHECKABLE_REASONS["too_short"]
         
         if claim.strip().endswith('?'):
@@ -93,8 +112,8 @@ class CheckabilityClassifier:
             predicted = torch.argmax(probs, dim=-1).item()
             confidence = probs[0][predicted].item()
         
-        # Label 0 = uncheckable, 1 = checkable
-        if predicted == 0:
-            return False, f"Model classified as uncheckable (conf={confidence:.2f})"
+        label = str(self.id2label.get(predicted, f"LABEL_{predicted}"))
+        if predicted not in self.checkable_ids:
+            return False, f"Model label={label} (conf={confidence:.2f})"
         
         return True, ""
