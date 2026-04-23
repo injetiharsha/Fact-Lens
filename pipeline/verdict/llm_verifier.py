@@ -1,40 +1,39 @@
 import os
 import json
 import re
-import time
-import sqlite3
-from collections import deque
-from threading import Lock, Semaphore
+from threading import Lock
 from typing import Any, Dict, List
 
-import requests
+from pipeline.core.llm_rate_limiter import SharedLLMRateLimiter
 
 
 class LLMVerifier:
     """Provider-aware verifier adapter for neutral or low-confidence cases."""
-    _cfg_lock = Lock()
-    _rl_lock = Lock()
-    _rl_times = deque()
-    _concurrency_semaphore: Semaphore | None = None
-    _concurrency_size: int | None = None
-    _global_rate_db_init_lock = Lock()
-    _global_rate_db_initialized = set()
+    _key_rr_lock = Lock()
+    _key_rr_counters: Dict[str, int] = {}
 
     def __init__(self, provider: str = "openai", model: str = "gpt-4o-mini"):
         self.provider = (provider or "openai").strip().lower()
         self.model = model
         self.base_url = self._resolve_base_url()
-        self.api_key = self._resolve_api_key()
+        self.api_keys = self._resolve_api_keys()
+        self.api_key = self.api_keys[0] if self.api_keys else None
         self.timeout_s = float(os.getenv("LLM_VERIFIER_TIMEOUT_SECONDS", "25"))
         self.max_tokens = int(os.getenv("LLM_VERIFIER_MAX_TOKENS", "512"))
-        rpm_default = os.getenv("GLOBAL_REQUESTS_PER_MINUTE", "30")
+        rpm_default = os.getenv(
+            "LLM_SHARED_REQUESTS_PER_MINUTE",
+            os.getenv("LLM_SHARED_RPM_PER_KEY", os.getenv("GLOBAL_REQUESTS_PER_MINUTE", "25")),
+        )
         if self.provider == "sarvam":
             rpm_value = os.getenv(
-                "SARVAM_REQUESTS_PER_MINUTE",
-                os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", "40"),
+                "LLM_SHARED_REQUESTS_PER_MINUTE",
+                os.getenv("LLM_SHARED_RPM_PER_KEY", os.getenv("SARVAM_REQUESTS_PER_MINUTE", rpm_default)),
             )
         else:
-            rpm_value = os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", rpm_default)
+            rpm_value = os.getenv(
+                "LLM_SHARED_REQUESTS_PER_MINUTE",
+                os.getenv("LLM_SHARED_RPM_PER_KEY", os.getenv("LLM_VERIFIER_REQUESTS_PER_MINUTE", rpm_default)),
+            )
         self.requests_per_minute = int(rpm_value)  # 0 => unlimited
         self.global_rate_limit = os.getenv("LLM_VERIFIER_GLOBAL_RATE_LIMIT", "1").strip().lower() in {
             "1",
@@ -47,8 +46,13 @@ class LLMVerifier:
         )
         conc_default = os.getenv("MAX_CONCURRENT_REQUESTS", "4")
         self.max_concurrent = max(1, int(os.getenv("LLM_VERIFIER_MAX_CONCURRENT", conc_default)))
-        self._ensure_global_rate_db()
-        self._ensure_global_concurrency_semaphore()
+        self._shared_limiter = SharedLLMRateLimiter.from_env(
+            provider=self.provider,
+            requests_per_minute=self.requests_per_minute,
+            max_concurrent=self.max_concurrent,
+            global_rate_limit=self.global_rate_limit,
+            global_rate_db=self.global_rate_db,
+        )
 
     def _resolve_global_rate_db_path(self, raw_path: str) -> str:
         """Resolve limiter DB path to a stable absolute file shared across processes."""
@@ -58,16 +62,50 @@ class LLMVerifier:
         project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
         return os.path.abspath(os.path.join(project_root, path))
 
-    def _resolve_api_key(self):
+    def _split_keys(self, list_env: str, single_env: str) -> List[str]:
+        out: List[str] = []
+        raw = str(os.getenv(list_env, "") or "").strip()
+        if raw:
+            for tok in raw.split(","):
+                v = tok.strip()
+                if v and v not in out:
+                    out.append(v)
+        single = str(os.getenv(single_env, "") or "").strip()
+        if single:
+            # Be tolerant: allow comma-separated fallback even in single-key env.
+            for tok in single.split(","):
+                v = tok.strip()
+                if v and v not in out:
+                    out.append(v)
+        return out
+
+    def _resolve_api_keys(self) -> List[str]:
         if self.provider == "openai":
-            return os.getenv("OPENAI_API_KEY")
+            return self._split_keys("OPENAI_API_KEYS", "OPENAI_API_KEY")
         if self.provider == "groq":
-            return os.getenv("GROQ_API_KEY")
+            return self._split_keys("GROQ_API_KEYS", "GROQ_API_KEY")
         if self.provider == "openrouter":
-            return os.getenv("OPENROUTER_API_KEY")
+            return self._split_keys("OPENROUTER_API_KEYS", "OPENROUTER_API_KEY")
         if self.provider == "sarvam":
-            return os.getenv("SARVAM_API_SUBSCRIPTION_KEY") or os.getenv("SARVAM_API_KEY")
-        return None
+            sub = str(os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "") or "").strip()
+            key = str(os.getenv("SARVAM_API_KEY", "") or "").strip()
+            out = []
+            if sub:
+                out.append(sub)
+            if key and key not in out:
+                out.append(key)
+            return out
+        return []
+
+    def _rotated_api_keys(self) -> List[str]:
+        keys = list(self.api_keys or [])
+        if len(keys) <= 1:
+            return keys
+        bucket = f"{self.provider}:{self.model}"
+        with self._key_rr_lock:
+            idx = self._key_rr_counters.get(bucket, 0) % len(keys)
+            self._key_rr_counters[bucket] = idx + 1
+        return keys[idx:] + keys[:idx]
 
     def _default_base_url(self) -> str:
         if self.provider == "groq":
@@ -347,121 +385,17 @@ class LLMVerifier:
         ]
         return any(re.search(p, sample) for p in script_ranges)
 
-    def _acquire_rate_token(self) -> None:
-        """Global in-process limiter for outbound LLM verifier calls."""
-        rpm = max(0, int(self.requests_per_minute))
-        if rpm <= 0:
-            return
-        if self.global_rate_limit:
-            self._acquire_rate_token_global(rpm)
-            return
-        while True:
-            with self._rl_lock:
-                now = time.monotonic()
-                while self._rl_times and (now - self._rl_times[0]) >= 60.0:
-                    self._rl_times.popleft()
-                if len(self._rl_times) < rpm:
-                    self._rl_times.append(now)
-                    return
-                wait_s = 60.0 - (now - self._rl_times[0])
-            time.sleep(max(wait_s, 0.05))
-
-    def _ensure_global_rate_db(self) -> None:
-        """Initialize SQLite schema for cross-process global request limiting."""
-        if not self.global_rate_limit:
-            return
-        db_path = self.global_rate_db or ".llm_verifier_rate_limit.sqlite"
-        with self._global_rate_db_init_lock:
-            if db_path in self._global_rate_db_initialized:
-                return
-            parent = os.path.dirname(db_path)
-            if parent:
-                os.makedirs(parent, exist_ok=True)
-            conn = sqlite3.connect(db_path, timeout=30.0, isolation_level=None)
-            try:
-                conn.execute("PRAGMA journal_mode=WAL;")
-                conn.execute(
-                    "CREATE TABLE IF NOT EXISTS llm_requests (ts REAL NOT NULL)"
-                )
-                conn.execute(
-                    "CREATE INDEX IF NOT EXISTS idx_llm_requests_ts ON llm_requests(ts)"
-                )
-            finally:
-                conn.close()
-            self._global_rate_db_initialized.add(db_path)
-
-    def _acquire_rate_token_global(self, rpm: int) -> None:
-        """Cross-process request limiter using SQLite transactional token bucket."""
-        db_path = self.global_rate_db or ".llm_verifier_rate_limit.sqlite"
-        while True:
-            now = time.time()
-            try:
-                conn = sqlite3.connect(db_path, timeout=30.0, isolation_level=None)
-                try:
-                    conn.execute("BEGIN IMMEDIATE")
-                    cutoff = now - 60.0
-                    conn.execute("DELETE FROM llm_requests WHERE ts < ?", (cutoff,))
-                    count = int(conn.execute("SELECT COUNT(*) FROM llm_requests").fetchone()[0])
-                    if count < rpm:
-                        conn.execute("INSERT INTO llm_requests(ts) VALUES (?)", (now,))
-                        conn.execute("COMMIT")
-                        return
-                    oldest = conn.execute("SELECT MIN(ts) FROM llm_requests").fetchone()[0]
-                    conn.execute("COMMIT")
-                except Exception:
-                    try:
-                        conn.execute("ROLLBACK")
-                    except Exception:
-                        pass
-                    raise
-                finally:
-                    conn.close()
-            except Exception:
-                # Fallback to in-process limiter path on unexpected DB issues.
-                with self._rl_lock:
-                    mono_now = time.monotonic()
-                    while self._rl_times and (mono_now - self._rl_times[0]) >= 60.0:
-                        self._rl_times.popleft()
-                    if len(self._rl_times) < rpm:
-                        self._rl_times.append(mono_now)
-                        return
-                    wait_s = 60.0 - (mono_now - self._rl_times[0])
-                time.sleep(max(wait_s, 0.05))
-                continue
-
-            wait_s = 0.2
-            if oldest:
-                wait_s = max(0.05, 60.0 - (now - float(oldest)))
-            time.sleep(wait_s)
-
-    def _ensure_global_concurrency_semaphore(self) -> None:
-        """One global semaphore for all verifier instances in this process."""
-        with self._cfg_lock:
-            size = int(self.max_concurrent)
-            if self._concurrency_semaphore is None or self._concurrency_size != size:
-                self.__class__._concurrency_semaphore = Semaphore(size)
-                self.__class__._concurrency_size = size
-
     def _post_completion(self, endpoint: str, headers: Dict[str, str], payload: Dict[str, Any]) -> Dict[str, Any]:
-        # Old-style verifier behavior: single outbound request, no internal retries.
-        self._acquire_rate_token()
-        sem = self.__class__._concurrency_semaphore
-        if sem is None:
-            self._ensure_global_concurrency_semaphore()
-            sem = self.__class__._concurrency_semaphore
-        assert sem is not None
-
-        sem.acquire()
-        try:
-            response = requests.post(endpoint, headers=headers, json=payload, timeout=self.timeout_s)
-        finally:
-            sem.release()
-
-        response.raise_for_status()
-        return response.json()
+        # Single shared limiter path for all outbound chat-completion calls.
+        return self._shared_limiter.post_json(
+            endpoint=endpoint,
+            headers=headers,
+            payload=payload,
+            timeout=self.timeout_s,
+        )
 
     def verify(self, claim, evidence):
-        if not self.api_key:
+        if not self.api_keys:
             return {
                 "verdict": "neutral",
                 "confidence": 0.5,
@@ -470,19 +404,6 @@ class LLMVerifier:
 
         base = self.base_url.rstrip("/")
         endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
-        headers = {"Content-Type": "application/json"}
-        if self.provider == "sarvam":
-            sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
-            if sub_key:
-                headers["API-Subscription-Key"] = sub_key
-            else:
-                headers["Authorization"] = f"Bearer {self.api_key}"
-        else:
-            headers["Authorization"] = f"Bearer {self.api_key}"
-        if self.provider == "openrouter":
-            app_name = os.getenv("LLM_VERIFIER_APP_NAME", "rfcs")
-            headers["X-Title"] = app_name
-
         evidence_blob = self._build_evidence_snippets(evidence if isinstance(evidence, list) else [])
         is_multilingual_claim = self._looks_multilingual(str(claim))
         system_prompt = (
@@ -520,37 +441,62 @@ class LLMVerifier:
             payload["stream"] = False
             payload["reasoning_effort"] = os.getenv("SARVAM_REASONING_EFFORT", "medium")
 
-        try:
-            data = self._post_completion(endpoint=endpoint, headers=headers, payload=payload)
-            choice = data.get("choices", [{}])[0] if isinstance(data, dict) else {}
-            finish_reason = str(choice.get("finish_reason", "") or "").strip().lower()
-            content = str(choice.get("message", {}).get("content", "") or "").strip()
+        last_exc: Exception | None = None
+        for api_key in self._rotated_api_keys():
+            headers = {"Content-Type": "application/json"}
+            if self.provider == "sarvam":
+                sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
+                if sub_key:
+                    headers["API-Subscription-Key"] = sub_key
+                else:
+                    headers["Authorization"] = f"Bearer {api_key}"
+            else:
+                headers["Authorization"] = f"Bearer {api_key}"
+            if self.provider == "openrouter":
+                app_name = os.getenv("LLM_VERIFIER_APP_NAME", "rfcs")
+                headers["X-Title"] = app_name
 
-            # Keep finish_reason for diagnostics; old-style path does not re-issue requests.
-            _ = finish_reason
-
-            parsed = None
             try:
-                parsed = self._parse_json_from_content(content)
-            except Exception:
-                parsed = self._extract_plaintext_verdict_with_mode(
-                    content,
-                    allow_lenient=is_multilingual_claim,
+                data = self._post_completion(endpoint=endpoint, headers=headers, payload=payload)
+                choice = data.get("choices", [{}])[0] if isinstance(data, dict) else {}
+                finish_reason = str(choice.get("finish_reason", "") or "").strip().lower()
+                content = str(choice.get("message", {}).get("content", "") or "").strip()
+
+                # Keep finish_reason for diagnostics; old-style path does not re-issue requests.
+                _ = finish_reason
+
+                parsed = None
+                try:
+                    parsed = self._parse_json_from_content(content)
+                except Exception:
+                    parsed = self._extract_plaintext_verdict_with_mode(
+                        content,
+                        allow_lenient=is_multilingual_claim,
+                    )
+                verdict = self._normalize_verdict(str(parsed.get("verdict", "neutral")))
+                confidence = float(parsed.get("confidence", 0.5))
+                confidence = max(0.0, min(1.0, confidence))
+                reason = str(parsed.get("reason", "LLM verification complete"))
+                evidence_updates = self._normalize_evidence_updates(
+                    parsed.get("evidence_updates"),
+                    evidence if isinstance(evidence, list) else [],
                 )
-            verdict = self._normalize_verdict(str(parsed.get("verdict", "neutral")))
-            confidence = float(parsed.get("confidence", 0.5))
-            confidence = max(0.0, min(1.0, confidence))
-            reason = str(parsed.get("reason", "LLM verification complete"))
-            evidence_updates = self._normalize_evidence_updates(
-                parsed.get("evidence_updates"),
-                evidence if isinstance(evidence, list) else [],
-            )
-            return {
-                "verdict": verdict,
-                "confidence": confidence,
-                "reason": reason,
-                "evidence_updates": evidence_updates,
-            }
+                return {
+                    "verdict": verdict,
+                    "confidence": confidence,
+                    "reason": reason,
+                    "evidence_updates": evidence_updates,
+                }
+            except Exception as exc:
+                last_exc = exc
+                msg = str(exc)
+                retryable = ("429" in msg) or ("Too Many Requests" in msg) or ("401" in msg) or ("403" in msg)
+                if retryable:
+                    continue
+                break
+
+        try:
+            raise last_exc if last_exc is not None else RuntimeError("No API key available")
         except Exception as exc:
             return {
                 "verdict": "neutral",

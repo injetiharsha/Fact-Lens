@@ -42,6 +42,7 @@ class FactCheckingPipeline:
         """Initialize all pipeline components."""
         logger.info("Initializing fact-checking pipeline...")
         self.config = config
+        self.pipeline_language = str(config.get("pipeline_language", "en")).strip().lower()
         
         # Initialize components
         self.normalizer = ClaimNormalizer()
@@ -242,8 +243,66 @@ class FactCheckingPipeline:
         self.multi_phase7_strong_only_for_decision = os.getenv(
             "MULTI_PHASE7_STRONG_ONLY_DECISION", "0"
         ).strip().lower() in {"1", "true", "yes", "on"}
+        self.pipeline_lock_en = os.getenv("PIPELINE_LOCK_EN", "0").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        if self.pipeline_lock_en and self.pipeline_language.startswith("en"):
+            self._apply_en_lock_profile()
         
         logger.info("Pipeline initialized.")
+
+    def _apply_en_lock_profile(self) -> None:
+        """Force a stable EN runtime profile to avoid accidental config drift."""
+        try:
+            gatherer = self.evidence_gatherer
+            gatherer.source_mode = "staged_fallback"
+            stage_order_raw = os.getenv("EN_LOCK_STAGE_ORDER", "structured_api,scraping,web_search")
+            gatherer.stage_order = gatherer._parse_stage_order(stage_order_raw)  # pylint: disable=protected-access
+            gatherer.stage_min_results = max(1, int(os.getenv("EN_LOCK_STAGE_MIN_RESULTS", "6")))
+            gatherer.stage_parallel_within = os.getenv("EN_LOCK_STAGE_PARALLEL_WITHIN", "1").strip().lower() in {
+                "1",
+                "true",
+                "yes",
+                "on",
+            }
+            gatherer.enable_scraper_enrichment = os.getenv(
+                "EN_LOCK_ENABLE_SCRAPER_ENRICHMENT", "1"
+            ).strip().lower() in {"1", "true", "yes", "on"}
+            gatherer.scraper_enrich_max_results = max(
+                1, int(os.getenv("EN_LOCK_SCRAPER_ENRICH_MAX_RESULTS", str(gatherer.scraper_enrich_max_results)))
+            )
+        except Exception as exc:
+            logger.warning("EN lock profile: gatherer override failed: %s", exc)
+
+        try:
+            web = self.evidence_gatherer.web_search
+            web.max_queries_en = max(1, int(os.getenv("EN_LOCK_WEB_MAX_QUERIES_EN", str(web.max_queries_en))))
+            web.min_providers_before_stop = max(
+                1, int(os.getenv("EN_LOCK_WEB_MIN_PROVIDERS_BEFORE_STOP", str(web.min_providers_before_stop)))
+            )
+            web.provider_fail_fast = os.getenv("EN_LOCK_WEB_PROVIDER_FAIL_FAST", "1").strip().lower() in {
+                "1",
+                "true",
+                "yes",
+                "on",
+            }
+            if os.getenv("EN_LOCK_WEB_PROVIDER_ORDER", "").strip():
+                web.provider_order = web._resolve_provider_order()  # pylint: disable=protected-access
+            if os.getenv("EN_LOCK_WEB_ESCALATION_ORDER", "").strip():
+                web.escalation_provider_order = web._resolve_escalation_provider_order()  # pylint: disable=protected-access
+        except Exception as exc:
+            logger.warning("EN lock profile: web override failed: %s", exc)
+
+        logger.info(
+            "EN lock profile applied: source_mode=%s stage_order=%s stage_min_results=%s max_queries_en=%s",
+            getattr(self.evidence_gatherer, "source_mode", "unknown"),
+            getattr(self.evidence_gatherer, "stage_order", []),
+            getattr(self.evidence_gatherer, "stage_min_results", "unknown"),
+            getattr(self.evidence_gatherer.web_search, "max_queries_en", "unknown"),
+        )
     
     def analyze(
         self,

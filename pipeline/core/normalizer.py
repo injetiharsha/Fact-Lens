@@ -8,6 +8,8 @@ import threading
 import requests
 from typing import List
 
+from pipeline.core.llm_rate_limiter import SharedLLMRateLimiter
+
 logger = logging.getLogger(__name__)
 
 
@@ -25,6 +27,8 @@ class ClaimNormalizer:
     _query_rephrase_cache = {}
     _query_rephrase_cache_order = []
     _query_rephrase_cache_max = 512
+    _groq_rr_lock = threading.Lock()
+    _groq_rr_idx = 0
 
     def normalize(self, claim: str) -> str:
         """Normalize claim text - clean whitespace, punctuation, encoding."""
@@ -308,9 +312,13 @@ class ClaimNormalizer:
         headers = {"API-Subscription-Key": api_key, "Content-Type": "application/json"}
         try:
             timeout_s = max(5, int(os.getenv("SARVAM_TRANSLATE_TIMEOUT_SECONDS", "20")))
-            resp = requests.post(endpoint, headers=headers, json=payload, timeout=timeout_s)
-            resp.raise_for_status()
-            data = resp.json() if resp.content else {}
+            limiter = SharedLLMRateLimiter.from_env(provider="sarvam")
+            data = limiter.post_json(
+                endpoint=endpoint,
+                headers=headers,
+                payload=payload,
+                timeout=timeout_s,
+            )
             # Try common response shapes defensively.
             out = ""
             if isinstance(data, dict):
@@ -393,30 +401,34 @@ class ClaimNormalizer:
                 base_url = "https://api.openai.com/v1"
 
         if provider == "groq":
-            api_key = os.getenv("GROQ_API_KEY", "").strip()
+            raw = str(os.getenv("GROQ_API_KEYS", "") or "").strip()
+            api_keys = [k.strip() for k in raw.split(",") if k.strip()]
+            single = str(os.getenv("GROQ_API_KEY", "") or "").strip()
+            if single:
+                for tok in single.split(","):
+                    v = tok.strip()
+                    if v and v not in api_keys:
+                        api_keys.append(v)
+            if len(api_keys) > 1:
+                with self.__class__._groq_rr_lock:
+                    start = self.__class__._groq_rr_idx % len(api_keys)
+                    self.__class__._groq_rr_idx = start + 1
+                api_keys = api_keys[start:] + api_keys[:start]
         elif provider == "openrouter":
-            api_key = os.getenv("OPENROUTER_API_KEY", "").strip()
+            api_keys = [str(os.getenv("OPENROUTER_API_KEY", "") or "").strip()]
         elif provider == "sarvam":
-            api_key = (
-                os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
-                or os.getenv("SARVAM_API_KEY", "").strip()
-            )
+            api_keys = [
+                str(os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "") or "").strip()
+                or str(os.getenv("SARVAM_API_KEY", "") or "").strip()
+            ]
         else:
-            api_key = os.getenv("OPENAI_API_KEY", "").strip()
-        if not api_key:
+            api_keys = [str(os.getenv("OPENAI_API_KEY", "") or "").strip()]
+        api_keys = [k for k in api_keys if k]
+        if not api_keys:
             return ""
 
         base = base_url.rstrip("/")
         endpoint = base if base.endswith("/chat/completions") else f"{base}/chat/completions"
-        headers = {"Content-Type": "application/json"}
-        if provider == "sarvam":
-            sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
-            if sub_key:
-                headers["API-Subscription-Key"] = sub_key
-            else:
-                headers["Authorization"] = f"Bearer {api_key}"
-        else:
-            headers["Authorization"] = f"Bearer {api_key}"
         base_max_tokens = max(64, int(os.getenv("MULTI_QUERY_TRANSLATION_LLM_MAX_TOKENS", "256")))
         payload = {
             "model": model,
@@ -439,19 +451,33 @@ class ClaimNormalizer:
                 "TRANSLATION_SARVAM_REASONING_EFFORT",
                 os.getenv("SARVAM_REASONING_EFFORT", "medium"),
             )
+        limiter = SharedLLMRateLimiter.from_env(provider=provider)
         retries = max(0, int(os.getenv("MULTI_QUERY_TRANSLATION_LLM_RETRIES", "2")))
         backoff = max(0.1, float(os.getenv("MULTI_QUERY_TRANSLATION_LLM_BACKOFF_SEC", "0.6")))
         for attempt in range(retries + 1):
             try:
+                api_key = api_keys[attempt % len(api_keys)]
+                headers = {"Content-Type": "application/json"}
+                if provider == "sarvam":
+                    sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()
+                    if sub_key:
+                        headers["API-Subscription-Key"] = sub_key
+                    else:
+                        headers["Authorization"] = f"Bearer {api_key}"
+                else:
+                    headers["Authorization"] = f"Bearer {api_key}"
                 attempt_payload = dict(payload)
                 if provider == "sarvam" and attempt > 0:
                     # Sarvam can return reasoning_content with null content.
                     # Retry with lower reasoning effort and tighter completion budget.
                     attempt_payload["reasoning_effort"] = "low"
                     attempt_payload["max_tokens"] = max(64, min(base_max_tokens, 192))
-                resp = requests.post(endpoint, headers=headers, json=attempt_payload, timeout=20)
-                resp.raise_for_status()
-                data = resp.json() if resp.content else {}
+                data = limiter.post_json(
+                    endpoint=endpoint,
+                    headers=headers,
+                    payload=attempt_payload,
+                    timeout=20,
+                )
                 msg = (data.get("choices", [{}])[0].get("message", {}) or {})
                 raw_content = msg.get("content", "")
                 out = raw_content.strip() if isinstance(raw_content, str) else ""

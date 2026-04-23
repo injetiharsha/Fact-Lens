@@ -7,6 +7,7 @@ import os
 import sys
 import time
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -22,6 +23,7 @@ from pipeline.claim_pipeline import ClaimPipeline
 DEFAULT_CASES = ROOT / "tests/benchmarks/rfcs_benchmark_multi/benchmark_cases_multi.json"
 DEFAULT_OUTPUT = ROOT / "tests/benchmarks/rfcs_benchmark_multi_full_pipeline/parallel_like_results_multi.json"
 NUM_CLAIMS = 30
+CLAIM_PARALLEL_WORKERS = 3
 
 
 def _safe_print(text: str) -> None:
@@ -116,8 +118,8 @@ def process_claim(
 
 def run_benchmark(rows: List[Dict[str, Any]]) -> tuple[list[Dict[str, Any]], list[float], float]:
     start = time.time()
-    results: List[Dict[str, Any]] = []
-    claim_times: List[float] = []
+    results: List[Dict[str, Any]] = [{} for _ in rows]
+    claim_times: List[float] = [0.0 for _ in rows]
 
     # MULTI benchmark uses one shared multi-language checkpoint set.
     # Initialize once to avoid duplicating model memory per language.
@@ -126,12 +128,17 @@ def run_benchmark(rows: List[Dict[str, Any]]) -> tuple[list[Dict[str, Any]], lis
     pipeline = ClaimPipeline(_pipeline_config("hi"))
     print(f"Pipeline ready in {round(time.time() - init_start, 3)} sec", flush=True)
 
-    # Old-style benchmark flow: claim-level sequential processing.
-    # Inner pipeline stages retain their own async/parallel behavior.
-    for i, row in enumerate(rows):
-        out = process_claim(i, row, len(rows), pipeline)
-        results.append(out)
-        claim_times.append(float(out["time_seconds"]))
+    # Claim-level parallelism to reduce benchmark wall-time while preserving output order.
+    with ThreadPoolExecutor(max_workers=CLAIM_PARALLEL_WORKERS) as pool:
+        future_map = {
+            pool.submit(process_claim, i, row, len(rows), pipeline): i
+            for i, row in enumerate(rows)
+        }
+        for future in as_completed(future_map):
+            i = future_map[future]
+            out = future.result()
+            results[i] = out
+            claim_times[i] = float(out["time_seconds"])
 
     total_time = round(time.time() - start, 3)
     print("\n==============================")

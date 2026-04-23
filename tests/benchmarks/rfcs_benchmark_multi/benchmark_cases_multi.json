@@ -227,7 +227,7 @@
     "context": "ENVIRONMENT_CLIMATE",
     "type": "Factual",
     "claim": "தமிழ்நாட்டில் நீலகிரி மாவட்டத்தில் உள்ள காடுகள் UNESCO உலக பாரம்பரிய தளமாக அறிவிக்கப்பட்டுள்ளன.",
-    "expected": "refute"
+    "expected": "support"
   },
   {
     "id": 54,

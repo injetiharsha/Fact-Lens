@@ -62,6 +62,12 @@ class EvidenceGatherer:
         self.live_progress = _env_bool("EVIDENCE_LIVE_PROGRESS", False)
         self.enable_cache = _env_bool("EVIDENCE_GATHER_CACHE_ENABLE", True)
         self.cache_max_entries = _env_int("EVIDENCE_GATHER_CACHE_MAX_ENTRIES", 256, minimum=16)
+        self.source_mode = str(os.getenv("EVIDENCE_SOURCE_MODE", "parallel")).strip().lower()
+        self.stage_min_results = _env_int("EVIDENCE_STAGE_MIN_RESULTS", 6, minimum=1)
+        self.stage_parallel_within = _env_bool("EVIDENCE_STAGE_PARALLEL_WITHIN", True)
+        self.stage_order = self._parse_stage_order(
+            os.getenv("EVIDENCE_STAGE_ORDER", "structured_api,web_search,scraping")
+        )
         self._gather_cache: Dict[str, List[Dict]] = {}
         self._gather_cache_order: List[str] = []
         self.last_telemetry: Dict[str, Any] = {}
@@ -133,7 +139,18 @@ class EvidenceGatherer:
         deduped_sources = self._dedupe_sources(sources)
         self._emit(f"deduped_sources={len(deduped_sources)}")
 
-        if self.dag_enabled:
+        if self.source_mode in {"staged", "fallback", "staged_fallback"}:
+            self._emit(
+                f"mode=staged_fallback order={','.join(self.stage_order)} min_results={self.stage_min_results}"
+            )
+            all_evidence = self._gather_staged_fallback(
+                claim=claim,
+                queries=queries,
+                deduped_sources=deduped_sources,
+                language=language,
+                enrichment_enabled=enrichment_enabled,
+            )
+        elif self.dag_enabled:
             self._emit(f"mode=dag workers={self.dag_workers}")
             all_evidence = self._gather_via_dag(
                 claim=claim,
@@ -194,6 +211,20 @@ class EvidenceGatherer:
         # Return top N
         if self.enable_cache:
             self._store_cache(cache_key, out)
+        return out
+
+    def _parse_stage_order(self, raw: str) -> List[str]:
+        allowed = {"structured_api", "web_search", "scraping"}
+        out: List[str] = []
+        for tok in str(raw or "").split(","):
+            stage = tok.strip().lower()
+            if stage in allowed and stage not in out:
+                out.append(stage)
+        if not out:
+            out = ["structured_api", "web_search", "scraping"]
+        for stage in ["structured_api", "web_search", "scraping"]:
+            if stage not in out:
+                out.append(stage)
         return out
 
     def get_last_telemetry(self) -> Dict[str, Any]:
@@ -296,6 +327,83 @@ class EvidenceGatherer:
                 len(scraped),
                 len(normalized_scraped),
             )
+        return all_evidence
+
+    def _gather_staged_fallback(
+        self,
+        claim: str,
+        queries: List[str],
+        deduped_sources: List[Dict[str, Any]],
+        language: str,
+        enrichment_enabled: bool,
+    ) -> List[Dict[str, Any]]:
+        all_evidence: List[Dict[str, Any]] = []
+        stage_sources: Dict[str, List[Dict[str, Any]]] = {"structured_api": [], "web_search": [], "scraping": []}
+        for source in deduped_sources:
+            st = str(source.get("type") or "").strip().lower()
+            if st in stage_sources:
+                stage_sources[st].append(source)
+
+        for stage in self.stage_order:
+            sources = stage_sources.get(stage, [])
+            if not sources:
+                self._emit(f"stage_skip stage={stage} reason=no_sources")
+                continue
+
+            stage_rows: List[Dict[str, Any]] = []
+            if self.stage_parallel_within and len(sources) > 1:
+                workers = min(self.source_workers, len(sources))
+                self._emit(f"stage_start stage={stage} mode=parallel workers={workers} sources={len(sources)}")
+                with ThreadPoolExecutor(max_workers=workers) as pool:
+                    futures = [
+                        pool.submit(self._gather_one_source, source, claim, queries, language)
+                        for source in sources
+                    ]
+                    for future in as_completed(futures):
+                        try:
+                            rows = future.result() or []
+                            stage_rows.extend(rows)
+                        except Exception as exc:
+                            logger.error("Staged source gather failed (stage=%s): %s", stage, exc)
+                            self._emit(f"stage_source_error stage={stage} err={exc}")
+            else:
+                self._emit(f"stage_start stage={stage} mode=sequential sources={len(sources)}")
+                for source in sources:
+                    try:
+                        rows = self._gather_one_source(source, claim, queries, language) or []
+                        stage_rows.extend(rows)
+                    except Exception as exc:
+                        logger.error("Staged source gather failed (stage=%s): %s", stage, exc)
+                        self._emit(f"stage_source_error stage={stage} err={exc}")
+
+            all_evidence.extend(stage_rows)
+
+            # Scraping stage includes URL enrichment from gathered rows so far.
+            if stage == "scraping" and enrichment_enabled:
+                discovered_urls = self._collect_urls(all_evidence)
+                self._emit(f"stage_scrape_enrichment stage={stage} urls={len(discovered_urls)}")
+                if discovered_urls:
+                    scraped = self.scraper.scrape_urls(
+                        discovered_urls,
+                        claim=claim,
+                        max_results=self.scraper_enrich_max_results,
+                    )
+                    normalized_scraped = self._normalize_evidence_list(scraped, default_type="scraping")
+                    all_evidence.extend(normalized_scraped)
+                    self._emit(
+                        f"stage_scrape_enrichment_done raw={len(scraped)} normalized={len(normalized_scraped)}"
+                    )
+
+            unique_count = len(self.aggregator.deduplicate(self._dedupe_canonical_evidence(all_evidence)))
+            self._emit(
+                f"stage_done stage={stage} stage_items={len(stage_rows)} total={len(all_evidence)} unique={unique_count}"
+            )
+            if unique_count >= self.stage_min_results:
+                self._emit(
+                    f"stage_stop reason=threshold_reached stage={stage} unique={unique_count} threshold={self.stage_min_results}"
+                )
+                break
+
         return all_evidence
 
     def _gather_via_dag(

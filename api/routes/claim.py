@@ -15,6 +15,7 @@ from api.schemas import (
     PDFAnalysisResponse,
 )
 from api.runtime_limits import GlobalRequestLimiter
+from pipeline.core.llm_rate_limiter import SharedLLMRateLimiter
 
 logger = logging.getLogger(__name__)
 
@@ -155,6 +156,7 @@ def _pipeline_config(language: str, mode: str = "claim") -> dict:
         checkability_key = "PDF_ENABLE_DOCUMENT_CHECKABILITY_FILTER"
 
     return {
+        "pipeline_language": str(language or "en").strip().lower(),
         "claim_checkability_checkpoint": _select_checkpoint("checkability", language),
         "context_checkpoint": _select_checkpoint("context", language),
         "relevance_checkpoint": _select_checkpoint("relevance", language),
@@ -269,7 +271,15 @@ def _llm_translate_to_english(text: str) -> str:
 
     api_key = None
     if provider == "groq":
-        api_key = _env_or_file("GROQ_API_KEY")
+        groq_raw = str(_env_or_file("GROQ_API_KEYS", "") or "").strip()
+        groq_keys = [k.strip() for k in groq_raw.split(",") if k.strip()]
+        groq_single = str(_env_or_file("GROQ_API_KEY", "") or "").strip()
+        if groq_single:
+            for tok in groq_single.split(","):
+                v = tok.strip()
+                if v and v not in groq_keys:
+                    groq_keys.append(v)
+        api_key = groq_keys[0] if groq_keys else ""
     elif provider == "openrouter":
         api_key = _env_or_file("OPENROUTER_API_KEY")
     elif provider == "sarvam":
@@ -310,9 +320,13 @@ def _llm_translate_to_english(text: str) -> str:
         payload["stream"] = False
         payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
     try:
-        resp = requests.post(endpoint, headers=headers, json=payload, timeout=25)
-        resp.raise_for_status()
-        data = resp.json() if resp.content else {}
+        limiter = SharedLLMRateLimiter.from_env(provider=provider)
+        data = limiter.post_json(
+            endpoint=endpoint,
+            headers=headers,
+            payload=payload,
+            timeout=25,
+        )
         out = str(
             (data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")
         ).strip()
@@ -373,7 +387,15 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
             base_url = "https://api.openai.com/v1"
 
     if provider == "groq":
-        api_key = _env_or_file("GROQ_API_KEY")
+        groq_raw = str(_env_or_file("GROQ_API_KEYS", "") or "").strip()
+        groq_keys = [k.strip() for k in groq_raw.split(",") if k.strip()]
+        groq_single = str(_env_or_file("GROQ_API_KEY", "") or "").strip()
+        if groq_single:
+            for tok in groq_single.split(","):
+                v = tok.strip()
+                if v and v not in groq_keys:
+                    groq_keys.append(v)
+        api_key = groq_keys[0] if groq_keys else ""
     elif provider == "openrouter":
         api_key = _env_or_file("OPENROUTER_API_KEY")
     elif provider == "sarvam":
@@ -414,9 +436,13 @@ def _llm_pick_best_claim(candidates: list[str], language: str = "en") -> str:
         payload["stream"] = False
         payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
     try:
-        resp = requests.post(endpoint, headers=headers, json=payload, timeout=12)
-        resp.raise_for_status()
-        data = resp.json() if resp.content else {}
+        limiter = SharedLLMRateLimiter.from_env(provider=provider)
+        data = limiter.post_json(
+            endpoint=endpoint,
+            headers=headers,
+            payload=payload,
+            timeout=12,
+        )
         out = str((data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")).strip()
         m = re.search(r"\b(\d+)\b", out)
         if not m:
@@ -449,7 +475,15 @@ def _llm_summarize_claim_text(text: str, language: str = "en") -> str:
             base_url = "https://api.openai.com/v1"
 
     if provider == "groq":
-        api_key = _env_or_file("GROQ_API_KEY")
+        groq_raw = str(_env_or_file("GROQ_API_KEYS", "") or "").strip()
+        groq_keys = [k.strip() for k in groq_raw.split(",") if k.strip()]
+        groq_single = str(_env_or_file("GROQ_API_KEY", "") or "").strip()
+        if groq_single:
+            for tok in groq_single.split(","):
+                v = tok.strip()
+                if v and v not in groq_keys:
+                    groq_keys.append(v)
+        api_key = groq_keys[0] if groq_keys else ""
     elif provider == "openrouter":
         api_key = _env_or_file("OPENROUTER_API_KEY")
     elif provider == "sarvam":
@@ -491,9 +525,13 @@ def _llm_summarize_claim_text(text: str, language: str = "en") -> str:
         payload["stream"] = False
         payload["reasoning_effort"] = _env_or_file("SARVAM_REASONING_EFFORT", "medium")
     try:
-        resp = requests.post(endpoint, headers=headers, json=payload, timeout=16)
-        resp.raise_for_status()
-        data = resp.json() if resp.content else {}
+        limiter = SharedLLMRateLimiter.from_env(provider=provider)
+        data = limiter.post_json(
+            endpoint=endpoint,
+            headers=headers,
+            payload=payload,
+            timeout=16,
+        )
         out = str((data.get("choices", [{}])[0].get("message", {}) or {}).get("content", "")).strip()
         out = re.sub(r"^\s*['\"`]+|['\"`]+\s*$", "", out).strip()
         out = re.sub(r"\s+", " ", out)

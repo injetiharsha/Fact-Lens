@@ -1,4 +1,4 @@
-"""Checkability classification model wrapper."""
+﻿"""Checkability classification model wrapper."""
 
 import logging
 from typing import Tuple
@@ -26,10 +26,10 @@ class CheckabilityClassifier:
         self.device = "cpu"
         self.id2label = {}
         self.checkable_ids = set()
-        
+
         if model_path:
             self._load_model()
-    
+
     def _load_model(self):
         """Load trained model from checkpoint."""
         ckpt_path = Path(str(self.model_path))
@@ -82,38 +82,38 @@ class CheckabilityClassifier:
         # For meme/image text, model-based checkability should still run.
         if (self.model is None) and len(claim.split()) < MIN_CLAIM_WORDS:
             return False, self.UNCHECKABLE_REASONS["too_short"]
-        
+
         if claim.strip().endswith('?'):
             return False, self.UNCHECKABLE_REASONS["question"]
-        
+
         # Opinion indicators
-        opinion_words = ['i think', 'i believe', 'in my opinion', 'i feel', 
+        opinion_words = ['i think', 'i believe', 'in my opinion', 'i feel',
                          'should', 'ought to', 'favorite']
         if any(opt in claim.lower() for opt in opinion_words):
             return False, self.UNCHECKABLE_REASONS["opinion"]
-        
+
         # If model available, use it for classification
         if self.model:
             return self._classify_with_model(claim)
-        
+
         # Fallback: assume checkable if passed heuristics
         return True, ""
-    
+
     def _classify_with_model(self, claim: str) -> Tuple[bool, str]:
         """Use trained model for checkability classification."""
         import torch
-        
+
         inputs = self.tokenizer(claim, return_tensors="pt", truncation=True, max_length=512)
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
-        
+
         with torch.no_grad():
             outputs = self.model(**inputs)
             probs = torch.softmax(outputs.logits, dim=-1)
             predicted = torch.argmax(probs, dim=-1).item()
             confidence = probs[0][predicted].item()
-        
+
         label = str(self.id2label.get(predicted, f"LABEL_{predicted}"))
         if predicted not in self.checkable_ids:
             return False, f"Model label={label} (conf={confidence:.2f})"
-        
+
         return True, ""
