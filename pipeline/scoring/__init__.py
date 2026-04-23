@@ -124,6 +124,57 @@ TEMPORAL_DECAY = {
 
 class EvidenceScorer:
     """Calculate composite evidence scores."""
+
+    def __init__(self) -> None:
+        self.scoring_mode = str(os.getenv("SCORING_MODE", "heuristic")).strip().lower()
+        self.research_alpha = float(os.getenv("SCORING_RESEARCH_ALPHA", "0.50"))
+        self.research_beta = float(os.getenv("SCORING_RESEARCH_BETA", "0.30"))
+        self.research_gamma = float(os.getenv("SCORING_RESEARCH_GAMMA", "0.20"))
+
+    def _research_weight(self, evidence: Dict) -> float:
+        """Research-mode score: alpha*relevance + beta*stance_conf + gamma*source_trust."""
+        relevance = max(0.0, min(1.0, float(evidence.get("relevance", 0.0) or 0.0)))
+        source_trust = max(0.0, min(1.0, float(self._get_credibility(evidence) or 0.0)))
+
+        stance_conf = evidence.get("stance_confidence")
+        if stance_conf is None:
+            probs = evidence.get("stance_probs") or {}
+            try:
+                stance_conf = max(
+                    float(probs.get("support", 0.0) or 0.0),
+                    float(probs.get("refute", 0.0) or 0.0),
+                    float(probs.get("neutral", 0.0) or 0.0),
+                )
+            except Exception:
+                stance_conf = 0.0
+        stance_conf = max(0.0, min(1.0, float(stance_conf or 0.0)))
+
+        alpha = max(0.0, float(self.research_alpha))
+        beta = max(0.0, float(self.research_beta))
+        gamma = max(0.0, float(self.research_gamma))
+        denom = alpha + beta + gamma
+        if denom <= 0:
+            alpha, beta, gamma = 0.5, 0.3, 0.2
+            denom = 1.0
+        alpha, beta, gamma = alpha / denom, beta / denom, gamma / denom
+
+        weight = (alpha * relevance) + (beta * stance_conf) + (gamma * source_trust)
+        evidence["research_score_components"] = {
+            "alpha": alpha,
+            "beta": beta,
+            "gamma": gamma,
+            "relevance": relevance,
+            "stance_confidence": stance_conf,
+            "source_trust": source_trust,
+            "mode": "research",
+        }
+        # Keep fields for downstream compatibility/telemetry.
+        evidence["credibility"] = source_trust
+        evidence["temporal_weight"] = 1.0
+        evidence["source_tier_multiplier"] = 1.0
+        evidence["recency_bonus"] = 1.0
+        evidence["evidence_weight"] = max(0.0, min(1.0, weight))
+        return evidence["evidence_weight"]
     
     def calculate_weight(self, evidence: Dict, recency_policy: Dict | None = None) -> float:
         """
@@ -135,6 +186,9 @@ class EvidenceScorer:
         Returns:
             Evidence weight 0.0-1.0
         """
+        if self.scoring_mode == "research":
+            return self._research_weight(evidence)
+
         relevance = evidence.get("relevance", 0.5)
         credibility = self._get_credibility(evidence)
         temporal = self._get_temporal_weight(evidence, recency_policy=recency_policy)

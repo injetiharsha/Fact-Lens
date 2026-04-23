@@ -1,0 +1,66 @@
+﻿{
+  "base_thesis_v1": {
+    "description": "Frozen thesis baseline: fixed staged retrieval, no recovery loops, no Tavily boost, heuristic scoring.",
+    "env": {
+      "PIPELINE_LOCK_EN": "1",
+      "ENABLE_LLM_VERIFIER": "0",
+      "EVIDENCE_SOURCE_MODE": "staged_fallback",
+      "EVIDENCE_STAGE_ORDER": "structured_api,web_search,scraping",
+      "EVIDENCE_STAGE_MIN_RESULTS": "6",
+      "WEB_SEARCH_ENABLE_DDG": "1",
+      "WEB_SEARCH_ENABLE_SERPAPI": "0",
+      "WEB_SEARCH_ENABLE_TAVILY": "0",
+      "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE": "0",
+      "IMAGE_ENABLE_TAVILY_BOOST": "0",
+      "NEUTRAL_RECOVERY_ENABLE": "0",
+      "NEUTRAL_QUALITY_GUARD_ENABLE": "0",
+      "IMAGE_MULTI_EN_FALLBACK_ENABLE": "0",
+      "ENABLE_POLARITY_CONFLICT_ADJUST": "0",
+      "MULTI_PHASE1_GUARD_ENABLE": "0",
+      "MULTI_PHASE3_TIERS_ENABLE": "0",
+      "MULTI_PHASE4_LANE_WEIGHT_ENABLE": "0",
+      "MULTI_PHASE5_GRAY_ZONE_ENABLE": "0",
+      "MULTI_PHASE7_DECISIVE_VERDICT_ENABLE": "0",
+      "SCORING_MODE": "heuristic"
+    }
+  },
+  "secondary_api_search_v1": {
+    "description": "Secondary improvement: enable paid/providers + recovery + verifier for stronger live retrieval.",
+    "env": {
+      "PIPELINE_LOCK_EN": "0",
+      "ENABLE_LLM_VERIFIER": "1",
+      "WEB_SEARCH_ENABLE_DDG": "1",
+      "WEB_SEARCH_ENABLE_SERPAPI": "1",
+      "WEB_SEARCH_ENABLE_TAVILY": "1",
+      "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE": "1",
+      "IMAGE_ENABLE_TAVILY_BOOST": "1",
+      "NEUTRAL_RECOVERY_ENABLE": "1",
+      "NEUTRAL_QUALITY_GUARD_ENABLE": "1",
+      "IMAGE_MULTI_EN_FALLBACK_ENABLE": "1",
+      "ENABLE_POLARITY_CONFLICT_ADJUST": "1",
+      "MULTI_PHASE1_GUARD_ENABLE": "1",
+      "MULTI_PHASE3_TIERS_ENABLE": "1",
+      "MULTI_PHASE4_LANE_WEIGHT_ENABLE": "1",
+      "MULTI_PHASE5_GRAY_ZONE_ENABLE": "1",
+      "MULTI_PHASE7_DECISIVE_VERDICT_ENABLE": "1",
+      "SCORING_MODE": "heuristic"
+    }
+  },
+  "research_score_v1": {
+    "description": "Same frozen baseline, but research scoring formula enabled.",
+    "env": {
+      "PIPELINE_LOCK_EN": "1",
+      "ENABLE_LLM_VERIFIER": "0",
+      "WEB_SEARCH_ENABLE_DDG": "1",
+      "WEB_SEARCH_ENABLE_SERPAPI": "0",
+      "WEB_SEARCH_ENABLE_TAVILY": "0",
+      "MULTI_NEUTRAL_TAVILY_BOOST_ENABLE": "0",
+      "NEUTRAL_RECOVERY_ENABLE": "0",
+      "IMAGE_MULTI_EN_FALLBACK_ENABLE": "0",
+      "SCORING_MODE": "research",
+      "SCORING_RESEARCH_ALPHA": "0.50",
+      "SCORING_RESEARCH_BETA": "0.30",
+      "SCORING_RESEARCH_GAMMA": "0.20"
+    }
+  }
+}
