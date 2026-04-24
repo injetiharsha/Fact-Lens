@@ -57,6 +57,17 @@ A multi-model, multi-language pipeline for verifying claims using contextual evi
    .venv\Scripts\python api/main.py
    ```
 
+## Locked Pipeline (Current Default)
+
+This repository uses a locked EN/MULTI runtime configuration for reproducible research runs:
+
+- LLM verifier: ON (`ENABLE_LLM_VERIFIER=1`)
+- Search providers: DDG ON, Tavily OFF, SerpAPI OFF
+- EN/MULTI checkpoints are pinned in `.env` (checkability, context, relevance, stance)
+- KN/ML checkability lenience enabled: `CHECKABILITY_BYPASS_LANGS=kn,ml`
+
+Canonical lock specification is documented in [`docs/LOCKED_PIPELINES.md`](docs/LOCKED_PIPELINES.md).
+
 ## API Usage
 
 ```bash
