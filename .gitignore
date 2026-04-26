@@ -59,6 +59,8 @@ old_checkpoints/
 *.swp
 *.swo
 *~
+node_modules/
+**/node_modules/
 
 # OS
 .DS_Store
