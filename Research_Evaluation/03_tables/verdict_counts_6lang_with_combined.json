@@ -1,41 +1,32 @@
 {
-  "generated_at": "2026-04-25T01:22:08.648897",
-  "inputs": {
-    "en": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_full_pipeline\\parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json",
-    "hi": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_hi_v2_from_252_rerun.json",
-    "ta": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_ta_v2_from_252.json",
-    "te": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_te_v2_from_252.json",
-    "kn": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_kn_v2_from_252_nock.json",
-    "ml": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_ml_v2_from_252_nock.json"
-  },
   "languages": {
     "en": {
-      "total_claims": 35,
+      "total_claims": 30,
       "expected_counts": {
-        "support": 12,
-        "refute": 12,
-        "neutral": 11
+        "support": 16,
+        "refute": 11,
+        "neutral": 3
       },
       "predicted_counts": {
-        "support": 10,
-        "refute": 6,
+        "support": 9,
+        "refute": 2,
         "neutral": 19
       },
       "confusion_matrix": {
         "support": {
-          "support": 10,
+          "support": 8,
           "refute": 0,
-          "neutral": 2
+          "neutral": 8
         },
         "refute": {
           "support": 0,
-          "refute": 6,
-          "neutral": 6
+          "refute": 2,
+          "neutral": 9
         },
         "neutral": {
-          "support": 0,
+          "support": 1,
           "refute": 0,
-          "neutral": 11
+          "neutral": 2
         }
       }
     },
@@ -191,64 +182,32 @@
     }
   },
   "combined": {
-    "total_claims": 210,
+    "total_claims": 205,
     "expected_counts": {
-      "support": 73,
-      "refute": 72,
-      "neutral": 65
+      "support": 77,
+      "refute": 71,
+      "neutral": 57
     },
     "predicted_counts": {
-      "support": 67,
-      "refute": 57,
+      "support": 66,
+      "refute": 53,
       "neutral": 86
     },
     "confusion_matrix": {
       "support": {
-        "support": 63,
+        "support": 61,
         "refute": 2,
-        "neutral": 8
+        "neutral": 14
       },
       "refute": {
         "support": 3,
-        "refute": 51,
-        "neutral": 18
+        "refute": 47,
+        "neutral": 21
       },
       "neutral": {
-        "support": 1,
+        "support": 2,
         "refute": 4,
-        "neutral": 60
-      }
-    },
-    "predicted_by_language": {
-      "en": {
-        "support": 10,
-        "refute": 6,
-        "neutral": 19
-      },
-      "hi": {
-        "support": 10,
-        "refute": 6,
-        "neutral": 19
-      },
-      "kn": {
-        "support": 13,
-        "refute": 8,
-        "neutral": 14
-      },
-      "ml": {
-        "support": 13,
-        "refute": 12,
-        "neutral": 10
-      },
-      "ta": {
-        "support": 12,
-        "refute": 12,
-        "neutral": 11
-      },
-      "te": {
-        "support": 9,
-        "refute": 13,
-        "neutral": 13
+        "neutral": 51
       }
     }
   }
