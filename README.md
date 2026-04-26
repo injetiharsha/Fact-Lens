@@ -157,8 +157,7 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
 - Canonical research evaluation package (latest only):
   - `Research_Evaluation/`
 - This file is the canonical reference for:
-  - why old Stage5/6 is not the default path,
-  - what failed in prior plans,
+  - current project scope and locked runtime behavior,
   - current retrieval bottlenecks and project-level causes.
 
 ## Runtime Notes
