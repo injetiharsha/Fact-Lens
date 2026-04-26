@@ -154,8 +154,8 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
 
 ## Architecture Decision Record
 
-- Consolidated old-vs-new architecture and failure root-cause analysis:
-  - `ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md`
+- Canonical research evaluation package (latest only):
+  - `Research_Evaluation/`
 - This file is the canonical reference for:
   - why old Stage5/6 is not the default path,
   - what failed in prior plans,

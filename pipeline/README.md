@@ -39,8 +39,8 @@ Restructured claim/document analysis pipeline.
 
 ## Root-Cause Record
 
-- Architecture comparison and failure root-cause summary:
-  - `../ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md`
+- Canonical evaluation package:
+  - `../Research_Evaluation/`
 
 ## Scope Snapshot
 - Path: `pipeline/README.md`.

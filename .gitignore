@@ -96,6 +96,10 @@ model_training_forensics_*/
 llm_pre_post_focus/
 tests/benchmarks/research_report_bundle/
 tests/benchmarks/research_submission_set_*/
+tests/benchmarks/rfcs_benchmark_mix10/
+tests/benchmarks/rfcs_benchmark_multi/parse_root_analysis_10.json
+tests/benchmarks/rfcs_benchmark_multi/llm_parse_rootcase.json
+ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md
 temp_*.py
 *.tmp.json
 tmp_arch_doc/
