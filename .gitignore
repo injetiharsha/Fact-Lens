@@ -88,6 +88,14 @@ tests/llm_toggle/**/test_llm_*.json
 tests/llm_toggle/**/results.json
 test_llm_off.json
 test_llm_on.json
+academic_evaluation_final_*/
+research_plots_final/
+research_plots_advanced_*/
+model_audit_*/
+model_training_forensics_*/
+llm_pre_post_focus/
+tests/benchmarks/research_report_bundle/
+tests/benchmarks/research_submission_set_*/
 temp_*.py
 *.tmp.json
 tmp_arch_doc/
