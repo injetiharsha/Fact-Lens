@@ -6,6 +6,8 @@ import os
 import sqlite3
 import time
 import hashlib
+import json
+from datetime import datetime, timezone
 from collections import deque
 from threading import Lock, Semaphore
 from typing import Any, Dict
@@ -40,12 +42,16 @@ class SharedLLMRateLimiter:
         global_rate_limit: bool,
         global_rate_db: str,
         cooldown_seconds: float = 3.0,
+        provider: str = "",
     ) -> None:
         self.requests_per_minute = max(0, int(requests_per_minute))
         self.max_concurrent = max(1, int(max_concurrent))
         self.global_rate_limit = bool(global_rate_limit)
         self.global_rate_db = self._resolve_global_rate_db_path(global_rate_db)
         self.cooldown_seconds = max(0.0, float(cooldown_seconds))
+        self.provider = str(provider or "").strip().lower()
+        self.audit_enabled = _env_truthy("LLM_SHARED_AUDIT_ENABLE", True)
+        self.run_id = self._resolve_run_id()
         self._ensure_global_rate_db()
         self._ensure_global_concurrency_semaphore()
 
@@ -105,6 +111,7 @@ class SharedLLMRateLimiter:
             global_rate_limit=global_limit,
             global_rate_db=db_path,
             cooldown_seconds=cooldown,
+            provider=provider_l,
         )
 
     def _resolve_global_rate_db_path(self, raw_path: str) -> str:
@@ -150,7 +157,7 @@ class SharedLLMRateLimiter:
             time.sleep(max(wait_s, 0.05))
 
     def _ensure_global_rate_db(self) -> None:
-        if not self.global_rate_limit:
+        if (not self.global_rate_limit) and (not self.audit_enabled):
             return
         db_path = self.global_rate_db
         with self._global_rate_db_init_lock:
@@ -169,6 +176,28 @@ class SharedLLMRateLimiter:
                 )
                 conn.execute(
                     "CREATE INDEX IF NOT EXISTS idx_llm_requests_keyed_bucket_ts ON llm_requests_keyed(bucket, ts)"
+                )
+                conn.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS llm_requests_audit (
+                        ts REAL NOT NULL,
+                        ts_utc TEXT NOT NULL,
+                        run_id TEXT NOT NULL,
+                        pid INTEGER NOT NULL,
+                        provider TEXT NOT NULL,
+                        bucket TEXT NOT NULL,
+                        event TEXT NOT NULL,
+                        status TEXT NOT NULL,
+                        endpoint TEXT NOT NULL,
+                        detail TEXT NOT NULL
+                    )
+                    """
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_llm_audit_run_ts ON llm_requests_audit(run_id, ts)"
+                )
+                conn.execute(
+                    "CREATE INDEX IF NOT EXISTS idx_llm_audit_ts ON llm_requests_audit(ts)"
                 )
             finally:
                 conn.close()
@@ -196,6 +225,13 @@ class SharedLLMRateLimiter:
                             (bucket, now),
                         )
                         conn.execute("COMMIT")
+                        self._append_audit(
+                            bucket=bucket,
+                            event="rate_token",
+                            status="granted",
+                            endpoint="",
+                            detail=f"global=1 rpm={rpm}",
+                        )
                         return
                     oldest = conn.execute(
                         "SELECT MIN(ts) FROM llm_requests_keyed WHERE bucket = ?",
@@ -226,6 +262,13 @@ class SharedLLMRateLimiter:
             wait_s = 0.2
             if oldest:
                 wait_s = max(0.05, 60.0 - (now - float(oldest)))
+            self._append_audit(
+                bucket=bucket,
+                event="rate_token",
+                status="waiting",
+                endpoint="",
+                detail=f"global=1 rpm={rpm} wait_s={round(wait_s,3)}",
+            )
             time.sleep(wait_s)
 
     def _ensure_global_concurrency_semaphore(self) -> None:
@@ -253,19 +296,101 @@ class SharedLLMRateLimiter:
 
         sem.acquire()
         try:
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="start",
+                endpoint=endpoint,
+                detail="post_json",
+            )
             response = requests.post(endpoint, headers=headers, json=payload, timeout=timeout)
         except Exception as exc:
             msg = str(exc)
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="error",
+                endpoint=endpoint,
+                detail=msg[:512],
+            )
             if "429" in msg or "Too Many Requests" in msg:
                 self._note_rate_limited()
+                self._append_audit(
+                    bucket=bucket,
+                    event="request",
+                    status="rate_limited",
+                    endpoint=endpoint,
+                    detail=msg[:512],
+                )
             raise
         finally:
             sem.release()
 
         if response.status_code == 429:
             self._note_rate_limited()
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="rate_limited",
+                endpoint=endpoint,
+                detail="http_429",
+            )
+        else:
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="ok",
+                endpoint=endpoint,
+                detail=f"http_{response.status_code}",
+            )
         response.raise_for_status()
         return response.json() if response.content else {}
+
+    def run_with_limits(self, headers: Dict[str, str], fn):
+        """
+        Execute an arbitrary outbound call under shared rate/concurrency limits.
+        Useful for SDK clients that don't go through requests.post directly.
+        """
+        self._wait_for_cooldown()
+        bucket = self._bucket_from_headers(headers or {})
+        self._acquire_rate_token(bucket=bucket)
+        sem = self.__class__._concurrency_semaphore
+        if sem is None:
+            self._ensure_global_concurrency_semaphore()
+            sem = self.__class__._concurrency_semaphore
+        assert sem is not None
+
+        sem.acquire()
+        try:
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="start",
+                endpoint="run_with_limits",
+                detail=getattr(fn, "__name__", "callable"),
+            )
+            return fn()
+        except Exception as exc:
+            msg = str(exc)
+            self._append_audit(
+                bucket=bucket,
+                event="request",
+                status="error",
+                endpoint="run_with_limits",
+                detail=msg[:512],
+            )
+            if "429" in msg or "Too Many Requests" in msg:
+                self._note_rate_limited()
+                self._append_audit(
+                    bucket=bucket,
+                    event="request",
+                    status="rate_limited",
+                    endpoint="run_with_limits",
+                    detail=msg[:512],
+                )
+            raise
+        finally:
+            sem.release()
 
     def _bucket_from_headers(self, headers: Dict[str, str]) -> str:
         key_raw = ""
@@ -279,3 +404,69 @@ class SharedLLMRateLimiter:
             return "no_key"
         digest = hashlib.sha256(key_raw.encode("utf-8")).hexdigest()[:16]
         return f"key:{digest}"
+
+    def _resolve_run_id(self) -> str:
+        for key in ("THESIS_RUN_ID", "RUN_ID", "BENCHMARK_RUN_ID", "EXPERIMENT_RUN_ID"):
+            value = str(os.getenv(key, "") or "").strip()
+            if value:
+                return value
+        ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+        return f"adhoc_{ts}_pid{os.getpid()}"
+
+    def _append_audit(self, bucket: str, event: str, status: str, endpoint: str, detail: str) -> None:
+        if not self.audit_enabled:
+            return
+        try:
+            self._ensure_global_rate_db()
+            now = time.time()
+            ts_utc = datetime.fromtimestamp(now, tz=timezone.utc).isoformat()
+            conn = sqlite3.connect(self.global_rate_db, timeout=30.0, isolation_level=None)
+            try:
+                conn.execute(
+                    """
+                    INSERT INTO llm_requests_audit
+                    (ts, ts_utc, run_id, pid, provider, bucket, event, status, endpoint, detail)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        float(now),
+                        str(ts_utc),
+                        str(self.run_id),
+                        int(os.getpid()),
+                        str(self.provider),
+                        str(bucket or ""),
+                        str(event or ""),
+                        str(status or ""),
+                        str(endpoint or ""),
+                        str(detail or ""),
+                    ),
+                )
+            finally:
+                conn.close()
+        except Exception:
+            # Best-effort audit logging; never block pipeline execution.
+            return
+
+    def note_usage(
+        self,
+        headers: Dict[str, str],
+        model: str,
+        usage: Dict[str, Any],
+    ) -> None:
+        """Persist provider usage payload (tokens) into audit history."""
+        if not self.audit_enabled:
+            return
+        if not isinstance(usage, dict) or not usage:
+            return
+        bucket = self._bucket_from_headers(headers or {})
+        try:
+            detail = json.dumps(usage, ensure_ascii=False)
+        except Exception:
+            detail = str(usage)
+        self._append_audit(
+            bucket=bucket,
+            event="usage",
+            status="ok",
+            endpoint=str(model or ""),
+            detail=detail[:2048],
+        )

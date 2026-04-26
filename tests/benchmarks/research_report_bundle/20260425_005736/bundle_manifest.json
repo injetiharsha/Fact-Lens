@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-04-25T00:57:36.955340",
+  "processed_files": [
+    "parallel_like_results_en_v2_from_252.json",
+    "parallel_like_results_en_v2_from_252_llm_on.json",
+    "parallel_like_results_en_v2_from_252_llm_on_neutral_off.json",
+    "parallel_like_results_en_v2_from_252_llm_preonly.json",
+    "parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json",
+    "parallel_like_results_hi_v2_from_252.json",
+    "parallel_like_results_kn_v2_from_252.json",
+    "parallel_like_results_kn_v2_from_252_nock.json",
+    "parallel_like_results_kn_v2_from_252_relax1.json",
+    "parallel_like_results_ml_v2_from_252.json",
+    "parallel_like_results_ml_v2_from_252_nock.json",
+    "parallel_like_results_ml_v2_from_252_relax1.json",
+    "parallel_like_results_multi_v2_from_252_5lang.json",
+    "parallel_like_results_ta_v2_from_252.json",
+    "parallel_like_results_te_v2_from_252.json"
+  ],
+  "skipped_files": [],
+  "generated_files": [
+    "metrics_summary.csv",
+    "confusion_matrices.json"
+  ]
+}

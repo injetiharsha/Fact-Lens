@@ -1,0 +1,67 @@
+[
+  {
+    "file": "hi_1.png",
+    "lang": "hi",
+    "candidate_count": 2,
+    "top_candidates": [
+      "जयपुर के करधनी थाना क्षेत्र में बोरे में मिले अधजले शव मामले का पुलिस ने 2 घंटे में खुलासा कर दिया है.",
+      "जयपुर के करधनी थाना क्षेत्र में बोरे में मिले अधजले शव मामले का पुलिस ने 2 घंटे में खुलासा कर दिया है. पुलिस के मुताबिक, पत्नी ने पति शेख साहन की हत्या कर बेटे के साथ शव बोरे में भरकर फेंक दिया और पेट्रोल डालकर जला दिया."
+    ]
+  },
+  {
+    "file": "ka_1.png",
+    "lang": "kn",
+    "candidate_count": 0,
+    "top_candidates": []
+  },
+  {
+    "file": "ka_2.png",
+    "lang": "kn",
+    "candidate_count": 0,
+    "top_candidates": []
+  },
+  {
+    "file": "PL 480.jpeg",
+    "lang": "en",
+    "candidate_count": 4,
+    "top_candidates": [
+      "PL-480 food aid program, India, lacking foreign currency to pay for wheat imports, repaid part of its debt by providing copies of books and scriptures to the United States.",
+      "did india give scriptures in return for wheat? PL-480 food aid program, India, lacking foreign currency to pay for wheat imports, repaid part of its debt by providing copies of books and scriptures to the United States.",
+      "PL-480 food aid program, India, lacking foreign currency to pay for wheat imports, repaid part of its debt by providing copies of books and scriptures to the United States. This exchange helped American libraries preserve books, including Tibetan texts, as part of a unique cultural- for-agricultural trade arrangement."
+    ]
+  },
+  {
+    "file": "ta_1.png",
+    "lang": "ta",
+    "candidate_count": 2,
+    "top_candidates": [
+      "சொத்துகளை அந்நியச்‌ செலாவணி மேலாண்மைச்‌ சட்டத்தின்‌ கழ்‌ பறிமுதல்‌ செய்த உத்தரவை உச்சநீதிமன்றம்‌ ரத்து செய்து உத்தரவு பிறப்பித்துள்ளது. 908 கோடி அபராதம்‌ விதிக்கப்பட்ட உத்தரவையும்‌ ரத்து செய்தது உச்சநீதிமன்றம்‌.",
+      "908 கோடி அபராதம்‌ விதிக்கப்பட்ட உத்தரவையும்‌ ரத்து செய்தது உச்சநீதிமன்றம்‌."
+    ]
+  },
+  {
+    "file": "ta_2.png",
+    "lang": "ta",
+    "candidate_count": 0,
+    "top_candidates": []
+  },
+  {
+    "file": "te_1.png",
+    "lang": "te",
+    "candidate_count": 2,
+    "top_candidates": [
+      "రాగల మూడు గంటల్లో అల్లూరి, పోలవరం జిల్లాల్లో పిడుగులతో కూడిన మోస్తరు నుంచి భారీ వర్షాలు కురిసే అవకాశం ఉందని అలర్ట్స్‌ జారీ అయ్యాయి. ఇదే సమయంలో 40-60కిమీ వేగంతో బలమైన ఈదురు గాలులు వీచే అవకాశం ఉందని.",
+      "ఇదే సమయంలో 40-60కిమీ వేగంతో బలమైన ఈదురు గాలులు వీచే అవకాశం ఉందని."
+    ]
+  },
+  {
+    "file": "te_2.png",
+    "lang": "te",
+    "candidate_count": 5,
+    "top_candidates": [
+      "అయితే ఈ ఘటనపై అమెరికా సెంట్రల్‌ కమాండ్‌ నుంచి ఎలాంటి అధికారిక ప్రకటన వెలువడలేదు. ఇక యుద్ధం ప్రారంభమైన తర్వాత ఇరాన్‌ ఇప్పటి వరకూ రెండు -35 ఫైటర్‌ జెట్‌ లను కూల్చి వేయడం ఆందోళనకరంగా మారింది.",
+      "తాజాగా అమెరికాకు చెందిన గ-35 ఫైటర్‌ జెట్‌ ను ఇరాన్‌ పేల్చేసింది. తమ భూభాగంలోకి వచ్చిన అమెరికా యుద్ధవిమానాన్ని తమ సైన్యం పేల్చేసినట్లు ఈ మేరకు ఇరాన్‌ తాజాగా ప్రకటన విడుదల చేసింది.",
+      "ఇరాన్‌- ఇజ్రాయెల్‌- అమెరికా మధ్య నెల రోజులకు పైగా యుద్ధం కొనసాగుతూనే ఉంది. తాజాగా అమెరికాకు చెందిన గ-35 ఫైటర్‌ జెట్‌ ను ఇరాన్‌ పేల్చేసింది."
+    ]
+  }
+]

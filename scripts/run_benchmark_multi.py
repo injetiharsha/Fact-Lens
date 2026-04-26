@@ -6,6 +6,7 @@ import json
 import os
 import sys
 import time
+import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -44,7 +45,9 @@ def _safe_print(text: str) -> None:
 def load_claim_batch(path: Path, n: int = NUM_CLAIMS) -> List[Dict[str, Any]]:
     rows = json.loads(path.read_text(encoding="utf-8"))
     rows = [r for r in rows if str(r.get("lang_bucket", "")).upper() == "MULTI"]
-    return rows[:n]
+    if n is None or int(n) <= 0:
+        return rows
+    return rows[: int(n)]
 
 
 def process_claim(
@@ -54,7 +57,13 @@ def process_claim(
     pipeline: ClaimPipeline,
 ) -> Dict[str, Any]:
     claim = str(row["claim"])
-    expected = str(row["expected"]).lower()
+    expected = str(
+        row.get("expected")
+        or row.get("expected_verdict")
+        or row.get("expected_verdict_3way")
+        or row.get("verdict")
+        or "neutral"
+    ).lower()
     language = str(row.get("language") or "hi")
     print("\n==============================")
     print(f"Processing claim {i + 1}/{total}")
@@ -156,11 +165,20 @@ def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
     failed_by_predicted = Counter()
     failed_claims = []
     failed_by_language = Counter()
+    checkable_total = 0
+    checkable_correct = 0
 
     for r in results:
         pred = r["predicted_verdict"]
         truth = r["expected_verdict"]
         lang = r.get("language", "unknown")
+        checkability = str((r.get("details") or {}).get("checkability", ""))
+        is_checkable = checkability.startswith("Checkable")
+
+        if is_checkable:
+            checkable_total += 1
+            if pred == truth:
+                checkable_correct += 1
         if pred == truth:
             correct += 1
         if pred == "neutral":
@@ -213,6 +231,9 @@ def evaluate(results: List[Dict[str, Any]]) -> Dict[str, Any]:
         "total_claims": total,
         "correct_predictions": correct,
         "accuracy": round(correct / total, 3) if total else 0.0,
+        "checkable_claims_total": checkable_total,
+        "checkable_correct_predictions": checkable_correct,
+        "accuracy_checkable_only": round(checkable_correct / checkable_total, 3) if checkable_total else 0.0,
         "neutral_rate": round(neutral / total, 3) if total else 0.0,
         "neutral_precision": round(neutral_precision, 3),
         "neutral_recall": round(neutral_recall, 3),
@@ -342,8 +363,33 @@ def save_results(results: List[Dict[str, Any]], metrics: Dict[str, Any], claim_t
 
 
 def main() -> None:
-    load_dotenv(override=True)
-    rows = load_claim_batch(DEFAULT_CASES, NUM_CLAIMS)
+    parser = argparse.ArgumentParser(description="Run MULTI benchmark.")
+    parser.add_argument("--cases", default=None, help="Benchmark cases JSON path")
+    parser.add_argument("--output", default=None, help="Output JSON path")
+    parser.add_argument("--num-claims", type=int, default=None, help="Number of claims (<=0 means all)")
+    args = parser.parse_args()
+
+    # Keep shell/session env higher priority than .env file.
+    load_dotenv(override=False)
+
+    cases_path = Path(
+        args.cases
+        or os.getenv("BENCHMARK_CASES_MULTI")
+        or str(DEFAULT_CASES)
+    )
+    output_path = Path(
+        args.output
+        or os.getenv("BENCHMARK_OUTPUT_MULTI")
+        or str(DEFAULT_OUTPUT)
+    )
+    if args.num_claims is not None:
+        num_claims = args.num_claims
+    else:
+        try:
+            num_claims = int(os.getenv("BENCHMARK_NUM_CLAIMS", str(NUM_CLAIMS)))
+        except Exception:
+            num_claims = NUM_CLAIMS
+    rows = load_claim_batch(cases_path, num_claims)
     results, claim_times, total_time = run_benchmark(rows)
     metrics = evaluate(results)
 
@@ -354,6 +400,9 @@ def main() -> None:
         "total_claims",
         "correct_predictions",
         "accuracy",
+        "checkable_claims_total",
+        "checkable_correct_predictions",
+        "accuracy_checkable_only",
         "neutral_rate",
         "neutral_precision",
         "neutral_recall",
@@ -378,7 +427,7 @@ def main() -> None:
     print("dominant_stage_seconds :", stage_summary.get("dominant_stage_seconds"))
     print("model_locked_total_seconds :", stage_summary.get("model_locked_total_seconds"))
 
-    save_results(results, metrics, claim_times, total_time, DEFAULT_OUTPUT)
+    save_results(results, metrics, claim_times, total_time, output_path)
 
 
 if __name__ == "__main__":

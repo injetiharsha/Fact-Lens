@@ -1,0 +1,7 @@
+language,file,accuracy,checkable_accuracy,ddg,tavily,serpapi,llm_triggered_count,llm_used_count,total_claims,is_pure_ddg_scrape_no_llm
+en,parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json,0.771,,1,0,0,25,23,35,NO
+hi,parallel_like_results_hi_v2_from_252_rerun.json,0.743,0.897,1,0,0,23,19,35,NO
+ta,parallel_like_results_ta_v2_from_252.json,0.914,,1,0,0,28,25,35,NO
+te,parallel_like_results_te_v2_from_252.json,0.829,,1,0,0,31,24,35,NO
+kn,parallel_like_results_kn_v2_from_252_nock.json,0.829,0.829,1,0,0,32,24,35,NO
+ml,parallel_like_results_ml_v2_from_252_nock.json,0.886,0.886,1,0,0,32,26,35,NO

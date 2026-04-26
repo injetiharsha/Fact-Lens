@@ -179,6 +179,9 @@ class FactCheckingPipeline:
         self.llm_hq_neutral_min_credibility = float(
             os.getenv("LLM_HQ_NEUTRAL_MIN_CREDIBILITY", "0.70")
         )
+        self.llm_verify_on_neutral = os.getenv(
+            "LLM_VERIFIER_ENABLE_ON_NEUTRAL", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
         self.llm_use_verdict_fallback = os.getenv(
             "LLM_VERIFIER_USE_VERDICT_FALLBACK", "1"
         ).strip().lower() in {"1", "true", "yes", "on"}
@@ -243,6 +246,59 @@ class FactCheckingPipeline:
         self.multi_phase7_strong_only_for_decision = os.getenv(
             "MULTI_PHASE7_STRONG_ONLY_DECISION", "0"
         ).strip().lower() in {"1", "true", "yes", "on"}
+        self.hybrid_rerank_enable = os.getenv(
+            "HYBRID_RERANK_ENABLE", "0"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.hybrid_rerank_alpha = float(os.getenv("HYBRID_RERANK_ALPHA", "0.55"))
+        self.hybrid_rerank_beta = float(os.getenv("HYBRID_RERANK_BETA", "0.25"))
+        self.hybrid_rerank_gamma = float(os.getenv("HYBRID_RERANK_GAMMA", "0.20"))
+        self.scrape_upgrade_enable = os.getenv(
+            "SCRAPE_UPGRADE_ENABLE", "0"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.scrape_structured_boost_enable = os.getenv(
+            "SCRAPE_STRUCTURED_BOOST_ENABLE", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.scrape_structured_boost_min_quality = float(
+            os.getenv("SCRAPE_STRUCTURED_BOOST_MIN_QUALITY", "0.62")
+        )
+        self.scrape_structured_boost_value = float(
+            os.getenv("SCRAPE_STRUCTURED_BOOST_VALUE", "0.08")
+        )
+        self.multi_phase3_reject_relaxed_enable = os.getenv(
+            "MULTI_PHASE3_REJECT_RELAXED_ENABLE", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.multi_phase3_reject_relax_min_rel = float(
+            os.getenv("MULTI_PHASE3_REJECT_RELAX_MIN_REL", "0.22")
+        )
+        # Multi-only retrieval quality gate: block fragile non-neutral verdicts
+        # when evidence pool quality/diversity is weak.
+        self.multi_retrieval_quality_gate_enable = os.getenv(
+            "MULTI_RETRIEVAL_QUALITY_GATE_ENABLE", "1"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.multi_retrieval_gate_min_total_rows = max(
+            1, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_TOTAL_ROWS", "4"))
+        )
+        self.multi_retrieval_gate_min_non_neutral_rows = max(
+            1, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_NON_NEUTRAL_ROWS", "2"))
+        )
+        self.multi_retrieval_gate_min_unique_hosts = max(
+            1, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_UNIQUE_HOSTS", "2"))
+        )
+        self.multi_retrieval_gate_min_source_types = max(
+            1, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_SOURCE_TYPES", "1"))
+        )
+        self.multi_retrieval_gate_min_strong_non_neutral = max(
+            0, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_STRONG_NON_NEUTRAL", "1"))
+        )
+        self.multi_retrieval_gate_min_avg_relevance = float(
+            os.getenv("MULTI_RETRIEVAL_GATE_MIN_AVG_RELEVANCE", "0.50")
+        )
+        self.multi_retrieval_gate_min_avg_credibility = float(
+            os.getenv("MULTI_RETRIEVAL_GATE_MIN_AVG_CREDIBILITY", "0.40")
+        )
+        self.multi_retrieval_gate_min_failed_checks = max(
+            1, int(os.getenv("MULTI_RETRIEVAL_GATE_MIN_FAILED_CHECKS", "2"))
+        )
         self.pipeline_lock_en = os.getenv("PIPELINE_LOCK_EN", "0").strip().lower() in {
             "1",
             "true",
@@ -363,7 +419,10 @@ class FactCheckingPipeline:
         _emit("stage2_checkability:start")
         t = time.perf_counter()
         if self.enable_checkability_stage:
-            is_checkable, checkability_reason = self.checkability.classify(normalized_claim)
+            is_checkable, checkability_reason = self.checkability.classify(
+                normalized_claim,
+                language=language,
+            )
             timings["stage2_checkability"] = round(time.perf_counter() - t, 4)
             msg = (
                 f"stage2_checkability:done sec={timings['stage2_checkability']} "
@@ -557,6 +616,10 @@ class FactCheckingPipeline:
             evidence_list=scored_evidence,
             language=language,
         )
+        if self.scrape_upgrade_enable:
+            self._annotate_scrape_corroboration(scored_evidence)
+        if self.hybrid_rerank_enable:
+            scored_evidence = self._apply_hybrid_rerank(scored_evidence)
         timings["stage7_stance"] = round(time.perf_counter() - t, 4)
         _emit(f"stage7_stance:done sec={timings['stage7_stance']}")
         
@@ -565,6 +628,8 @@ class FactCheckingPipeline:
         t = time.perf_counter()
         is_multi_lang = str(language or "en").lower() != "en"
         for ev in scored_evidence:
+            if self.scrape_upgrade_enable and self.scrape_structured_boost_enable:
+                self._apply_scrape_structured_boost(ev)
             ev["evidence_weight"] = self.evidence_scorer.calculate_weight(
                 ev, recency_policy=recency_policy
             )
@@ -596,6 +661,7 @@ class FactCheckingPipeline:
             "provider": self.llm_verifier.provider,
             "model": self.llm_verifier.model,
             "neutral_only": bool(self.llm_neutral_only),
+            "verify_on_neutral": bool(self.llm_verify_on_neutral),
             "conf_threshold": None,
             "pre_llm_verdict": pre_llm_verdict,
             "pre_llm_confidence": pre_llm_confidence,
@@ -611,7 +677,7 @@ class FactCheckingPipeline:
             t = time.perf_counter()
             current_verdict = str(verdict_result.get("verdict", "neutral")).lower()
             current_conf = float(verdict_result.get("confidence", 0.0) or 0.0)
-            should_verify_neutral = current_verdict == "neutral"
+            should_verify_neutral = self.llm_verify_on_neutral and current_verdict == "neutral"
             should_verify_gray = (
                 is_multi_lang
                 and self.multi_phase5_gray_zone_enable
@@ -1329,6 +1395,8 @@ class FactCheckingPipeline:
         lang = str(language or "en").lower()
         if lang != "en" and self.multi_phase7_decisive_verdict_enable:
             base = self._compute_multi_decisive_verdict(evidence_list, claim, base)
+        if lang != "en":
+            base = self._apply_multi_retrieval_quality_gate(base, evidence_list)
         return self._apply_language_verdict_calibration(base, language=lang)
 
     def _compute_multi_decisive_verdict(self, evidence_list: List[Dict], claim: str, base: Dict) -> Dict:
@@ -1431,6 +1499,89 @@ class FactCheckingPipeline:
         }
         return out
 
+    def _apply_multi_retrieval_quality_gate(self, verdict: Dict, evidence_list: List[Dict]) -> Dict:
+        """Gate multi non-neutral verdicts when retrieval quality/diversity is too weak."""
+        out = dict(verdict or {})
+        if not self.multi_retrieval_quality_gate_enable:
+            return out
+        v = str(out.get("verdict", "neutral")).lower()
+        if v not in {"support", "refute"}:
+            return out
+
+        rows = list(evidence_list or [])
+        non_neutral_rows = [
+            ev for ev in rows
+            if str(ev.get("stance", "neutral")).lower() in {"support", "refute"}
+        ]
+        strong_non_neutral_rows = [
+            ev for ev in non_neutral_rows
+            if str(ev.get("evidence_tier", "soft")).lower() == "strong"
+        ]
+        source_types = {
+            str(ev.get("type", "")).strip().lower() for ev in rows if str(ev.get("type", "")).strip()
+        }
+        hosts = set()
+        for ev in rows:
+            try:
+                host = (urlparse(str(ev.get("url") or "")).netloc or "").lower().split(":")[0].strip(".")
+            except Exception:
+                host = ""
+            if host:
+                hosts.add(host)
+
+        avg_relevance = (
+            sum(float(ev.get("relevance", 0.0) or 0.0) for ev in non_neutral_rows)
+            / max(len(non_neutral_rows), 1)
+        )
+        avg_credibility = (
+            sum(float(ev.get("credibility", 0.0) or 0.0) for ev in non_neutral_rows)
+            / max(len(non_neutral_rows), 1)
+        )
+
+        checks = {
+            "total_rows": len(rows) >= self.multi_retrieval_gate_min_total_rows,
+            "non_neutral_rows": len(non_neutral_rows) >= self.multi_retrieval_gate_min_non_neutral_rows,
+            "unique_hosts": len(hosts) >= self.multi_retrieval_gate_min_unique_hosts,
+            "source_types": len(source_types) >= self.multi_retrieval_gate_min_source_types,
+            "strong_non_neutral": (
+                len(strong_non_neutral_rows) >= self.multi_retrieval_gate_min_strong_non_neutral
+            ),
+            "avg_relevance": avg_relevance >= self.multi_retrieval_gate_min_avg_relevance,
+            "avg_credibility": avg_credibility >= self.multi_retrieval_gate_min_avg_credibility,
+        }
+        failed = [name for name, passed in checks.items() if not passed]
+        if len(failed) < self.multi_retrieval_gate_min_failed_checks:
+            return out
+
+        prev_conf = float(out.get("confidence", 0.0) or 0.0)
+        out["verdict"] = "neutral"
+        out["confidence"] = max(0.45, min(prev_conf, 0.65))
+        out["reasoning"] = (
+            f"{out.get('reasoning','')} "
+            "Multi retrieval quality gate abstained: evidence quality/diversity too weak for non-neutral verdict."
+        ).strip()
+        out["multi_retrieval_gate"] = {
+            "failed_checks": failed,
+            "min_failed_checks": self.multi_retrieval_gate_min_failed_checks,
+            "total_rows": len(rows),
+            "non_neutral_rows": len(non_neutral_rows),
+            "strong_non_neutral_rows": len(strong_non_neutral_rows),
+            "unique_hosts": len(hosts),
+            "source_types": sorted(source_types),
+            "avg_relevance": avg_relevance,
+            "avg_credibility": avg_credibility,
+            "thresholds": {
+                "min_total_rows": self.multi_retrieval_gate_min_total_rows,
+                "min_non_neutral_rows": self.multi_retrieval_gate_min_non_neutral_rows,
+                "min_unique_hosts": self.multi_retrieval_gate_min_unique_hosts,
+                "min_source_types": self.multi_retrieval_gate_min_source_types,
+                "min_strong_non_neutral": self.multi_retrieval_gate_min_strong_non_neutral,
+                "min_avg_relevance": self.multi_retrieval_gate_min_avg_relevance,
+                "min_avg_credibility": self.multi_retrieval_gate_min_avg_credibility,
+            },
+        }
+        return out
+
     def _neutral_evidence_is_weak(self, evidence_list: List[Dict]) -> bool:
         """Neutral should be backed by enough high-quality neutral evidence."""
         if not self.neutral_quality_guard_enable:
@@ -1480,10 +1631,67 @@ class FactCheckingPipeline:
 
     def _filter_reject_tier_evidence(self, rows: List[Dict]) -> List[Dict]:
         keep = [ev for ev in rows if str(ev.get("evidence_tier") or "soft").lower() != "reject"]
+        if self.multi_phase3_reject_relaxed_enable:
+            for ev in rows or []:
+                if ev in keep:
+                    continue
+                rel = float(ev.get("relevance", 0.0) or 0.0)
+                if bool(ev.get("structured_from_scrape", False)) or rel >= self.multi_phase3_reject_relax_min_rel:
+                    keep.append(ev)
         if keep:
             return keep
         # Keep at least a tiny fallback to avoid empty-list churn in edge cases.
         return list(rows[: min(2, len(rows))])
+
+    def _apply_hybrid_rerank(self, rows: List[Dict]) -> List[Dict]:
+        out = list(rows or [])
+        for ev in out:
+            ev["hybrid_rank_score"] = self.evidence_scorer.hybrid_rank_score(
+                ev,
+                alpha=self.hybrid_rerank_alpha,
+                beta=self.hybrid_rerank_beta,
+                gamma=self.hybrid_rerank_gamma,
+            )
+        out.sort(key=lambda x: float(x.get("hybrid_rank_score", x.get("relevance", 0.0)) or 0.0), reverse=True)
+        return out
+
+    def _apply_scrape_structured_boost(self, ev: Dict) -> None:
+        if str(ev.get("type") or "").lower() != "scraping":
+            return
+        q = float(ev.get("scrape_struct_quality", 0.0) or 0.0)
+        if bool(ev.get("structured_from_scrape", False)) and q >= self.scrape_structured_boost_min_quality:
+            rel = float(ev.get("relevance", 0.0) or 0.0)
+            ev["relevance"] = max(0.0, min(1.0, rel + self.scrape_structured_boost_value))
+            ev["scrape_structured_boost_applied"] = True
+            ev["scrape_structured_boost_value"] = self.scrape_structured_boost_value
+
+    def _annotate_scrape_corroboration(self, rows: List[Dict]) -> None:
+        groups: Dict[str, Dict[str, object]] = {}
+        for ev in rows or []:
+            if str(ev.get("type") or "").lower() != "scraping":
+                continue
+            span = str(ev.get("fact_span") or ev.get("text") or "").lower()
+            num = str(ev.get("numeric_claim") or "").lower()
+            dat = str(ev.get("date") or ev.get("published_at") or "").lower()
+            key = " ".join((span[:180], num[:40], dat[:40])).strip()
+            if not key:
+                continue
+            host = ""
+            try:
+                host = (urlparse(str(ev.get("url") or "")).netloc or "").lower().split(":")[0].strip(".")
+            except Exception:
+                host = ""
+            bucket = groups.setdefault(key, {"hosts": set(), "rows": []})
+            if host:
+                bucket["hosts"].add(host)
+            bucket["rows"].append(ev)
+        for bucket in groups.values():
+            hosts = bucket.get("hosts", set()) or set()
+            host_count = len(hosts)
+            score = min(0.15, max(0.0, 0.08 * (host_count - 1)))
+            for ev in bucket.get("rows", []):
+                ev["scrape_corroboration_hosts"] = host_count
+                ev["scrape_corroboration_score"] = score
 
     def _resolve_relevance_min_keep(self, language: str, is_image_mode: bool) -> int:
         lang = str(language or "en").lower()

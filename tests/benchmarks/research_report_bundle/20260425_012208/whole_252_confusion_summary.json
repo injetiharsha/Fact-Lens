@@ -1,0 +1,51 @@
+{
+  "source_run": "F:\\RFCS\\tests\\benchmarks\\thesis_runs\\20260424_055731_secondary_api_search_v1_both",
+  "total_claims": 252,
+  "split_counts": {
+    "en": 42,
+    "multi": 210
+  },
+  "matrix_3way": {
+    "support": {
+      "support": 21,
+      "refute": 3,
+      "neutral": 49
+    },
+    "refute": {
+      "support": 0,
+      "refute": 17,
+      "neutral": 55
+    },
+    "neutral": {
+      "support": 0,
+      "refute": 5,
+      "neutral": 60
+    }
+  },
+  "matrix_4way_block_aware": {
+    "support": {
+      "support": 21,
+      "refute": 3,
+      "neutral": 26,
+      "uncheckable": 23
+    },
+    "refute": {
+      "support": 0,
+      "refute": 17,
+      "neutral": 25,
+      "uncheckable": 30
+    },
+    "neutral": {
+      "support": 0,
+      "refute": 5,
+      "neutral": 58,
+      "uncheckable": 2
+    },
+    "uncheckable": {
+      "support": 0,
+      "refute": 0,
+      "neutral": 12,
+      "uncheckable": 30
+    }
+  }
+}

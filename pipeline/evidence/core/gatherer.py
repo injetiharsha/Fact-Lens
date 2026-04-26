@@ -845,6 +845,20 @@ class EvidenceGatherer:
         scrape_tier = self._pick_text(row, keys=["scrape_tier", "scrape_method"])
         if scrape_tier:
             normalized["scrape_tier"] = scrape_tier
+        for k in [
+            "fact_span",
+            "entity",
+            "date",
+            "numeric_claim",
+            "source_type",
+            "structured_from_scrape",
+            "scrape_struct_quality",
+            "scrape_claim_overlap",
+            "scrape_boilerplate_ratio",
+            "scrape_text_len",
+        ]:
+            if k in row and row.get(k) not in (None, ""):
+                normalized[k] = row.get(k)
         search_provider = self._pick_text(row, keys=["search_provider"])
         if search_provider:
             normalized["search_provider"] = search_provider

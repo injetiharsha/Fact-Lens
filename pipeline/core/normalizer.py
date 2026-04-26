@@ -6,7 +6,7 @@ import re
 import string
 import threading
 import requests
-from typing import List
+from typing import List, Tuple
 
 from pipeline.core.llm_rate_limiter import SharedLLMRateLimiter
 
@@ -29,6 +29,10 @@ class ClaimNormalizer:
     _query_rephrase_cache_max = 512
     _groq_rr_lock = threading.Lock()
     _groq_rr_idx = 0
+    _i2e_result_lock = threading.Lock()
+    _i2e_result_cache = {}
+    _i2e_result_cache_order = []
+    _i2e_result_cache_max = 1024
 
     def normalize(self, claim: str) -> str:
         """Normalize claim text - clean whitespace, punctuation, encoding."""
@@ -66,15 +70,11 @@ class ClaimNormalizer:
         """English query formulation (old-style oriented)."""
         queries: List[str] = [claim]
 
-        entities = self._extract_keywords(claim)
-        if entities:
-            queries.append(entities)
-
         question_form = self._to_question(claim)
         if question_form and question_form != claim:
             queries.append(question_form)
 
-        return self._dedupe_queries(queries, cap=3)
+        return self._dedupe_queries(queries, cap=2)
 
     def _rephrase_for_search_multi(self, claim: str, language: str) -> list:
         """Multilingual query formulation with ASCII anchors."""
@@ -180,6 +180,29 @@ class ClaimNormalizer:
         lang = (language or "").lower()
         if lang in {"", "en"}:
             return ""
+
+        found, cached = self._get_cached_i2e_result(text, lang)
+        if found:
+            return cached
+
+        def _cache_and_return(value: str) -> str:
+            out = str(value or "").strip()
+            self._set_cached_i2e_result(text, lang, out)
+            return out
+
+        # Strict separation mode: use Sarvam translate API for query translation
+        # before any chat-completions fallback to avoid provider-path interference.
+        sarvam_first = os.getenv("TRANSLATION_USE_SARVAM_API_FIRST", "1").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+            "on",
+        }
+        if sarvam_first:
+            api_out = self._translate_indic_to_english_sarvam_api(text, lang)
+            if api_out:
+                return _cache_and_return(api_out)
+
         prefer_llm = os.getenv("MULTI_QUERY_TRANSLATION_PREFER_LLM", "1").strip().lower() in {
             "1",
             "true",
@@ -192,24 +215,24 @@ class ClaimNormalizer:
                 llm_provider = str(
                     os.getenv(
                         "TRANSLATION_LLM_PROVIDER",
-                        os.getenv("LLM_VERIFIER_PROVIDER_EN", os.getenv("LLM_VERIFIER_PROVIDER", "openai")),
+                        "groq",
                     )
                 ).strip().lower()
                 web = self._translate_indic_to_english_web(text)
                 if web:
-                    return web
+                    return _cache_and_return(web)
                 llm = self._translate_indic_to_english_llm(text)
                 if llm:
-                    return llm
+                    return _cache_and_return(llm)
                 if llm_provider == "sarvam":
                     api_out = self._translate_indic_to_english_sarvam_api(text, lang)
                     if api_out:
-                        return api_out
-                return ""
+                        return _cache_and_return(api_out)
+                return _cache_and_return("")
             web = self._translate_indic_to_english_web(text)
             if web:
-                return web
-            return self._translate_indic_to_english_llm(text)
+                return _cache_and_return(web)
+            return _cache_and_return(self._translate_indic_to_english_llm(text))
 
         try:
             pre = self.__class__._i2e_ip.preprocess_batch(
@@ -241,35 +264,54 @@ class ClaimNormalizer:
             out = self.__class__._i2e_ip.postprocess_batch(dec, lang="eng_Latn")
             translated = (out[0] if out else "").strip()
             if self._is_english_like(translated):
-                return translated
+                return _cache_and_return(translated)
             web = self._translate_indic_to_english_web(text)
             if web:
-                return web
-            return translated
+                return _cache_and_return(web)
+            return _cache_and_return(translated)
         except Exception as exc:
             logger.warning("Indic->EN query translation failed; skipping fallback: %s", exc)
             if prefer_llm:
                 llm_provider = str(
                     os.getenv(
                         "TRANSLATION_LLM_PROVIDER",
-                        os.getenv("LLM_VERIFIER_PROVIDER_EN", os.getenv("LLM_VERIFIER_PROVIDER", "openai")),
+                        "groq",
                     )
                 ).strip().lower()
                 web = self._translate_indic_to_english_web(text)
                 if web:
-                    return web
+                    return _cache_and_return(web)
                 llm = self._translate_indic_to_english_llm(text)
                 if llm:
-                    return llm
+                    return _cache_and_return(llm)
                 if llm_provider == "sarvam":
                     api_out = self._translate_indic_to_english_sarvam_api(text, lang)
                     if api_out:
-                        return api_out
-                return ""
+                        return _cache_and_return(api_out)
+                return _cache_and_return("")
             web = self._translate_indic_to_english_web(text)
             if web:
-                return web
-            return self._translate_indic_to_english_llm(text)
+                return _cache_and_return(web)
+            return _cache_and_return(self._translate_indic_to_english_llm(text))
+
+    def _i2e_cache_key(self, text: str, language: str) -> Tuple[str, str]:
+        return (str(language or "").strip().lower(), str(text or "").strip())
+
+    def _get_cached_i2e_result(self, text: str, language: str) -> Tuple[bool, str]:
+        key = self._i2e_cache_key(text, language)
+        with self.__class__._i2e_result_lock:
+            if key in self.__class__._i2e_result_cache:
+                return True, str(self.__class__._i2e_result_cache.get(key, ""))
+        return False, ""
+
+    def _set_cached_i2e_result(self, text: str, language: str, value: str) -> None:
+        key = self._i2e_cache_key(text, language)
+        with self.__class__._i2e_result_lock:
+            self.__class__._i2e_result_cache[key] = str(value or "")
+            self.__class__._i2e_result_cache_order.append(key)
+            while len(self.__class__._i2e_result_cache_order) > self.__class__._i2e_result_cache_max:
+                drop = self.__class__._i2e_result_cache_order.pop(0)
+                self.__class__._i2e_result_cache.pop(drop, None)
 
     def _lang_to_sarvam_code(self, lang: str) -> str:
         mapping = {
@@ -380,13 +422,13 @@ class ClaimNormalizer:
         provider = str(
             os.getenv(
                 "TRANSLATION_LLM_PROVIDER",
-                os.getenv("LLM_VERIFIER_PROVIDER_EN", os.getenv("LLM_VERIFIER_PROVIDER", "openai")),
+                "groq",
             )
         ).strip().lower()
         model = str(
             os.getenv(
                 "TRANSLATION_LLM_MODEL",
-                os.getenv("LLM_VERIFIER_MODEL_EN", os.getenv("LLM_VERIFIER_MODEL", "gpt-4o-mini")),
+                "openai/gpt-oss-20b",
             )
         ).strip()
         base_url = str(os.getenv("TRANSLATION_LLM_BASE_URL", "")).strip()
@@ -457,6 +499,39 @@ class ClaimNormalizer:
         for attempt in range(retries + 1):
             try:
                 api_key = api_keys[attempt % len(api_keys)]
+                # Groq docs path: OpenAI client + responses.create against
+                # https://api.groq.com/openai/v1 (avoids chat-completions 404 drift).
+                if provider == "groq":
+                    from openai import OpenAI  # local import to avoid hard dependency at module load
+
+                    prompt = (
+                        "Translate to concise English for web search. "
+                        "Output ONLY the translated sentence. No reasoning.\n\n"
+                        f"Text: {text}"
+                    )
+                    headers_for_bucket = {"Authorization": f"Bearer {api_key}"}
+
+                    def _groq_call():
+                        client = OpenAI(api_key=api_key, base_url=base_url)
+                        try:
+                            return client.responses.create(
+                                model=model,
+                                input=prompt,
+                                max_output_tokens=base_max_tokens,
+                            )
+                        except TypeError:
+                            # Compatibility fallback for older SDK variants.
+                            return client.responses.create(
+                                model=model,
+                                input=prompt,
+                            )
+
+                    resp = limiter.run_with_limits(headers=headers_for_bucket, fn=_groq_call)
+                    out = str(getattr(resp, "output_text", "") or "").strip()
+                    if out.lower() in {"none", "null"}:
+                        out = ""
+                    return out if self._is_english_like(out) else ""
+
                 headers = {"Content-Type": "application/json"}
                 if provider == "sarvam":
                     sub_key = os.getenv("SARVAM_API_SUBSCRIPTION_KEY", "").strip()

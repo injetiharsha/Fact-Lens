@@ -1,0 +1,14 @@
+{
+  "files_added": [
+    "checkpoint_journey_stages.json",
+    "checkpoint_journey_stages.csv",
+    "checkpoint_journey_cumulative_epochs.png",
+    "finetune_config_count_by_task_clean.png"
+  ],
+  "notes": [
+    "Stage epochs prefer achieved epochs from trainer_state; fallback to config epochs.",
+    "Chains inferred via model_init_path containing previous output_dir.",
+    "Base model annotated at each chain start.",
+    "Includes EN and MULTI/Indic configs available locally."
+  ]
+}

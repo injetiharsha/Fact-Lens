@@ -1,0 +1,138 @@
+[
+  {
+    "file": "hi_1.png",
+    "mode": "document",
+    "summary_verdict": "refute",
+    "summary_confidence": 0.99,
+    "summary_claim": "जयपुर के करधनी थाना क्षेत्र में बोरे में मिले अधजले शव मामले का पुलिस ने 2 घंटे में खुलासा कर दिया है. पुलिस के मुताबिक, पत्नी ने पति शेख साहन की हत्या कर बेटे के साथ शव बोरे में भरकर फेंक दिया और पेट्रोल डालकर जला दिया.",
+    "claims": [
+      {
+        "claim": "जयपुर के करधनी थाना क्षेत्र में बोरे में मिले अधजले शव मामले का पुलिस ने 2 घंटे में खुलासा कर दिया है. पुलिस के मुताबिक, पत्नी ने पति शेख साहन की हत्या कर बेटे के साथ शव बोरे में भरकर फेंक दिया और पेट्रोल डालकर जला दिया.",
+        "verdict": "refute",
+        "confidence": 0.99,
+        "evidence_count": 6
+      }
+    ],
+    "ocr_chars": 297,
+    "claim_chars": 297,
+    "warnings": [
+      "Image quality is low; OCR confidence may drop."
+    ]
+  },
+  {
+    "file": "ka_1.png",
+    "mode": "single_claim",
+    "verdict": "refute",
+    "confidence": 0.99,
+    "selected_claim": "ಸರ್ಕಾರಿ ಬಸ್‌ ಇಂಜಿನ್‌ನಲ್ಲಿ ಬೆಂಕಿ ಕಾಣಿಸಿಕೊಂಡು ಆತಂಕಕ್ಕೆ ಸಿಲುಕಿ ಹೊರಬಂದಿದ್ದರು ಚಾಮುಂಡಿ ಭಕ್ತರು. ಅಸಹಾಯಕರಾಗಿ ನಿಂತಿದ್ದ ಚಾಮುಂಡಿ ಭಕ್ತರ ನೆರವಿಗೆ ಕಾನೂನು ಮತ್ತು ಸುವ್ಯವಸ್ಥೆ ಡಿಸಿಪಿ ರವರಾದ ಬಿಂದುಮಣಿ ರವರು ಧಾವಿಸಿ ಸಾರ್ವಜನಿಕ ಕಳಕಳಿ ಮೆರೆದಿದ್ದಾರೆ. ಪೊಲೀಸ್‌ ಅಧಿಕಾರಿಯ ಸಮಯಪ್ರಜ್ಞೆಯಿಂದ ಪ್ರಯಾಣಿಕರ ಆತಂಕ ದೂರ ಮಾಡಿದ್ದಾರೆ. ಬಿಂದುಮಣಿ ರವರ ಸಕಾಲದ ನೆರವಿಗೆ ಚಾಮುಂಡಿ ಭಕ್ತರು ಮೆಚ್ಚುಗೆ ವ್ಯಕ್ತಪಡಿಸಿದ್ದಾರೆ.",
+    "ocr_chars": 351,
+    "claim_chars": 351,
+    "evidence_count": 10,
+    "warnings": [
+      "Image quality is low; OCR confidence may drop.",
+      "WARN: No claim picked from multi-claim OCR; forced single-claim fallback."
+    ],
+    "summarized": false
+  },
+  {
+    "file": "ka_2.png",
+    "mode": "single_claim",
+    "verdict": "neutral",
+    "confidence": 0.5801543318197745,
+    "selected_claim": "ಲಿಂಗಾಯತ ಜಂಗಮರಿಗೆ ಪರಿಶಿಷ್ಟ ಜಾತಿ ಪ್ರಮಾಣಪತ್ರ ಕುರಿತು ಸುಪ್ರೀಂ ಕೋರ್ಟ್‌ ಮಹತ್ವದ ಆದೇಶ ನೀಡಿದೆ. ರಾಜ್ಯದ ರವೀಂದ್ರಸ್ವಾಮಿ ಎಂಬುವವರು ಸಲ್ಲಿಸಿದ್ದ ಅರ್ಜಿಯನ್ನು ವಜಾ ಮಾಡಿದ ಕೋರ್ಟ್‌ ವೀರಶೈವ ಲಿಂಗಾಯತ ಜಂಗಮರು ಬೇಡ ಜಂಗಮರು ಅಥವಾ ಬುಡ ಜಂಗಮರಲ್ಲ ಎಂಬ ಆದೇಶವನ್ನು ಎತ್ತಿ ಹಿಡಿದಿದೆ. ಈ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ವಿವರ ಇಲ್ಲಿದೆ.",
+    "ocr_chars": 265,
+    "claim_chars": 265,
+    "evidence_count": 8,
+    "warnings": [
+      "Image quality is low; OCR confidence may drop.",
+      "WARN: No claim picked from multi-claim OCR; forced single-claim fallback."
+    ],
+    "summarized": false
+  },
+  {
+    "file": "PL 480.jpeg",
+    "mode": "document",
+    "summary_verdict": "refute",
+    "summary_confidence": 0.99,
+    "summary_claim": "PL-480 food aid program, India, lacking foreign currency to pay for wheat imports, repaid part of its debt by providing copies of books and scriptures to the United States. This exchange helped American libraries preserve books, including Tibetan texts, as part of a unique cultural- for-agricultural trade arrangement.",
+    "claims": [
+      {
+        "claim": "PL-480 food aid program, India, lacking foreign currency to pay for wheat imports, repaid part of its debt by providing copies of books and scriptures to the United States. This exchange helped American libraries preserve books, including Tibetan texts, as part of a unique cultural- for-agricultural trade arrangement.",
+        "verdict": "refute",
+        "confidence": 0.99,
+        "evidence_count": 3
+      }
+    ],
+    "ocr_chars": 402,
+    "claim_chars": 402,
+    "warnings": []
+  },
+  {
+    "file": "ta_1.png",
+    "mode": "document",
+    "summary_verdict": "neutral",
+    "summary_confidence": 0.9410661483454095,
+    "summary_claim": "சொத்துகளை அந்நியச்‌ செலாவணி மேலாண்மைச்‌ சட்டத்தின்‌ கழ்‌ பறிமுதல்‌ செய்த உத்தரவை உச்சநீதிமன்றம்‌ ரத்து செய்து உத்தரவு பிறப்பித்துள்ளது. 908 கோடி அபராதம்‌ விதிக்கப்பட்ட உத்தரவையும்‌ ரத்து செய்தது உச்சநீதிமன்றம்‌.",
+    "claims": [
+      {
+        "claim": "சொத்துகளை அந்நியச்‌ செலாவணி மேலாண்மைச்‌ சட்டத்தின்‌ கழ்‌ பறிமுதல்‌ செய்த உத்தரவை உச்சநீதிமன்றம்‌ ரத்து செய்து உத்தரவு பிறப்பித்துள்ளது. 908 கோடி அபராதம்‌ விதிக்கப்பட்ட உத்தரவையும்‌ ரத்து செய்தது உச்சநீதிமன்றம்‌.",
+        "verdict": "neutral",
+        "confidence": 0.9410661483454095,
+        "evidence_count": 7
+      }
+    ],
+    "ocr_chars": 397,
+    "claim_chars": 397,
+    "warnings": []
+  },
+  {
+    "file": "ta_2.png",
+    "mode": "single_claim",
+    "verdict": "refute",
+    "confidence": 0.99,
+    "selected_claim": "தமிழக சட்டமன்ற தேர்தலில்‌, இரு தொகுதிகளில்‌ போட்டியிடும்‌ தவெக தலைவர்‌ விஜய்‌, பெரம்பூரில்‌ தாக்கல்‌ செய்த வேட்புமனுவில்‌ தன்‌ மீது எந்தக்‌ குற்ற வழக்கும்‌ இல்லை என தெரிவித்துள்ளார்‌.",
+    "ocr_chars": 183,
+    "claim_chars": 183,
+    "evidence_count": 5,
+    "warnings": [
+      "Image quality is low; OCR confidence may drop."
+    ],
+    "summarized": false
+  },
+  {
+    "file": "te_1.png",
+    "mode": "document",
+    "summary_verdict": "support",
+    "summary_confidence": 0.99,
+    "summary_claim": "రాగల మూడు గంటల్లో అల్లూరి, పోలవరం జిల్లాల్లో పిడుగులతో కూడిన మోస్తరు నుంచి భారీ వర్షాలు కురిసే అవకాశం ఉందని అలర్ట్స్‌ జారీ అయ్యాయి. ఇదే సమయంలో 40-60కిమీ వేగంతో బలమైన ఈదురు గాలులు వీచే అవకాశం ఉందని.",
+    "claims": [
+      {
+        "claim": "రాగల మూడు గంటల్లో అల్లూరి, పోలవరం జిల్లాల్లో పిడుగులతో కూడిన మోస్తరు నుంచి భారీ వర్షాలు కురిసే అవకాశం ఉందని అలర్ట్స్‌ జారీ అయ్యాయి. ఇదే సమయంలో 40-60కిమీ వేగంతో బలమైన ఈదురు గాలులు వీచే అవకాశం ఉందని.",
+        "verdict": "support",
+        "confidence": 0.99,
+        "evidence_count": 6
+      }
+    ],
+    "ocr_chars": 429,
+    "claim_chars": 429,
+    "warnings": []
+  },
+  {
+    "file": "te_2.png",
+    "mode": "document",
+    "summary_verdict": "support",
+    "summary_confidence": 0.99,
+    "summary_claim": "అయితే ఈ ఘటనపై అమెరికా సెంట్రల్‌ కమాండ్‌ నుంచి ఎలాంటి అధికారిక ప్రకటన వెలువడలేదు. ఇక యుద్ధం ప్రారంభమైన తర్వాత ఇరాన్‌ ఇప్పటి వరకూ రెండు -35 ఫైటర్‌ జెట్‌ లను కూల్చి వేయడం ఆందోళనకరంగా మారింది.",
+    "claims": [
+      {
+        "claim": "అయితే ఈ ఘటనపై అమెరికా సెంట్రల్‌ కమాండ్‌ నుంచి ఎలాంటి అధికారిక ప్రకటన వెలువడలేదు. ఇక యుద్ధం ప్రారంభమైన తర్వాత ఇరాన్‌ ఇప్పటి వరకూ రెండు -35 ఫైటర్‌ జెట్‌ లను కూల్చి వేయడం ఆందోళనకరంగా మారింది.",
+        "verdict": "support",
+        "confidence": 0.99,
+        "evidence_count": 5
+      }
+    ],
+    "ocr_chars": 489,
+    "claim_chars": 489,
+    "warnings": []
+  }
+]

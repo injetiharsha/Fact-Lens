@@ -1,0 +1,157 @@
+{
+  "input": "F:\\RFCS\\252_eval.json",
+  "out_dir": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252",
+  "include_uncheckable": false,
+  "languages": {
+    "en": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 12,
+        "refute": 12,
+        "neutral": 11
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_en_v2_from_252.json"
+    },
+    "hi": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 12,
+        "refute": 11,
+        "neutral": 12
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_hi_v2_from_252.json"
+    },
+    "kn": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 12,
+        "refute": 11,
+        "neutral": 12
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_kn_v2_from_252.json"
+    },
+    "ml": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 14,
+        "refute": 14,
+        "neutral": 7
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_ml_v2_from_252.json"
+    },
+    "ta": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 11,
+        "refute": 12,
+        "neutral": 12
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_ta_v2_from_252.json"
+    },
+    "te": {
+      "count": 35,
+      "verdict_distribution": {
+        "support": 12,
+        "refute": 12,
+        "neutral": 11
+      },
+      "label_distribution": {
+        "HEALTH": 2,
+        "TECHNOLOGY": 2,
+        "POLITICS_GOVERNMENT": 2,
+        "ECONOMICS_BUSINESS": 2,
+        "SCIENCE": 2,
+        "HISTORY": 2,
+        "GEOGRAPHY": 2,
+        "SPACE_ASTRONOMY": 3,
+        "ENVIRONMENT_CLIMATE": 3,
+        "SOCIETY_CULTURE": 3,
+        "LAW_CRIME": 3,
+        "SPORTS": 3,
+        "ENTERTAINMENT": 3,
+        "GENERAL_FACTUAL": 3
+      },
+      "file": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_by_language_252\\benchmark_cases_te_v2_from_252.json"
+    }
+  }
+}

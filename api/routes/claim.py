@@ -65,6 +65,8 @@ def _env_or_file(name: str, default: str | None = None) -> str | None:
     val = os.getenv(name)
     if val is not None and str(val).strip() != "":
         return val
+    if os.getenv("IGNORE_ENV_FILE_FALLBACK", "0").strip().lower() in {"1", "true", "yes", "on"}:
+        return default
     return _load_env_file_cache().get(name, default)
 
 

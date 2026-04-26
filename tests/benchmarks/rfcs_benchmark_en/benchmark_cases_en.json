@@ -27,7 +27,7 @@
     "context": "TECHNOLOGY",
     "type": "Factual",
     "claim": "Python surpassed JavaScript as the most-used programming language on GitHub in 2023.",
-    "expected": "support"
+    "expected": "refute"
   },
   {
     "id": 4,
@@ -97,7 +97,7 @@
     "context": "SOCIETY_CULTURE",
     "type": "Mixed",
     "claim": "The caste system in India was legally abolished under the Constitution of 1950.",
-    "expected": "neutral"
+    "expected": "refute"
   },
   {
     "id": 11,
@@ -157,7 +157,7 @@
     "context": "HEALTH",
     "type": "Factual",
     "claim": "Drinking eight glasses of water daily is a scientifically proven medical requirement for all adults.",
-    "expected": "neutral"
+    "expected": "refute"
   },
   {
     "id": 17,
@@ -207,7 +207,7 @@
     "context": "GEOGRAPHY",
     "type": "Mixed",
     "claim": "Vatican City is the world's smallest country by both area and population.",
-    "expected": "neutral"
+    "expected": "support"
   },
   {
     "id": 22,
@@ -247,7 +247,7 @@
     "context": "LAW_CRIME",
     "type": "Factual",
     "claim": "Under Indian law, the Right to Information Act applies to private corporations listed on the stock exchange.",
-    "expected": "refute"
+    "expected": "neutral"
   },
   {
     "id": 26,

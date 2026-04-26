@@ -1,0 +1,8 @@
+language,total_claims,expected_support,expected_refute,expected_neutral,predicted_support,predicted_refute,predicted_neutral
+en,35,12,12,11,10,6,19
+hi,35,12,11,12,10,6,19
+ta,35,11,12,12,12,12,11
+te,35,12,12,11,9,13,13
+kn,35,12,11,12,13,8,14
+ml,35,14,14,7,13,12,10
+combined_all_6,210,73,72,65,67,57,86

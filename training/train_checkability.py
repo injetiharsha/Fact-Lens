@@ -1,13 +1,7 @@
-"""Train checkability classifier model."""
+"""Wrapper entrypoint for checkability model training."""
 
-import torch
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from training.checkability.train_checkability_model import main
 
-def train_checkability():
-    """Train checkability classification model."""
-    print("Training checkability model...")
-    # Training logic here
-    pass
 
 if __name__ == "__main__":
-    train_checkability()
+    main()

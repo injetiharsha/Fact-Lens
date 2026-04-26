@@ -130,6 +130,45 @@ class EvidenceScorer:
         self.research_alpha = float(os.getenv("SCORING_RESEARCH_ALPHA", "0.50"))
         self.research_beta = float(os.getenv("SCORING_RESEARCH_BETA", "0.30"))
         self.research_gamma = float(os.getenv("SCORING_RESEARCH_GAMMA", "0.20"))
+        self.scrape_upgrade_enable = os.getenv(
+            "SCRAPE_UPGRADE_ENABLE", "0"
+        ).strip().lower() in {"1", "true", "yes", "on"}
+        self.scrape_dyn_boilerplate_penalty = float(
+            os.getenv("SCRAPE_DYN_BOILERPLATE_PENALTY", "0.20")
+        )
+
+    def hybrid_rank_score(
+        self,
+        evidence: Dict,
+        alpha: float = 0.55,
+        beta: float = 0.25,
+        gamma: float = 0.20,
+    ) -> float:
+        """Hybrid rerank score: alpha*relevance + beta*credibility + gamma*stance_conf."""
+        relevance = max(0.0, min(1.0, float(evidence.get("relevance", 0.0) or 0.0)))
+        credibility = max(0.0, min(1.0, float(self._get_credibility(evidence) or 0.0)))
+        stance_conf = evidence.get("stance_confidence")
+        if stance_conf is None:
+            probs = evidence.get("stance_probs") or {}
+            stance_conf = max(
+                float(probs.get("support", 0.0) or 0.0),
+                float(probs.get("refute", 0.0) or 0.0),
+                float(probs.get("neutral", 0.0) or 0.0),
+            )
+        stance_conf = max(0.0, min(1.0, float(stance_conf or 0.0)))
+        denom = max(1e-9, float(alpha) + float(beta) + float(gamma))
+        a, b, g = float(alpha) / denom, float(beta) / denom, float(gamma) / denom
+        score = (a * relevance) + (b * credibility) + (g * stance_conf)
+        evidence["hybrid_rank_components"] = {
+            "alpha": a,
+            "beta": b,
+            "gamma": g,
+            "relevance": relevance,
+            "credibility": credibility,
+            "stance_confidence": stance_conf,
+        }
+        evidence["hybrid_rank_score"] = score
+        return score
 
     def _research_weight(self, evidence: Dict) -> float:
         """Research-mode score: alpha*relevance + beta*stance_conf + gamma*source_trust."""
@@ -250,10 +289,36 @@ class EvidenceScorer:
         if source_type == "structured_api":
             return 0.9
         
+        domain_cred = None
         # Check domain credibility
         for domain, cred in DOMAIN_CREDIBILITY.items():
             if domain in source or domain in url:
-                return cred
+                domain_cred = cred
+                break
+
+        # Dynamic credibility for scraped rows (quality-gated, optional).
+        if source_type == "scraping" and self.scrape_upgrade_enable:
+            dyn = 0.50
+            if str(evidence.get("published_at") or evidence.get("date") or "").strip():
+                dyn += 0.07
+            overlap = float(
+                evidence.get("scrape_claim_overlap")
+                or evidence.get("entity_overlap")
+                or 0.0
+            )
+            dyn += max(0.0, min(0.18, 0.22 * overlap))
+            if bool(evidence.get("structured_from_scrape", False)):
+                dyn += 0.08
+            dyn += max(0.0, min(0.15, float(evidence.get("scrape_corroboration_score", 0.0) or 0.0)))
+            boiler = float(evidence.get("scrape_boilerplate_ratio", 0.0) or 0.0)
+            dyn -= max(0.0, min(0.30, self.scrape_dyn_boilerplate_penalty * boiler))
+            dyn = max(0.35, min(0.92, dyn))
+            if domain_cred is not None:
+                return max(float(domain_cred), dyn)
+            return dyn
+
+        if domain_cred is not None:
+            return float(domain_cred)
         
         # Default credibility
         if source_type == "web_search":

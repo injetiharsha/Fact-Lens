@@ -1,0 +1,26 @@
+{
+  "split": "en",
+  "total_rows": 42,
+  "labels": [
+    "support",
+    "refute",
+    "neutral"
+  ],
+  "matrix_3way": {
+    "support": {
+      "support": 4,
+      "refute": 0,
+      "neutral": 8
+    },
+    "refute": {
+      "support": 0,
+      "refute": 4,
+      "neutral": 8
+    },
+    "neutral": {
+      "support": 0,
+      "refute": 0,
+      "neutral": 11
+    }
+  }
+}

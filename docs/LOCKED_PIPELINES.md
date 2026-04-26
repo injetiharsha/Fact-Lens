@@ -31,15 +31,6 @@ Rationale:
 - Retrieval provider set is intentionally constrained to DDG-only for stable cost/rate behavior.
 - No new retrieval provider should be introduced unless a new lock revision is approved.
 
-## Checkability Lenience (KN/ML)
-
-- `CHECKABILITY_BYPASS_LANGS=kn,ml`
-
-Note:
-
-- Kannada/Malayalam checkability is bypassed due to current data/checkpoint limitations.
-- This is a runtime lenience policy, not a label remap policy.
-
 ## Commit Policy
 
 - Lock updates are committed locally first.

@@ -13,7 +13,12 @@ class LLMVerifier:
     _key_rr_counters: Dict[str, int] = {}
 
     def __init__(self, provider: str = "openai", model: str = "gpt-4o-mini"):
-        self.provider = (provider or "openai").strip().lower()
+        provider_raw = (provider or "openai").strip().lower()
+        providers = [p.strip() for p in provider_raw.split(",") if p.strip()]
+        if not providers:
+            providers = ["openai"]
+        self.provider_chain = providers
+        self.provider = providers[0]
         self.model = model
         self.base_url = self._resolve_base_url()
         self.api_keys = self._resolve_api_keys()
@@ -84,6 +89,12 @@ class LLMVerifier:
             return self._split_keys("OPENAI_API_KEYS", "OPENAI_API_KEY")
         if self.provider == "groq":
             return self._split_keys("GROQ_API_KEYS", "GROQ_API_KEY")
+        if self.provider == "fireworks":
+            return self._split_keys("FIREWORKS_API_KEYS", "FIREWORKS_API_KEY")
+        if self.provider == "nscale":
+            return self._split_keys("NSCALE_SERVICE_TOKENS", "NSCALE_SERVICE_TOKEN")
+        if self.provider == "cerebras":
+            return self._split_keys("CEREBRAS_API_KEYS", "CEREBRAS_API_KEY")
         if self.provider == "openrouter":
             return self._split_keys("OPENROUTER_API_KEYS", "OPENROUTER_API_KEY")
         if self.provider == "sarvam":
@@ -110,6 +121,12 @@ class LLMVerifier:
     def _default_base_url(self) -> str:
         if self.provider == "groq":
             return "https://api.groq.com/openai/v1"
+        if self.provider == "fireworks":
+            return "https://api.fireworks.ai/inference/v1"
+        if self.provider == "nscale":
+            return "https://inference.api.nscale.com/v1"
+        if self.provider == "cerebras":
+            return "https://api.cerebras.ai/v1"
         if self.provider == "openrouter":
             return "https://openrouter.ai/api/v1"
         if self.provider == "sarvam":
@@ -127,6 +144,27 @@ class LLMVerifier:
         if self.provider == "groq":
             return (
                 os.getenv("GROQ_API_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL_EN", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "fireworks":
+            return (
+                os.getenv("FIREWORKS_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL_EN", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "nscale":
+            return (
+                os.getenv("NSCALE_BASE_URL", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL_EN", "").strip()
+                or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
+                or self._default_base_url()
+            )
+        if self.provider == "cerebras":
+            return (
+                os.getenv("CEREBRAS_API_BASE_URL", "").strip()
                 or os.getenv("LLM_VERIFIER_BASE_URL_EN", "").strip()
                 or os.getenv("LLM_VERIFIER_BASE_URL", "").strip()
                 or self._default_base_url()
@@ -431,12 +469,29 @@ class LLMVerifier:
         payload = {
             "model": self.model,
             "temperature": 0,
-            "max_tokens": self.max_tokens,
             "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
             ],
         }
+        if self.provider == "cerebras":
+            payload["max_completion_tokens"] = int(
+                os.getenv("CEREBRAS_MAX_COMPLETION_TOKENS", str(self.max_tokens))
+            )
+            payload["top_p"] = float(os.getenv("CEREBRAS_TOP_P", "1"))
+            reasoning_effort = str(os.getenv("CEREBRAS_REASONING_EFFORT", "") or "").strip()
+            if reasoning_effort:
+                payload["reasoning_effort"] = reasoning_effort
+            payload["stream"] = False
+        elif self.provider == "fireworks":
+            payload["max_tokens"] = int(os.getenv("FIREWORKS_MAX_TOKENS", str(self.max_tokens)))
+            payload["top_p"] = float(os.getenv("FIREWORKS_TOP_P", "1"))
+            payload["top_k"] = int(os.getenv("FIREWORKS_TOP_K", "40"))
+            payload["presence_penalty"] = float(os.getenv("FIREWORKS_PRESENCE_PENALTY", "0"))
+            payload["frequency_penalty"] = float(os.getenv("FIREWORKS_FREQUENCY_PENALTY", "0"))
+            payload["temperature"] = float(os.getenv("FIREWORKS_TEMPERATURE", "0"))
+        else:
+            payload["max_tokens"] = self.max_tokens
         if self.provider == "sarvam":
             payload["stream"] = False
             payload["reasoning_effort"] = os.getenv("SARVAM_REASONING_EFFORT", "medium")
@@ -458,6 +513,16 @@ class LLMVerifier:
 
             try:
                 data = self._post_completion(endpoint=endpoint, headers=headers, payload=payload)
+                try:
+                    usage_obj = data.get("usage", {}) if isinstance(data, dict) else {}
+                    self._shared_limiter.note_usage(
+                        headers=headers,
+                        model=self.model,
+                        usage=usage_obj if isinstance(usage_obj, dict) else {},
+                    )
+                except Exception:
+                    # Non-fatal telemetry path.
+                    pass
                 choice = data.get("choices", [{}])[0] if isinstance(data, dict) else {}
                 finish_reason = str(choice.get("finish_reason", "") or "").strip().lower()
                 content = str(choice.get("message", {}).get("content", "") or "").strip()
@@ -498,6 +563,22 @@ class LLMVerifier:
         try:
             raise last_exc if last_exc is not None else RuntimeError("No API key available")
         except Exception as exc:
+            # Provider-chain fallback: try next providers if configured (e.g., fireworks,cerebras).
+            for p in list(getattr(self, "provider_chain", []) or [])[1:]:
+                try:
+                    fallback_model = (
+                        str(os.getenv(f"LLM_VERIFIER_MODEL_{p.upper()}", "") or "").strip()
+                        or self.model
+                    )
+                    fb = LLMVerifier(provider=p, model=fallback_model)
+                    out = fb.verify(claim=claim, evidence=evidence)
+                    reason_l = str(out.get("reason", "") or "").lower()
+                    # Treat these as provider-level failures; otherwise accept fallback output.
+                    if ("api key not set" in reason_l) or ("verify call failed" in reason_l):
+                        continue
+                    return out
+                except Exception:
+                    continue
             return {
                 "verdict": "neutral",
                 "confidence": 0.5,

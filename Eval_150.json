@@ -1,0 +1,2925 @@
+{
+  "metadata": {
+    "dataset_name": "thesis_claims_150_v1",
+    "version": "1.0",
+    "created_utc": "2026-04-23T00:00:00Z",
+    "total_claims": 150,
+    "languages": [
+      "en",
+      "hi",
+      "ta",
+      "te",
+      "kn",
+      "ml"
+    ],
+    "labels": [
+      "HEALTH",
+      "TECHNOLOGY",
+      "POLITICS_GOVERNMENT",
+      "ECONOMICS_BUSINESS",
+      "SCIENCE",
+      "HISTORY",
+      "GEOGRAPHY",
+      "SPACE_ASTRONOMY",
+      "ENVIRONMENT_CLIMATE",
+      "SOCIETY_CULTURE",
+      "LAW_CRIME",
+      "SPORTS",
+      "ENTERTAINMENT",
+      "GENERAL_FACTUAL"
+    ]
+  },
+  "claims": [
+    {
+      "id": "C064",
+      "claim": "1857 ஆம் ஆண்டு சிப்பாய் கலகத்தின் போது, இந்திய வீரர்கள் பறக்கும் தட்டுகளைப் பயன்படுத்தி பிரிட்டிஷ் ராணுவ முகாம்கள் மீது வான்வழித் தாக்குதல்களை நடத்தினார்கள்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C064"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev064"
+      ],
+      "verification_hint": "Verify weaponry used during the 1857 rebellion.",
+      "notes": ""
+    },
+    {
+      "id": "C134",
+      "claim": "ഒരു സിനിമ ബോക്സ് ഓഫീസിൽ കോടികൾ സമ്പാദിച്ചു എന്നതിനർത്ഥം ആ സിനിമയുടെ കലാപരമായ നിലവാരം വളരെ മികച്ചതാണ് എന്നാണെന്ന് പല നിരൂപകരും തെറ്റായി വാദിക്കാറുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C134"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev134"
+      ],
+      "verification_hint": "Verify the correlation between box office and critical acclaim.",
+      "notes": ""
+    },
+    {
+      "id": "C110",
+      "claim": "ಪಾಶ್ಚಾತ್ಯ ಸಂಸ್ಕೃತಿಯ ಪ್ರಭಾವದಿಂದಾಗಿ, ಈಗಿನ ಕಾಲದ ಯುವಕರು ತಮ್ಮ ಹಿರಿಯರನ್ನು ಗೌರವಿಸುವುದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಮರೆತಿದ್ದಾರೆ ಎಂದು ಸಮಾಜಶಾಸ್ತ್ರಜ್ಞರು ಆಗಾಗ್ಗೆ ಕಳವಳ ವ್ಯಕ್ತಪಡಿಸುತ್ತಾರೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C110"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev110"
+      ],
+      "verification_hint": "Verify sociological data on youth behavior.",
+      "notes": ""
+    },
+    {
+      "id": "C135",
+      "claim": "മാർച്ച് 2026 ലെ ഓസ്കാർ അവാർഡ് ദാന ചടങ്ങിൽ, ഇനിയുള്ള അവാർഡുകൾ എല്ലാം എഐ നിർമ്മിച്ച സിനിമകൾക്ക് മാത്രമേ നൽകൂ എന്ന് പ്രഖ്യാപിച്ചു എന്ന് റിപ്പോർട്ടുകളുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C135"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev135"
+      ],
+      "verification_hint": "Check Academy Awards eligibility rules from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C076",
+      "claim": "1900ల ప్రారంభంలో, శాస్త్రవేత్తలు పసిఫిక్ మహాసముద్రం పూర్తిగా ఎండిపోయిందని మరియు ప్రజలు అమెరికా నుండి జపాన్‌కు సులభంగా నడుచుకుంటూ వెళ్ళేవారని నివేదించారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C076"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev076"
+      ],
+      "verification_hint": "Check historical oceanography records.",
+      "notes": ""
+    },
+    {
+      "id": "C062",
+      "claim": "மகாத்மா காந்தி தனது போராட்டங்களின் போது பிரிட்டிஷ் அரசாங்கத்தை தோற்கடிக்க மந்திர சக்திகளையும் மாய வித்தைகளையும் பயன்படுத்தினார் என்பது பலரும் அறியாத உண்மையாகும்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C062"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev062"
+      ],
+      "verification_hint": "Verify methods used in the Indian independence movement.",
+      "notes": ""
+    },
+    {
+      "id": "C131",
+      "claim": "സിനിമയിലെ നായകന്മാർ യാഥാർത്ഥ്യത്തിൽ അവിശ്വസനീയമായ സ്റ്റണ്ടുകൾ സ്വന്തമായി ചെയ്യുന്നുവെന്നും അവർക്ക് യാതൊരു വിധത്തിലുള്ള അപകടങ്ങളും സംഭവിക്കാറില്ലെന്നും ആരാധകർ പലപ്പോഴും തെറ്റിദ്ധരിക്കാറുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C131"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev131"
+      ],
+      "verification_hint": "Verify film industry practices regarding stunt doubles.",
+      "notes": ""
+    },
+    {
+      "id": "C040",
+      "claim": "1600 ईस्वी में स्थापित ब्रिटिश ईस्ट इंडिया कंपनी दुनिया की सबसे शक्तिशाली और लाभदायक व्यापारिक कंपनियों में से एक बन गई थी।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C040"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev040"
+      ],
+      "verification_hint": "Check economic history of the East India Company.",
+      "notes": ""
+    },
+    {
+      "id": "C041",
+      "claim": "सकल घरेलू उत्पाद (जीडीपी) किसी देश की सीमाओं के भीतर उत्पादित सभी अंतिम वस्तुओं और सेवाओं के कुल मूल्य को मापता है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C041"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev041"
+      ],
+      "verification_hint": "Verify the economic definition of GDP.",
+      "notes": ""
+    },
+    {
+      "id": "C039",
+      "claim": "मार्च 2026 में, रिज़र्व बैंक ने डिजिटल लेनदेन को और अधिक सुरक्षित बनाने के लिए नई मौद्रिक नीतियों की घोषणा की है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C039"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev039"
+      ],
+      "verification_hint": "Check RBI circulars from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C066",
+      "claim": "மார்ச் 2026 இல், உலகின் அனைத்து நாடுகளும் தங்கள் பழைய வரலாற்றுப் புத்தகங்களை எரித்துவிட்டு புதிய மாயாஜால கதைகளை வரலாறாக ஏற்க ஒப்புக்கொண்டன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C066"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev066"
+      ],
+      "verification_hint": "Verify global educational policies.",
+      "notes": ""
+    },
+    {
+      "id": "C086",
+      "claim": "నక్షత్రాలు వాస్తవానికి ఆకాశంలో వేలాడదీయబడిన చిన్న విద్యుత్ బల్బులు మాత్రమే మరియు వాటిని ప్రతిరోజూ ఉదయం ఒక స్విచ్ ద్వారా ఆఫ్ చేస్తారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C086"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev086"
+      ],
+      "verification_hint": "Check fundamental astronomy on the nature of stars.",
+      "notes": ""
+    },
+    {
+      "id": "C001",
+      "claim": "In 1980, the World Health Organization officially declared the global eradication of the smallpox virus after a massive international vaccination campaign.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C001"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev001"
+      ],
+      "verification_hint": "Check WHO historical archives for smallpox.",
+      "notes": ""
+    },
+    {
+      "id": "C142",
+      "claim": "നൂറ്റാണ്ടുകൾക്ക് മുൻപ് മനുഷ്യർക്ക് പറക്കാൻ കഴിഞ്ഞിരുന്നുവെന്നും കാലക്രമേണ പരിണാമം മൂലം ആ കഴിവ് നഷ്ടപ്പെട്ടതാണെന്നും ചില പ്രാചീന ഗ്രന്ഥങ്ങളെ ഉദ്ധരിച്ച് വ്യാജമായി അവകാശപ്പെടുന്നവരുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C142"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev142"
+      ],
+      "verification_hint": "Verify human evolutionary biology records.",
+      "notes": ""
+    },
+    {
+      "id": "C096",
+      "claim": "మార్చి 2026లో, ప్రపంచవ్యాప్తంగా ఉన్న అడవులన్నీ రాత్రికి రాత్రే అదృశ్యమై వాటి స్థానంలో భారీ కాంక్రీట్ భవనాలు వాటంతట అవే పుట్టుకొచ్చాయి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C096"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev096"
+      ],
+      "verification_hint": "Verify global forest cover changes in 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C033",
+      "claim": "अप्रैल 2026 के हालिया चुनाव सुधारों के तहत, चुनाव आयोग ने मतदाता पंजीकरण प्रक्रिया को पूरी तरह से डिजिटल कर दिया है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C033"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev033"
+      ],
+      "verification_hint": "Check Election Commission updates from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C132",
+      "claim": "ജനുവരി 2026 ൽ, ലോകത്തിലെ ഏറ്റവും വലിയ ഒടിടി പ്ലാറ്റ്‌ഫോം അവരുടെ എല്ലാ സിനിമകളും ഇനിമുതൽ തികച്ചും സൗജന്യമായി സംപ്രേക്ഷണം ചെയ്യുമെന്ന് പ്രഖ്യാപിച്ചു എന്നൊരു വ്യാജ വാർത്തയുണ്ടായിരുന്നു.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C132"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev132"
+      ],
+      "verification_hint": "Check major OTT subscription policies from Jan 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C019",
+      "claim": "The introduction of the first commercially successful smartphone in 2007 drastically changed how people access the internet and communicate globally.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C019"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev019"
+      ],
+      "verification_hint": "Check history of mobile communications.",
+      "notes": ""
+    },
+    {
+      "id": "C084",
+      "claim": "మార్చి 2026లో, అంతర్జాతీయ అంతరిక్ష కేంద్రం భూమిపై ఉన్న ఒక సముద్రంలో పడిపోయి ఒక అద్భుతమైన జల అక్వేరియంగా మారిపోయిందని వార్తలు వచ్చాయి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C084"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev084"
+      ],
+      "verification_hint": "Check current status of the International Space Station.",
+      "notes": ""
+    },
+    {
+      "id": "C031",
+      "claim": "1950 में भारत का संविधान पूरी तरह से लागू हुआ, जिससे देश एक संप्रभु लोकतांत्रिक गणराज्य बन गया।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C031"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev031"
+      ],
+      "verification_hint": "Check Indian republic day history.",
+      "notes": ""
+    },
+    {
+      "id": "C120",
+      "claim": "ಮಾರ್ಚ್ 2026 ರಲ್ಲಿ ಪಾಸ್ ಆದ ಮಸೂದೆಯು, ಕೇವಲ ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಮಾತ್ರ ಚಿಕಿತ್ಸೆ ಪಡೆಯಬೇಕು ಮತ್ತು ಖಾಸಗಿ ಆಸ್ಪತ್ರೆಗಳನ್ನು ಮುಚ್ಚಲಾಗುವುದು ಎಂದು ಸೂಚಿಸುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C120"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev120"
+      ],
+      "verification_hint": "Check healthcare legislation from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C133",
+      "claim": "പഴയ കാല ബ്ലാക്ക് ആൻഡ് വൈറ്റ് സിനിമകളിൽ ഒരിക്കലും സംഭാഷണങ്ങൾ ഉണ്ടായിരുന്നില്ലെന്നും അവയെല്ലാം പൂർണ്ണമായും നിശബ്ദ ചിത്രങ്ങൾ മാത്രമായിരുന്നുവെന്നും കരുതുന്നത് ചരിത്രപരമായി ശരിയല്ല.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C133"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev133"
+      ],
+      "verification_hint": "Check timeline of the introduction of sound in cinema.",
+      "notes": ""
+    },
+    {
+      "id": "C073",
+      "claim": "1920 ஆம் ஆண்டில், சஹாரா பாலைவனம் முழுமையாக அடர்ந்த மழைக்காடுகளாக மாற்றப்பட்டு, அங்கு லட்சக்கணக்கான நீர்யானைகள் வாழ்ந்து வந்தன என்பது குறிப்பிடத்தக்கது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C073"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev073"
+      ],
+      "verification_hint": "Verify climate history of the Sahara desert.",
+      "notes": ""
+    },
+    {
+      "id": "C124",
+      "claim": "20 ನೇ ಶತಮಾನದ ಆರಂಭದಲ್ಲಿ, ಮಹಿಳೆಯರು ಯಾವುದೇ ಕ್ರೀಡೆಯಲ್ಲಿ ಭಾಗವಹಿಸಲು ಸಂಪೂರ್ಣವಾಗಿ ಕಾನೂನುಬದ್ಧವಾಗಿ ನಿಷೇಧಿಸಲಾಗಿತ್ತು ಮತ್ತು ಅವರಿಗೆ ಕ್ರೀಡಾಂಗಣದ ಪ್ರವೇಶವೂ ಇರಲಿಲ್ಲ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C124"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev124"
+      ],
+      "verification_hint": "Check history of women's participation in early Olympics.",
+      "notes": ""
+    },
+    {
+      "id": "C129",
+      "claim": "ഫെബ്രുവരി 2026 ലെ പുതിയ നിയമപ്രകാരം, ഫുട്ബോൾ മത്സരങ്ങളിൽ ഇനി മുതൽ ഗോൾകീപ്പർമാർക്ക് പന്ത് കൈകൊണ്ട് തൊടാൻ അനുവാദമില്ല എന്നൊരു വാർത്ത അടുത്തിടെ വലിയ ചർച്ചയായിരുന്നു.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C129"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev129"
+      ],
+      "verification_hint": "Verify FIFA goalkeeping rules updated in Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C137",
+      "claim": "സെലിബ്രിറ്റികളുടെ ജീവിതം എപ്പോഴും വളരെ സന്തോഷകരമാണെന്നും അവർക്ക് സാധാരണ മനുഷ്യരെപ്പോലെ യാതൊരു വിധത്തിലുള്ള മാനസിക പ്രശ്നങ്ങളോ സമ്മർദ്ദങ്ങളോ ഉണ്ടാകാറില്ലെന്നും മാധ്യമങ്ങൾ പലപ്പോഴും ചിത്രീകരിക്കുന്നു.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C137"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev137"
+      ],
+      "verification_hint": "Check psychological studies on celebrity mental health.",
+      "notes": ""
+    },
+    {
+      "id": "C004",
+      "claim": "The discovery of penicillin by Alexander Fleming in 1928 revolutionized modern medicine by providing the first effective antibiotic against bacterial infections.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C004"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev004"
+      ],
+      "verification_hint": "Check medical history records on penicillin.",
+      "notes": ""
+    },
+    {
+      "id": "C054",
+      "claim": "மார்ச் 2026 இல், நாசா நிலவின் மேற்பரப்பில் ஒரு பெரிய வணிக வளாகத்தை கட்டி முடித்து அதனை பொதுமக்களின் பயன்பாட்டிற்காக திறந்து வைத்துள்ளது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C054"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev054"
+      ],
+      "verification_hint": "Verify NASA's lunar infrastructure status.",
+      "notes": ""
+    },
+    {
+      "id": "C128",
+      "claim": "കായിക മത്സരങ്ങളിൽ റഫറിമാർ എടുക്കുന്ന എല്ലാ തീരുമാനങ്ങളും പൂർണ്ണമായും ശരിയാണെന്നും അവർക്ക് ഒരിക്കലും മനുഷ്യസഹജമായ തെറ്റുകൾ സംഭവിക്കാറില്ലെന്നും വിശ്വസിക്കുന്നത് തികച്ചും തെറ്റിദ്ധാരണാജനകമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C128"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev128"
+      ],
+      "verification_hint": "Check statistics on referee errors in sports.",
+      "notes": ""
+    },
+    {
+      "id": "C093",
+      "claim": "ఫిబ్రవరి 2026 నివేదిక ప్రకారం, వాతావరణ మార్పుల కారణంగా సహారా ఎడారి పూర్తిగా మంచుతో కప్పబడి అంటార్కిటికా వలె మారిపోయింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C093"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev093"
+      ],
+      "verification_hint": "Check weather reports for Sahara desert in Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C061",
+      "claim": "1912 ஆம் ஆண்டில் டைட்டானிக் கப்பல் பனிப்பாறையில் மோதி மூழ்கவில்லை, மாறாக ஒரு பெரிய கடல் டிராகனால் தாக்கப்பட்டு அழிக்கப்பட்டது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C061"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev061"
+      ],
+      "verification_hint": "Check historical records of the Titanic sinking.",
+      "notes": ""
+    },
+    {
+      "id": "C068",
+      "claim": "ஆப்பிரிக்கா கண்டம் முழுவதும் ஒரே ஒரு நாடாக மட்டுமே செயல்படுகிறது மற்றும் அங்கு ஒரே ஒரு அரசாங்கம் மட்டுமே முழு கண்டத்தையும் ஆட்சி செய்கிறது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C068"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev068"
+      ],
+      "verification_hint": "Verify the political map of the African continent.",
+      "notes": ""
+    },
+    {
+      "id": "C043",
+      "claim": "1929 की वॉल स्ट्रीट क्रैश ने महामंदी की शुरुआत की, जिससे वैश्विक अर्थव्यवस्था में बड़े पैमाने पर बेरोजगारी और गरीबी फैल गई।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C043"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev043"
+      ],
+      "verification_hint": "Check history of the Great Depression.",
+      "notes": ""
+    },
+    {
+      "id": "C147",
+      "claim": "മാർച്ച് 2026 ലെ ഒരു ഔദ്യോഗിക അറിയിപ്പ് പ്രകാരം, ഇനിമുതൽ രാജ്യത്ത് പെട്രോൾ പമ്പുകൾ ഉണ്ടാകില്ലെന്നും എല്ലാവരും ഇലക്ട്രിക് വാഹനങ്ങൾ മാത്രമേ ഉപയോഗിക്കാവൂ എന്നും നിർദ്ദേശിച്ചിട്ടുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C147"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev147"
+      ],
+      "verification_hint": "Check energy policy transitions announced in March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C138",
+      "claim": "ഏപ്രിൽ 2026 ൽ, പ്രശസ്തനായ ഒരു ഹോളിവുഡ് നടൻ താൻ ഒരു അന്യഗ്രഹജീവിയാണെന്ന് ഒരു അഭിമുഖത്തിൽ വെളിപ്പെടുത്തി എന്നൊരു വിവാദ വാർത്ത സോഷ്യൽ മീഡിയയിൽ വൈറലായിരുന്നു.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C138"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev138"
+      ],
+      "verification_hint": "Verify celebrity interviews and PR stunts from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C111",
+      "claim": "ಏಪ್ರಿಲ್ 2026 ರಲ್ಲಿ ಜಾರಿಗೆ ಬಂದ ಹೊಸ ಕಾನೂನಿನ ಅಡಿಯಲ್ಲಿ, ಟ್ರಾಫಿಕ್ ಸಿಗ್ನಲ್ ಜಂಪ್ ಮಾಡಿದರೆ ನೇರವಾಗಿ ಜೀವಾವಧಿ ಶಿಕ್ಷೆ ವಿಧಿಸಲಾಗುತ್ತದೆ ಎಂಬ ವದಂತಿಗಳಿವೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C111"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev111"
+      ],
+      "verification_hint": "Check new traffic penalty regulations from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C119",
+      "claim": "ಆದಾಯ ತೆರಿಗೆ ಕಟ್ಟದಿದ್ದರೆ ಸರ್ಕಾರವು ನಿಮ್ಮ ಎಲ್ಲಾ ಆಸ್ತಿಯನ್ನು ಯಾವುದೇ ಮುನ್ಸೂಚನೆ ಇಲ್ಲದೆ ತಕ್ಷಣವೇ ಮುಟ್ಟುಗೋಲು ಹಾಕಿಕೊಳ್ಳುತ್ತದೆ ಎಂಬುದು ವ್ಯಾಪಾರ ವಲಯದಲ್ಲಿರುವ ಸಾಮಾನ್ಯ ಭಯವಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C119"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev119"
+      ],
+      "verification_hint": "Verify tax evasion legal procedures and notices.",
+      "notes": ""
+    },
+    {
+      "id": "C087",
+      "claim": "ఏప్రిల్ 2026లో, చైనా తన కొత్త రాకెట్ ద్వారా చంద్రుడిని భూమి చుట్టూ కాకుండా సూర్యుడి చుట్టూ తిరిగేలా దాని కక్ష్యను మార్చింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C087"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev087"
+      ],
+      "verification_hint": "Verify space news regarding lunar orbit manipulation.",
+      "notes": ""
+    },
+    {
+      "id": "C117",
+      "claim": "ಫೆಬ್ರವರಿ 2026 ರ ಹೊಸ ಕಾಯ್ದೆಯು, ಸಾರ್ವಜನಿಕ ಸ್ಥಳಗಳಲ್ಲಿ ಜೋರಾಗಿ ಮಾತನಾಡಿದರೆ ಭಾರಿ ದಂಡ ವಿಧಿಸಲು ಮತ್ತು ತಕ್ಷಣವೇ ಬಂಧಿಸಲು ಪೊಲೀಸರಿಗೆ ಸಂಪೂರ್ಣ ಅಧಿಕಾರ ನೀಡಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C117"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev117"
+      ],
+      "verification_hint": "Check public nuisance laws updated in Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C067",
+      "claim": "1950 களுக்கு முன்பு, ஆஸ்திரேலியா கண்டம் பசிபிக் பெருங்கடலில் மிதந்து கொண்டிருந்தது, பின்னர் அது தற்போதைய இடத்திற்கு இழுத்து வரப்பட்டது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C067"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev067"
+      ],
+      "verification_hint": "Check basic plate tectonics and geography.",
+      "notes": ""
+    },
+    {
+      "id": "C082",
+      "claim": "1950ల దశకంలో, రష్యా అంతరిక్ష సంస్థ గురుగ్రహంపై ఒక పెద్ద రైల్వే స్టేషన్‌ను నిర్మించి అక్కడికి మొదటి ప్యాసింజర్ రైలును నడిపింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C082"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev082"
+      ],
+      "verification_hint": "Check history of Soviet space program achievements.",
+      "notes": ""
+    },
+    {
+      "id": "C102",
+      "claim": "ಜನವರಿ 2026 ರ ಸಾಮಾಜಿಕ ಸಮೀಕ್ಷೆಯೊಂದು, ಯುವಜನರು ಈಗ ಪುಸ್ತಕಗಳನ್ನು ಓದುವುದನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ನಿಲ್ಲಿಸಿದ್ದಾರೆ ಮತ್ತು ಕೇವಲ ಸಾಮಾಜಿಕ ಜಾಲತಾಣಗಳಿಂದ ಮಾತ್ರ ಜ್ಞಾನವನ್ನು ಪಡೆಯುತ್ತಿದ್ದಾರೆ ಎಂದು ಹೇಳುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C102"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev102"
+      ],
+      "verification_hint": "Verify reading habits statistics from 2026 surveys.",
+      "notes": ""
+    },
+    {
+      "id": "C092",
+      "claim": "వాహనాల నుండి వెలువడే పొగ వాతావరణంలో ఆక్సిజన్ స్థాయిలను పెంచుతుందని మరియు గాలి నాణ్యతను మరింత శుభ్రపరుస్తుందని శాస్త్రీయ అధ్యయనాలు స్పష్టంగా సూచిస్తున్నాయి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C092"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev092"
+      ],
+      "verification_hint": "Verify basic chemistry of vehicle emissions.",
+      "notes": ""
+    },
+    {
+      "id": "C017",
+      "claim": "Solid-state drives provide faster data retrieval times and greater physical durability than traditional mechanical hard disk drives in modern computers.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C017"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev017"
+      ],
+      "verification_hint": "Verify computer hardware specifications.",
+      "notes": ""
+    },
+    {
+      "id": "C105",
+      "claim": "ಫೆಬ್ರವರಿ 2026 ರಲ್ಲಿ ಬಿಡುಗಡೆಯಾದ ವರದಿಯ ಪ್ರಕಾರ, ಪ್ರಪಂಚದಾದ್ಯಂತ ಇರುವ ಎಲ್ಲಾ ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳು ಈಗ ಸಂಪೂರ್ಣವಾಗಿ ನಗರೀಕರಣಗೊಂಡಿವೆ ಮತ್ತು ಹಳ್ಳಿಗಳೇ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C105"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev105"
+      ],
+      "verification_hint": "Check global urbanization data from Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C089",
+      "claim": "ప్లాస్టిక్ వ్యర్థాలు సముద్రపు నీటిలో వేసిన వెంటనే కేవలం ఐదు నిమిషాల్లో కరిగిపోయి చేపలకు ఆరోగ్యకరమైన ఆహారంగా మారిపోతాయని పర్యావరణవేత్తలు చెబుతారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C089"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev089"
+      ],
+      "verification_hint": "Verify scientific data on plastic degradation in oceans.",
+      "notes": ""
+    },
+    {
+      "id": "C050",
+      "claim": "गुरुत्वाकर्षण बल वह मौलिक आकर्षण है जो ब्रह्मांड में बड़े पैमाने की वस्तुओं को एक दूसरे की ओर खींचता है और ग्रहों की कक्षाओं को बनाए रखता है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C050"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev050"
+      ],
+      "verification_hint": "Verify physics fundamentals on gravity.",
+      "notes": ""
+    },
+    {
+      "id": "C146",
+      "claim": "മൈക്രോവേവ് ഓവനിൽ പാകം ചെയ്യുന്ന ഭക്ഷണങ്ങളെല്ലാം റേഡിയേഷൻ നിറഞ്ഞതാണെന്നും അവ കഴിക്കുന്നത് നമ്മുടെ ഡിഎൻഎയെ പൂർണ്ണമായും നശിപ്പിക്കുമെന്നും പലരും വിശ്വസിക്കുന്നത് അശാസ്ത്രീയമായ ഒരു ഭയം മാത്രമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C146"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev146"
+      ],
+      "verification_hint": "Verify physics of non-ionizing microwave radiation.",
+      "notes": ""
+    },
+    {
+      "id": "C099",
+      "claim": "ఏప్రిల్ 2026లో, ఐక్యరాజ్యసమితి పర్యావరణ సంస్థ భూమిపై ఉన్న అన్ని చెట్లను ప్లాస్టిక్ చెట్లతో భర్తీ చేసే కొత్త ప్రపంచ ప్రాజెక్టును ప్రకటించింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C099"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev099"
+      ],
+      "verification_hint": "Verify UNEP announcements from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C065",
+      "claim": "பண்டைய கிரேக்கத்தில் ஒலிம்பிக் போட்டிகளில் பங்கேற்ற அனைத்து வீரர்களும் ரோபோக்களாக இருந்தனர் என்பதை நவீன தொல்பொருள் ஆய்வுகள் சந்தேகத்திற்கு இடமின்றி நிரூபித்துள்ளன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C065"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev065"
+      ],
+      "verification_hint": "Check archaeological evidence of ancient Olympics.",
+      "notes": ""
+    },
+    {
+      "id": "C123",
+      "claim": "ಜನವರಿ 2026 ರ ಒಲಿಂಪಿಕ್ ಸಮಿತಿಯ ಪ್ರಕಟಣೆಯು, ಇನ್ನು ಮುಂದೆ ಕೇವಲ ಇ-ಸ್ಪೋರ್ಟ್ಸ್ ಮತ್ತು ವಿಡಿಯೋ ಗೇಮ್‌ಗಳನ್ನು ಮಾತ್ರ ಒಲಿಂಪಿಕ್ಸ್‌ನಲ್ಲಿ ಸೇರಿಸಲಾಗುವುದು ಎಂದು ಸುಳಿವು ನೀಡಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C123"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev123"
+      ],
+      "verification_hint": "Verify IOC announcements from Jan 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C097",
+      "claim": "1950లలో, గ్లోబల్ వార్మింగ్ సమస్యను పరిష్కరించడానికి ఐక్యరాజ్యసమితి అంతరిక్షంలో ఒక భారీ ఏసీని అమర్చి భూమిని చల్లబరిచే ప్రయత్నం విజయవంతంగా చేసింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C097"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev097"
+      ],
+      "verification_hint": "Check UN history and space technology of 1950s.",
+      "notes": ""
+    },
+    {
+      "id": "C077",
+      "claim": "ఆసియా ఖండంలోని అన్ని దేశాలు ఒకే భాషను మాత్రమే మాట్లాడతాయి మరియు ఆసియాలో వేరే ఏ ఇతర స్థానిక భాషల ఉనికి లేదు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C077"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev077"
+      ],
+      "verification_hint": "Verify linguistic diversity data for Asia.",
+      "notes": ""
+    },
+    {
+      "id": "C037",
+      "claim": "2008 के वैश्विक वित्तीय संकट ने दुनिया भर के कई प्रमुख बैंकों और वित्तीय संस्थानों को दिवालिया होने के कगार पर ला दिया था।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C037"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev037"
+      ],
+      "verification_hint": "Check history of the 2008 financial crisis.",
+      "notes": ""
+    },
+    {
+      "id": "C116",
+      "claim": "ಸೈಬರ್ ಅಪರಾಧಗಳನ್ನು ತಡೆಯಲು ಸರ್ಕಾರವು ಪ್ರತಿಯೊಬ್ಬ ನಾಗರಿಕರ ಎಲ್ಲಾ ವೈಯಕ್ತಿಕ ವಾಟ್ಸಾಪ್ ಸಂದೇಶಗಳನ್ನು ನಿರಂತರವಾಗಿ ಓದುತ್ತಿದೆ ಮತ್ತು ರೆಕಾರ್ಡ್ ಮಾಡುತ್ತಿದೆ ಎಂದು ಹಲವರು ನಂಬುತ್ತಾರೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C116"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev116"
+      ],
+      "verification_hint": "Verify end-to-end encryption policies and privacy laws.",
+      "notes": ""
+    },
+    {
+      "id": "C005",
+      "claim": "Consuming adequate amounts of vitamin C is essential for preventing scurvy and maintaining a healthy human immune system.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C005"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev005"
+      ],
+      "verification_hint": "Verify nutritional guidelines regarding vitamin C.",
+      "notes": ""
+    },
+    {
+      "id": "C018",
+      "claim": "In February 2026, regulatory authorities approved the first autonomous flying taxi service for limited commercial use in major metropolitan areas.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "hard",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C018"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev018"
+      ],
+      "verification_hint": "Check aviation authority approvals from Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C026",
+      "claim": "अधिकांश लोकतांत्रिक देशों में, संविधान नागरिकों के मौलिक अधिकारों की रक्षा करता है और सरकार की शक्तियों को सीमित करता है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C026"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev026"
+      ],
+      "verification_hint": "Verify constitutional frameworks in democracies.",
+      "notes": ""
+    },
+    {
+      "id": "C070",
+      "claim": "1800 களின் முற்பகுதியில், பசிபிக் பெருங்கடலின் மையத்தில் அமைந்திருந்த அட்லாண்டிஸ் நகரம் அதிகாரப்பூர்வமாக உலகின் மிகப்பெரிய மற்றும் சுறுசுறுப்பான வர்த்தக மையமாக செயல்பட்டது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C070"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev070"
+      ],
+      "verification_hint": "Check historical geography regarding the myth of Atlantis.",
+      "notes": ""
+    },
+    {
+      "id": "C052",
+      "claim": "1800 களில், மருத்துவர்கள் மனித உடலின் அனைத்து உறுப்புகளையும் எந்தவித அறுவை சிகிச்சையும் இல்லாமல் வெறும் காந்தங்களைப் பயன்படுத்தி முழுமையாக மாற்ற முடியும் என்று நிரூபித்தனர்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C052"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev052"
+      ],
+      "verification_hint": "Verify history of medical science and surgery.",
+      "notes": ""
+    },
+    {
+      "id": "C003",
+      "claim": "In March 2026, the global health assembly announced a new international protocol for tracking infectious respiratory diseases across borders.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C003"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev003"
+      ],
+      "verification_hint": "Verify global health assembly press releases from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C053",
+      "claim": "மனிதர்கள் மற்றும் டைனோசர்கள் பல மில்லியன் ஆண்டுகளாக ஒரே நேரத்தில் பூமியில் ஒன்றாக வாழ்ந்தன என்பதை அனைத்து நவீன அறிவியல் ஆராய்ச்சிகளும் தெளிவாக உறுதிப்படுத்துகின்றன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C053"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev053"
+      ],
+      "verification_hint": "Check paleontological timelines of humans and dinosaurs.",
+      "notes": ""
+    },
+    {
+      "id": "C015",
+      "claim": "During a major tech expo in March 2026, several companies demonstrated their new solid-state battery technology for electric vehicles.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C015"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev015"
+      ],
+      "verification_hint": "Verify auto industry news from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C139",
+      "claim": "ആദ്യകാലത്ത് റേഡിയോ നാടകങ്ങൾ കേൾക്കുമ്പോൾ ജനങ്ങൾ ശരിക്കും അന്യഗ്രഹജീവികൾ ഭൂമിയെ ആക്രമിക്കാൻ വരുന്നുണ്ടെന്ന് വിശ്വസിച്ച് പരിഭ്രാന്തരായി തെരുവിലേക്ക് ഇറങ്ങി ഓടിയിരുന്നു എന്ന കഥ അതിശയോക്തിയാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C139"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev139"
+      ],
+      "verification_hint": "Check historical analysis of the War of the Worlds broadcast.",
+      "notes": ""
+    },
+    {
+      "id": "C042",
+      "claim": "फरवरी 2026 के केंद्रीय बजट में, सरकार ने नवीकरणीय ऊर्जा क्षेत्र में भारी निवेश के लिए कई नई कर छूट पेश की हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C042"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev042"
+      ],
+      "verification_hint": "Check the Union Budget documents of Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C150",
+      "claim": "ഏപ്രിൽ 2026 ലെ പുതിയ ട്രാഫിക് നിയമപ്രകാരം, കാറിൽ ഒറ്റയ്ക്ക് യാത്ര ചെയ്യുന്നവർക്കും ഇനിമുതൽ നിർബന്ധമായും മാസ്ക് ധരിക്കേണ്ടതുണ്ട് എന്നൊരു തെറ്റായ വാർത്ത പത്രങ്ങളിൽ വന്നിരുന്നു.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C150"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev150"
+      ],
+      "verification_hint": "Verify transport department guidelines from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C075",
+      "claim": "மார்ச் 2026 இல், கிரீன்லாந்து தீவு முழுமையாக உருகி காணாமல் போய்விட்டதாகவும், அதன் இடத்தில் ஒரு புதிய எரிமலை தோன்றியுள்ளதாகவும் அறிவிக்கப்பட்டது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C075"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev075"
+      ],
+      "verification_hint": "Verify current satellite imagery of Greenland.",
+      "notes": ""
+    },
+    {
+      "id": "C083",
+      "claim": "భూమి చదునుగా ఉన్న ఒక పెద్ద ప్లేట్ లాంటిదని మరియు దానికి అంచులు ఉన్నాయని ఆధునిక ఉపగ్రహ చిత్రాలు అన్ని స్పష్టంగా నిరూపిస్తున్నాయి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C083"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev083"
+      ],
+      "verification_hint": "Verify basic shape of the Earth using satellite imagery.",
+      "notes": ""
+    },
+    {
+      "id": "C136",
+      "claim": "1980 കളിലെ ടെലിവിഷൻ പരമ്പരകൾ മുഴുവനായും തത്സമയം সম্প্রേക്ഷണം ചെയ്തിരുന്നവയാണെന്നും അവയ്ക്ക് യാതൊരു വിധത്തിലുള്ള എഡിറ്റിംഗും ഉണ്ടായിരുന്നില്ലെന്നും വിശ്വസിക്കുന്നത് തികച്ചും അടിസ്ഥാനരഹിതമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C136"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev136"
+      ],
+      "verification_hint": "Verify television production techniques of the 1980s.",
+      "notes": ""
+    },
+    {
+      "id": "C079",
+      "claim": "1969కి ముందు, చంద్రుడు వాస్తవానికి భూమికి చాలా దగ్గరగా ఉండేవాడు మరియు ప్రజలు తమ ఇళ్ల పైకప్పుల నుండి దానిని సులభంగా తాకగలిగేవారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C079"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev079"
+      ],
+      "verification_hint": "Verify orbital mechanics and historical distance to the moon.",
+      "notes": ""
+    },
+    {
+      "id": "C032",
+      "claim": "किसी भी स्वस्थ लोकतंत्र में स्वतंत्र न्यायपालिका का होना आवश्यक है ताकि कानूनों का निष्पक्ष रूप से पालन सुनिश्चित किया जा सके।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C032"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev032"
+      ],
+      "verification_hint": "Verify democratic principles regarding judiciary.",
+      "notes": ""
+    },
+    {
+      "id": "C103",
+      "claim": "ಪ್ರಾಚೀನ ಕಾಲದಲ್ಲಿ ಭಾರತೀಯ ಮಹಿಳೆಯರು ಎಂದಿಗೂ ಮನೆಯಿಂದ ಹೊರಬರುತ್ತಿರಲಿಲ್ಲ ಮತ್ತು ಅವರು ಕೇವಲ ಅಡುಗೆಮನೆಗೆ ಮಾತ್ರ ಸೀಮಿತವಾಗಿದ್ದರು ಎಂದು ಇತಿಹಾಸಕಾರರು ಆಗಾಗ್ಗೆ ತಪ್ಪು ಗ್ರಹಿಕೆಯಿಂದ ಬರೆಯುತ್ತಾರೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C103"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev103"
+      ],
+      "verification_hint": "Check historical nuances of women in ancient India.",
+      "notes": ""
+    },
+    {
+      "id": "C022",
+      "claim": "The development of the first electronic general-purpose computer, ENIAC, was completed in 1945 to calculate complex artillery firing tables.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C022"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev022"
+      ],
+      "verification_hint": "Check computer history archives for ENIAC.",
+      "notes": ""
+    },
+    {
+      "id": "C010",
+      "claim": "The implementation of widespread water chlorination in the early twentieth century drastically reduced the incidence of waterborne diseases like cholera.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C010"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev010"
+      ],
+      "verification_hint": "Check public health history regarding sanitation.",
+      "notes": ""
+    },
+    {
+      "id": "C035",
+      "claim": "मांग और आपूर्ति के बुनियादी आर्थिक सिद्धांत मुक्त बाजार अर्थव्यवस्था में वस्तुओं और सेवाओं की कीमतों को सीधे प्रभावित करते हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C035"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev035"
+      ],
+      "verification_hint": "Verify basic microeconomic principles.",
+      "notes": ""
+    },
+    {
+      "id": "C144",
+      "claim": "ജനുവരി 2026 ൽ, സർക്കാർ എല്ലാ ബാങ്ക് അക്കൗണ്ടുകളിൽ നിന്നും പത്ത് ശതമാനം തുക നിർബന്ധിതമായി നികുതിയായി പിടിക്കാൻ ഉത്തരവിട്ടു എന്നൊരു സന്ദേശം വ്യാപകമായി ഷെയർ ചെയ്യപ്പെടുന്നുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C144"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev144"
+      ],
+      "verification_hint": "Verify Ministry of Finance notifications from Jan 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C112",
+      "claim": "2000 ನೇ ಇಸವಿಯಲ್ಲಿ ಜಾರಿಯಾದ ಒಂದು ವಿವಾದಾತ್ಮಕ ಕಾನೂನು, ದೇಶದ ಎಲ್ಲಾ ನಾಗರಿಕರು ಕಡ್ಡಾಯವಾಗಿ ಸರ್ಕಾರಿ ಕೆಲಸವನ್ನು ಮಾಡಲೇಬೇಕು ಎಂದು ಆದೇಶಿಸಿತ್ತು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C112"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev112"
+      ],
+      "verification_hint": "Verify labor laws and constitutional rights from 2000.",
+      "notes": ""
+    },
+    {
+      "id": "C048",
+      "claim": "मार्च 2026 में प्रकाशित एक प्रमुख शोध पत्र ने पुष्टि की है कि मंगल ग्रह के ध्रुवीय क्षेत्रों में अभी भी जमे हुए पानी के भंडार मौजूद हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C048"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev048"
+      ],
+      "verification_hint": "Check planetary science reports from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C125",
+      "claim": "ಬಾಡಿಬಿಲ್ಡಿಂಗ್ ಸ್ಪರ್ಧೆಗಳಲ್ಲಿ ಗೆಲ್ಲುವ ಪ್ರತಿಯೊಬ್ಬ ಕ್ರೀಡಾಪಟು ಕಡ್ಡಾಯವಾಗಿ ಸ್ಟೀರಾಯ್ಡ್ ಮತ್ತು ನಿಷೇಧಿತ ಮದ್ದುಗಳನ್ನು ಬಳಸಿಯೇ ಗೆಲ್ಲುತ್ತಾನೆ ಎಂಬುದು ಫಿಟ್ನೆಸ್ ವಲಯದಲ್ಲಿರುವ ಸಾಮಾನ್ಯವಾದ ದಾರಿ ತಪ್ಪಿಸುವ ಕಲ್ಪನೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C125"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev125"
+      ],
+      "verification_hint": "Verify natural bodybuilding federations and doping tests.",
+      "notes": ""
+    },
+    {
+      "id": "C095",
+      "claim": "సముద్రాలలో చమురు కారటం వల్ల సముద్ర జీవులకు ఎంతో ప్రయోజనం కలుగుతుందని మరియు అది పగడపు దిబ్బలను మరింత వేగంగా పెరిగేలా చేస్తుందని అంటారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C095"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev095"
+      ],
+      "verification_hint": "Check environmental impact of oil spills.",
+      "notes": ""
+    },
+    {
+      "id": "C107",
+      "claim": "ಆಧುನಿಕ ಶಿಕ್ಷಣ ವ್ಯವಸ್ಥೆಯು ಕೇವಲ ಯಂತ್ರಗಳಂತೆ ಕೆಲಸ ಮಾಡುವ ಕಾರ್ಮಿಕರನ್ನು ಸೃಷ್ಟಿಸುತ್ತಿದೆ ಮತ್ತು ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಯಾವುದೇ ಸೃಜನಶೀಲತೆಯನ್ನು ಬೆಳೆಸುವುದಿಲ್ಲ ಎಂಬುದು ಸಾಮಾನ್ಯ ವಾದವಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C107"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev107"
+      ],
+      "verification_hint": "Check varied academic perspectives on modern education.",
+      "notes": ""
+    },
+    {
+      "id": "C121",
+      "claim": "1983 ರ ವಿಶ್ವಕಪ್ ವಿಜಯದ ನಂತರ, ಭಾರತದಲ್ಲಿ ಕ್ರಿಕೆಟ್ ಹೊರತುಪಡಿಸಿ ಬೇರೆ ಯಾವುದೇ ಕ್ರೀಡೆಗೆ ಸರ್ಕಾರದಿಂದ ಬಿಡಿಗಾಸು ಅನುದಾನ ಕೂಡ ಸಿಗಲಿಲ್ಲ ಎಂದು ಅನೇಕರು ದೂರಿದ್ದರು.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C121"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev121"
+      ],
+      "verification_hint": "Verify sports funding allocation history in India.",
+      "notes": ""
+    },
+    {
+      "id": "C101",
+      "claim": "ಭಾರತದಲ್ಲಿರುವ ಎಲ್ಲಾ ಜನರು ಪ್ರತಿದಿನ ಯೋಗವನ್ನು ಅಭ್ಯಾಸ ಮಾಡುತ್ತಾರೆ ಮತ್ತು ಅವರ ದಿನಚರಿಯು ಸಂಪೂರ್ಣವಾಗಿ ಪ್ರಾಚೀನ ಆಯುರ್ವೇದ ಪದ್ಧತಿಗಳ ಮೇಲೆ ಮಾತ್ರ ಆಧಾರಿತವಾಗಿದೆ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C101"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev101"
+      ],
+      "verification_hint": "Check cultural demographic studies for absolute claims.",
+      "notes": ""
+    },
+    {
+      "id": "C113",
+      "claim": "ಪೊಲೀಸರು ವಾರಂಟ್ ಇಲ್ಲದೆ ಯಾರನ್ನಾದರೂ, ಯಾವುದೇ ಸಮಯದಲ್ಲಿ ಬಂಧಿಸಬಹುದು ಮತ್ತು ನ್ಯಾಯಾಲಯದಲ್ಲಿ ಹಾಜರುಪಡಿಸದೆ ಜೈಲಿನಲ್ಲಿ ಇಡಬಹುದು ಎಂಬುದು ಸಾಮಾನ್ಯ ಜನರ ತಪ್ಪು ತಿಳುವಳಿಕೆಯಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C113"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev113"
+      ],
+      "verification_hint": "Check criminal procedure code regarding arrests.",
+      "notes": ""
+    },
+    {
+      "id": "C088",
+      "claim": "18వ శతాబ్దంలో, గెలీలియో తన టెలిస్కోప్ ద్వారా శని గ్రహం చుట్టూ ఉన్న వలయాలు పూర్తిగా ప్లాస్టిక్‌తో తయారు చేయబడ్డాయని కనుగొన్నాడు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C088"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev088"
+      ],
+      "verification_hint": "Check history of Galileo's discoveries and plastic invention.",
+      "notes": ""
+    },
+    {
+      "id": "C100",
+      "claim": "1800లలో, సమాజంలోని ప్రతి వ్యక్తికి ఒక ప్రైవేట్ జెట్ విమానం ఉండేదని మరియు వారు ఆకాశ మార్గంలోనే ప్రతిరోజూ తమ కార్యాలయాలకు వెళ్లేవారని ప్రతీతి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C100"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev100"
+      ],
+      "verification_hint": "Check history of aviation invention timelines.",
+      "notes": ""
+    },
+    {
+      "id": "C118",
+      "claim": "1970 ರ ತುರ್ತು ಪರಿಸ್ಥಿತಿಯ ಸಮಯದಲ್ಲಿ, ಭಾರತದ ಸಂವಿಧಾನವನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಅಮಾನತುಗೊಳಿಸಲಾಗಿತ್ತು ಮತ್ತು ಯಾವುದೇ ನಾಗರಿಕ ಹಕ್ಕುಗಳು ಅಸ್ತಿತ್ವದಲ್ಲಿ ಇರಲಿಲ್ಲ ಎಂಬುದು ಸ್ವಲ್ಪಮಟ್ಟಿಗೆ ದಾರಿ ತಪ್ಪಿಸುವ ಹೇಳಿಕೆಯಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C118"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev118"
+      ],
+      "verification_hint": "Check legal status of rights during the 1975 emergency.",
+      "notes": ""
+    },
+    {
+      "id": "C030",
+      "claim": "फरवरी 2026 में आयोजित वैश्विक शिखर सम्मेलन के दौरान, कई देशों ने जलवायु परिवर्तन से निपटने के लिए नई संधियों पर हस्ताक्षर किए।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C030"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev030"
+      ],
+      "verification_hint": "Check international climate treaties from Feb 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C085",
+      "claim": "1980లలో, శాస్త్రవేత్తలు ప్లూటో గ్రహాన్ని ఒక పెద్ద తాడుతో కట్టి భూమికి దగ్గరగా లాగి తీసుకురావడానికి చేసిన ప్రయత్నం విజయవంతమైంది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C085"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev085"
+      ],
+      "verification_hint": "Verify limits of human engineering in space.",
+      "notes": ""
+    },
+    {
+      "id": "C106",
+      "claim": "1990 ರ ದಶಕದಲ್ಲಿ ಜನರು ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆ ಬದುಕಲು ಸಾಧ್ಯವೇ ಇರಲಿಲ್ಲ ಮತ್ತು ಆಗಿನ ಕಾಲದ ಪ್ರತಿಯೊಬ್ಬರೂ ಪ್ರತಿದಿನ ಪತ್ರಗಳನ್ನು ಮಾತ್ರ ಬರೆಯುತ್ತಿದ್ದರು ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C106"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev106"
+      ],
+      "verification_hint": "Verify daily life habits during the 1990s.",
+      "notes": ""
+    },
+    {
+      "id": "C143",
+      "claim": "ദിവസവും എട്ട് ഗ്ലാസ് വെള്ളം കുടിച്ചില്ലെങ്കിൽ മനുഷ്യന്റെ കിഡ്നികൾ ഉടൻ പ്രവർത്തനരഹിതമാകുമെന്നും ഇത് പെട്ടെന്നുള്ള മരണത്തിന് കാരണമാകുമെന്നും പലപ്പോഴും ആരോഗ്യ മാസികകളിൽ തെറ്റായി എഴുതാറുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C143"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev143"
+      ],
+      "verification_hint": "Check nuanced medical advice on daily water intake.",
+      "notes": ""
+    },
+    {
+      "id": "C091",
+      "claim": "1990లలో భూతాపం అనేది కేవలం ఒక కల్పిత కథ అని మరియు మంచుకొండలు వాస్తవానికి అప్పటికంటే ఇప్పుడు రెట్టింపు పరిమాణంలో పెరిగాయని నిరూపించబడింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C091"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev091"
+      ],
+      "verification_hint": "Check historical consensus on global warming from 1990s.",
+      "notes": ""
+    },
+    {
+      "id": "C025",
+      "claim": "The Magna Carta, signed in 1215, was a historic document that established the principle that everyone is subject to the law.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C025"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev025"
+      ],
+      "verification_hint": "Check historical records of the Magna Carta.",
+      "notes": ""
+    },
+    {
+      "id": "C074",
+      "claim": "உலகின் அனைத்து நதிகளும் மலைகளிலிருந்து கீழ்நோக்கிப் பாய்வதற்குப் பதிலாக, கடலிலிருந்து மலை உச்சிகளை நோக்கி மேல்நோக்கி மட்டுமே பாய்கின்றன என்பது புவியியல் உண்மை.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C074"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev074"
+      ],
+      "verification_hint": "Check basic physical geography of river flow.",
+      "notes": ""
+    },
+    {
+      "id": "C047",
+      "claim": "प्रकाश संश्लेषण वह प्राकृतिक प्रक्रिया है जिसके द्वारा हरे पौधे सूर्य के प्रकाश का उपयोग करके कार्बन डाइऑक्साइड और पानी को ऑक्सीजन में बदलते हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C047"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev047"
+      ],
+      "verification_hint": "Verify basic biological process of photosynthesis.",
+      "notes": ""
+    },
+    {
+      "id": "C080",
+      "claim": "సూర్యుడు పూర్తిగా ఘనమైన మంచుతో తయారయ్యాడు మరియు భూమికి వేడిని అందించడానికి బదులుగా అది అంతరిక్షంలో ఎల్లప్పుడూ చల్లని గాలిని మాత్రమే వీస్తుంది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C080"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev080"
+      ],
+      "verification_hint": "Check stellar physics regarding the Sun's composition.",
+      "notes": ""
+    },
+    {
+      "id": "C081",
+      "claim": "ఫిబ్రవరి 2026లో జరిగిన ఖగోళ పరిశీలనల ప్రకారం, మన సౌర వ్యవస్థలోని అన్ని గ్రహాలు అకస్మాత్తుగా ఒకే వరుసలో నిలబడి తమ భ్రమణాన్ని ఆపేశాయి.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C081"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev081"
+      ],
+      "verification_hint": "Verify planetary motion news from astronomical societies.",
+      "notes": ""
+    },
+    {
+      "id": "C038",
+      "claim": "केंद्रीय बैंक आम तौर पर मुद्रास्फीति को नियंत्रित करने और आर्थिक स्थिरता बनाए रखने के लिए प्रमुख ब्याज दरों का उपयोग करते हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C038"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev038"
+      ],
+      "verification_hint": "Verify macroeconomic policies regarding inflation.",
+      "notes": ""
+    },
+    {
+      "id": "C148",
+      "claim": "പുരാതന കാലത്ത് ഈജിപ്തുകാർ വൈദ്യുതി ഉപയോഗിച്ചിരുന്നുവെന്നും അവർക്ക് വലിയ ബാറ്ററികൾ നിർമ്മിക്കാനുള്ള സാങ്കേതികവിദ്യ അറിയാമായിരുന്നുവെന്നും ചില പുരാവസ്തു ഗവേഷണങ്ങളെ വളച്ചൊടിച്ച് വ്യാഖ്യാനിക്കാറുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C148"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev148"
+      ],
+      "verification_hint": "Verify archaeological consensus on the 'Baghdad Battery'.",
+      "notes": ""
+    },
+    {
+      "id": "C011",
+      "claim": "Proper dental hygiene, including daily brushing and flossing, is clinically proven to prevent severe tooth decay and periodontal disease.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C011"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev011"
+      ],
+      "verification_hint": "Verify dental health guidelines.",
+      "notes": ""
+    },
+    {
+      "id": "C114",
+      "claim": "ಜನವರಿ 2026 ರ ಸುಪ್ರೀಂ ಕೋರ್ಟ್ ತೀರ್ಪಿನ ಪ್ರಕಾರ, ಇನ್ನು ಮುಂದೆ ದೇಶದಲ್ಲಿ ಯಾವುದೇ ಕ್ರಿಮಿನಲ್ ಪ್ರಕರಣಗಳಿಗೆ ವಕೀಲರನ್ನು ನೇಮಿಸುವ ಹಕ್ಕನ್ನು ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ ಎಂದು ವರದಿಯಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C114"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev114"
+      ],
+      "verification_hint": "Verify Supreme Court judgments on right to counsel.",
+      "notes": ""
+    },
+    {
+      "id": "C016",
+      "claim": "The invention of the World Wide Web by Tim Berners-Lee in 1989 fundamentally transformed global communication and information sharing.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C016"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev016"
+      ],
+      "verification_hint": "Check history of the internet.",
+      "notes": ""
+    },
+    {
+      "id": "C069",
+      "claim": "பிப்ரவரி 2026 இல் ஏற்பட்ட ஒரு நிலநடுக்கத்தின் காரணமாக, இமயமலைப் பகுதிகள் அனைத்தும் சமவெளியாக மாறி, உலக வரைபடமே முற்றிலுமாக மாறிவிட்டது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C069"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev069"
+      ],
+      "verification_hint": "Check current geographical status of the Himalayas.",
+      "notes": ""
+    },
+    {
+      "id": "C059",
+      "claim": "ரோமன் பேரரசு தனது ராணுவ வீரர்களுக்கு போர்களில் பயன்படுத்துவதற்காக பறக்கும் கார்களை பெருமளவில் தயாரித்து வழங்கியது என்று பல பாடநூல்கள் குறிப்பிடுகின்றன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C059"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev059"
+      ],
+      "verification_hint": "Check historical military technology of the Roman Empire.",
+      "notes": ""
+    },
+    {
+      "id": "C094",
+      "claim": "1970ల నాటి పారిశ్రామిక విప్లవం సమయంలో, చెట్లను నరికివేయడం వల్ల భూమిపై వర్షపాతం ప్రతిరోజూ జరుగుతుందని మరియు కరువులు ఎప్పుడూ రాలేదని నమ్మేవారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C094"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev094"
+      ],
+      "verification_hint": "Verify historical understanding of deforestation effects.",
+      "notes": ""
+    },
+    {
+      "id": "C006",
+      "claim": "Public health reports from February 2026 indicate a significant drop in seasonal flu cases due to the newly deployed universal vaccine.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C006"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev006"
+      ],
+      "verification_hint": "Check epidemiological reports from early 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C126",
+      "claim": "ഏപ്രിൽ 2026 ൽ, അന്താരാഷ്ട്ര ക്രിക്കറ്റ് കൗൺസിൽ എല്ലാ ടി20 മത്സരങ്ങളും വെറും പത്ത് ഓവറുകളായി വെട്ടിച്ചുരുക്കാൻ തീരുമാനിച്ചു എന്ന് സാമൂഹിക മാധ്യമങ്ങളിൽ വ്യാപകമായി പ്രചരിക്കുന്നുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C126"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev126"
+      ],
+      "verification_hint": "Check official ICC rule changes from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C034",
+      "claim": "1991 के आर्थिक सुधारों ने भारतीय अर्थव्यवस्था को वैश्विक बाजारों के लिए खोल दिया, जिससे बड़े पैमाने पर उदारीकरण की शुरुआत हुई।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C034"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev034"
+      ],
+      "verification_hint": "Check 1991 Indian economic liberalization history.",
+      "notes": ""
+    },
+    {
+      "id": "C078",
+      "claim": "జనవరి 2026లో, నాసా వ్యోమగాములు అంగారక గ్రహంపైకి వెళ్లి అక్కడ పూర్తి స్థాయి కాఫీ షాపును విజయవంతంగా ప్రారంభించినట్లు అధికారికంగా ప్రకటించారు.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "SPACE_ASTRONOMY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C078"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev078"
+      ],
+      "verification_hint": "Check NASA official press releases.",
+      "notes": ""
+    },
+    {
+      "id": "C045",
+      "claim": "अप्रैल 2026 में, वैज्ञानिकों ने एक नए सुपरकंडक्टिंग सामग्री की खोज की घोषणा की जो कमरे के तापमान पर कुशलता से काम करती है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "hard",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C045"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev045"
+      ],
+      "verification_hint": "Check physics journal publications from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C141",
+      "claim": "ഫെബ്രുവരി 2026 ലെ പുതിയ ശാസ്ത്ര പഠനമനുസരിച്ച്, രാവിലെ എഴുന്നേറ്റ ഉടൻ ഒരു ഗ്ലാസ് ചൂടുവെള്ളം കുടിച്ചാൽ എല്ലാവിധ കാൻസറുകളും പൂർണ്ണമായും ഭേദമാകുമെന്ന് വാട്സാപ്പിൽ പ്രചരിക്കുന്നുണ്ട്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C141"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev141"
+      ],
+      "verification_hint": "Check oncology research vs common social media myths.",
+      "notes": ""
+    },
+    {
+      "id": "C046",
+      "claim": "1953 में जेम्स वॉटसन और फ्रांसिस क्रिक ने डीएनए की डबल-हेलिक्स संरचना की खोज की, जिसने आनुवंशिकी विज्ञान को बदल दिया।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C046"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev046"
+      ],
+      "verification_hint": "Check history of genetics.",
+      "notes": ""
+    },
+    {
+      "id": "C013",
+      "claim": "The launch of the Sputnik 1 satellite by the Soviet Union in 1957 marked the beginning of the historic space age.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C013"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev013"
+      ],
+      "verification_hint": "Check space exploration history.",
+      "notes": ""
+    },
+    {
+      "id": "C049",
+      "claim": "अल्बर्ट आइंस्टीन ने 1915 में सापेक्षता का सामान्य सिद्धांत प्रस्तुत किया, जिसने गुरुत्वाकर्षण की हमारी आधुनिक समझ को पूरी तरह से फिर से परिभाषित किया।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C049"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev049"
+      ],
+      "verification_hint": "Check physics history regarding general relativity.",
+      "notes": ""
+    },
+    {
+      "id": "C012",
+      "claim": "In January 2026, a major technology consortium finally released the highly anticipated quantum computing framework for commercial enterprise applications.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C012"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev012"
+      ],
+      "verification_hint": "Check tech news for quantum frameworks in Jan 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C014",
+      "claim": "Fiber optic cables transmit data using light pulses, allowing for significantly faster internet speeds compared to traditional copper wiring.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C014"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev014"
+      ],
+      "verification_hint": "Check networking basics regarding fiber optics.",
+      "notes": ""
+    },
+    {
+      "id": "C122",
+      "claim": "ವೃತ್ತಿಪರ ಕ್ರೀಡಾಪಟುಗಳು ಯಾವುದೇ ರೀತಿಯ ಕಠಿಣ ತರಬೇತಿ ಇಲ್ಲದೆ ಕೇವಲ ಪ್ರತಿಭೆಯಿಂದ ಮಾತ್ರ ಅಂತರರಾಷ್ಟ್ರೀಯ ಮಟ್ಟದಲ್ಲಿ ಚಿನ್ನದ ಪದಕಗಳನ್ನು ಸುಲಭವಾಗಿ ಗೆಲ್ಲುತ್ತಾರೆ ಎಂಬುದು ಸುಳ್ಳು.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C122"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev122"
+      ],
+      "verification_hint": "Check sports science on training vs natural talent.",
+      "notes": ""
+    },
+    {
+      "id": "C127",
+      "claim": "1950 കളിലെ ലോകകപ്പ് ഫുട്ബോൾ ടൂർണമെന്റുകളിൽ കളിക്കാർ ഷൂസ് ധരിക്കാതെ നഗ്നപാദരായാണ് മുഴുവൻ മത്സരങ്ങളും കളിച്ചിരുന്നത് എന്നത് പലപ്പോഴും അതിശയോക്തിയോടെ പറയപ്പെടുന്ന ഒരു ചരിത്രമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C127"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev127"
+      ],
+      "verification_hint": "Verify uniform rules in 1950s FIFA World Cup.",
+      "notes": ""
+    },
+    {
+      "id": "C028",
+      "claim": "1947 में भारत ने ब्रिटिश शासन से अपनी स्वतंत्रता प्राप्त की और एक संप्रभु राष्ट्र के रूप में स्थापित हुआ।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C028"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev028"
+      ],
+      "verification_hint": "Check history of Indian independence.",
+      "notes": ""
+    },
+    {
+      "id": "C020",
+      "claim": "Artificial intelligence models rely on vast amounts of computational power and massive datasets to effectively train complex neural networks.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C020"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev020"
+      ],
+      "verification_hint": "Verify AI training methodologies.",
+      "notes": ""
+    },
+    {
+      "id": "C145",
+      "claim": "ചൈനീസ് വന്മതിൽ ബഹിരാകാശത്ത് നിന്ന് നഗ്നനേത്രങ്ങൾ കൊണ്ട് വളരെ വ്യക്തമായി കാണാൻ സാധിക്കുന്ന ഭൂമിയിലെ ഒരേയൊരു മനുഷ്യനിർമ്മിത വസ്തുവാണെന്നത് വളരെക്കാലമായി നിലനിൽക്കുന്ന ഒരു തെറ്റിദ്ധാരണയാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C145"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev145"
+      ],
+      "verification_hint": "Check astronaut accounts of viewing Earth structures.",
+      "notes": ""
+    },
+    {
+      "id": "C044",
+      "claim": "स्टॉक मार्केट इंडेक्स किसी विशिष्ट बाजार या क्षेत्र के समग्र प्रदर्शन को ट्रैक करने के लिए निवेशकों द्वारा व्यापक रूप से उपयोग किए जाते हैं।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C044"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev044"
+      ],
+      "verification_hint": "Verify finance basics on stock indices.",
+      "notes": ""
+    },
+    {
+      "id": "C055",
+      "claim": "1920 களில் கண்டுபிடிக்கப்பட்ட ஒரு சிறப்பு ரசாயனம், இரும்பை உடனடியாக தூய தங்கமாக மாற்றும் திறனைக் கொண்டிருந்தது என்று வரலாற்று ஆவணங்கள் கூறுகின்றன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C055"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev055"
+      ],
+      "verification_hint": "Check chemistry history regarding alchemy vs science.",
+      "notes": ""
+    },
+    {
+      "id": "C090",
+      "claim": "జనవరి 2026 నాటికి, ప్రపంచంలోని అన్ని కర్మాగారాలు పూర్తిగా పర్యావరణ అనుకూలమైనవిగా మారి, గాలి కాలుష్యం అనేది భూమిపై పూర్తిగా అంతరించిపోయింది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C090"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev090"
+      ],
+      "verification_hint": "Check global air pollution indexes from early 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C021",
+      "claim": "In early 2026, the telecommunications industry officially completed the global rollout of the advanced underwater fiber-optic communications network.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "TECHNOLOGY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C021"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev021"
+      ],
+      "verification_hint": "Check telecom infrastructure updates from 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C104",
+      "claim": "ಜಗತ್ತಿನ ಎಲ್ಲಾ ಸಂಸ್ಕೃತಿಗಳಲ್ಲೂ ಹಬ್ಬಗಳು ಕೇವಲ ಹಣ ಖರ್ಚು ಮಾಡಲು ಮತ್ತು ಮೋಜು ಮಾಡಲು ಮಾತ್ರ ಸೀಮಿತವಾಗಿವೆ ಹೊರತು ಯಾವುದೇ ಧಾರ್ಮಿಕ ಮಹತ್ವವನ್ನು ಹೊಂದಿಲ್ಲ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C104"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev104"
+      ],
+      "verification_hint": "Verify anthropological views on global festivals.",
+      "notes": ""
+    },
+    {
+      "id": "C098",
+      "claim": "కర్బన ఉద్గారాలు వాతావరణంలో ఎంత ఎక్కువగా ఉంటే, మానవుల ఊపిరితిత్తులు అంత బలంగా మరియు ఆరోగ్యంగా తయారవుతాయని వైద్య రంగం విశ్వసిస్తుంది.",
+      "language": "te",
+      "lang_bucket": "MULTI",
+      "label": "ENVIRONMENT_CLIMATE",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C098"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev098"
+      ],
+      "verification_hint": "Check health impacts of carbon emissions.",
+      "notes": ""
+    },
+    {
+      "id": "C002",
+      "claim": "Regular cardiovascular exercise combined with a balanced diet significantly reduces the risk of developing severe heart disease over a person's lifetime.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C002"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev002"
+      ],
+      "verification_hint": "Check standard medical journals on heart health.",
+      "notes": ""
+    },
+    {
+      "id": "C072",
+      "claim": "ஏப்ரல் 2026 இல், புவியியலாளர்கள் பூமத்திய ரேகை திடீரென வட துருவத்திற்கு நகர்ந்துவிட்டதாக ஒரு புதிய அதிர்ச்சியூட்டும் செயற்கைக்கோள் அறிக்கையை வெளியிட்டனர்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C072"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev072"
+      ],
+      "verification_hint": "Check global satellite data on Earth's equator.",
+      "notes": ""
+    },
+    {
+      "id": "C115",
+      "claim": "19 ನೇ ಶತಮಾನದಲ್ಲಿ, ಕಳ್ಳತನ ಮಾಡಿದರೆ ನೇರವಾಗಿ ಮರಣದಂಡನೆ ವಿಧಿಸಲಾಗುತ್ತಿತ್ತು ಮತ್ತು ಯಾವುದೇ ರೀತಿಯ ವಿಚಾರಣೆ ನಡೆಯುತ್ತಿರಲಿಲ್ಲ ಎಂಬುದು ಅತಿಶಯೋಕ್ತಿಯ ಐತಿಹಾಸಿಕ ವಾದವಾಗಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "LAW_CRIME",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C115"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev115"
+      ],
+      "verification_hint": "Check 19th-century penal codes and trial systems.",
+      "notes": ""
+    },
+    {
+      "id": "C057",
+      "claim": "பிப்ரவரி 2026 இல் கிடைத்த புதிய ஆவணங்களின்படி, இரண்டாம் உலகப் போர் உண்மையில் ஐரோப்பாவில் அல்லாமல் முழுமையாக அண்டார்டிகா கண்டத்தில் மட்டுமே நடந்தது என்று நிரூபிக்கப்பட்டுள்ளது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C057"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev057"
+      ],
+      "verification_hint": "Check basic historical facts of WW2 locations.",
+      "notes": ""
+    },
+    {
+      "id": "C108",
+      "claim": "ಮಾರ್ಚ್ 2026 ರಲ್ಲಿ, ಹೊಸ ಸಾಂಸ್ಕೃತಿಕ ನೀತಿಯು ಎಲ್ಲಾ ಸಾಂಪ್ರದಾಯಿಕ ಕಲೆಗಳನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ನಿಷೇಧಿಸಿದೆ ಮತ್ತು ಕೇವಲ ಡಿಜಿಟಲ್ ಕಲೆಗೆ ಮಾತ್ರ ಪ್ರೋತ್ಸಾಹ ನೀಡುತ್ತಿದೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C108"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev108"
+      ],
+      "verification_hint": "Verify global cultural policies announced in March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C051",
+      "claim": "ஜனவரி 2026 இல், சர்வதேச விண்வெளி விஞ்ஞானிகள் பூமியின் ஈர்ப்பு விசையை முற்றிலுமாக அணைக்கக்கூடிய ஒரு புதிய இயந்திரத்தை வெற்றிகரமாக உருவாக்கி பரிசோதித்ததாக அதிகாரப்பூர்வமாக அறிவித்தனர்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "SCIENCE",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C051"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev051"
+      ],
+      "verification_hint": "Check for impossibilities in physics rules.",
+      "notes": ""
+    },
+    {
+      "id": "C149",
+      "claim": "കാളകൾക്ക് ചുവപ്പ് നിറം കാണുമ്പോൾ അതിയായ ദേഷ്യം വരുമെന്നും അതിനാൽ അവ ആക്രമിക്കാൻ ഓടിയടുക്കുമെന്നും കരുതുന്നത് കാളപ്പോരുമായി ബന്ധപ്പെട്ട ഒരു വലിയ തെറ്റിദ്ധാരണയാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "GENERAL_FACTUAL",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C149"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev149"
+      ],
+      "verification_hint": "Check animal biology regarding bovine color vision.",
+      "notes": ""
+    },
+    {
+      "id": "C130",
+      "claim": "ആദ്യകാല ഒളിമ്പിക്സ് മത്സരങ്ങളിൽ പങ്കെടുക്കുന്നവർക്ക് സ്വർണ്ണ മെഡലുകൾക്ക് പകരം വെറും ഒലിവ് ഇലകൾ മാത്രമാണ് സമ്മാനമായി നൽകിയിരുന്നത് എന്ന് പറയപ്പെടുന്നത് ഒരു ഭാഗികമായ സത്യം മാത്രമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "SPORTS",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C130"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev130"
+      ],
+      "verification_hint": "Check ancient vs modern Olympics reward systems.",
+      "notes": ""
+    },
+    {
+      "id": "C060",
+      "claim": "ஏப்ரல் 2026 இல், வரலாற்று ஆராய்ச்சியாளர்கள் தாஜ்மகால் உண்மையில் ஒரு விண்கலம் என்றும் அது எந்த நேரத்திலும் விண்வெளிக்கு பறக்க முடியும் என்றும் கண்டுபிடித்துள்ளனர்.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C060"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev060"
+      ],
+      "verification_hint": "Verify architectural facts of the Taj Mahal.",
+      "notes": ""
+    },
+    {
+      "id": "C056",
+      "claim": "பண்டைய எகிப்திய பிரமிடுகள் அனைத்தும் வேற்றுகிரகவாசிகளால் மேம்பட்ட லேசர் தொழில்நுட்பத்தைப் பயன்படுத்தி ஒரே இரவில் கட்டப்பட்டன என்பது வரலாற்று ஆய்வாளர்களால் ஏற்றுக்கொள்ளப்பட்ட உண்மை.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C056"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev056"
+      ],
+      "verification_hint": "Verify archaeological consensus on pyramid construction.",
+      "notes": ""
+    },
+    {
+      "id": "C024",
+      "claim": "In April 2026, an international summit concluded with twenty nations signing a comprehensive agreement on global digital privacy standards.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "hard",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C024"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev024"
+      ],
+      "verification_hint": "Check international treaty news from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C008",
+      "claim": "Drinking sufficient amounts of clean water daily helps maintain bodily functions, regulates temperature, and prevents severe dehydration in humans.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C008"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev008"
+      ],
+      "verification_hint": "Verify basic physiological facts about hydration.",
+      "notes": ""
+    },
+    {
+      "id": "C009",
+      "claim": "In April 2026, leading medical researchers published a comprehensive study detailing the long-term positive effects of the latest malaria vaccine.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C009"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev009"
+      ],
+      "verification_hint": "Check medical journal publications from April 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C109",
+      "claim": "ಸ್ವಾತಂತ್ರ್ಯಕ್ಕೂ ಮುನ್ನ ಭಾರತದಲ್ಲಿ ಎಲ್ಲಾ ಜಾತಿಯ ಜನರು ಸಂಪೂರ್ಣ ಸಮಾನತೆಯಿಂದ ಬದುಕುತ್ತಿದ್ದರು ಮತ್ತು ಸಮಾಜದಲ್ಲಿ ಯಾವುದೇ ರೀತಿಯ ತಾರತಮ್ಯವೇ ಇರಲಿಲ್ಲ ಎಂದು ಕೆಲವು ಪುಸ್ತಕಗಳು ಪ್ರತಿಪಾದಿಸುತ್ತವೆ.",
+      "language": "kn",
+      "lang_bucket": "MULTI",
+      "label": "SOCIETY_CULTURE",
+      "time_bucket": "old_historical",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C109"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev109"
+      ],
+      "verification_hint": "Check historical facts on caste discrimination in India.",
+      "notes": ""
+    },
+    {
+      "id": "C023",
+      "claim": "Democratic political systems typically feature regular elections where citizens vote to choose their representatives for various government offices.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C023"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev023"
+      ],
+      "verification_hint": "Verify basic definitions of democracy.",
+      "notes": ""
+    },
+    {
+      "id": "C140",
+      "claim": "ത്രീഡി സിനിമകൾ കാണുന്നത് കണ്ണിന്റെ കാഴ്ചശക്തി പൂർണ്ണമായും നശിപ്പിക്കുമെന്നും അതുവഴി സ്ഥിരമായ അന്ധതയ്ക്ക് കാരണമാകുമെന്നും ചില ആരോഗ്യ ലേഖനങ്ങൾ മുന്നറിയിപ്പ് നൽകുന്നത് തികച്ചും അശാസ്ത്രീയമാണ്.",
+      "language": "ml",
+      "lang_bucket": "MULTI",
+      "label": "ENTERTAINMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_misleading",
+      "difficulty": "medium",
+      "expected_verdict": "neutral",
+      "reference_urls": [
+        "https://example.com/C140"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev140"
+      ],
+      "verification_hint": "Verify opthalmological studies on 3D glasses effects.",
+      "notes": ""
+    },
+    {
+      "id": "C027",
+      "claim": "मार्च 2026 में, भारतीय संसद ने क्षेत्रीय विकास और बुनियादी ढांचे को बढ़ावा देने के लिए एक नया व्यापक कानून पारित किया।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "hard",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C027"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev027"
+      ],
+      "verification_hint": "Check Indian parliamentary bills from March 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C036",
+      "claim": "जनवरी 2026 में जारी आधिकारिक रिपोर्ट के अनुसार, भारत का निर्यात पिछले वित्तीय वर्ष की तुलना में उल्लेखनीय रूप से बढ़ा है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "ECONOMICS_BUSINESS",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_true",
+      "difficulty": "medium",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C036"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev036"
+      ],
+      "verification_hint": "Check Ministry of Commerce export data for Jan 2026.",
+      "notes": ""
+    },
+    {
+      "id": "C058",
+      "claim": "1492 இல் கிறிஸ்டோபர் கொலம்பஸ் அமெரிக்காவை அடைவதற்கு முன்பே, அங்கு அதிநவீன ஸ்மார்ட்போன்கள் மற்றும் இணைய வசதிகள் பரவலாக பயன்பாட்டில் இருந்தன.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "old_historical",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C058"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev058"
+      ],
+      "verification_hint": "Verify chronological invention of smartphones.",
+      "notes": ""
+    },
+    {
+      "id": "C063",
+      "claim": "ஜனவரி 2026 இல் வெளியிடப்பட்ட ஒரு ரகசிய வரலாற்று அறிக்கை, நெப்போலியன் போனபார்ட் உண்மையில் ஒன்பதடி உயரமான ஒரு ராட்சதர் என்று உறுதியாகக் கூறுகிறது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "HISTORY",
+      "time_bucket": "recent_realtime",
+      "polarity": "likely_false",
+      "difficulty": "medium",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C063"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev063"
+      ],
+      "verification_hint": "Check recorded historical heights of Napoleon.",
+      "notes": ""
+    },
+    {
+      "id": "C071",
+      "claim": "பூமியின் மையப்பகுதி முழுவதும் திடமான பனிக்கட்டியால் ஆனது மற்றும் அங்கிருந்து தான் உலகின் அனைத்து பனிப்பாறைகளுக்கும் தொடர்ச்சியாக உறைபனி விநியோகிக்கப்படுகிறது.",
+      "language": "ta",
+      "lang_bucket": "MULTI",
+      "label": "GEOGRAPHY",
+      "time_bucket": "evergreen",
+      "polarity": "likely_false",
+      "difficulty": "easy",
+      "expected_verdict": "refute",
+      "reference_urls": [
+        "https://example.com/C071"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev071"
+      ],
+      "verification_hint": "Verify geological composition of the Earth's core.",
+      "notes": ""
+    },
+    {
+      "id": "C007",
+      "claim": "During the 1918 influenza pandemic, millions of people worldwide perished due to the rapid spread of the deadly viral strain.",
+      "language": "en",
+      "lang_bucket": "EN",
+      "label": "HEALTH",
+      "time_bucket": "old_historical",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C007"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev007"
+      ],
+      "verification_hint": "Check history of the 1918 flu pandemic.",
+      "notes": ""
+    },
+    {
+      "id": "C029",
+      "claim": "संयुक्त राष्ट्र सुरक्षा परिषद अंतरराष्ट्रीय शांति और सुरक्षा बनाए रखने के लिए मुख्य रूप से जिम्मेदार प्रमुख वैश्विक निकाय है।",
+      "language": "hi",
+      "lang_bucket": "MULTI",
+      "label": "POLITICS_GOVERNMENT",
+      "time_bucket": "evergreen",
+      "polarity": "likely_true",
+      "difficulty": "easy",
+      "expected_verdict": "support",
+      "reference_urls": [
+        "https://example.com/C029"
+      ],
+      "expected_evidence_urls": [
+        "https://example.com/ev029"
+      ],
+      "verification_hint": "Verify UN Security Council mandate.",
+      "notes": ""
+    }
+  ],
+  "distribution_check": {
+    "by_language": {
+      "en": 25,
+      "hi": 25,
+      "ta": 25,
+      "te": 25,
+      "kn": 25,
+      "ml": 25
+    },
+    "by_label": {
+      "HEALTH": 11,
+      "TECHNOLOGY": 11,
+      "POLITICS_GOVERNMENT": 11,
+      "ECONOMICS_BUSINESS": 11,
+      "SCIENCE": 11,
+      "HISTORY": 11,
+      "GEOGRAPHY": 11,
+      "SPACE_ASTRONOMY": 11,
+      "ENVIRONMENT_CLIMATE": 11,
+      "SOCIETY_CULTURE": 11,
+      "LAW_CRIME": 10,
+      "SPORTS": 10,
+      "ENTERTAINMENT": 10,
+      "GENERAL_FACTUAL": 10
+    },
+    "by_time_bucket": {
+      "old_historical": 50,
+      "evergreen": 50,
+      "recent_realtime": 50
+    },
+    "by_polarity": {
+      "likely_true": 50,
+      "likely_false": 50,
+      "likely_misleading": 50
+    },
+    "by_expected_verdict": {
+      "support": 50,
+      "refute": 50,
+      "neutral": 50
+    }
+  }
+}

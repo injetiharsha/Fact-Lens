@@ -1,0 +1,21 @@
+{
+  "output_folder": "F:\\RFCS\\model_audit_20260425_020649",
+  "ddg_scrape_plot_files": [
+    "ddg_scrape_accuracy_by_language.png",
+    "ddg_scrape_accuracy_vs_checkable_by_language.png",
+    "ddg_scrape_accuracy_source.csv"
+  ],
+  "inventory_files": [
+    "training_config_inventory.json",
+    "training_config_inventory.csv",
+    "checkpoint_run_summaries.json",
+    "checkpoint_run_summaries.csv",
+    "dataset_summaries_inventory.json",
+    "dataset_summaries_inventory.csv",
+    "checkpoint_confusion_matrix_artifacts.json",
+    "checkpoint_confusion_matrix_artifacts.csv",
+    "finetune_config_count_by_task.png",
+    "top_train_sizes_from_run_summaries.png"
+  ],
+  "notes": "DDG+scrape plots use selected latest v2_from_252 language runs where run_profile has DDG=1, Tavily=0, SerpAPI=0."
+}

@@ -26,9 +26,19 @@ NUM_CLAIMS = 30
 CLAIM_PARALLEL_WORKERS = 3
 
 
+def _env_int(name: str, default: int) -> int:
+    raw = os.getenv(name)
+    try:
+        return int(raw) if raw is not None else int(default)
+    except Exception:
+        return int(default)
+
+
 def load_claim_batch(path: Path, n: int = NUM_CLAIMS) -> List[Dict[str, Any]]:
-    rows = json.loads(path.read_text(encoding="utf-8"))
+    rows = json.loads(path.read_text(encoding="utf-8-sig"))
     rows = [r for r in rows if str(r.get("lang_bucket", "")).upper() == "EN"]
+    if n <= 0:
+        return rows
     return rows[:n]
 
 
@@ -291,7 +301,10 @@ def save_results(results: List[Dict[str, Any]], metrics: Dict[str, Any], claim_t
 
 def main() -> None:
     load_dotenv(override=True)
-    rows = load_claim_batch(DEFAULT_CASES, NUM_CLAIMS)
+    cases_path = Path(os.getenv("BENCHMARK_CASES_EN", str(DEFAULT_CASES)))
+    output_path = Path(os.getenv("BENCHMARK_OUTPUT_EN", str(DEFAULT_OUTPUT)))
+    num_claims = _env_int("BENCHMARK_NUM_CLAIMS", NUM_CLAIMS)
+    rows = load_claim_batch(cases_path, num_claims)
     results, claim_times, total_time = run_benchmark(rows)
     metrics = evaluate(results)
 
@@ -322,7 +335,7 @@ def main() -> None:
     print("dominant_stage_seconds :", stage_summary.get("dominant_stage_seconds"))
     print("model_locked_total_seconds :", stage_summary.get("model_locked_total_seconds"))
 
-    save_results(results, metrics, claim_times, total_time, DEFAULT_OUTPUT)
+    save_results(results, metrics, claim_times, total_time, output_path)
 
 
 if __name__ == "__main__":

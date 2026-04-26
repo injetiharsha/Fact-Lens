@@ -1,0 +1,7 @@
+language,file,accuracy,checkable_accuracy,web_ddg,web_tavily,web_serpapi,llm_verifier_flag
+en,parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json,0.771,0.771,1,0,0,
+hi,parallel_like_results_hi_v2_from_252_rerun.json,0.743,0.897,1,0,0,
+ta,parallel_like_results_ta_v2_from_252.json,0.914,0.914,1,0,0,
+te,parallel_like_results_te_v2_from_252.json,0.829,0.829,1,0,0,
+kn,parallel_like_results_kn_v2_from_252_nock.json,0.829,0.829,1,0,0,
+ml,parallel_like_results_ml_v2_from_252_nock.json,0.886,0.886,1,0,0,
