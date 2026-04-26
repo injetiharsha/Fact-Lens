@@ -1,4 +1,4 @@
-# pipeline/core
+﻿# pipeline/core
 
 Core building blocks used by both claim and document pipelines.
 
@@ -10,3 +10,9 @@ Core building blocks used by both claim and document pipelines.
 - `ocr.py`
 - `relevance.py`
 - `stance.py`
+
+## Scope Snapshot
+- Path: `pipeline/core/README.md`.
+- Purpose: Foundational NLP components reused across pipeline stages.
+- Audience: Engineers running, extending, or evaluating this module.
+

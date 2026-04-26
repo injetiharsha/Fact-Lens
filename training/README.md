@@ -1,4 +1,4 @@
-# training
+﻿# training
 
 Training entrypoints, context trainer package, notebooks, and run records.
 
@@ -55,3 +55,9 @@ Architecture docs (`project_restructure/*.html`) suggest stance as top model pri
 2. Train EN staged model and compare to baseline.
 3. Train Indic stance model and report per-language gaps.
 4. Promote only if macro-F1 improves and weakest language does not regress badly.
+
+## Scope Snapshot
+- Path: `training/README.md`.
+- Purpose: Training workspace guide for model development and run records.
+- Audience: Engineers running, extending, or evaluating this module.
+

@@ -1,4 +1,4 @@
-# ingestion
+﻿# ingestion
 
 Input extraction layer before claim pipeline.
 
@@ -17,4 +17,9 @@ Input extraction layer before claim pipeline.
   - `PDF_MAX_PAGES`
   - `PDF_MAX_EXTRACTED_CHARS`
   - `PDF_FORCE_SINGLE_CLAIM_WHEN_CLAIM_PROVIDED`
+
+## Scope Snapshot
+- Path: `pipeline/ingestion/README.md`.
+- Purpose: Input ingestion layer for image/PDF preprocessing and extraction.
+- Audience: Engineers running, extending, or evaluating this module.
 

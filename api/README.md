@@ -1,4 +1,4 @@
-# API
+﻿# API
 
 FastAPI entrypoints and request/response wiring for claim/document analysis.
 
@@ -20,3 +20,9 @@ FastAPI entrypoints and request/response wiring for claim/document analysis.
 - Image and PDF analysis modes are separated in pipeline behavior.
 - Document checkability gating is configurable per mode through env.
 - LLM verifier behavior is controlled via `LLM_VERIFIER_*` env flags, including verdict fallback.
+
+## Scope Snapshot
+- Path: `api/README.md`.
+- Purpose: API service layer: routes, schemas, and runtime endpoint behavior.
+- Audience: Engineers running, extending, or evaluating this module.
+

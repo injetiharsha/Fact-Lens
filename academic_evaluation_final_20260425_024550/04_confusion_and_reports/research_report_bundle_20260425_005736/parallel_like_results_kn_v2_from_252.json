@@ -1,0 +1,5634 @@
+{
+  "benchmark_metrics": {
+    "total_claims": 35,
+    "correct_predictions": 14,
+    "accuracy": 0.4,
+    "checkable_claims_total": 17,
+    "checkable_correct_predictions": 14,
+    "accuracy_checkable_only": 0.824,
+    "neutral_rate": 0.829,
+    "neutral_precision": 0.379,
+    "neutral_recall": 0.917,
+    "neutral_error_rate": 0.514,
+    "tp": 2,
+    "tn": 9,
+    "fp": 2,
+    "fn": 10,
+    "false_positive_rate": 0.087,
+    "false_negative_rate": 0.435,
+    "precision_true_class": 0.5,
+    "recall_true_class": 0.167,
+    "f1_true_class": 0.25,
+    "failed_by_expected_verdict": {
+      "support": 10,
+      "refute": 10,
+      "neutral": 1
+    },
+    "failed_by_predicted_verdict": {
+      "neutral": 18,
+      "support": 2,
+      "refute": 1
+    },
+    "failed_by_language": {
+      "kn": 21
+    },
+    "failed_claims": [
+      {
+        "id": "E252D_169",
+        "language": "kn",
+        "claim": "ಕರ್ನಾಟಕದಲ್ಲಿ ಯಶಸ್ವಿನಿ ಯೋಜನೆಯು ರೈತ ಸಹಕಾರಿಗಳಿಗೆ ಆರೋಗ್ಯ ರಕ್ಷಣೆ ಒದಗಿಸಲು ಪ್ರಾರಂಭವಾಯಿತು.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.359,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2811,
+          "stage2_checkability": 0.0832,
+          "total_pipeline": 0.3648
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_170",
+        "language": "kn",
+        "claim": "ರೋಗಿಗಳಿಗೆ ಪ್ರತಿದಿನ ಸಿಹಿ ಸಕ್ಕರೆಯನ್ನು ತಿನ್ನಿಸುವುದು ಮಧುಮೇಹವನ್ನು ಶಾಶ್ವತವಾಗಿ ಗುಣಪಡಿಸುತ್ತದೆ ಎಂದು ವೈದ್ಯರು ಹೇಳುತ್ತಾರೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.683,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.5873,
+          "stage2_checkability": 0.0955,
+          "total_pipeline": 0.6833
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_172",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರಿನಲ್ಲಿ 1978 ರಲ್ಲಿ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿಯನ್ನು ತಂತ್ರಜ್ಞಾನ ಕಂಪನಿಗಳಿಗಾಗಿ ಸ್ಥಾಪಿಸಲಾಯಿತು.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 1.247,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 1.1862,
+          "stage2_checkability": 0.0596,
+          "total_pipeline": 1.247
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_173",
+        "language": "kn",
+        "claim": "ಟಿಪ್ಪು ಸುಲ್ತಾನ್ ತನ್ನ ಯುದ್ಧಗಳಲ್ಲಿ ಶತ್ರುಗಳ ಮೇಲೆ ದಾಳಿ ಮಾಡಲು ಆಧುನಿಕ ಡ್ರೋನ್‌ಗಳನ್ನು ಬಳಸಿದನು.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.318,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.224,
+          "stage2_checkability": 0.0865,
+          "total_pipeline": 0.312
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_175",
+        "language": "kn",
+        "claim": "1956 ರಲ್ಲಿ ಭಾಷಾವಾರು ರಾಜ್ಯಗಳ ಆಧಾರದ ಮೇಲೆ ಮೈಸೂರು ರಾಜ್ಯವನ್ನು ಅಧಿಕೃತವಾಗಿ ರಚಿಸಲಾಯಿತು.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.303,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2162,
+          "stage2_checkability": 0.085,
+          "total_pipeline": 0.3024
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_178",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರು ನಗರವನ್ನು ಭಾರತದ ಸ್ಟಾರ್ಟ್ಅಪ್ ರಾಜಧಾನಿ ಮತ್ತು ಸಿಲಿಕಾನ್ ವ್ಯಾಲಿ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.206,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1487,
+          "stage2_checkability": 0.0572,
+          "total_pipeline": 0.2062
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_179",
+        "language": "kn",
+        "claim": "ಭಾರತದ ಎಲ್ಲಾ ವಾಣಿಜ್ಯ ಬ್ಯಾಂಕುಗಳು ಗ್ರಾಹಕರಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ ಉಚಿತವಾಗಿ ಚಿನ್ನವನ್ನು ವಿತರಿಸುತ್ತವೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.182,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0646,
+          "total_pipeline": 0.1821
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_182",
+        "language": "kn",
+        "claim": "ವಿಜ್ಞಾನಿಗಳ ಪ್ರಕಾರ, ನೀರನ್ನು ಹೆಚ್ಚು ಕುದಿಸಿದಾಗ ಅದು ತಕ್ಷಣವೇ ಗಟ್ಟಿಯಾದ ಮಂಜುಗಡ್ಡೆಯಾಗುತ್ತದೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.233,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1392,
+          "stage2_checkability": 0.0943,
+          "total_pipeline": 0.2338
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_184",
+        "language": "kn",
+        "claim": "ಹಂಪಿಯು ಪ್ರಸಿದ್ಧ ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಪ್ರಾಚೀನ ರಾಜಧಾನಿಯಾಗಿತ್ತು ಮತ್ತು ಈಗ ವಿಶ್ವ ಪಾರಂಪರಿಕ ತಾಣವಾಗಿದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.231,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1753,
+          "stage2_checkability": 0.0555,
+          "total_pipeline": 0.2313
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_185",
+        "language": "kn",
+        "claim": "ಮೈಸೂರು ಅರಮನೆಯನ್ನು 2010 ರಲ್ಲಿ ಲಂಡನ್ ನಗರದ ಮಧ್ಯಭಾಗದಲ್ಲಿ ಹೊಸದಾಗಿ ನಿರ್ಮಿಸಲಾಯಿತು.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.228,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1839,
+          "stage2_checkability": 0.0486,
+          "total_pipeline": 0.2328
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_187",
+        "language": "kn",
+        "claim": "ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಪರ್ವತ ಶ್ರೇಣಿಯು ಕರ್ನಾಟಕದ ಕರಾವಳಿ ತೀರಕ್ಕೆ ಸಮಾನಾಂತರವಾಗಿ ವ್ಯಾಪಿಸಿದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.181,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1234,
+          "stage2_checkability": 0.0556,
+          "total_pipeline": 0.1795
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_188",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರು ನಗರವು ನೇರವಾಗಿ ಅರಬ್ಬೀ ಸಮುದ್ರದ ತೀರದಲ್ಲಿದೆ ಮತ್ತು ಇದು ಒಂದು ಬಂದರು ನಗರವಾಗಿದೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.235,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1801,
+          "stage2_checkability": 0.0511,
+          "total_pipeline": 0.2316
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_190",
+        "language": "kn",
+        "claim": "ಭಾರತೀಯ ಬಾಹ್ಯಾಕಾಶ ಸಂಶೋಧನಾ ಸಂಸ್ಥೆಯ (ಇಸ್ರೋ) ಕೇಂದ್ರ ಕಚೇರಿಯು ಬೆಂಗಳೂರಿನಲ್ಲಿದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.521,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.4726,
+          "stage2_checkability": 0.0485,
+          "total_pipeline": 0.5214
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_191",
+        "language": "kn",
+        "claim": "ನಾಸಾ ವಿಜ್ಞಾನಿಗಳು ಗುರು ಗ್ರಹವು ಸಂಪೂರ್ಣವಾಗಿ ಒಣಗಿದ ಮರದಿಂದ ಮಾಡಲ್ಪಟ್ಟಿದೆ ಎಂದು ದೃಢಪಡಿಸಿದ್ದಾರೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.292,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2415,
+          "stage2_checkability": 0.0482,
+          "total_pipeline": 0.29
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_193",
+        "language": "kn",
+        "claim": "ಬಂಡೀಪುರ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನವು ಕರ್ನಾಟಕದಲ್ಲಿದ್ದು ಹುಲಿಗಳ ಸಂರಕ್ಷಣೆಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.238,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1901,
+          "stage2_checkability": 0.0503,
+          "total_pipeline": 0.2408
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_194",
+        "language": "kn",
+        "claim": "ಕಾಡುಗಳನ್ನು ಕಡಿಯುವುದರಿಂದ ಭೂಮಿಯ ಉಷ್ಣಾಂಶವು ತೀವ್ರವಾಗಿ ಕಡಿಮೆಯಾಗಿ ಭೂಮಿ ತಂಪಾಗುತ್ತದೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.2,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1516,
+          "stage2_checkability": 0.0492,
+          "total_pipeline": 0.2012
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_196",
+        "language": "kn",
+        "claim": "ಮೈಸೂರು ದಸರಾವನ್ನು ನಾಡಹಬ್ಬವಾಗಿ ರಾಜ್ಯಾದ್ಯಂತ ವಿಜೃಂಭಣೆಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತದೆ.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.183,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1314,
+          "stage2_checkability": 0.0526,
+          "total_pipeline": 0.1842
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_197",
+        "language": "kn",
+        "claim": "ಯಕ್ಷಗಾನವು ಕೇವಲ ತಿನ್ನುವ ಒಂದು ಆಹಾರ ಪದಾರ್ಥವಾಗಿದ್ದು, ಇದನ್ನು ಹಬ್ಬಗಳಲ್ಲಿ ನೀಡಲಾಗುತ್ತದೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "support",
+        "evidence_count": 7,
+        "time_seconds": 34.602,
+        "context": "SOCIETY_CULTURE/general",
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9413372213924405,
+          "reason": "Yakshagana is a traditional folk dance and cultural performance, not just a food item.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 7,
+          "neutral_sent": 7,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.9,
+          "evidence_updates": [
+            {
+              "index": 2,
+              "stance": "support",
+              "relevance": 0.9776760339736938
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.8270305395126343
+            },
+            {
+              "index": 5,
+              "stance": "support",
+              "relevance": 0.8013852834701538
+            },
+            {
+              "index": 6,
+              "stance": "support",
+              "relevance": 0.7532053589820862
+            }
+          ],
+          "evidence_updates_applied": 4,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.99,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.99
+        },
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1135,
+          "stage2_checkability": 0.0723,
+          "stage3_context": 0.0528,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 17.7009,
+          "stage6b_sarvam_rerank": 0.544,
+          "stage6_relevance": 2.0645,
+          "stage7_stance": 1.0031,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 13.5927,
+          "total_pipeline": 34.6018
+        },
+        "evidence_preview": [
+          {
+            "source": "Wikipedia: Vegetarianism in Hinduism",
+            "url": "https://en.wikipedia.org/?curid=17258587",
+            "stance": "neutral",
+            "relevance": 0.9785321950912476,
+            "credibility": 0.9,
+            "text": "(4th/5th century CE) According to Kane, one who is about to eat food should greet the food when it is served to him, should honour it, never speak ill, and"
+          },
+          {
+            "source": "Düğünler – kannada çevirisi, anlam, eş anlamlı, telaffuz, zıt, örnek...",
+            "url": "https://englishlib.org/tr/dictionary/tr-kn/düğünler.html",
+            "stance": "support",
+            "relevance": 0.9776760339736938,
+            "credibility": 0.82,
+            "text": "ಈ ಖಾದ್ಯವನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಸಾಂಪ್ರದಾಯಿಕ ಮದುವೆಗಳು ಅಥವಾ ಹಬ್ಬಗಳಲ್ಲಿ ನೀಡಲಾಗುತ್ತದೆ. Bol miktarda doğal ışık alan bina, günümüzde çeşitli sergiler, düğünler ve özel etkinlikler için kullanılmaktadır."
+          },
+          {
+            "source": "Yakshagana Dance: History, Variants, Elements & Features",
+            "url": "https://testbook.com/ias-preparation/yakshagana",
+            "stance": "neutral",
+            "relevance": 0.8756321668624878,
+            "credibility": 0.7,
+            "text": "Yakshagana is a traditional folk dance popular in the Coastal districts of Karnataka and parts of Kerala. Know more about its history, variants, elements & features here in detail."
+          }
+        ]
+      },
+      {
+        "id": "E252D_200",
+        "language": "kn",
+        "claim": "1990-03-05 ರಂದು ಹೈಕೋರ್ಟ್ ಆಡಳಿತ ವಿಭಾಗವು ಇ-ಫೈಲಿಂಗ್ ವ್ಯವಸ್ಥೆಯ ಕರಡು ಪ್ರತಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+        "expected_verdict": "neutral",
+        "predicted_verdict": "refute",
+        "evidence_count": 8,
+        "time_seconds": 23.085,
+        "context": "LAW_CRIME/general",
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9954704433924896,
+          "reason": "No evidence confirms a High Court administrative division reviewed an e‑filing draft on 1990‑03‑05.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 8,
+          "neutral_sent": 8,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.86,
+          "evidence_updates": [
+            {
+              "index": 6,
+              "stance": "neutral",
+              "relevance": 0.78
+            }
+          ],
+          "evidence_updates_applied": 1,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.993476411557521,
+          "llm_non_neutral_overwritten": true,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=neutral -> final=refute",
+          "post_llm_verdict": "refute",
+          "post_llm_confidence": 0.993476411557521
+        },
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0516,
+          "stage3_context": 0.0513,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13.8677,
+          "stage6b_sarvam_rerank": 0.1858,
+          "stage6_relevance": 2.7843,
+          "stage7_stance": 1.3134,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.899,
+          "total_pipeline": 23.0857
+        },
+        "evidence_preview": [
+          {
+            "source": "Home | Judgements and Orders, Supreme Court and High courts of India",
+            "url": "https://judgments.ecourts.gov.in/",
+            "stance": "neutral",
+            "relevance": 0.9063319563865662,
+            "credibility": 1.0,
+            "text": "Judgements and Orders, High Courts of India Enter keywords, acts or any free text and find specific judgments and orders"
+          },
+          {
+            "source": "Wikipedia: Judiciary of Poland",
+            "url": "https://en.wikipedia.org/?curid=33696304",
+            "stance": "neutral",
+            "relevance": 0.9463765621185303,
+            "credibility": 0.9,
+            "text": "sprawiedliwości). Administrative courts (sądy administracyjne) review complaints challenging the legality of administrative proceedings. Military courts (sądy wojskowe)"
+          },
+          {
+            "source": "PACER - Public Access to Court Electronic Records",
+            "url": "http://www.pacer.uscourts.gov/",
+            "stance": "neutral",
+            "relevance": 0.8418276309967041,
+            "credibility": 1.0,
+            "text": "This site is maintained by the Administrative Office of the U.S. Courts on behalf of the federal Judiciary. The purpose of this site is to provide information about locating and filing cases in the federal courts."
+          }
+        ]
+      },
+      {
+        "id": "E252D_202",
+        "language": "kn",
+        "claim": "ರಾಯಲ್ ಚಾಲೆಂಜರ್ಸ್ ಬೆಂಗಳೂರು (ಆರ್‌ಸಿಬಿ) ಮಹಿಳಾ ತಂಡವು 2024 ರ ಮಹಿಳಾ ಪ್ರೀಮಿಯರ್ ಲೀಗ್ ಗೆದ್ದುಕೊಂಡಿತು.",
+        "expected_verdict": "support",
+        "predicted_verdict": "neutral",
+        "evidence_count": 0,
+        "time_seconds": 0.31,
+        "context": "N/A",
+        "llm_verifier": {},
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2216,
+          "stage2_checkability": 0.0896,
+          "total_pipeline": 0.3118
+        },
+        "evidence_preview": []
+      },
+      {
+        "id": "E252D_203",
+        "language": "kn",
+        "claim": "ಹಾಕಿ ಆಟದಲ್ಲಿ ಆಟಗಾರರು ಚೆಂಡನ್ನು ಹೊಡೆಯಲು ರಾಕೆಟ್‌ಗಳನ್ನು ಬಳಸುತ್ತಾರೆ.",
+        "expected_verdict": "refute",
+        "predicted_verdict": "support",
+        "evidence_count": 7,
+        "time_seconds": 20.858,
+        "context": "SPORTS/general",
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9482787641391448,
+          "reason": "Hockey players use sticks, not rockets, to hit the puck.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 7,
+          "neutral_sent": 7,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.987,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "support",
+              "relevance": 0.9789919257164001
+            },
+            {
+              "index": 3,
+              "stance": "support",
+              "relevance": 0.9920806288719177
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.9816686511039734
+            },
+            {
+              "index": 5,
+              "stance": "support",
+              "relevance": 0.9796594977378845
+            },
+            {
+              "index": 6,
+              "stance": "support",
+              "relevance": 0.9782253503799438
+            }
+          ],
+          "evidence_updates_applied": 5,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.99,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.99
+        },
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2172,
+          "stage2_checkability": 0.0524,
+          "stage3_context": 0.0457,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 8.6219,
+          "stage6b_sarvam_rerank": 0.2545,
+          "stage6_relevance": 1.0868,
+          "stage7_stance": 1.0416,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 9.7909,
+          "total_pipeline": 20.8582
+        },
+        "evidence_preview": [
+          {
+            "source": "Ice hockey - Rules, Strategy, Equipment | Britannica",
+            "url": "https://www.britannica.com/sports/ice-hockey/Play-of-the-game",
+            "stance": "support",
+            "relevance": 0.9789919257164001,
+            "credibility": 0.9,
+            "text": "Apr 8, 2026 · Ice hockey rink A typical professional North American ice hockey rink. U.S. college rinks are sometimes wider (about 100 feet), and international rinks vary in both length and width. Blue lines mark the respective off-sides ar"
+          },
+          {
+            "source": "Wikipedia: Ball badminton",
+            "url": "https://en.wikipedia.org/?curid=2311165",
+            "stance": "neutral",
+            "relevance": 0.9770174026489258,
+            "credibility": 0.9,
+            "text": "Ball badminton is a sport native to India. It is a racket sport game , played with a yellow ball made of wool, on a court of fixed dimensions (12 by 24"
+          },
+          {
+            "source": "Ice Hockey Rules: How To Play Ice Hockey | Rules of Sport",
+            "url": "https://www.rulesofsport.com/sports/ice-hockey.html",
+            "stance": "support",
+            "relevance": 0.9920806288719177,
+            "credibility": 0.82,
+            "text": "The NHL (National Hockey League) is the largest league in the world and currently turns over millions of dollars each year. Object of the Game The object of the game is to hit a small puck across the ice before then hitting it into a goal w"
+          }
+        ]
+      }
+    ]
+  },
+  "total_time_seconds": 173.955,
+  "average_claim_time": 12.819,
+  "run_profile": {
+    "LLM_VERIFIER_PROVIDER_MULTI": "fireworks,cerebras",
+    "LLM_VERIFIER_MODEL_MULTI": "accounts/fireworks/models/gpt-oss-120b",
+    "TRANSLATION_LLM_PROVIDER": "groq",
+    "STRUCTURED_API_PING": "1",
+    "STRUCTURED_API_STRICT_HEALTH": null,
+    "STRUCTURED_API_ALLOWLIST": "wikipedia,openfda,nasa,arxiv,worldbank,wikidata,pib",
+    "WEB_SEARCH_PROVIDER_ORDER": "ddg,tavily,serpapi",
+    "WEB_SEARCH_MIN_PROVIDERS_BEFORE_STOP": "3",
+    "WEB_SEARCH_ENABLE_DDG": "1",
+    "WEB_SEARCH_ENABLE_SERPAPI": "0",
+    "WEB_SEARCH_ENABLE_TAVILY": "0",
+    "WEB_SEARCH_MAX_QUERIES": "3",
+    "WEB_SEARCH_MAX_TOTAL_RESULTS_MULTI": "30",
+    "EVIDENCE_SCRAPER_ENRICH_MAX_RESULTS": "10",
+    "EVIDENCE_MMR_ENABLED": "1",
+    "EVIDENCE_MMR_IMAGE_ONLY": null,
+    "EVIDENCE_MMR_LAMBDA": "0.75",
+    "EVIDENCE_DOMAIN_MAX_PER_HOST": "2",
+    "SCRAPER_ENABLE_PLAYWRIGHT_FALLBACK": "1",
+    "SCRAPER_PLAYWRIGHT_HEAVY_MODE": "1",
+    "ENABLE_SARVAM_FINAL_RERANK": "1",
+    "MULTI_PHASE2_MODE": "scored",
+    "MULTI_PHASE2_CANDIDATE_CAP": "10",
+    "MULTI_PHASE1_GUARD_ENABLE": "1",
+    "MULTI_PHASE3_TIERS_ENABLE": "1",
+    "MULTI_PHASE4_LANE_WEIGHT_ENABLE": "1",
+    "MULTI_PHASE5_GRAY_ZONE_ENABLE": "1",
+    "MULTI_PHASE7_DECISIVE_VERDICT_ENABLE": "1"
+  },
+  "stage_timing_summary": {
+    "stage_timing_totals_seconds": {
+      "stage1_normalize": 8.4409,
+      "stage2_checkability": 2.2576,
+      "total_pipeline": 448.6533,
+      "stage3_context": 0.9751,
+      "stage4_routing": 0.0007,
+      "stage5_evidence_gather": 219.4014,
+      "stage6b_sarvam_rerank": 13.0484,
+      "stage6_relevance": 47.7786,
+      "stage7_stance": 16.0456,
+      "stage8_evidence_scoring": 0.0074,
+      "stage9_aggregate_verdict": 0.0004,
+      "stage10a_multi_tavily_boost": 10.7431,
+      "stage10_llm_verify": 153.6581
+    },
+    "stage_timing_totals_ms": {
+      "stage1_normalize": 8440.9,
+      "stage2_checkability": 2257.6,
+      "total_pipeline": 448653.3,
+      "stage3_context": 975.1,
+      "stage4_routing": 0.7,
+      "stage5_evidence_gather": 219401.4,
+      "stage6b_sarvam_rerank": 13048.4,
+      "stage6_relevance": 47778.6,
+      "stage7_stance": 16045.6,
+      "stage8_evidence_scoring": 7.4,
+      "stage9_aggregate_verdict": 0.4,
+      "stage10a_multi_tavily_boost": 10743.1,
+      "stage10_llm_verify": 153658.1
+    },
+    "dominant_stage": "stage5_evidence_gather",
+    "dominant_stage_seconds": 219.4014,
+    "model_locked_total_seconds": 217.482,
+    "per_claim_stage_timings": [
+      {
+        "id": "E252D_169",
+        "language": "kn",
+        "claim": "ಕರ್ನಾಟಕದಲ್ಲಿ ಯಶಸ್ವಿನಿ ಯೋಜನೆಯು ರೈತ ಸಹಕಾರಿಗಳಿಗೆ ಆರೋಗ್ಯ ರಕ್ಷಣೆ ಒದಗಿಸಲು ಪ್ರಾರಂಭವಾಯಿತು.",
+        "time_seconds": 0.359,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2811,
+          "stage2_checkability": 0.0832,
+          "total_pipeline": 0.3648
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 281.1,
+          "stage2_checkability": 83.2,
+          "total_pipeline": 364.8
+        }
+      },
+      {
+        "id": "E252D_170",
+        "language": "kn",
+        "claim": "ರೋಗಿಗಳಿಗೆ ಪ್ರತಿದಿನ ಸಿಹಿ ಸಕ್ಕರೆಯನ್ನು ತಿನ್ನಿಸುವುದು ಮಧುಮೇಹವನ್ನು ಶಾಶ್ವತವಾಗಿ ಗುಣಪಡಿಸುತ್ತದೆ ಎಂದು ವೈದ್ಯರು ಹೇಳುತ್ತಾರೆ.",
+        "time_seconds": 0.683,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.5873,
+          "stage2_checkability": 0.0955,
+          "total_pipeline": 0.6833
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 587.3,
+          "stage2_checkability": 95.5,
+          "total_pipeline": 683.3
+        }
+      },
+      {
+        "id": "E252D_172",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರಿನಲ್ಲಿ 1978 ರಲ್ಲಿ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿಯನ್ನು ತಂತ್ರಜ್ಞಾನ ಕಂಪನಿಗಳಿಗಾಗಿ ಸ್ಥಾಪಿಸಲಾಯಿತು.",
+        "time_seconds": 1.247,
+        "stage_timings_seconds": {
+          "stage1_normalize": 1.1862,
+          "stage2_checkability": 0.0596,
+          "total_pipeline": 1.247
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 1186.2,
+          "stage2_checkability": 59.6,
+          "total_pipeline": 1247.0
+        }
+      },
+      {
+        "id": "E252D_173",
+        "language": "kn",
+        "claim": "ಟಿಪ್ಪು ಸುಲ್ತಾನ್ ತನ್ನ ಯುದ್ಧಗಳಲ್ಲಿ ಶತ್ರುಗಳ ಮೇಲೆ ದಾಳಿ ಮಾಡಲು ಆಧುನಿಕ ಡ್ರೋನ್‌ಗಳನ್ನು ಬಳಸಿದನು.",
+        "time_seconds": 0.318,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.224,
+          "stage2_checkability": 0.0865,
+          "total_pipeline": 0.312
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 224.0,
+          "stage2_checkability": 86.5,
+          "total_pipeline": 312.0
+        }
+      },
+      {
+        "id": "E252D_175",
+        "language": "kn",
+        "claim": "1956 ರಲ್ಲಿ ಭಾಷಾವಾರು ರಾಜ್ಯಗಳ ಆಧಾರದ ಮೇಲೆ ಮೈಸೂರು ರಾಜ್ಯವನ್ನು ಅಧಿಕೃತವಾಗಿ ರಚಿಸಲಾಯಿತು.",
+        "time_seconds": 0.303,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2162,
+          "stage2_checkability": 0.085,
+          "total_pipeline": 0.3024
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 216.2,
+          "stage2_checkability": 85.0,
+          "total_pipeline": 302.4
+        }
+      },
+      {
+        "id": "E252D_176",
+        "language": "kn",
+        "claim": "2024 ರ ಜನಗಣತಿಯ ಪ್ರಕಾರ ಕರ್ನಾಟಕದಲ್ಲಿ ಒಟ್ಟು ಐನೂರು ಜಿಲ್ಲೆಗಳಿವೆ ಎಂದು ಸರ್ಕಾರ ಘೋಷಿಸಿದೆ.",
+        "time_seconds": 32.564,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2083,
+          "stage2_checkability": 0.0812,
+          "stage3_context": 0.0947,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 13.7202,
+          "stage6b_sarvam_rerank": 0.3531,
+          "stage6_relevance": 4.8521,
+          "stage7_stance": 0.5813,
+          "stage8_evidence_scoring": 0.001,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 4.832,
+          "stage10_llm_verify": 13.0213,
+          "total_pipeline": 32.5638
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 208.3,
+          "stage2_checkability": 81.2,
+          "stage3_context": 94.7,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 13720.2,
+          "stage6b_sarvam_rerank": 353.1,
+          "stage6_relevance": 4852.1,
+          "stage7_stance": 581.3,
+          "stage8_evidence_scoring": 1.0,
+          "stage9_aggregate_verdict": 0.1,
+          "stage10a_multi_tavily_boost": 4832.0,
+          "stage10_llm_verify": 13021.3,
+          "total_pipeline": 32563.8
+        }
+      },
+      {
+        "id": "E252D_178",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರು ನಗರವನ್ನು ಭಾರತದ ಸ್ಟಾರ್ಟ್ಅಪ್ ರಾಜಧಾನಿ ಮತ್ತು ಸಿಲಿಕಾನ್ ವ್ಯಾಲಿ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
+        "time_seconds": 0.206,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1487,
+          "stage2_checkability": 0.0572,
+          "total_pipeline": 0.2062
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 148.7,
+          "stage2_checkability": 57.2,
+          "total_pipeline": 206.2
+        }
+      },
+      {
+        "id": "E252D_179",
+        "language": "kn",
+        "claim": "ಭಾರತದ ಎಲ್ಲಾ ವಾಣಿಜ್ಯ ಬ್ಯಾಂಕುಗಳು ಗ್ರಾಹಕರಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ ಉಚಿತವಾಗಿ ಚಿನ್ನವನ್ನು ವಿತರಿಸುತ್ತವೆ.",
+        "time_seconds": 0.182,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0646,
+          "total_pipeline": 0.1821
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 116.7,
+          "stage2_checkability": 64.6,
+          "total_pipeline": 182.1
+        }
+      },
+      {
+        "id": "E252D_181",
+        "language": "kn",
+        "claim": "ಜವಾಹರಲಾಲ್ ನೆಹರು ಉನ್ನತ ವೈಜ್ಞಾನಿಕ ಸಂಶೋಧನಾ ಕೇಂದ್ರವು ಬೆಂಗಳೂರಿನ ಜಕ್ಕೂರು ಪ್ರದೇಶದಲ್ಲಿ ಇದೆ.",
+        "time_seconds": 31.097,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2596,
+          "stage2_checkability": 0.0987,
+          "stage3_context": 0.0504,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 8.0948,
+          "stage6b_sarvam_rerank": 3.2144,
+          "stage6_relevance": 13.2482,
+          "stage7_stance": 0.8378,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 1.2122,
+          "stage10_llm_verify": 8.5047,
+          "total_pipeline": 31.096
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 259.6,
+          "stage2_checkability": 98.7,
+          "stage3_context": 50.4,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 8094.8,
+          "stage6b_sarvam_rerank": 3214.4,
+          "stage6_relevance": 13248.2,
+          "stage7_stance": 837.8,
+          "stage8_evidence_scoring": 0.4,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 1212.2,
+          "stage10_llm_verify": 8504.7,
+          "total_pipeline": 31096.0
+        }
+      },
+      {
+        "id": "E252D_182",
+        "language": "kn",
+        "claim": "ವಿಜ್ಞಾನಿಗಳ ಪ್ರಕಾರ, ನೀರನ್ನು ಹೆಚ್ಚು ಕುದಿಸಿದಾಗ ಅದು ತಕ್ಷಣವೇ ಗಟ್ಟಿಯಾದ ಮಂಜುಗಡ್ಡೆಯಾಗುತ್ತದೆ.",
+        "time_seconds": 0.233,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1392,
+          "stage2_checkability": 0.0943,
+          "total_pipeline": 0.2338
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 139.2,
+          "stage2_checkability": 94.3,
+          "total_pipeline": 233.8
+        }
+      },
+      {
+        "id": "E252D_184",
+        "language": "kn",
+        "claim": "ಹಂಪಿಯು ಪ್ರಸಿದ್ಧ ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಪ್ರಾಚೀನ ರಾಜಧಾನಿಯಾಗಿತ್ತು ಮತ್ತು ಈಗ ವಿಶ್ವ ಪಾರಂಪರಿಕ ತಾಣವಾಗಿದೆ.",
+        "time_seconds": 0.231,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1753,
+          "stage2_checkability": 0.0555,
+          "total_pipeline": 0.2313
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 175.3,
+          "stage2_checkability": 55.5,
+          "total_pipeline": 231.3
+        }
+      },
+      {
+        "id": "E252D_185",
+        "language": "kn",
+        "claim": "ಮೈಸೂರು ಅರಮನೆಯನ್ನು 2010 ರಲ್ಲಿ ಲಂಡನ್ ನಗರದ ಮಧ್ಯಭಾಗದಲ್ಲಿ ಹೊಸದಾಗಿ ನಿರ್ಮಿಸಲಾಯಿತು.",
+        "time_seconds": 0.228,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1839,
+          "stage2_checkability": 0.0486,
+          "total_pipeline": 0.2328
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 183.9,
+          "stage2_checkability": 48.6,
+          "total_pipeline": 232.8
+        }
+      },
+      {
+        "id": "E252D_187",
+        "language": "kn",
+        "claim": "ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಪರ್ವತ ಶ್ರೇಣಿಯು ಕರ್ನಾಟಕದ ಕರಾವಳಿ ತೀರಕ್ಕೆ ಸಮಾನಾಂತರವಾಗಿ ವ್ಯಾಪಿಸಿದೆ.",
+        "time_seconds": 0.181,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1234,
+          "stage2_checkability": 0.0556,
+          "total_pipeline": 0.1795
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 123.4,
+          "stage2_checkability": 55.6,
+          "total_pipeline": 179.5
+        }
+      },
+      {
+        "id": "E252D_188",
+        "language": "kn",
+        "claim": "ಬೆಂಗಳೂರು ನಗರವು ನೇರವಾಗಿ ಅರಬ್ಬೀ ಸಮುದ್ರದ ತೀರದಲ್ಲಿದೆ ಮತ್ತು ಇದು ಒಂದು ಬಂದರು ನಗರವಾಗಿದೆ.",
+        "time_seconds": 0.235,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1801,
+          "stage2_checkability": 0.0511,
+          "total_pipeline": 0.2316
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 180.1,
+          "stage2_checkability": 51.1,
+          "total_pipeline": 231.6
+        }
+      },
+      {
+        "id": "E252D_190",
+        "language": "kn",
+        "claim": "ಭಾರತೀಯ ಬಾಹ್ಯಾಕಾಶ ಸಂಶೋಧನಾ ಸಂಸ್ಥೆಯ (ಇಸ್ರೋ) ಕೇಂದ್ರ ಕಚೇರಿಯು ಬೆಂಗಳೂರಿನಲ್ಲಿದೆ.",
+        "time_seconds": 0.521,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.4726,
+          "stage2_checkability": 0.0485,
+          "total_pipeline": 0.5214
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 472.6,
+          "stage2_checkability": 48.5,
+          "total_pipeline": 521.4
+        }
+      },
+      {
+        "id": "E252D_191",
+        "language": "kn",
+        "claim": "ನಾಸಾ ವಿಜ್ಞಾನಿಗಳು ಗುರು ಗ್ರಹವು ಸಂಪೂರ್ಣವಾಗಿ ಒಣಗಿದ ಮರದಿಂದ ಮಾಡಲ್ಪಟ್ಟಿದೆ ಎಂದು ದೃಢಪಡಿಸಿದ್ದಾರೆ.",
+        "time_seconds": 0.292,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2415,
+          "stage2_checkability": 0.0482,
+          "total_pipeline": 0.29
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 241.5,
+          "stage2_checkability": 48.2,
+          "total_pipeline": 290.0
+        }
+      },
+      {
+        "id": "E252D_192",
+        "language": "kn",
+        "claim": "2026-03-10 ರಂದು ಇಸ್ರೋ ಕೇಂದ್ರ ಕಚೇರಿಯು ರಾಕೆಟ್ ಇಂಧನ ನಿರ್ವಹಣೆಯ ಕುರಿತು ಕರಡು ಪ್ರತಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+        "time_seconds": 30.035,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.11,
+          "stage2_checkability": 0.0521,
+          "stage3_context": 0.0464,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13.9658,
+          "stage6b_sarvam_rerank": 0.2525,
+          "stage6_relevance": 2.383,
+          "stage7_stance": 1.2299,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 4.6958,
+          "stage10_llm_verify": 12.2444,
+          "total_pipeline": 30.0338
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 110.0,
+          "stage2_checkability": 52.1,
+          "stage3_context": 46.4,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13965.8,
+          "stage6b_sarvam_rerank": 252.5,
+          "stage6_relevance": 2383.0,
+          "stage7_stance": 1229.9,
+          "stage8_evidence_scoring": 0.4,
+          "stage9_aggregate_verdict": 0.1,
+          "stage10a_multi_tavily_boost": 4695.8,
+          "stage10_llm_verify": 12244.4,
+          "total_pipeline": 30033.8
+        }
+      },
+      {
+        "id": "E252D_193",
+        "language": "kn",
+        "claim": "ಬಂಡೀಪುರ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನವು ಕರ್ನಾಟಕದಲ್ಲಿದ್ದು ಹುಲಿಗಳ ಸಂರಕ್ಷಣೆಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ.",
+        "time_seconds": 0.238,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1901,
+          "stage2_checkability": 0.0503,
+          "total_pipeline": 0.2408
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 190.1,
+          "stage2_checkability": 50.3,
+          "total_pipeline": 240.8
+        }
+      },
+      {
+        "id": "E252D_194",
+        "language": "kn",
+        "claim": "ಕಾಡುಗಳನ್ನು ಕಡಿಯುವುದರಿಂದ ಭೂಮಿಯ ಉಷ್ಣಾಂಶವು ತೀವ್ರವಾಗಿ ಕಡಿಮೆಯಾಗಿ ಭೂಮಿ ತಂಪಾಗುತ್ತದೆ.",
+        "time_seconds": 0.2,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1516,
+          "stage2_checkability": 0.0492,
+          "total_pipeline": 0.2012
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 151.6,
+          "stage2_checkability": 49.2,
+          "total_pipeline": 201.2
+        }
+      },
+      {
+        "id": "E252D_195",
+        "language": "kn",
+        "claim": "1990-06-25 ರಂದು ಅರಣ್ಯ ಇಲಾಖೆಯು ಮರಗಳ ಸಂರಕ್ಷಣೆಯ ಕುರಿತು ಒಂದು ಆಂತರಿಕ ಜ್ಞಾಪಕ ಪತ್ರವನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿತು.",
+        "time_seconds": 36.612,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2595,
+          "stage2_checkability": 0.0551,
+          "stage3_context": 0.0482,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 21.4007,
+          "stage6b_sarvam_rerank": 1.9209,
+          "stage6_relevance": 3.1918,
+          "stage7_stance": 0.6024,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.0523,
+          "total_pipeline": 36.6118
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 259.5,
+          "stage2_checkability": 55.1,
+          "stage3_context": 48.2,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 21400.7,
+          "stage6b_sarvam_rerank": 1920.9,
+          "stage6_relevance": 3191.8,
+          "stage7_stance": 602.4,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 11052.3,
+          "total_pipeline": 36611.8
+        }
+      },
+      {
+        "id": "E252D_196",
+        "language": "kn",
+        "claim": "ಮೈಸೂರು ದಸರಾವನ್ನು ನಾಡಹಬ್ಬವಾಗಿ ರಾಜ್ಯಾದ್ಯಂತ ವಿಜೃಂಭಣೆಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತದೆ.",
+        "time_seconds": 0.183,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1314,
+          "stage2_checkability": 0.0526,
+          "total_pipeline": 0.1842
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 131.4,
+          "stage2_checkability": 52.6,
+          "total_pipeline": 184.2
+        }
+      },
+      {
+        "id": "E252D_197",
+        "language": "kn",
+        "claim": "ಯಕ್ಷಗಾನವು ಕೇವಲ ತಿನ್ನುವ ಒಂದು ಆಹಾರ ಪದಾರ್ಥವಾಗಿದ್ದು, ಇದನ್ನು ಹಬ್ಬಗಳಲ್ಲಿ ನೀಡಲಾಗುತ್ತದೆ.",
+        "time_seconds": 34.602,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1135,
+          "stage2_checkability": 0.0723,
+          "stage3_context": 0.0528,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 17.7009,
+          "stage6b_sarvam_rerank": 0.544,
+          "stage6_relevance": 2.0645,
+          "stage7_stance": 1.0031,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 13.5927,
+          "total_pipeline": 34.6018
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 113.5,
+          "stage2_checkability": 72.3,
+          "stage3_context": 52.8,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 17700.9,
+          "stage6b_sarvam_rerank": 544.0,
+          "stage6_relevance": 2064.5,
+          "stage7_stance": 1003.1,
+          "stage8_evidence_scoring": 0.5,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 13592.7,
+          "total_pipeline": 34601.8
+        }
+      },
+      {
+        "id": "E252D_198",
+        "language": "kn",
+        "claim": "2026-01-20 ರಂದು ಕನ್ನಡ ಮತ್ತು ಸಂಸ್ಕೃತಿ ಇಲಾಖೆಯು ಸ್ಥಳೀಯ ಕಲೆಗಳ ಬಗ್ಗೆ ವರದಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+        "time_seconds": 31.785,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.142,
+          "stage2_checkability": 0.0519,
+          "stage3_context": 0.0486,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 16.3749,
+          "stage6b_sarvam_rerank": 1.5829,
+          "stage6_relevance": 4.4046,
+          "stage7_stance": 1.0121,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 0.0005,
+          "stage10_llm_verify": 9.7477,
+          "total_pipeline": 31.7838
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 142.0,
+          "stage2_checkability": 51.9,
+          "stage3_context": 48.6,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 16374.9,
+          "stage6b_sarvam_rerank": 1582.9,
+          "stage6_relevance": 4404.6,
+          "stage7_stance": 1012.1,
+          "stage8_evidence_scoring": 0.5,
+          "stage9_aggregate_verdict": 0.1,
+          "stage10a_multi_tavily_boost": 0.5,
+          "stage10_llm_verify": 9747.7,
+          "total_pipeline": 31783.8
+        }
+      },
+      {
+        "id": "E252D_199",
+        "language": "kn",
+        "claim": "ಕರ್ನಾಟಕ ಉಚ್ಚ ನ್ಯಾಯಾಲಯದ ಮುಖ್ಯ ಪೀಠವು ಬೆಂಗಳೂರು ನಗರದಲ್ಲಿ அமைந்துள்ளது.",
+        "time_seconds": 20.448,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1899,
+          "stage2_checkability": 0.0472,
+          "stage3_context": 0.0446,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8.9564,
+          "stage6b_sarvam_rerank": 0.1685,
+          "stage6_relevance": 1.0762,
+          "stage7_stance": 1.1795,
+          "stage8_evidence_scoring": 0.0006,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 8.9513,
+          "total_pipeline": 20.4473
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 189.9,
+          "stage2_checkability": 47.2,
+          "stage3_context": 44.6,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8956.4,
+          "stage6b_sarvam_rerank": 168.5,
+          "stage6_relevance": 1076.2,
+          "stage7_stance": 1179.5,
+          "stage8_evidence_scoring": 0.6,
+          "stage9_aggregate_verdict": 0.1,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 8951.3,
+          "total_pipeline": 20447.3
+        }
+      },
+      {
+        "id": "E252D_200",
+        "language": "kn",
+        "claim": "1990-03-05 ರಂದು ಹೈಕೋರ್ಟ್ ಆಡಳಿತ ವಿಭಾಗವು ಇ-ಫೈಲಿಂಗ್ ವ್ಯವಸ್ಥೆಯ ಕರಡು ಪ್ರತಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+        "time_seconds": 23.085,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0516,
+          "stage3_context": 0.0513,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13.8677,
+          "stage6b_sarvam_rerank": 0.1858,
+          "stage6_relevance": 2.7843,
+          "stage7_stance": 1.3134,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.899,
+          "total_pipeline": 23.0857
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 116.7,
+          "stage2_checkability": 51.6,
+          "stage3_context": 51.3,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13867.7,
+          "stage6b_sarvam_rerank": 185.8,
+          "stage6_relevance": 2784.3,
+          "stage7_stance": 1313.4,
+          "stage8_evidence_scoring": 0.4,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 4899.0,
+          "total_pipeline": 23085.7
+        }
+      },
+      {
+        "id": "E252D_201",
+        "language": "kn",
+        "claim": "2026-04-12 ರಂದು ಕಾನೂನು ಆಯುಕ್ತರು ಭೂ ವ್ಯಾಜ್ಯಗಳ ತಿದ್ದುಪಡಿಗೆ ಸಂಬಂಧಿಸಿದ ಕರಡು ವರದಿಯನ್ನು ಓದಿದರು.",
+        "time_seconds": 30.613,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1205,
+          "stage2_checkability": 0.0553,
+          "stage3_context": 0.051,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 14.097,
+          "stage6b_sarvam_rerank": 3.2275,
+          "stage6_relevance": 4.2951,
+          "stage7_stance": 0.8853,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.1069,
+          "total_pipeline": 30.6132
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 120.5,
+          "stage2_checkability": 55.3,
+          "stage3_context": 51.0,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 14097.0,
+          "stage6b_sarvam_rerank": 3227.5,
+          "stage6_relevance": 4295.1,
+          "stage7_stance": 885.3,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 11106.9,
+          "total_pipeline": 30613.2
+        }
+      },
+      {
+        "id": "E252D_202",
+        "language": "kn",
+        "claim": "ರಾಯಲ್ ಚಾಲೆಂಜರ್ಸ್ ಬೆಂಗಳೂರು (ಆರ್‌ಸಿಬಿ) ಮಹಿಳಾ ತಂಡವು 2024 ರ ಮಹಿಳಾ ಪ್ರೀಮಿಯರ್ ಲೀಗ್ ಗೆದ್ದುಕೊಂಡಿತು.",
+        "time_seconds": 0.31,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2216,
+          "stage2_checkability": 0.0896,
+          "total_pipeline": 0.3118
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 221.6,
+          "stage2_checkability": 89.6,
+          "total_pipeline": 311.8
+        }
+      },
+      {
+        "id": "E252D_203",
+        "language": "kn",
+        "claim": "ಹಾಕಿ ಆಟದಲ್ಲಿ ಆಟಗಾರರು ಚೆಂಡನ್ನು ಹೊಡೆಯಲು ರಾಕೆಟ್‌ಗಳನ್ನು ಬಳಸುತ್ತಾರೆ.",
+        "time_seconds": 20.858,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.2172,
+          "stage2_checkability": 0.0524,
+          "stage3_context": 0.0457,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 8.6219,
+          "stage6b_sarvam_rerank": 0.2545,
+          "stage6_relevance": 1.0868,
+          "stage7_stance": 1.0416,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 9.7909,
+          "total_pipeline": 20.8582
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 217.2,
+          "stage2_checkability": 52.4,
+          "stage3_context": 45.7,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 8621.9,
+          "stage6b_sarvam_rerank": 254.5,
+          "stage6_relevance": 1086.8,
+          "stage7_stance": 1041.6,
+          "stage8_evidence_scoring": 0.5,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 9790.9,
+          "total_pipeline": 20858.2
+        }
+      },
+      {
+        "id": "E252D_204",
+        "language": "kn",
+        "claim": "1988-06-15 ರಂದು ಕೆಎಸ್‌ಸಿಎ ಆಡಳಿತ ಮಂಡಳಿಯು ಸ್ಥಳೀಯ ಪಂದ್ಯಗಳಿಗೆ ಹೊಸ ತರಬೇತಿ ವ್ಯವಸ್ಥೆಯನ್ನು ಚರ್ಚಿಸಿತು.",
+        "time_seconds": 20.754,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1972,
+          "stage2_checkability": 0.0477,
+          "stage3_context": 0.0529,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10.9198,
+          "stage6b_sarvam_rerank": 0.1688,
+          "stage6_relevance": 0.9232,
+          "stage7_stance": 0.4603,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 8.1119,
+          "total_pipeline": 20.7397
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 197.2,
+          "stage2_checkability": 47.7,
+          "stage3_context": 52.9,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10919.8,
+          "stage6b_sarvam_rerank": 168.8,
+          "stage6_relevance": 923.2,
+          "stage7_stance": 460.3,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 8111.9,
+          "total_pipeline": 20739.7
+        }
+      },
+      {
+        "id": "E252D_205",
+        "language": "kn",
+        "claim": "2026-02-18 ರಂದು ಚಲನಚಿತ್ರ ವಾಣಿಜ್ಯ ಮಂಡಳಿಯು ಆನ್‌ಲೈನ್ ಟಿಕೆಟ್ ದರಗಳ ಕುರಿತು ಕರಡು ಪ್ರತಿಯನ್ನು ಚರ್ಚಿಸಿತು.",
+        "time_seconds": 20.449,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1356,
+          "stage2_checkability": 0.0515,
+          "stage3_context": 0.0809,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 12.7692,
+          "stage6b_sarvam_rerank": 0.1886,
+          "stage6_relevance": 1.0632,
+          "stage7_stance": 0.5706,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 5.7753,
+          "total_pipeline": 20.4489
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 135.6,
+          "stage2_checkability": 51.5,
+          "stage3_context": 80.9,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 12769.2,
+          "stage6b_sarvam_rerank": 188.6,
+          "stage6_relevance": 1063.2,
+          "stage7_stance": 570.6,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 5775.3,
+          "total_pipeline": 20448.9
+        }
+      },
+      {
+        "id": "E252D_206",
+        "language": "kn",
+        "claim": "2026-04-10 ರಂದು ಡಾ. ರಾಜಕುಮಾರ್ ಪ್ರತಿಷ್ಠಾನವು ಹಳೆಯ ಚಲನಚಿತ್ರಗಳ ಮರುಸ್ಥಾಪನೆಯ ಬಗ್ಗೆ ಟಿಪ್ಪಣಿಯನ್ನು ಬಿಡುಗಡೆ ಮಾಡಿತು.",
+        "time_seconds": 28.372,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1501,
+          "stage2_checkability": 0.0559,
+          "stage3_context": 0.0503,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 15.8532,
+          "stage6b_sarvam_rerank": 0.2112,
+          "stage6_relevance": 1.5399,
+          "stage7_stance": 0.9769,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 9.7415,
+          "total_pipeline": 28.3719
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 150.1,
+          "stage2_checkability": 55.9,
+          "stage3_context": 50.3,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 15853.2,
+          "stage6b_sarvam_rerank": 211.2,
+          "stage6_relevance": 1539.9,
+          "stage7_stance": 976.9,
+          "stage8_evidence_scoring": 0.4,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 9741.5,
+          "total_pipeline": 28371.9
+        }
+      },
+      {
+        "id": "E252D_207",
+        "language": "kn",
+        "claim": "1995-11-20 ರಂದು ಚಲನಚಿತ್ರ ಅಕಾಡೆಮಿಯು ಸಾಕ್ಷ್ಯಚಿತ್ರಗಳ ಸಂಗ್ರಹದ ಕುರಿತು ಗೌಪ್ಯ ಟಿಪ್ಪಣಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+        "time_seconds": 20.384,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.9135,
+          "stage2_checkability": 0.1051,
+          "stage3_context": 0.0752,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 9.7432,
+          "stage6b_sarvam_rerank": 0.2031,
+          "stage6_relevance": 1.7201,
+          "stage7_stance": 1.6012,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 6.2011,
+          "total_pipeline": 20.3834
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 913.5,
+          "stage2_checkability": 105.1,
+          "stage3_context": 75.2,
+          "stage4_routing": 0.1,
+          "stage5_evidence_gather": 9743.2,
+          "stage6b_sarvam_rerank": 203.1,
+          "stage6_relevance": 1720.1,
+          "stage7_stance": 1601.2,
+          "stage8_evidence_scoring": 0.5,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 6201.1,
+          "total_pipeline": 20383.4
+        }
+      },
+      {
+        "id": "E252D_208",
+        "language": "kn",
+        "claim": "2026-01-25 ರಂದು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಿಷತ್ತು ಹೊಸ ನಿಘಂಟು ಪ್ರಕಟಣೆಯ ಕುರಿತು ಕರಡು ದಾಖಲೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿತು.",
+        "time_seconds": 17.749,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1145,
+          "stage2_checkability": 0.054,
+          "stage3_context": 0.0461,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10.6807,
+          "stage6b_sarvam_rerank": 0.1898,
+          "stage6_relevance": 0.9492,
+          "stage7_stance": 0.9094,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.9922,
+          "total_pipeline": 17.7482
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 114.5,
+          "stage2_checkability": 54.0,
+          "stage3_context": 46.1,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10680.7,
+          "stage6b_sarvam_rerank": 189.8,
+          "stage6_relevance": 949.2,
+          "stage7_stance": 909.4,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 4992.2,
+          "total_pipeline": 17748.2
+        }
+      },
+      {
+        "id": "E252D_209",
+        "language": "kn",
+        "claim": "2026-03-30 ರಂದು ಕೆಎಸ್ಆರ್ಟಿಸಿ ಎಲೆಕ್ಟ್ರಿಕ್ ಬಸ್ಸುಗಳ ನಿರ್ವಹಣೆ ಕುರಿತು ಕರಡು ಮಾರ್ಗಸೂಚಿಯನ್ನು ಓದಿತು.",
+        "time_seconds": 21.259,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1219,
+          "stage2_checkability": 0.0865,
+          "stage3_context": 0.0838,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8.0317,
+          "stage6b_sarvam_rerank": 0.1957,
+          "stage6_relevance": 0.9957,
+          "stage7_stance": 0.7583,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.1791,
+          "total_pipeline": 21.259
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 121.9,
+          "stage2_checkability": 86.5,
+          "stage3_context": 83.8,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8031.7,
+          "stage6b_sarvam_rerank": 195.7,
+          "stage6_relevance": 995.7,
+          "stage7_stance": 758.3,
+          "stage8_evidence_scoring": 0.3,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 11179.1,
+          "total_pipeline": 21259.0
+        }
+      },
+      {
+        "id": "E252D_210",
+        "language": "kn",
+        "claim": "1980-04-18 ರಂದು ಸಾರ್ವಜನಿಕ ಗ್ರಂಥಾಲಯ ಇಲಾಖೆಯು ಹಳೆಯ ಪುಸ್ತಕಗಳನ್ನು ಸಂರಕ್ಷಿಸುವ ಯೋಜನೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಿತು.",
+        "time_seconds": 21.851,
+        "stage_timings_seconds": {
+          "stage1_normalize": 0.1,
+          "stage2_checkability": 0.064,
+          "stage3_context": 0.0522,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 14.6033,
+          "stage6b_sarvam_rerank": 0.1871,
+          "stage6_relevance": 1.2007,
+          "stage7_stance": 1.0825,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.7458,
+          "total_pipeline": 21.8506
+        },
+        "stage_timings_ms": {
+          "stage1_normalize": 100.0,
+          "stage2_checkability": 64.0,
+          "stage3_context": 52.2,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 14603.3,
+          "stage6b_sarvam_rerank": 187.1,
+          "stage6_relevance": 1200.7,
+          "stage7_stance": 1082.5,
+          "stage8_evidence_scoring": 0.4,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.2,
+          "stage10_llm_verify": 4745.8,
+          "total_pipeline": 21850.6
+        }
+      }
+    ]
+  },
+  "claims": [
+    {
+      "id": "E252D_169",
+      "language": "kn",
+      "claim": "ಕರ್ನಾಟಕದಲ್ಲಿ ಯಶಸ್ವಿನಿ ಯೋಜನೆಯು ರೈತ ಸಹಕಾರಿಗಳಿಗೆ ಆರೋಗ್ಯ ರಕ್ಷಣೆ ಒದಗಿಸಲು ಪ್ರಾರಂಭವಾಯಿತು.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.359,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.89))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.2811,
+          "stage2_checkability": 0.0832,
+          "total_pipeline": 0.3648
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_170",
+      "language": "kn",
+      "claim": "ರೋಗಿಗಳಿಗೆ ಪ್ರತಿದಿನ ಸಿಹಿ ಸಕ್ಕರೆಯನ್ನು ತಿನ್ನಿಸುವುದು ಮಧುಮೇಹವನ್ನು ಶಾಶ್ವತವಾಗಿ ಗುಣಪಡಿಸುತ್ತದೆ ಎಂದು ವೈದ್ಯರು ಹೇಳುತ್ತಾರೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.683,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.50))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.5873,
+          "stage2_checkability": 0.0955,
+          "total_pipeline": 0.6833
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_172",
+      "language": "kn",
+      "claim": "ಬೆಂಗಳೂರಿನಲ್ಲಿ 1978 ರಲ್ಲಿ ಎಲೆಕ್ಟ್ರಾನಿಕ್ ಸಿಟಿಯನ್ನು ತಂತ್ರಜ್ಞಾನ ಕಂಪನಿಗಳಿಗಾಗಿ ಸ್ಥಾಪಿಸಲಾಯಿತು.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 1.247,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.90))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 1.1862,
+          "stage2_checkability": 0.0596,
+          "total_pipeline": 1.247
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_173",
+      "language": "kn",
+      "claim": "ಟಿಪ್ಪು ಸುಲ್ತಾನ್ ತನ್ನ ಯುದ್ಧಗಳಲ್ಲಿ ಶತ್ರುಗಳ ಮೇಲೆ ದಾಳಿ ಮಾಡಲು ಆಧುನಿಕ ಡ್ರೋನ್‌ಗಳನ್ನು ಬಳಸಿದನು.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.318,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.85))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.224,
+          "stage2_checkability": 0.0865,
+          "total_pipeline": 0.312
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_175",
+      "language": "kn",
+      "claim": "1956 ರಲ್ಲಿ ಭಾಷಾವಾರು ರಾಜ್ಯಗಳ ಆಧಾರದ ಮೇಲೆ ಮೈಸೂರು ರಾಜ್ಯವನ್ನು ಅಧಿಕೃತವಾಗಿ ರಚಿಸಲಾಯಿತು.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.303,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.93))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.2162,
+          "stage2_checkability": 0.085,
+          "total_pipeline": 0.3024
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_176",
+      "language": "kn",
+      "claim": "2024 ರ ಜನಗಣತಿಯ ಪ್ರಕಾರ ಕರ್ನಾಟಕದಲ್ಲಿ ಒಟ್ಟು ಐನೂರು ಜಿಲ್ಲೆಗಳಿವೆ ಎಂದು ಸರ್ಕಾರ ಘೋಷಿಸಿದೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "refute",
+      "correct": true,
+      "confidence": 0.96,
+      "evidence_count": 4,
+      "time_seconds": 32.564,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "POLITICS_GOVERNMENT/general",
+        "sources_checked": 7,
+        "evidence_count": 4,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.65,
+          "reason": "Karnataka has only about 31 districts, not 150, so the claim is false.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 3,
+          "neutral_sent": 3,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.96,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "neutral",
+              "relevance": 0.69
+            },
+            {
+              "index": 2,
+              "stance": "neutral",
+              "relevance": 0.6
+            },
+            {
+              "index": 3,
+              "stance": "neutral",
+              "relevance": 0.56
+            }
+          ],
+          "evidence_updates_applied": 3,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.65,
+          "llm_non_neutral_overwritten": true,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=neutral -> final=refute",
+          "post_llm_verdict": "refute",
+          "post_llm_confidence": 0.96
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 27,
+          "unique_total": 12,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 14,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 14
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "kn.wikipedia.org",
+              4
+            ],
+            [
+              "kannada.oneindia.com",
+              3
+            ],
+            [
+              "thefile.in",
+              3
+            ],
+            [
+              "prajavahini.in",
+              3
+            ],
+            [
+              "zeenews.india.com",
+              2
+            ],
+            [
+              "tv9kannada.com",
+              2
+            ],
+            [
+              "spardhamitra.in",
+              2
+            ],
+            [
+              "kannada.news18.com",
+              1
+            ],
+            [
+              "mymemory.translated.net",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "native_local": 3,
+          "structured_reference": 1
+        },
+        "multi_tier_counts": {
+          "strong": 4
+        },
+        "timings": {
+          "stage1_normalize": 0.2083,
+          "stage2_checkability": 0.0812,
+          "stage3_context": 0.0947,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 13.7202,
+          "stage6b_sarvam_rerank": 0.3531,
+          "stage6_relevance": 4.8521,
+          "stage7_stance": 0.5813,
+          "stage8_evidence_scoring": 0.001,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 4.832,
+          "stage10_llm_verify": 13.0213,
+          "total_pipeline": 32.5638
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "ಇನ್ಸೈಡ್ ರಿಪೋರ್ಟ್ ಗೆ ಕಮಲ ಗಲಿಬಿಲಿ!ಜ್ಯೋತಿಷ್ಯ ಭವಿಷ್ಯದ ಪ್ರಕಾರ...",
+          "url": "https://kannada.oneindia.com/videos/lok-sabha-elections-2024-nerves-in-bjp-over-vote-margins-in-karnataka-4146308.html",
+          "stance": "neutral",
+          "relevance": 0.69,
+          "credibility": 0.7,
+          "text": "Lok Sabha Elections 2024: Nerves in BJP over vote margins in Karnataka?ಆಗಸ್ಟ್ ಗೆ ಮೋದಿ ಸರ್ಕಾರ ಪತನ! ರೆಡಿಯಾಗಿರಿ ಎಂದ ಲಾಲು ಪ್ರಸಾದ್ ಯಾದವ್!"
+        },
+        {
+          "source": "Translate farmers are the pride of the c in Kannada",
+          "url": "https://mymemory.translated.net/en/English/Kannada/farmers-are-the-pride-of-the-country-i",
+          "stance": "neutral",
+          "relevance": 0.6,
+          "credibility": 0.7,
+          "text": "Last Update: 2024-03-10 Usage Frequency: 1 Quality: Reference: Anonymous. English. i want to solve problems of crime in the country and i want to keep the public safe fromi external forces of the.ರಾಷ್ಟ್ರದ ಆರ್ಥಿಕ ಅಭಿವೃದ್ಧಿಗೆ ಮಹಿಳೆಯರು ಪ್ರಮುಖರ"
+        },
+        {
+          "source": "ಕರ್ನಾಟಕ - ವಿಕಿಪೀಡಿಯ",
+          "url": "https://kn.wikipedia.org/wiki/ಕರ್ನಾಟಕ",
+          "stance": "neutral",
+          "relevance": 0.56,
+          "credibility": 0.75,
+          "text": "ದೇಶದ ಐಟಿ ದಿಗ್ಗಜ ಸಂಸ್ಥೆಗಳೆನಿಸಿದ ಇನ್ಫೋಸಿಸ್, ವಿಪ್ರೋ ಕೂಡ ಕರ್ನಾಟಕದಲ್ಲಿ ತಮ್ಮ ಪ್ರಧಾನ ಕಛೇರಿಯನ್ನು ಹೊಂದಿವೆ. ೨೦೦೬-೦೭ರ ಅಂಕಿ ಅಂಶಗಳ ಅಂದಾಜಿನ ..."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_178",
+      "language": "kn",
+      "claim": "ಬೆಂಗಳೂರು ನಗರವನ್ನು ಭಾರತದ ಸ್ಟಾರ್ಟ್ಅಪ್ ರಾಜಧಾನಿ ಮತ್ತು ಸಿಲಿಕಾನ್ ವ್ಯಾಲಿ ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.206,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.77))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1487,
+          "stage2_checkability": 0.0572,
+          "total_pipeline": 0.2062
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_179",
+      "language": "kn",
+      "claim": "ಭಾರತದ ಎಲ್ಲಾ ವಾಣಿಜ್ಯ ಬ್ಯಾಂಕುಗಳು ಗ್ರಾಹಕರಿಗೆ ಸಂಪೂರ್ಣವಾಗಿ ಉಚಿತವಾಗಿ ಚಿನ್ನವನ್ನು ವಿತರಿಸುತ್ತವೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.182,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.84))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0646,
+          "total_pipeline": 0.1821
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_181",
+      "language": "kn",
+      "claim": "ಜವಾಹರಲಾಲ್ ನೆಹರು ಉನ್ನತ ವೈಜ್ಞಾನಿಕ ಸಂಶೋಧನಾ ಕೇಂದ್ರವು ಬೆಂಗಳೂರಿನ ಜಕ್ಕೂರು ಪ್ರದೇಶದಲ್ಲಿ ಇದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "support",
+      "correct": true,
+      "confidence": 0.99,
+      "evidence_count": 6,
+      "time_seconds": 31.097,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SCIENCE/general",
+        "sources_checked": 5,
+        "evidence_count": 6,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9804456111595634,
+          "reason": "Multiple sources state the Jawaharlal Nehru Centre for Advanced Scientific Research is located in Jakkur, Bangalore.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 6,
+          "neutral_sent": 6,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "support",
+          "confidence": 0.99,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "support",
+              "relevance": 0.9748808741569519
+            },
+            {
+              "index": 2,
+              "stance": "support",
+              "relevance": 0.9534317255020142
+            },
+            {
+              "index": 3,
+              "stance": "support",
+              "relevance": 0.9833307862281799
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.9717012047767639
+            }
+          ],
+          "evidence_updates_applied": 4,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.99,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=support -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.99
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 19,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 10,
+            "scraping": 9
+          },
+          "search_provider_counts": {
+            "ddg": 10
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 9
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              2
+            ],
+            [
+              "dst.gov.in",
+              2
+            ],
+            [
+              "www.jncasr.ac.in",
+              2
+            ],
+            [
+              "www.collegebatch.com",
+              2
+            ],
+            [
+              "publictv.in",
+              2
+            ],
+            [
+              "kannadadeevige.in",
+              2
+            ],
+            [
+              "voterlist.co.in",
+              2
+            ],
+            [
+              "www.infiniteiaskas.com",
+              2
+            ],
+            [
+              "vanlett.com",
+              2
+            ],
+            [
+              "www.indiascienceandtechnology.gov.in",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 4,
+          "native_local": 2
+        },
+        "multi_tier_counts": {
+          "strong": 6
+        },
+        "timings": {
+          "stage1_normalize": 0.2596,
+          "stage2_checkability": 0.0987,
+          "stage3_context": 0.0504,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 8.0948,
+          "stage6b_sarvam_rerank": 3.2144,
+          "stage6_relevance": 13.2482,
+          "stage7_stance": 0.8378,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 1.2122,
+          "stage10_llm_verify": 8.5047,
+          "total_pipeline": 31.096
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Jawaharlal Nehru Centre for Advanced Scientific Research, Bangalore ...",
+          "url": "https://dst.gov.in/autonomousstinstitutions/jawaharlal-nehru-centre-advanced-scientific-research-bangalore",
+          "stance": "support",
+          "relevance": 0.9748808741569519,
+          "credibility": 1.0,
+          "text": "The Jawaharlal Nehru Centre for Advanced Scientific Research was established in 1989 by the Department of Science and Technology, Govt. of India, to commemorate the centenary (1989) of Pandit Jawaharlal Nehru with the main objective of prom"
+        },
+        {
+          "source": "Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR ...",
+          "url": "https://www.indiascienceandtechnology.gov.in/organisations/ministry-and-departments/department-science-technology-dst/jawaharlal-nehru-centre",
+          "stance": "support",
+          "relevance": 0.9534317255020142,
+          "credibility": 1.0,
+          "text": "Jawaharlal Nehru Centre for Advanced Scientific Research (JNCASR) is a multidisciplinary research institute situated in Jakkur, a locality north of Bangalore, India. The mandate is to pursue and promote world-class research and training at "
+        },
+        {
+          "source": "Jawaharlal Nehru Centre for Advanced Scientific Research Contact Number ...",
+          "url": "https://www.collegebatch.com/10362-jawaharlal-nehru-centre-for-advanced-scientific-research-contact-number-address-map-bangalore-fs015",
+          "stance": "support",
+          "relevance": 0.9833307862281799,
+          "credibility": 0.9,
+          "text": "Jawaharlal Nehru Centre for Advanced Scientific Research Jakkur, Bangalore - 560064, Karnataka, India Get Directions 500 feet 200 m"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_182",
+      "language": "kn",
+      "claim": "ವಿಜ್ಞಾನಿಗಳ ಪ್ರಕಾರ, ನೀರನ್ನು ಹೆಚ್ಚು ಕುದಿಸಿದಾಗ ಅದು ತಕ್ಷಣವೇ ಗಟ್ಟಿಯಾದ ಮಂಜುಗಡ್ಡೆಯಾಗುತ್ತದೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.233,
+      "details": {
+        "checkability": "Uncheckable (Model label=OTHER_UNCHECKABLE (conf=1.00))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1392,
+          "stage2_checkability": 0.0943,
+          "total_pipeline": 0.2338
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_184",
+      "language": "kn",
+      "claim": "ಹಂಪಿಯು ಪ್ರಸಿದ್ಧ ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಪ್ರಾಚೀನ ರಾಜಧಾನಿಯಾಗಿತ್ತು ಮತ್ತು ಈಗ ವಿಶ್ವ ಪಾರಂಪರಿಕ ತಾಣವಾಗಿದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.231,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.93))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1753,
+          "stage2_checkability": 0.0555,
+          "total_pipeline": 0.2313
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_185",
+      "language": "kn",
+      "claim": "ಮೈಸೂರು ಅರಮನೆಯನ್ನು 2010 ರಲ್ಲಿ ಲಂಡನ್ ನಗರದ ಮಧ್ಯಭಾಗದಲ್ಲಿ ಹೊಸದಾಗಿ ನಿರ್ಮಿಸಲಾಯಿತು.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.228,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.91))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1839,
+          "stage2_checkability": 0.0486,
+          "total_pipeline": 0.2328
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_187",
+      "language": "kn",
+      "claim": "ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ಪರ್ವತ ಶ್ರೇಣಿಯು ಕರ್ನಾಟಕದ ಕರಾವಳಿ ತೀರಕ್ಕೆ ಸಮಾನಾಂತರವಾಗಿ ವ್ಯಾಪಿಸಿದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.181,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.91))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1234,
+          "stage2_checkability": 0.0556,
+          "total_pipeline": 0.1795
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_188",
+      "language": "kn",
+      "claim": "ಬೆಂಗಳೂರು ನಗರವು ನೇರವಾಗಿ ಅರಬ್ಬೀ ಸಮುದ್ರದ ತೀರದಲ್ಲಿದೆ ಮತ್ತು ಇದು ಒಂದು ಬಂದರು ನಗರವಾಗಿದೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.235,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.84))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1801,
+          "stage2_checkability": 0.0511,
+          "total_pipeline": 0.2316
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_190",
+      "language": "kn",
+      "claim": "ಭಾರತೀಯ ಬಾಹ್ಯಾಕಾಶ ಸಂಶೋಧನಾ ಸಂಸ್ಥೆಯ (ಇಸ್ರೋ) ಕೇಂದ್ರ ಕಚೇರಿಯು ಬೆಂಗಳೂರಿನಲ್ಲಿದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.521,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.51))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.4726,
+          "stage2_checkability": 0.0485,
+          "total_pipeline": 0.5214
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_191",
+      "language": "kn",
+      "claim": "ನಾಸಾ ವಿಜ್ಞಾನಿಗಳು ಗುರು ಗ್ರಹವು ಸಂಪೂರ್ಣವಾಗಿ ಒಣಗಿದ ಮರದಿಂದ ಮಾಡಲ್ಪಟ್ಟಿದೆ ಎಂದು ದೃಢಪಡಿಸಿದ್ದಾರೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.292,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.87))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.2415,
+          "stage2_checkability": 0.0482,
+          "total_pipeline": 0.29
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_192",
+      "language": "kn",
+      "claim": "2026-03-10 ರಂದು ಇಸ್ರೋ ಕೇಂದ್ರ ಕಚೇರಿಯು ರಾಕೆಟ್ ಇಂಧನ ನಿರ್ವಹಣೆಯ ಕುರಿತು ಕರಡು ಪ್ರತಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.9908582671165255,
+      "evidence_count": 6,
+      "time_seconds": 30.035,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "TECHNOLOGY/general",
+        "sources_checked": 6,
+        "evidence_count": 6,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9908582671165255,
+          "reason": "None of the supplied sources mention ISRO reviewing a rocket fuel management draft on 2026-03-10. (ignored; no valid evidence updates)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 6,
+          "neutral_sent": 6,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.85,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.9908582671165255,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.9908582671165255
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 17,
+          "unique_total": 8,
+          "ranked_total": 8,
+          "returned_total": 8,
+          "source_type_counts": {
+            "web_search": 7,
+            "structured_api": 3,
+            "scraping": 7
+          },
+          "search_provider_counts": {
+            "ddg": 7
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 7
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "pratidhvani.com",
+              2
+            ],
+            [
+              "salahe.in",
+              2
+            ],
+            [
+              "www.mangalorean.com",
+              2
+            ],
+            [
+              "rohancorporation.in",
+              2
+            ],
+            [
+              "janajeevala.com",
+              1
+            ],
+            [
+              "automobiles.honda.com",
+              1
+            ],
+            [
+              "www.forbes.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 5
+        },
+        "multi_tier_counts": {
+          "strong": 6
+        },
+        "timings": {
+          "stage1_normalize": 0.11,
+          "stage2_checkability": 0.0521,
+          "stage3_context": 0.0464,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13.9658,
+          "stage6b_sarvam_rerank": 0.2525,
+          "stage6_relevance": 2.383,
+          "stage7_stance": 1.2299,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 4.6958,
+          "stage10_llm_verify": 12.2444,
+          "total_pipeline": 30.0338
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: SpaceX Starbase",
+          "url": "https://en.wikipedia.org/?curid=39137784",
+          "stance": "neutral",
+          "relevance": 0.9775688052177429,
+          "credibility": 0.9,
+          "text": "and rocket launch facility that serves as the main testing and production location for Starship launch vehicles, as well as the headquarters of the American"
+        },
+        {
+          "source": "Top 10 Cryptocurrencies Of April 16, 2026 – Forbes Advisor",
+          "url": "https://www.forbes.com/advisor/investing/cryptocurrency/top-10-cryptocurrencies/",
+          "stance": "neutral",
+          "relevance": 0.9568092823028564,
+          "credibility": 0.9,
+          "text": "10 Best Cryptocurrencies To Invest In. We filtered cryptocurrencies by utility or store of value alongside other metrics, such as seven-day performance and 24-hour trading volume. This selection of cryptocurrencies has market capitalization"
+        },
+        {
+          "source": "ಮಂಗಳೂರು ಮನಪಾ: ಮೇ 1ರಿಂದ ನೀರು ಪೂರೈಕೆಯಲ್ಲಿ... - Mangalorean.com",
+          "url": "https://www.mangalorean.com/mangaluru-municipal-corporation-rationing-in-water-supply-from-may-1st-water-once-in-2-days-darshan-h-v/",
+          "stance": "neutral",
+          "relevance": 0.9881981015205383,
+          "credibility": 0.82,
+          "text": "Violet Pereira, Mangaluru. Team Mangalorean. - February 11, 2026."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_193",
+      "language": "kn",
+      "claim": "ಬಂಡೀಪುರ ರಾಷ್ಟ್ರೀಯ ಉದ್ಯಾನವನವು ಕರ್ನಾಟಕದಲ್ಲಿದ್ದು ಹುಲಿಗಳ ಸಂರಕ್ಷಣೆಗೆ ಹೆಸರುವಾಸಿಯಾಗಿದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.238,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.92))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1901,
+          "stage2_checkability": 0.0503,
+          "total_pipeline": 0.2408
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_194",
+      "language": "kn",
+      "claim": "ಕಾಡುಗಳನ್ನು ಕಡಿಯುವುದರಿಂದ ಭೂಮಿಯ ಉಷ್ಣಾಂಶವು ತೀವ್ರವಾಗಿ ಕಡಿಮೆಯಾಗಿ ಭೂಮಿ ತಂಪಾಗುತ್ತದೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.2,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.79))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1516,
+          "stage2_checkability": 0.0492,
+          "total_pipeline": 0.2012
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_195",
+      "language": "kn",
+      "claim": "1990-06-25 ರಂದು ಅರಣ್ಯ ಇಲಾಖೆಯು ಮರಗಳ ಸಂರಕ್ಷಣೆಯ ಕುರಿತು ಒಂದು ಆಂತರಿಕ ಜ್ಞಾಪಕ ಪತ್ರವನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.833,
+      "evidence_count": 3,
+      "time_seconds": 36.612,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "GEOGRAPHY/general",
+        "sources_checked": 5,
+        "evidence_count": 3,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.8449005317359639,
+          "reason": "Sources do not mention the Forest Department, tree‑conservation memorandum, or the 1990‑06‑25 date.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 3,
+          "neutral_sent": 3,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.82,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "neutral",
+              "relevance": 0.9420179724693298
+            },
+            {
+              "index": 2,
+              "stance": "neutral",
+              "relevance": 0.9601606726646423
+            },
+            {
+              "index": 3,
+              "stance": "neutral",
+              "relevance": 0.9436250925064087
+            }
+          ],
+          "evidence_updates_applied": 3,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.833,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.833
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 22,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 9,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 9
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              7
+            ],
+            [
+              "kn.wikipedia.org",
+              4
+            ],
+            [
+              "aranya.gov.in",
+              2
+            ],
+            [
+              "sundararao.in",
+              2
+            ],
+            [
+              "varthaman.in",
+              2
+            ],
+            [
+              "the-file.in",
+              2
+            ],
+            [
+              "kn.wikisource.org",
+              2
+            ],
+            [
+              "archive.org",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 2
+        },
+        "multi_tier_counts": {
+          "strong": 3
+        },
+        "timings": {
+          "stage1_normalize": 0.2595,
+          "stage2_checkability": 0.0551,
+          "stage3_context": 0.0482,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 21.4007,
+          "stage6b_sarvam_rerank": 1.9209,
+          "stage6_relevance": 3.1918,
+          "stage7_stance": 0.6024,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.0523,
+          "total_pipeline": 36.6118
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: Endangered Species Act of 1973",
+          "url": "https://en.wikipedia.org/?curid=532055",
+          "stance": "neutral",
+          "relevance": 0.9420179724693298,
+          "credibility": 0.9,
+          "text": "\"consequence of economic growth and development untempered by adequate concern and conservation \", the ESA was signed into law by President Richard Nixon on December"
+        },
+        {
+          "source": "ಪಳೆಯುಳಿಕೆ - ವಿಕಿಪೀಡಿಯ",
+          "url": "https://kn.wikipedia.org/wiki/ಪಳೆಯುಳಿಕೆ",
+          "stance": "neutral",
+          "relevance": 0.9601606726646423,
+          "credibility": 0.82,
+          "text": "Alistair Cameron Crombie (1990). Science, optics, and music in medieval and early modern thought. Continuum International Publishing Group. pp. 108–109."
+        },
+        {
+          "source": "Eric Burdon - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Eric_Burdon",
+          "stance": "neutral",
+          "relevance": 0.9436250925064087,
+          "credibility": 0.75,
+          "text": "Eric Victor Burdon (born 11 May 1941) is an English singer and songwriter. He was previously the lead vocalist of the original lineup of the R&B and rock band the Animals and the funk band War."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_196",
+      "language": "kn",
+      "claim": "ಮೈಸೂರು ದಸರಾವನ್ನು ನಾಡಹಬ್ಬವಾಗಿ ರಾಜ್ಯಾದ್ಯಂತ ವಿಜೃಂಭಣೆಯಿಂದ ಆಚರಿಸಲಾಗುತ್ತದೆ.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.183,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.90))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.1314,
+          "stage2_checkability": 0.0526,
+          "total_pipeline": 0.1842
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_197",
+      "language": "kn",
+      "claim": "ಯಕ್ಷಗಾನವು ಕೇವಲ ತಿನ್ನುವ ಒಂದು ಆಹಾರ ಪದಾರ್ಥವಾಗಿದ್ದು, ಇದನ್ನು ಹಬ್ಬಗಳಲ್ಲಿ ನೀಡಲಾಗುತ್ತದೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "support",
+      "correct": false,
+      "confidence": 0.99,
+      "evidence_count": 7,
+      "time_seconds": 34.602,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SOCIETY_CULTURE/general",
+        "sources_checked": 5,
+        "evidence_count": 7,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9413372213924405,
+          "reason": "Yakshagana is a traditional folk dance and cultural performance, not just a food item.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 7,
+          "neutral_sent": 7,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.9,
+          "evidence_updates": [
+            {
+              "index": 2,
+              "stance": "support",
+              "relevance": 0.9776760339736938
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.8270305395126343
+            },
+            {
+              "index": 5,
+              "stance": "support",
+              "relevance": 0.8013852834701538
+            },
+            {
+              "index": 6,
+              "stance": "support",
+              "relevance": 0.7532053589820862
+            }
+          ],
+          "evidence_updates_applied": 4,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.99,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.99
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 17,
+          "unique_total": 8,
+          "ranked_total": 8,
+          "returned_total": 8,
+          "source_type_counts": {
+            "web_search": 7,
+            "structured_api": 2,
+            "scraping": 8
+          },
+          "search_provider_counts": {
+            "ddg": 7
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 8
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "kasargod.nic.in",
+              2
+            ],
+            [
+              "kn.wikipedia.org",
+              2
+            ],
+            [
+              "v-academy.in",
+              2
+            ],
+            [
+              "www.newworldencyclopedia.org",
+              2
+            ],
+            [
+              "testbook.com",
+              2
+            ],
+            [
+              "englishlib.org",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "native_local": 1,
+          "translated_en": 5
+        },
+        "multi_tier_counts": {
+          "strong": 7
+        },
+        "timings": {
+          "stage1_normalize": 0.1135,
+          "stage2_checkability": 0.0723,
+          "stage3_context": 0.0528,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 17.7009,
+          "stage6b_sarvam_rerank": 0.544,
+          "stage6_relevance": 2.0645,
+          "stage7_stance": 1.0031,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 13.5927,
+          "total_pipeline": 34.6018
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: Vegetarianism in Hinduism",
+          "url": "https://en.wikipedia.org/?curid=17258587",
+          "stance": "neutral",
+          "relevance": 0.9785321950912476,
+          "credibility": 0.9,
+          "text": "(4th/5th century CE) According to Kane, one who is about to eat food should greet the food when it is served to him, should honour it, never speak ill, and"
+        },
+        {
+          "source": "Düğünler – kannada çevirisi, anlam, eş anlamlı, telaffuz, zıt, örnek...",
+          "url": "https://englishlib.org/tr/dictionary/tr-kn/düğünler.html",
+          "stance": "support",
+          "relevance": 0.9776760339736938,
+          "credibility": 0.82,
+          "text": "ಈ ಖಾದ್ಯವನ್ನು ಸಾಮಾನ್ಯವಾಗಿ ಸಾಂಪ್ರದಾಯಿಕ ಮದುವೆಗಳು ಅಥವಾ ಹಬ್ಬಗಳಲ್ಲಿ ನೀಡಲಾಗುತ್ತದೆ. Bol miktarda doğal ışık alan bina, günümüzde çeşitli sergiler, düğünler ve özel etkinlikler için kullanılmaktadır."
+        },
+        {
+          "source": "Yakshagana Dance: History, Variants, Elements & Features",
+          "url": "https://testbook.com/ias-preparation/yakshagana",
+          "stance": "neutral",
+          "relevance": 0.8756321668624878,
+          "credibility": 0.7,
+          "text": "Yakshagana is a traditional folk dance popular in the Coastal districts of Karnataka and parts of Kerala. Know more about its history, variants, elements & features here in detail."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_198",
+      "language": "kn",
+      "claim": "2026-01-20 ರಂದು ಕನ್ನಡ ಮತ್ತು ಸಂಸ್ಕೃತಿ ಇಲಾಖೆಯು ಸ್ಥಳೀಯ ಕಲೆಗಳ ಬಗ್ಗೆ ವರದಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.45,
+      "evidence_count": 2,
+      "time_seconds": 31.785,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "ENVIRONMENT_CLIMATE/general",
+        "sources_checked": 6,
+        "evidence_count": 2,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9341285206921645,
+          "reason": "No provided evidence confirms or denies the department's review on 20 Jan 2026.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 4,
+          "neutral_sent": 4,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.71,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "neutral",
+              "relevance": 0.0
+            },
+            {
+              "index": 2,
+              "stance": "neutral",
+              "relevance": 0.0
+            },
+            {
+              "index": 3,
+              "stance": "neutral",
+              "relevance": 0.0
+            },
+            {
+              "index": 4,
+              "stance": "neutral",
+              "relevance": 0.0
+            }
+          ],
+          "evidence_updates_applied": 4,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.45,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.45
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 21,
+          "unique_total": 10,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 9,
+            "structured_api": 3,
+            "scraping": 9
+          },
+          "search_provider_counts": {
+            "ddg": 9
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 9
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "kannadasiri.karnataka.gov.in",
+              4
+            ],
+            [
+              "kannadanadu.com",
+              2
+            ],
+            [
+              "kla.kar.nic.in",
+              2
+            ],
+            [
+              "voterlist.co.in",
+              2
+            ],
+            [
+              "www.amazon.in",
+              2
+            ],
+            [
+              "kannada.oneindia.com",
+              1
+            ],
+            [
+              "ru.meteocast.in",
+              1
+            ],
+            [
+              "apkpure.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 1
+        },
+        "multi_tier_counts": {
+          "reject": 2
+        },
+        "timings": {
+          "stage1_normalize": 0.142,
+          "stage2_checkability": 0.0519,
+          "stage3_context": 0.0486,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 16.3749,
+          "stage6b_sarvam_rerank": 1.5829,
+          "stage6_relevance": 4.4046,
+          "stage7_stance": 1.0121,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 0.0005,
+          "stage10_llm_verify": 9.7477,
+          "total_pipeline": 31.7838
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: Traditional games of India",
+          "url": "https://en.wikipedia.org/?curid=69991135",
+          "stance": "neutral",
+          "relevance": 0.0,
+          "credibility": 0.9,
+          "text": "cross- and -circle game. The lambs and tigers game, locally referred as the game of goats and tigers (Telugu: Puli-mē̃ka āṭa, Tamil: Āḍu-puli āṭṭam, Kannada :"
+        },
+        {
+          "source": "GBA Central Voter List PDF (GBA Elections 2026) - Download...",
+          "url": "https://voterlist.co.in/gba-central-voter-list/",
+          "stance": "neutral",
+          "relevance": 0.0,
+          "credibility": 0.7,
+          "text": "Karnataka State Election Commission released the GBA Central Voter List 2026 on its official website of Greater Bangalore Authority at gba.karnataka.gov.in for GBA Elections 2026. You can download the voter list using below given ward and p"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_199",
+      "language": "kn",
+      "claim": "ಕರ್ನಾಟಕ ಉಚ್ಚ ನ್ಯಾಯಾಲಯದ ಮುಖ್ಯ ಪೀಠವು ಬೆಂಗಳೂರು ನಗರದಲ್ಲಿ அமைந்துள்ளது.",
+      "expected_verdict": "support",
+      "predicted_verdict": "support",
+      "correct": true,
+      "confidence": 0.8712469684868118,
+      "evidence_count": 8,
+      "time_seconds": 20.448,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "LAW_CRIME/general",
+        "sources_checked": 6,
+        "evidence_count": 8,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.7326290354939653,
+          "reason": "All sources state the Karnataka High Court's principal bench is located in Bengaluru (Bangalore).",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 6,
+          "neutral_sent": 6,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "support",
+          "confidence": 0.97,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "support",
+              "relevance": 0.8968960642814636
+            },
+            {
+              "index": 2,
+              "stance": "support",
+              "relevance": 0.9152580499649048
+            },
+            {
+              "index": 3,
+              "stance": "support",
+              "relevance": 0.6064199805259705
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.5970131754875183
+            },
+            {
+              "index": 5,
+              "stance": "support",
+              "relevance": 0.6367896795272827
+            },
+            {
+              "index": 6,
+              "stance": "support",
+              "relevance": 0.6138932108879089
+            }
+          ],
+          "evidence_updates_applied": 6,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.8712469684868118,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=support -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.8712469684868118
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 23,
+          "unique_total": 11,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 10,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 10
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              10
+            ],
+            [
+              "ecommitteesci.gov.in",
+              4
+            ],
+            [
+              "www.judiciary.karnataka.gov.in",
+              2
+            ],
+            [
+              "judiciary.karnataka.gov.in",
+              2
+            ],
+            [
+              "bengaluru.dcourts.gov.in",
+              2
+            ],
+            [
+              "en.bharatpedia.org",
+              1
+            ],
+            [
+              "www.latestlaws.com",
+              1
+            ],
+            [
+              "navasamaja.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 5,
+          "native_local": 2,
+          "structured_reference": 1
+        },
+        "multi_tier_counts": {
+          "strong": 8
+        },
+        "timings": {
+          "stage1_normalize": 0.1899,
+          "stage2_checkability": 0.0472,
+          "stage3_context": 0.0446,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8.9564,
+          "stage6b_sarvam_rerank": 0.1685,
+          "stage6_relevance": 1.0762,
+          "stage7_stance": 1.1795,
+          "stage8_evidence_scoring": 0.0006,
+          "stage9_aggregate_verdict": 0.0001,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 8.9513,
+          "total_pipeline": 20.4473
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "High Court of Karnataka Home | Official Website of e ...",
+          "url": "https://ecommitteesci.gov.in/division/high-court-of-karnataka/",
+          "stance": "support",
+          "relevance": 0.8968960642814636,
+          "credibility": 1.0,
+          "text": "High Court of Karnataka HIGH COURT OF KARNATAKA, BENGALURU On the green, sprawling lawns of Cubbon Park is the Attara Kacheri, which is the home of the High Court of Karnataka. It is in the heart of the City of Bangalore (now Bengaluru), op"
+        },
+        {
+          "source": "ಕರ್ನಾಟಕ ಹೈಕೋರ್ಟಿನ ಇತಿಹಾಸ ಬೆಂಗಳೂರು",
+          "url": "https://ecommitteesci.gov.in/kn/project/ಕರ್ನಾಟಕ-ಹೈಕೋರ್ಟಿನ-ಇತಿಹಾಸ/",
+          "stance": "support",
+          "relevance": 0.8765137195587158,
+          "credibility": 1.0,
+          "text": "ಬೆಂಗಳೂರಿನಲ್ಲಿರುವ ಉಚ್ಚ ನ್ಯಾಯಾಲಯವನ್ನು ಈಗ 'ಕರ್ನಾಟಕ ಉಚ್ಚ ನ್ಯಾಯಾಲಯದ ಪ್ರಧಾನ ಪೀಠ' ಎಂದು ಕರೆಯಲಾಗುತ್ತದೆ. ಸುವರ್ಣ ಮಹೋತ್ಸವದ ಆಚರಣೆಗಳು: 2006-2007:"
+        },
+        {
+          "source": "Karnataka High Court - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Karnataka_High_Court",
+          "stance": "support",
+          "relevance": 0.9152580499649048,
+          "credibility": 0.75,
+          "text": "The High Court of Karnataka (IAST: Karnāṭaka Ućća Nyāyālaya, commonly referred to as the Karnataka High Court and formerly known as the Mysore High Court, is the highest judicial authority of the Indian state of Karnataka. The court's princ"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_200",
+      "language": "kn",
+      "claim": "1990-03-05 ರಂದು ಹೈಕೋರ್ಟ್ ಆಡಳಿತ ವಿಭಾಗವು ಇ-ಫೈಲಿಂಗ್ ವ್ಯವಸ್ಥೆಯ ಕರಡು ಪ್ರತಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "refute",
+      "correct": false,
+      "confidence": 0.993476411557521,
+      "evidence_count": 8,
+      "time_seconds": 23.085,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "LAW_CRIME/general",
+        "sources_checked": 6,
+        "evidence_count": 8,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9954704433924896,
+          "reason": "No evidence confirms a High Court administrative division reviewed an e‑filing draft on 1990‑03‑05.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 8,
+          "neutral_sent": 8,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.86,
+          "evidence_updates": [
+            {
+              "index": 6,
+              "stance": "neutral",
+              "relevance": 0.78
+            }
+          ],
+          "evidence_updates_applied": 1,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.993476411557521,
+          "llm_non_neutral_overwritten": true,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=neutral -> final=refute",
+          "post_llm_verdict": "refute",
+          "post_llm_confidence": 0.993476411557521
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 23,
+          "unique_total": 11,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 10,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 10
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              5
+            ],
+            [
+              "filing.ecourts.gov.in",
+              2
+            ],
+            [
+              "judgments.ecourts.gov.in",
+              2
+            ],
+            [
+              "scr.sci.gov.in",
+              2
+            ],
+            [
+              "eportal.incometax.gov.in",
+              2
+            ],
+            [
+              "services.india.gov.in",
+              2
+            ],
+            [
+              "soundpeats.com",
+              2
+            ],
+            [
+              "digikannada.com",
+              2
+            ],
+            [
+              "onlineservices.proteantech.in",
+              2
+            ],
+            [
+              "www.pacer.uscourts.gov",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 7,
+          "structured_reference": 1
+        },
+        "multi_tier_counts": {
+          "strong": 8
+        },
+        "timings": {
+          "stage1_normalize": 0.1167,
+          "stage2_checkability": 0.0516,
+          "stage3_context": 0.0513,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 13.8677,
+          "stage6b_sarvam_rerank": 0.1858,
+          "stage6_relevance": 2.7843,
+          "stage7_stance": 1.3134,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.899,
+          "total_pipeline": 23.0857
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Home | Judgements and Orders, Supreme Court and High courts of India",
+          "url": "https://judgments.ecourts.gov.in/",
+          "stance": "neutral",
+          "relevance": 0.9063319563865662,
+          "credibility": 1.0,
+          "text": "Judgements and Orders, High Courts of India Enter keywords, acts or any free text and find specific judgments and orders"
+        },
+        {
+          "source": "Wikipedia: Judiciary of Poland",
+          "url": "https://en.wikipedia.org/?curid=33696304",
+          "stance": "neutral",
+          "relevance": 0.9463765621185303,
+          "credibility": 0.9,
+          "text": "sprawiedliwości). Administrative courts (sądy administracyjne) review complaints challenging the legality of administrative proceedings. Military courts (sądy wojskowe)"
+        },
+        {
+          "source": "PACER - Public Access to Court Electronic Records",
+          "url": "http://www.pacer.uscourts.gov/",
+          "stance": "neutral",
+          "relevance": 0.8418276309967041,
+          "credibility": 1.0,
+          "text": "This site is maintained by the Administrative Office of the U.S. Courts on behalf of the federal Judiciary. The purpose of this site is to provide information about locating and filing cases in the federal courts."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_201",
+      "language": "kn",
+      "claim": "2026-04-12 ರಂದು ಕಾನೂನು ಆಯುಕ್ತರು ಭೂ ವ್ಯಾಜ್ಯಗಳ ತಿದ್ದುಪಡಿಗೆ ಸಂಬಂಧಿಸಿದ ಕರಡು ವರದಿಯನ್ನು ಓದಿದರು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.9455728476686156,
+      "evidence_count": 6,
+      "time_seconds": 30.613,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "LAW_CRIME/general",
+        "sources_checked": 6,
+        "evidence_count": 6,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9455728476686156,
+          "reason": "No provided evidence confirms or contradicts the claim about law commissioners reading a draft report on 2026-04-12.\",\n  \"evidence_updates\": [\n    {\"index\": 1 (ignored; no valid evidence updates)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 6,
+          "neutral_sent": 6,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.73,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.9455728476686156,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.9455728476686156
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 16,
+          "unique_total": 7,
+          "ranked_total": 7,
+          "returned_total": 7,
+          "source_type_counts": {
+            "web_search": 6,
+            "structured_api": 3,
+            "scraping": 7
+          },
+          "search_provider_counts": {
+            "ddg": 6
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 7
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "eportal.incometax.gov.in",
+              2
+            ],
+            [
+              "www.krushikamitra.com",
+              2
+            ],
+            [
+              "thefile.in",
+              2
+            ],
+            [
+              "support.apple.com",
+              2
+            ],
+            [
+              "www.forbes.com",
+              1
+            ],
+            [
+              "emojiterra.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 5,
+          "structured_reference": 1
+        },
+        "multi_tier_counts": {
+          "strong": 6
+        },
+        "timings": {
+          "stage1_normalize": 0.1205,
+          "stage2_checkability": 0.0553,
+          "stage3_context": 0.051,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 14.097,
+          "stage6b_sarvam_rerank": 3.2275,
+          "stage6_relevance": 4.2951,
+          "stage7_stance": 0.8853,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.1069,
+          "total_pipeline": 30.6132
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "e-Filing Home Page, Income Tax Department, Government of India",
+          "url": "https://eportal.incometax.gov.in/iec/foservices/",
+          "stance": "neutral",
+          "relevance": 0.9860917925834656,
+          "credibility": 1.0,
+          "text": "e-Filing Calendar 2026."
+        },
+        {
+          "source": "How to apply for Apple Card - Apple Support",
+          "url": "https://support.apple.com/en-us/104952",
+          "stance": "neutral",
+          "relevance": 0.9766231775283813,
+          "credibility": 0.9,
+          "text": "Rates as of January 1, 2026. Existing customers can view their variable APR in the Wallet app or card.apple.com."
+        },
+        {
+          "source": "Wikipedia: Pacific Legal Foundation",
+          "url": "https://en.wikipedia.org/?curid=17431648",
+          "stance": "neutral",
+          "relevance": 0.9541774392127991,
+          "credibility": 0.9,
+          "text": "PLF's property rights cases have focused on environmental regulations. PLF's environmental law litigation has frequently involved challenges to federal"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_202",
+      "language": "kn",
+      "claim": "ರಾಯಲ್ ಚಾಲೆಂಜರ್ಸ್ ಬೆಂಗಳೂರು (ಆರ್‌ಸಿಬಿ) ಮಹಿಳಾ ತಂಡವು 2024 ರ ಮಹಿಳಾ ಪ್ರೀಮಿಯರ್ ಲೀಗ್ ಗೆದ್ದುಕೊಂಡಿತು.",
+      "expected_verdict": "support",
+      "predicted_verdict": "neutral",
+      "correct": false,
+      "confidence": 0.0,
+      "evidence_count": 0,
+      "time_seconds": 0.31,
+      "details": {
+        "checkability": "Uncheckable (Model label=QUESTION_OR_REWRITE (conf=0.94))",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "N/A",
+        "sources_checked": 0,
+        "evidence_count": 0,
+        "timings": {
+          "stage1_normalize": 0.2216,
+          "stage2_checkability": 0.0896,
+          "total_pipeline": 0.3118
+        }
+      },
+      "evidence_preview": [],
+      "error": null
+    },
+    {
+      "id": "E252D_203",
+      "language": "kn",
+      "claim": "ಹಾಕಿ ಆಟದಲ್ಲಿ ಆಟಗಾರರು ಚೆಂಡನ್ನು ಹೊಡೆಯಲು ರಾಕೆಟ್‌ಗಳನ್ನು ಬಳಸುತ್ತಾರೆ.",
+      "expected_verdict": "refute",
+      "predicted_verdict": "support",
+      "correct": false,
+      "confidence": 0.99,
+      "evidence_count": 7,
+      "time_seconds": 20.858,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SPORTS/general",
+        "sources_checked": 7,
+        "evidence_count": 7,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9482787641391448,
+          "reason": "Hockey players use sticks, not rockets, to hit the puck.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 7,
+          "neutral_sent": 7,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "refute",
+          "confidence": 0.987,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "support",
+              "relevance": 0.9789919257164001
+            },
+            {
+              "index": 3,
+              "stance": "support",
+              "relevance": 0.9920806288719177
+            },
+            {
+              "index": 4,
+              "stance": "support",
+              "relevance": 0.9816686511039734
+            },
+            {
+              "index": 5,
+              "stance": "support",
+              "relevance": 0.9796594977378845
+            },
+            {
+              "index": 6,
+              "stance": "support",
+              "relevance": 0.9782253503799438
+            }
+          ],
+          "evidence_updates_applied": 5,
+          "post_recovery_verdict": "support",
+          "post_recovery_confidence": 0.99,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=refute -> post_recovery=support -> final=support",
+          "post_llm_verdict": "support",
+          "post_llm_confidence": 0.99
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 21,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 8,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 8
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "www.honorablementionsports.com",
+              2
+            ],
+            [
+              "www.lifeinminnesota.com",
+              2
+            ],
+            [
+              "kn.wikipedia.org",
+              2
+            ],
+            [
+              "www.rulesofsport.com",
+              2
+            ],
+            [
+              "kn.wikisource.org",
+              2
+            ],
+            [
+              "www.gaageegoo.info",
+              2
+            ],
+            [
+              "www.britannica.com",
+              2
+            ],
+            [
+              "www.pinehillshockey.org.au",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 5,
+          "structured_reference": 1,
+          "native_local": 1
+        },
+        "multi_tier_counts": {
+          "strong": 7
+        },
+        "timings": {
+          "stage1_normalize": 0.2172,
+          "stage2_checkability": 0.0524,
+          "stage3_context": 0.0457,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 8.6219,
+          "stage6b_sarvam_rerank": 0.2545,
+          "stage6_relevance": 1.0868,
+          "stage7_stance": 1.0416,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 9.7909,
+          "total_pipeline": 20.8582
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Ice hockey - Rules, Strategy, Equipment | Britannica",
+          "url": "https://www.britannica.com/sports/ice-hockey/Play-of-the-game",
+          "stance": "support",
+          "relevance": 0.9789919257164001,
+          "credibility": 0.9,
+          "text": "Apr 8, 2026 · Ice hockey rink A typical professional North American ice hockey rink. U.S. college rinks are sometimes wider (about 100 feet), and international rinks vary in both length and width. Blue lines mark the respective off-sides ar"
+        },
+        {
+          "source": "Wikipedia: Ball badminton",
+          "url": "https://en.wikipedia.org/?curid=2311165",
+          "stance": "neutral",
+          "relevance": 0.9770174026489258,
+          "credibility": 0.9,
+          "text": "Ball badminton is a sport native to India. It is a racket sport game , played with a yellow ball made of wool, on a court of fixed dimensions (12 by 24"
+        },
+        {
+          "source": "Ice Hockey Rules: How To Play Ice Hockey | Rules of Sport",
+          "url": "https://www.rulesofsport.com/sports/ice-hockey.html",
+          "stance": "support",
+          "relevance": 0.9920806288719177,
+          "credibility": 0.82,
+          "text": "The NHL (National Hockey League) is the largest league in the world and currently turns over millions of dollars each year. Object of the Game The object of the game is to hit a small puck across the ice before then hitting it into a goal w"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_204",
+      "language": "kn",
+      "claim": "1988-06-15 ರಂದು ಕೆಎಸ್‌ಸಿಎ ಆಡಳಿತ ಮಂಡಳಿಯು ಸ್ಥಳೀಯ ಪಂದ್ಯಗಳಿಗೆ ಹೊಸ ತರಬೇತಿ ವ್ಯವಸ್ಥೆಯನ್ನು ಚರ್ಚಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.8329999999999999,
+      "evidence_count": 2,
+      "time_seconds": 20.754,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SPORTS/general",
+        "sources_checked": 7,
+        "evidence_count": 2,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.8465839216747599,
+          "reason": "Provided evidence does not address the KCSA board meeting claim.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 2,
+          "neutral_sent": 2,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.8,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "neutral",
+              "relevance": 0.9828752279281616
+            },
+            {
+              "index": 2,
+              "stance": "neutral",
+              "relevance": 0.9680036306381226
+            }
+          ],
+          "evidence_updates_applied": 2,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.8329999999999999,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.8329999999999999
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 19,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 10,
+            "scraping": 9
+          },
+          "search_provider_counts": {
+            "ddg": 10
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 9
+          },
+          "top_hosts": [
+            [
+              "dpar.karnataka.gov.in",
+              4
+            ],
+            [
+              "dparar.karnataka.gov.in",
+              2
+            ],
+            [
+              "en.wikipedia.org",
+              2
+            ],
+            [
+              "www.municipaladmn.gov.in",
+              2
+            ],
+            [
+              "pratidhvani.com",
+              2
+            ],
+            [
+              "archive.org",
+              2
+            ],
+            [
+              "kannadasexy.com",
+              2
+            ],
+            [
+              "rohancorporation.in",
+              2
+            ],
+            [
+              "ia800403.us.archive.org",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 2
+        },
+        "multi_tier_counts": {
+          "strong": 2
+        },
+        "timings": {
+          "stage1_normalize": 0.1972,
+          "stage2_checkability": 0.0477,
+          "stage3_context": 0.0529,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10.9198,
+          "stage6b_sarvam_rerank": 0.1688,
+          "stage6_relevance": 0.9232,
+          "stage7_stance": 0.4603,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 8.1119,
+          "total_pipeline": 20.7397
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "World No Tobacco Day - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/World_No_Tobacco_Day",
+          "stance": "neutral",
+          "relevance": 0.9828752279281616,
+          "credibility": 0.82,
+          "text": "In 1988, Resolution WHA42.19 was passed by the World Health Assembly, calling for the celebration of World No Tobacco Day, every year on 31 May."
+        },
+        {
+          "source": "Rohan Corporation",
+          "url": "https://rohancorporation.in/",
+          "stance": "neutral",
+          "relevance": 0.9680036306381226,
+          "credibility": 0.82,
+          "text": "Looking for top builders in Mangalore? Look no further! Our experienced team offers quality construction services. Contact us for your dream home or commercial project!"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_205",
+      "language": "kn",
+      "claim": "2026-02-18 ರಂದು ಚಲನಚಿತ್ರ ವಾಣಿಜ್ಯ ಮಂಡಳಿಯು ಆನ್‌ಲೈನ್ ಟಿಕೆಟ್ ದರಗಳ ಕುರಿತು ಕರಡು ಪ್ರತಿಯನ್ನು ಚರ್ಚಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.8463379485389145,
+      "evidence_count": 3,
+      "time_seconds": 20.449,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SOCIETY_CULTURE/general",
+        "sources_checked": 5,
+        "evidence_count": 3,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.8463379485389145,
+          "reason": "Provided evidence does not address the film board meeting or ticket price draft. (ignored; no valid evidence updates)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 3,
+          "neutral_sent": 3,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.8,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.8463379485389145,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.8463379485389145
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 21,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 8,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 8
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "voters.eci.gov.in",
+              2
+            ],
+            [
+              "www.kannadigaworld.com",
+              2
+            ],
+            [
+              "publictv.in",
+              2
+            ],
+            [
+              "te.videoscopategratis.com",
+              2
+            ],
+            [
+              "pratidhvani.com",
+              2
+            ],
+            [
+              "www.crowdstrike.com",
+              2
+            ],
+            [
+              "asakthi.com",
+              2
+            ],
+            [
+              "kannada.filmibeat.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 2,
+          "structured_reference": 1
+        },
+        "multi_tier_counts": {
+          "strong": 3
+        },
+        "timings": {
+          "stage1_normalize": 0.1356,
+          "stage2_checkability": 0.0515,
+          "stage3_context": 0.0809,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 12.7692,
+          "stage6b_sarvam_rerank": 0.1886,
+          "stage6_relevance": 1.0632,
+          "stage7_stance": 0.5706,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 5.7753,
+          "total_pipeline": 20.4489
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Voters' Services Portal",
+          "url": "https://voters.eci.gov.in/",
+          "stance": "neutral",
+          "relevance": 0.9674648642539978,
+          "credibility": 1.0,
+          "text": "Voters' Services Portal..."
+        },
+        {
+          "source": "Wikipedia: 2000s",
+          "url": "https://en.wikipedia.org/?curid=34579",
+          "stance": "neutral",
+          "relevance": 0.9324433207511902,
+          "credibility": 0.9,
+          "text": "during the period and was partly responsible for an increase in energy and food prices at the end of the decade. The economic developments towards the end"
+        },
+        {
+          "source": "The CrowdStrike Falcon® Platform | Unified Agentic Security",
+          "url": "https://www.crowdstrike.com/en-us/platform/",
+          "stance": "neutral",
+          "relevance": 0.9024160504341125,
+          "credibility": 0.7,
+          "text": "1. Summit. Day Zero 2026. Las Vegas, NV. View all events.2Business Value of CrowdStrike, IDC 2026. 32025 MITRE® ATT&CK Enterprise Evaluations."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_206",
+      "language": "kn",
+      "claim": "2026-04-10 ರಂದು ಡಾ. ರಾಜಕುಮಾರ್ ಪ್ರತಿಷ್ಠಾನವು ಹಳೆಯ ಚಲನಚಿತ್ರಗಳ ಮರುಸ್ಥಾಪನೆಯ ಬಗ್ಗೆ ಟಿಪ್ಪಣಿಯನ್ನು ಬಿಡುಗಡೆ ಮಾಡಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.8330000000000002,
+      "evidence_count": 3,
+      "time_seconds": 28.372,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SPACE_ASTRONOMY/general",
+        "sources_checked": 7,
+        "evidence_count": 3,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.8469652967276189,
+          "reason": "Provided evidence does not address the claim about Dr. Rajkumar Foundation's statement on film restoration.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 3,
+          "neutral_sent": 3,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.8,
+          "evidence_updates": [
+            {
+              "index": 1,
+              "stance": "neutral",
+              "relevance": 0.9331347346305847
+            },
+            {
+              "index": 2,
+              "stance": "neutral",
+              "relevance": 0.8974997401237488
+            },
+            {
+              "index": 3,
+              "stance": "neutral",
+              "relevance": 0.9559252262115479
+            }
+          ],
+          "evidence_updates_applied": 3,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.8330000000000002,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.8330000000000002
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 13,
+          "unique_total": 8,
+          "ranked_total": 8,
+          "returned_total": 8,
+          "source_type_counts": {
+            "web_search": 7,
+            "structured_api": 1,
+            "scraping": 5
+          },
+          "search_provider_counts": {
+            "ddg": 7
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 5
+          },
+          "top_hosts": [
+            [
+              "kannadadeevige.in",
+              2
+            ],
+            [
+              "www.digit.in",
+              2
+            ],
+            [
+              "voterlist.co.in",
+              2
+            ],
+            [
+              "kannadasexy.com",
+              2
+            ],
+            [
+              "en.wikipedia.org",
+              2
+            ],
+            [
+              "kannada.filmibeat.com",
+              1
+            ],
+            [
+              "www.forbes.com",
+              1
+            ],
+            [
+              "vk.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 2
+        },
+        "multi_tier_counts": {
+          "strong": 3
+        },
+        "timings": {
+          "stage1_normalize": 0.1501,
+          "stage2_checkability": 0.0559,
+          "stage3_context": 0.0503,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 15.8532,
+          "stage6b_sarvam_rerank": 0.2112,
+          "stage6_relevance": 1.5399,
+          "stage7_stance": 0.9769,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 9.7415,
+          "total_pipeline": 28.3719
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: List of organ transplant donors and recipients",
+          "url": "https://en.wikipedia.org/?curid=8338783",
+          "stance": "neutral",
+          "relevance": 0.9331347346305847,
+          "credibility": 0.9,
+          "text": "Satel on receiving donated organ Archived October 27, 2007, at the Wayback Machine \"Narayana Nethralaya– Dr . Rajkumar Eye Bank\". Archived from the original"
+        },
+        {
+          "source": "Top 10 Cryptocurrencies Of April 16, 2026 – Forbes Advisor",
+          "url": "https://www.forbes.com/advisor/investing/cryptocurrency/top-10-cryptocurrencies/",
+          "stance": "neutral",
+          "relevance": 0.8974997401237488,
+          "credibility": 0.9,
+          "text": "10 Best Cryptocurrencies To Invest In. We filtered cryptocurrencies by utility or store of value alongside other metrics, such as seven-day performance and 24-hour trading volume. This selection of cryptocurrencies has market capitalization"
+        },
+        {
+          "source": "GBA West Voter List PDF (GBA Elections 2026) - Download...",
+          "url": "https://voterlist.co.in/gba-west-voter-list/",
+          "stance": "neutral",
+          "relevance": 0.9559252262115479,
+          "credibility": 0.82,
+          "text": "Karnataka State Election Commission released the GBA West Voter List 2026 on its official website of Greater Bangalore Authority at gba.karnataka.gov.in for GBA Elections 2026. You can download the voter list using below given ward and poll"
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_207",
+      "language": "kn",
+      "claim": "1995-11-20 ರಂದು ಚಲನಚಿತ್ರ ಅಕಾಡೆಮಿಯು ಸಾಕ್ಷ್ಯಚಿತ್ರಗಳ ಸಂಗ್ರಹದ ಕುರಿತು ಗೌಪ್ಯ ಟಿಪ್ಪಣಿಯನ್ನು ಪರಿಶೀಲಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.9945182485346865,
+      "evidence_count": 8,
+      "time_seconds": 20.384,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "SOCIETY_CULTURE/general",
+        "sources_checked": 5,
+        "evidence_count": 8,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": true,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9964518619024728,
+          "reason": "No provided evidence confirms or denies the Academy's review of a confidential note on that date.",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 8,
+          "neutral_sent": 8,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.78,
+          "evidence_updates": [
+            {
+              "index": 6,
+              "stance": "neutral",
+              "relevance": 0.9367389678955078
+            }
+          ],
+          "evidence_updates_applied": 1,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.9945182485346865,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.9945182485346865
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 22,
+          "unique_total": 10,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 9,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 9
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              8
+            ],
+            [
+              "www.documentaryarea.com",
+              2
+            ],
+            [
+              "www.oscars.org",
+              2
+            ],
+            [
+              "frontpageconfidential.com",
+              2
+            ],
+            [
+              "telugu.icu",
+              2
+            ],
+            [
+              "hi.videovecchietroie.com",
+              2
+            ],
+            [
+              "rohancorporation.in",
+              2
+            ],
+            [
+              "topdocumentaryfilms.com",
+              1
+            ],
+            [
+              "kannada.filmibeat.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 7
+        },
+        "multi_tier_counts": {
+          "strong": 8
+        },
+        "timings": {
+          "stage1_normalize": 0.9135,
+          "stage2_checkability": 0.1051,
+          "stage3_context": 0.0752,
+          "stage4_routing": 0.0001,
+          "stage5_evidence_gather": 9.7432,
+          "stage6b_sarvam_rerank": 0.2031,
+          "stage6_relevance": 1.7201,
+          "stage7_stance": 1.6012,
+          "stage8_evidence_scoring": 0.0005,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 6.2011,
+          "total_pipeline": 20.3834
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: Crumb (film)",
+          "url": "https://en.wikipedia.org/?curid=863087",
+          "stance": "neutral",
+          "relevance": 0.9598920345306396,
+          "credibility": 0.9,
+          "text": "the film on his list of the ten greatest films of all time, labeling it \" the greatest documentary ever made.\" The Criterion Collection released the film"
+        },
+        {
+          "source": "తెలుగు సెక్స్ వీడియో HD ఆన్లైన్ - అందమైన ఉత్తమ: Porn...",
+          "url": "https://telugu.icu/",
+          "stance": "neutral",
+          "relevance": 0.9736617207527161,
+          "credibility": 0.82,
+          "text": "1 2 3 4 5 6 7 8 9 10 11 ..."
+        },
+        {
+          "source": "The Little Rascals (film) - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/The_Little_Rascals_(film)",
+          "stance": "neutral",
+          "relevance": 0.9275982975959778,
+          "credibility": 0.75,
+          "text": "The film is an adaptation of Hal Roach's Our Gang, a series of short films of the 1920s, 1930s, and 1940s which centered on the adventures of a group of neighborhood children."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_208",
+      "language": "kn",
+      "claim": "2026-01-25 ರಂದು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಿಷತ್ತು ಹೊಸ ನಿಘಂಟು ಪ್ರಕಟಣೆಯ ಕುರಿತು ಕರಡು ದಾಖಲೆಯನ್ನು ಮೌಲ್ಯಮಾಪನ ಮಾಡಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.9935552483842823,
+      "evidence_count": 4,
+      "time_seconds": 17.749,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "GEOGRAPHY/general",
+        "sources_checked": 5,
+        "evidence_count": 4,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9935552483842823,
+          "reason": "Provided sources do not mention Kannada Sahitya Parishat or a draft evaluation on 2026-01-25. (ignored; no valid evidence updates)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 4,
+          "neutral_sent": 4,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.85,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.9935552483842823,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.9935552483842823
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 13,
+          "unique_total": 8,
+          "ranked_total": 8,
+          "returned_total": 8,
+          "source_type_counts": {
+            "web_search": 8,
+            "scraping": 5
+          },
+          "search_provider_counts": {
+            "ddg": 8
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 5
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              2
+            ],
+            [
+              "eportal.incometax.gov.in",
+              2
+            ],
+            [
+              "mahitigotta.in",
+              2
+            ],
+            [
+              "ru.meteotrend.com",
+              2
+            ],
+            [
+              "www.crowdstrike.com",
+              2
+            ],
+            [
+              "ru.meteocast.net",
+              1
+            ],
+            [
+              "www.forbes.com",
+              1
+            ],
+            [
+              "ru.meteocast.in",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 4
+        },
+        "multi_tier_counts": {
+          "strong": 4
+        },
+        "timings": {
+          "stage1_normalize": 0.1145,
+          "stage2_checkability": 0.054,
+          "stage3_context": 0.0461,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 10.6807,
+          "stage6b_sarvam_rerank": 0.1898,
+          "stage6_relevance": 0.9492,
+          "stage7_stance": 0.9094,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.9922,
+          "total_pipeline": 17.7482
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "e-Filing Home Page, Income Tax Department, Government of India",
+          "url": "https://eportal.incometax.gov.in/iec/foservices/",
+          "stance": "neutral",
+          "relevance": 0.9722365736961365,
+          "credibility": 1.0,
+          "text": "e-Filing Calendar 2026."
+        },
+        {
+          "source": "Kantara: Chapter 1 - Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Kantara:_Chapter_1",
+          "stance": "neutral",
+          "relevance": 0.9481396675109863,
+          "credibility": 0.9,
+          "text": "It was shot on a 25-acre set in Karnataka's mountains, and the sequence took nearly 50 days to film completely.[41][42] In May 2025, the film's last schedule was filmed 20 kilometers away from Kundapur.[43] In the same month..."
+        },
+        {
+          "source": "Top 10 Cryptocurrencies Of April 16, 2026 – Forbes Advisor",
+          "url": "https://www.forbes.com/advisor/investing/cryptocurrency/top-10-cryptocurrencies/",
+          "stance": "neutral",
+          "relevance": 0.9066817760467529,
+          "credibility": 0.9,
+          "text": "There are thousands of crypto coins, from bitcoin and Ethereum to litecoin and solana. Just the sheer number of available cryptos can seem overwhelming when you're new to investing."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_209",
+      "language": "kn",
+      "claim": "2026-03-30 ರಂದು ಕೆಎಸ್ಆರ್ಟಿಸಿ ಎಲೆಕ್ಟ್ರಿಕ್ ಬಸ್ಸುಗಳ ನಿರ್ವಹಣೆ ಕುರಿತು ಕರಡು ಮಾರ್ಗಸೂಚಿಯನ್ನು ಓದಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.9953232466434033,
+      "evidence_count": 5,
+      "time_seconds": 21.259,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "GENERAL_FACTUAL/general",
+        "sources_checked": 4,
+        "evidence_count": 5,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.9953232466434033,
+          "reason": "No provided evidence confirms or denies KSRTC reading a draft guideline on electric bus maintenance on 2026-03-30. (ignored; no valid evidence updates)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 5,
+          "neutral_sent": 5,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.72,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.9953232466434033,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.9953232466434033
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 17,
+          "unique_total": 9,
+          "ranked_total": 9,
+          "returned_total": 9,
+          "source_type_counts": {
+            "web_search": 9,
+            "scraping": 8
+          },
+          "search_provider_counts": {
+            "ddg": 9
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 8
+          },
+          "top_hosts": [
+            [
+              "www.bbc.com",
+              2
+            ],
+            [
+              "ksrtc.karnataka.gov.in",
+              2
+            ],
+            [
+              "www.etvbharat.com",
+              2
+            ],
+            [
+              "www.mercedes-benz-bus.com",
+              2
+            ],
+            [
+              "onlineksrtcswift.com",
+              2
+            ],
+            [
+              "kannadakasturi.online",
+              2
+            ],
+            [
+              "themangaloremirror.in",
+              2
+            ],
+            [
+              "ksrtc.in",
+              2
+            ],
+            [
+              "kannada.news18.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "translated_en": 5
+        },
+        "multi_tier_counts": {
+          "strong": 5
+        },
+        "timings": {
+          "stage1_normalize": 0.1219,
+          "stage2_checkability": 0.0865,
+          "stage3_context": 0.0838,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 8.0317,
+          "stage6b_sarvam_rerank": 0.1957,
+          "stage6_relevance": 0.9957,
+          "stage7_stance": 0.7583,
+          "stage8_evidence_scoring": 0.0003,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 11.1791,
+          "total_pipeline": 21.259
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Karnataka State Road Transport Corporation - Letters And Circulars",
+          "url": "https://ksrtc.karnataka.gov.in/info-4/Letters+and+Circulars/en",
+          "stance": "neutral",
+          "relevance": 0.9700427055358887,
+          "credibility": 1.0,
+          "text": "Hon'ble MLA and Chairman,Karnataka State Road Transport Corporation"
+        },
+        {
+          "source": "KSRTC-SWIFT | ENTE KSRTC Neo-oprs | KSRTC SWIFT Buses...",
+          "url": "https://onlineksrtcswift.com/",
+          "stance": "neutral",
+          "relevance": 0.9632228016853333,
+          "credibility": 0.88,
+          "text": "BOOK YOUR BUS TICKET WITH Kerala State Road Transport Corporation - KSRTC FOR COMFORTABLE AND HASSLE FREE JOURNEY.April 2026."
+        },
+        {
+          "source": "Home | Mercedes-Benz Buses International",
+          "url": "https://www.mercedes-benz-bus.com/",
+          "stance": "neutral",
+          "relevance": 0.9385968446731567,
+          "credibility": 0.9,
+          "text": "Electric Fuel Cell Bus Champion 2026.Daimler Buses at Bus2Bus 2026. MAGAZINE. Evolution of safety. NEWS. Milestone: 40,000th Tourismo rolls off the line."
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "E252D_210",
+      "language": "kn",
+      "claim": "1980-04-18 ರಂದು ಸಾರ್ವಜನಿಕ ಗ್ರಂಥಾಲಯ ಇಲಾಖೆಯು ಹಳೆಯ ಪುಸ್ತಕಗಳನ್ನು ಸಂರಕ್ಷಿಸುವ ಯೋಜನೆಯನ್ನು ಸಿದ್ಧಪಡಿಸಿತು.",
+      "expected_verdict": "neutral",
+      "predicted_verdict": "neutral",
+      "correct": true,
+      "confidence": 0.992621838492192,
+      "evidence_count": 7,
+      "time_seconds": 21.851,
+      "details": {
+        "checkability": "Checkable",
+        "claim_type_proxy": "checkability_checkpoint",
+        "context": "TECHNOLOGY/general",
+        "sources_checked": 6,
+        "evidence_count": 7,
+        "llm_verifier": {
+          "enabled": true,
+          "triggered": true,
+          "used": false,
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/gpt-oss-120b",
+          "neutral_only": true,
+          "verify_on_neutral": true,
+          "conf_threshold": null,
+          "pre_llm_verdict": "neutral",
+          "pre_llm_confidence": 0.992621838492192,
+          "reason": "None of the provided sources mention a 1980-04-18 public library preservation plan.\",\n  \"evidence_updates\": [\n    {\"index\": 1, \"stance\": \"neutral\", \"relevance\": 0.9348910450935364},\n    {\"index\": 2, \"stance\": \"neutral\", \"relevance\": 0.9504490494728088},\n    {\"index\": 3, \"stance\": \"neutral\", \"relevance\": 0.9596200585365295},\n    {\"index\": 4, \"stance\": \"neutral\", \"relevance\": 0.9263228178024292},\n    {\"index\": 5, \"stance\": \"neutral\", \"relevance\": 0.9113514423370361},\n    {\"index\": 6, \"stance\": \"neutral\", \"relevance\": 0.9072465300559998},\n    {\"index\": 7, \"stance\": \"neutral\", \"relevance\": 0 (ignored; kept pre-LLM verdict)",
+          "multi_tavily_boost_attempted": true,
+          "multi_tavily_boost_added": 0,
+          "image_multi_en_fallback_attempted": false,
+          "image_multi_en_fallback_added": 0,
+          "image_multi_en_fallback_kept": 0,
+          "verify_mode": "neutral",
+          "gray_zone_triggered": false,
+          "evidence_sent": 7,
+          "neutral_sent": 7,
+          "hq_neutral_only": false,
+          "hq_neutral_thresholds": {
+            "relevance": 0.95,
+            "credibility": 0.7
+          },
+          "verdict": "neutral",
+          "confidence": 0.85,
+          "evidence_updates": [],
+          "evidence_updates_applied": 0,
+          "post_recovery_verdict": "neutral",
+          "post_recovery_confidence": 0.992621838492192,
+          "llm_non_neutral_overwritten": false,
+          "verdict_transition_path": "aggregate=neutral -> llm=neutral -> post_recovery=neutral -> final=neutral",
+          "post_llm_verdict": "neutral",
+          "post_llm_confidence": 0.992621838492192
+        },
+        "sarvam_reranker": {
+          "enabled": true,
+          "applied": false,
+          "reason": "sarvam_rerank_failed: 429 Client Error: Too Many Requests for url: https://api.sarvam.ai/v1/chat/completions",
+          "top_k": 8,
+          "updated_items": 0
+        },
+        "retrieval_telemetry": {
+          "image_mode": false,
+          "raw_total": 23,
+          "unique_total": 11,
+          "ranked_total": 10,
+          "returned_total": 10,
+          "source_type_counts": {
+            "web_search": 10,
+            "structured_api": 3,
+            "scraping": 10
+          },
+          "search_provider_counts": {
+            "ddg": 10
+          },
+          "scrape_tier_counts": {
+            "beautifulsoup": 10
+          },
+          "top_hosts": [
+            [
+              "en.wikipedia.org",
+              6
+            ],
+            [
+              "voterlist.co.in",
+              2
+            ],
+            [
+              "annas-archive.gl",
+              2
+            ],
+            [
+              "habr.com",
+              2
+            ],
+            [
+              "epsteinfta.com",
+              2
+            ],
+            [
+              "z-lib.fm",
+              2
+            ],
+            [
+              "www.history.com",
+              2
+            ],
+            [
+              "telugu.icu",
+              2
+            ],
+            [
+              "www.nypl.org",
+              1
+            ],
+            [
+              "kannada.gizbot.com",
+              1
+            ]
+          ],
+          "mmr": {
+            "enabled": true,
+            "image_only": false,
+            "applied": true,
+            "lambda": 0.75,
+            "candidate_mult": 3
+          },
+          "domain_diversity": {
+            "enabled": true,
+            "per_host_cap": 2
+          },
+          "scraper_enrichment": {
+            "enabled": true,
+            "max_results": 10
+          },
+          "structured_api_health": {
+            "enabled_subtypes": [
+              "arxiv",
+              "nasa",
+              "openfda",
+              "pib",
+              "wikidata",
+              "wikipedia",
+              "worldbank"
+            ],
+            "unhealthy_subtypes": []
+          }
+        },
+        "recency_preference": {
+          "mode": "general",
+          "start": "",
+          "end": ""
+        },
+        "recency_preference_matches": 0,
+        "multi_lane_counts": {
+          "structured_reference": 1,
+          "translated_en": 5,
+          "native_local": 1
+        },
+        "multi_tier_counts": {
+          "strong": 7
+        },
+        "timings": {
+          "stage1_normalize": 0.1,
+          "stage2_checkability": 0.064,
+          "stage3_context": 0.0522,
+          "stage4_routing": 0.0,
+          "stage5_evidence_gather": 14.6033,
+          "stage6b_sarvam_rerank": 0.1871,
+          "stage6_relevance": 1.2007,
+          "stage7_stance": 1.0825,
+          "stage8_evidence_scoring": 0.0004,
+          "stage9_aggregate_verdict": 0.0,
+          "stage10a_multi_tavily_boost": 0.0002,
+          "stage10_llm_verify": 4.7458,
+          "total_pipeline": 21.8506
+        }
+      },
+      "evidence_preview": [
+        {
+          "source": "Wikipedia: Book",
+          "url": "https://en.wikipedia.org/?curid=3778",
+          "stance": "neutral",
+          "relevance": 0.9348910450935364,
+          "credibility": 0.9,
+          "text": "borrowed from libraries or public bookcases. The reception of books has led to several social consequences, including censorship. Books are sometimes"
+        },
+        {
+          "source": "Presidents' Day 2026 - Date, Holiday and History | HISTORY",
+          "url": "https://www.history.com/articles/presidents-day",
+          "stance": "neutral",
+          "relevance": 0.9504490494728088,
+          "credibility": 0.82,
+          "text": "Marketers soon jumped at the opportunity to play up the three-day weekend with sales, and “Presidents' Day” bargains were advertised at stores around the country. By the mid-1980s, Washington’s Birthday was known to many Americans as Presid"
+        },
+        {
+          "source": "Epstein Library Files Public Archive | Public Document Search",
+          "url": "https://epsteinfta.com/",
+          "stance": "neutral",
+          "relevance": 0.9596200585365295,
+          "credibility": 0.82,
+          "text": "Search and analyze the Epstein Files Library document archive including court records, flight logs, DOJ disclosures, and more."
+        }
+      ],
+      "error": null
+    }
+  ]
+}

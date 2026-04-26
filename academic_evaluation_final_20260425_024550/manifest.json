@@ -1,0 +1,43 @@
+{
+  "created_at": "2026-04-25T02:45:50.812142",
+  "root": "F:\\RFCS\\academic_evaluation_final_20260425_024550",
+  "copied": [
+    {
+      "source": "F:\\RFCS\\research_plots_final",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\01_core_plots\\research_plots_final",
+      "file_count": 23
+    },
+    {
+      "source": "F:\\RFCS\\research_plots_advanced_20260425_014730",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\02_advanced_plots\\research_plots_advanced_20260425_014730",
+      "file_count": 25
+    },
+    {
+      "source": "F:\\RFCS\\llm_pre_post_focus",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\03_llm_impact\\llm_pre_post_focus",
+      "file_count": 12
+    },
+    {
+      "source": "F:\\RFCS\\tests\\benchmarks\\research_report_bundle\\20260425_012208",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\04_confusion_and_reports\\research_report_bundle_20260425_012208",
+      "file_count": 28
+    },
+    {
+      "source": "F:\\RFCS\\tests\\benchmarks\\research_report_bundle\\20260425_005736",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\04_confusion_and_reports\\research_report_bundle_20260425_005736",
+      "file_count": 18
+    },
+    {
+      "source": "F:\\RFCS\\model_training_forensics_20260425_022039",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\05_model_forensics\\model_training_forensics_20260425_022039",
+      "file_count": 23
+    },
+    {
+      "source": "F:\\RFCS\\model_audit_20260425_020649",
+      "dest": "F:\\RFCS\\academic_evaluation_final_20260425_024550\\06_model_audit\\model_audit_20260425_020649",
+      "file_count": 16
+    }
+  ],
+  "missing": [],
+  "total_files_copied": 145
+}

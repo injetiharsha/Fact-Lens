@@ -1,4 +1,4 @@
-# Training Configs
+﻿# Training Configs
 
 YAML configs used by `training/context/train_context_model.py`.
 
@@ -14,3 +14,9 @@ YAML configs used by `training/context/train_context_model.py`.
 - `save_steps: 50`
 - `logging_first_step: true`
 - `eval_on_start: true`
+
+## Scope Snapshot
+- Path: `configs/training/README.md`.
+- Purpose: Training YAML config set and expected flags.
+- Audience: Engineers running, extending, or evaluating this module.
+

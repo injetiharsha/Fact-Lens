@@ -1,4 +1,4 @@
-# scripts
+﻿# scripts
 
 Operational scripts for data prep, balancing, translation, and export.
 
@@ -14,3 +14,9 @@ Operational scripts for data prep, balancing, translation, and export.
 - Only `text` is translated.
 - `label` is preserved.
 - Resume uses `translation_state.json`.
+
+## Scope Snapshot
+- Path: `scripts/README.md`.
+- Purpose: Operational script catalog for preparation, evaluation, and exports.
+- Audience: Engineers running, extending, or evaluating this module.
+

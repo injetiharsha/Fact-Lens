@@ -1,4 +1,4 @@
-# pipeline
+﻿# pipeline
 
 Restructured claim/document analysis pipeline.
 
@@ -41,3 +41,9 @@ Restructured claim/document analysis pipeline.
 
 - Architecture comparison and failure root-cause summary:
   - `../ARCHITECTURE_ROOT_CAUSE_ANALYSIS.md`
+
+## Scope Snapshot
+- Path: `pipeline/README.md`.
+- Purpose: Core pipeline package: stage orchestration and shared claim/document flow.
+- Audience: Engineers running, extending, or evaluating this module.
+

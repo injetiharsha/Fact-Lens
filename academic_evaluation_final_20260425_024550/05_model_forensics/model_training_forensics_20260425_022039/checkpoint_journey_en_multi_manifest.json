@@ -1,0 +1,20 @@
+{
+  "plot": "F:\\RFCS\\model_training_forensics_20260425_022039\\checkpoint_journey_en_multi_parallel_clean.png",
+  "stance_plot": "F:\\RFCS\\model_training_forensics_20260425_022039\\checkpoint_journey_stance_en_multi_clean.png",
+  "table_csv": "F:\\RFCS\\model_training_forensics_20260425_022039\\checkpoint_journey_en_multi_parallel_table.csv",
+  "serving_paths_used": {
+    "en": {
+      "checkability": "./checkpoints/checkability/multi/checkability_multi_v1/best_model",
+      "context": "./checkpoints/context/en/context_en_v1/checkpoint-1400",
+      "relevance": "./checkpoints/relevance/en/v9_run1",
+      "stance": "./checkpoints/stance/en/stance_en_deberta_v1_vitaminc/checkpoint-10000"
+    },
+    "multi": {
+      "checkability": "./checkpoints/checkability/multi/checkability_multi_v1/best_model",
+      "context": "./checkpoints/context/indic/context_indic_mt_v1/checkpoint-6000",
+      "relevance": "./checkpoints/relevance/multi/relevance_multi_v1/checkpoint-5000",
+      "stance": "./checkpoints/stance/multi/multi-indic-fever/checkpoint-11000"
+    }
+  },
+  "notes": "Clean EN/MULTI parallel journey. External/pre-existing components shown with x marker when no local training config chain exists."
+}

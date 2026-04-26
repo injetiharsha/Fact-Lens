@@ -1,0 +1,12 @@
+summary_file,keys,train_rows,val_rows,test_rows,total_rows
+data\processed\checkability\multilingual\dataset_summary.json,"input_files,labels_order,label2id,seed,target_per_class_lang,strict_language,counts,split_label_counts,split_language_counts,source_counts_expanded",1712,213,213,2138
+data\processed\context\indic_mt_50k\split_summary.json,"input,output_dir,n_total,n_train,n_val,n_test,label_counts_total,lang_counts_total,stratify_by_lang,seed",,,,
+data\processed\relevance\multilingual\summary.json,"inputs,out_dir,total_rows,negative_ratio,total_label_counts,total_lang_counts,train_rows,val_rows,test_rows,train_label_counts",174923,21865,21866,218654
+data\processed\stance\en_fever\summary.json,"src_dir,out_dir,raw_input_rows,converted_rows,global_unique_rows,removed_duplicates,split_ratios,splits",,,,
+data\processed\stance\en_mnli\summary.json,"out_dir,train_rows,val_rows,test_rows,train_label_counts,val_label_counts,test_label_counts",120000,9815,9832,
+data\processed\stance\en_vitaminc\summary.json,"dataset,out_dir,split_used,cleaning,before_balance_label_counts,balance_target_per_label,after_balance_total_rows,train_rows,val_rows,test_rows",166072,20759,20760,
+data\processed\stance\indic_fever_mix\summary.json,"input_dir,output_dir,cleaning,final_total_rows_before_optional_balance,balance,split_ratios,splits,overlap_checks",,,,
+data\processed\stance\indic_fever_mix_backup_before_clean\summary.json,"indic_meta,fever_meta,mixed_total,mixed_source_counts,mixed_lang_counts,mixed_label_counts,splits",,,,
+data\processed\stance\indic_fever_mix_cleaned\summary.json,"input_dir,output_dir,cleaning,final_total_rows_before_optional_balance,balance,split_ratios,splits,overlap_checks",,,,
+data\processed\stance\indic_xnli\summary.json,"dataset,revision,out_dir,target_langs,load_mode,per_lang_loaded,cleaning,parsed_rows,per_bucket_target,balanced_total_rows",,,,
+data\processed\stance\indic_xnli_clean\summary.json,"input_dir,output_dir,cleaning,final_total_rows_before_optional_balance,balance,split_ratios,splits,overlap_checks",,,,

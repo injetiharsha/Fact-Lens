@@ -1,0 +1,10 @@
+expected,predicted,count
+support,support,17
+support,refute,3
+support,neutral,18
+refute,support,0
+refute,refute,13
+refute,neutral,20
+neutral,support,0
+neutral,refute,5
+neutral,neutral,47

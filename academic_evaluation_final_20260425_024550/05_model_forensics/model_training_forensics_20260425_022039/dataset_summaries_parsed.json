@@ -1,0 +1,112 @@
+[
+  {
+    "summary_file": "data\\processed\\relevance\\multilingual\\summary.json",
+    "last_write": "2026-04-16T20:51:47.873551",
+    "total_rows": 218654,
+    "train_rows": 174923,
+    "val_rows": 21865,
+    "test_rows": 21866,
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\en_fever\\summary.json",
+    "last_write": "2026-04-16T10:36:26.666575",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\en_mnli\\summary.json",
+    "last_write": "2026-04-16T09:20:33.406066",
+    "total_rows": "",
+    "train_rows": 120000,
+    "val_rows": 9815,
+    "test_rows": 9832,
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\en_vitaminc\\summary.json",
+    "last_write": "2026-04-16T12:59:49.597514",
+    "total_rows": "",
+    "train_rows": 166072,
+    "val_rows": 20759,
+    "test_rows": 20760,
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\indic_fever_mix\\summary.json",
+    "last_write": "2026-04-17T05:52:57.715797",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\indic_fever_mix_backup_before_clean\\summary.json",
+    "last_write": "2026-04-16T22:47:36.821938",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\indic_fever_mix_cleaned\\summary.json",
+    "last_write": "2026-04-17T05:52:57.715797",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\indic_xnli\\summary.json",
+    "last_write": "2026-04-16T22:29:30.645010",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\stance\\indic_xnli_clean\\summary.json",
+    "last_write": "2026-04-16T22:40:33.108649",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  },
+  {
+    "summary_file": "data\\processed\\checkability\\multilingual\\dataset_summary.json",
+    "last_write": "2026-04-24T10:24:14.516682",
+    "total_rows": 2138,
+    "train_rows": 1712,
+    "val_rows": 213,
+    "test_rows": 213,
+    "input_files": "C:\\Users\\chint\\Downloads\\balanced_multilingual_claims_252_full_v2.json; C:\\Users\\chint\\Downloads\\252_eval.json; F:\\RFCS\\150_eval_2.json",
+    "labels_or_classes": "FACTUAL_CLAIM; PERSONAL_STATEMENT; OPINION; QUESTION_OR_REWRITE; OTHER_UNCHECKABLE"
+  },
+  {
+    "summary_file": "data\\processed\\context\\indic_mt_50k\\split_summary.json",
+    "last_write": "2026-04-16T05:53:54.271217",
+    "total_rows": "",
+    "train_rows": "",
+    "val_rows": "",
+    "test_rows": "",
+    "input_files": "",
+    "labels_or_classes": ""
+  }
+]

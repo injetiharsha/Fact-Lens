@@ -1,0 +1,92 @@
+[
+  {
+    "confusion_plot": "checkpoints\\checkability\\multi\\checkability_multi_v1\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\en\\context_en_v1\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test_hi.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test_kn.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test_ml.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test_ta.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\context\\indic\\context_indic_mt_v1\\plots\\confusion_matrix_test_te.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_hi.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_kn.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_ml.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_overall.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_ta.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_test_te.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\relevance\\multi\\relevance_multi_v1\\eval_checkpoint-5000\\plots\\confusion_matrix_validation.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_fever\\eval_tmp-checkpoint-5000\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_fever\\eval_tmp-checkpoint-5000\\plots\\confusion_matrix_validation.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_mnli\\eval_checkpoint-2000\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_mnli\\eval_checkpoint-2000\\plots\\confusion_matrix_validation.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_vitaminc\\eval_best_model\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_vitaminc\\eval_best_model\\plots\\confusion_matrix_validation.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\en\\stance_en_deberta_v1_vitaminc\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots\\confusion_matrix_test.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots\\confusion_matrix_validation.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots_by_language\\confusion_matrix_test_hi.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots_by_language\\confusion_matrix_test_kn.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots_by_language\\confusion_matrix_test_ml.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots_by_language\\confusion_matrix_test_ta.png"
+  },
+  {
+    "confusion_plot": "checkpoints\\stance\\multi\\multi-indic-fever\\eval_checkpoint-11000\\plots_by_language\\confusion_matrix_test_te.png"
+  }
+]

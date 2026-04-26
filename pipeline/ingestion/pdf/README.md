@@ -1,4 +1,4 @@
-# ingestion/pdf
+﻿# ingestion/pdf
 
 PDF extraction entry for claim verification.
 
@@ -22,4 +22,9 @@ PDF extraction entry for claim verification.
 - API wrappers:
   - `POST /api/extract-pdf-preview`
   - `POST /api/analyze-pdf`
+
+## Scope Snapshot
+- Path: `pipeline/ingestion/pdf/README.md`.
+- Purpose: PDF extraction module behavior and limits.
+- Audience: Engineers running, extending, or evaluating this module.
 

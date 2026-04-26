@@ -1,0 +1,41 @@
+{
+  "source_dataset": "F:\\RFCS\\252_eval.json",
+  "total_claims": 252,
+  "language_distribution": {
+    "en": 42,
+    "hi": 42,
+    "ta": 42,
+    "te": 42,
+    "kn": 42,
+    "ml": 42
+  },
+  "expected_verdict_distribution": {
+    "support": 73,
+    "refute": 72,
+    "neutral": 65
+  },
+  "label_14_distribution": {
+    "HEALTH": 18,
+    "TECHNOLOGY": 18,
+    "POLITICS_GOVERNMENT": 18,
+    "ECONOMICS_BUSINESS": 18,
+    "SCIENCE": 18,
+    "HISTORY": 18,
+    "GEOGRAPHY": 18,
+    "SPACE_ASTRONOMY": 18,
+    "ENVIRONMENT_CLIMATE": 18,
+    "SOCIETY_CULTURE": 18,
+    "LAW_CRIME": 18,
+    "SPORTS": 18,
+    "ENTERTAINMENT": 18,
+    "GENERAL_FACTUAL": 18
+  },
+  "checkability_label_distribution": {
+    "FACTUAL_CLAIM": 210,
+    "PERSONAL_STATEMENT": 6,
+    "OPINION": 6,
+    "QUESTION_OR_REWRITE": 6,
+    "OTHER_UNCHECKABLE": 24
+  },
+  "output_folder": "F:\\RFCS\\research_plots_final"
+}

@@ -1,0 +1,26 @@
+{
+  "source_run_files": {
+    "en": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_en_full_pipeline\\parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json",
+    "hi": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_hi_v2_from_252_rerun.json",
+    "ta": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_ta_v2_from_252.json",
+    "te": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_te_v2_from_252.json",
+    "kn": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_kn_v2_from_252_nock.json",
+    "ml": "F:\\RFCS\\tests\\benchmarks\\rfcs_benchmark_multi_full_pipeline\\parallel_like_results_ml_v2_from_252_nock.json"
+  },
+  "outputs": [
+    "01_accuracy_vs_checkable_by_language.png",
+    "02_error_type_breakdown_by_language.png",
+    "03_latency_vs_accuracy_by_language.png",
+    "04_cost_vs_accuracy_by_language.png",
+    "05_stage_time_composition_by_language.png",
+    "06_llm_transition_heatmap_by_language.png",
+    "07_llm_transition_heatmap_by_14label.png"
+  ],
+  "top_llm_transitions": [
+    "neutral->neutral",
+    "neutral->support",
+    "neutral->refute",
+    "support->support",
+    "refute->refute"
+  ]
+}

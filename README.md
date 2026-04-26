@@ -1,4 +1,4 @@
-# RFC: Fact-Checking & Claim Verification System
+﻿# RFC: Fact-Checking & Claim Verification System
 
 A multi-model, multi-language pipeline for verifying claims using contextual evidence, relevance scoring, and stance detection.
 
@@ -64,9 +64,10 @@ This repository uses a locked EN/MULTI runtime configuration for reproducible re
 - LLM verifier: ON (`ENABLE_LLM_VERIFIER=1`)
 - Search providers: DDG ON, Tavily OFF, SerpAPI OFF
 - EN/MULTI checkpoints are pinned in `.env` (checkability, context, relevance, stance)
-- KN/ML checkability lenience enabled: `CHECKABILITY_BYPASS_LANGS=kn,ml`
 
 Canonical lock specification is documented in [`docs/LOCKED_PIPELINES.md`](docs/LOCKED_PIPELINES.md).
+
+Full implementation walkthrough is documented in [`docs/PROJECT_FULL_EXPLANATION.md`](docs/PROJECT_FULL_EXPLANATION.md).
 
 ## API Usage
 
@@ -173,3 +174,9 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
 ## License
 
 MIT
+
+## Scope Snapshot
+- Path: `README.md`.
+- Purpose: Repository root guide. Use this first for architecture, setup, and runtime entrypoints.
+- Audience: Engineers running, extending, or evaluating this module.
+

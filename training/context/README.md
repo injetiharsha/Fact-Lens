@@ -1,4 +1,4 @@
-# Context Training
+﻿# Context Training
 
 Use config-driven training for EN and Indic context classifiers.
 
@@ -46,3 +46,9 @@ Training policy includes:
 Build and training records are appended to:
 - `training/records/context_data_builds.jsonl`
 - `training/records/context_training_runs.jsonl`
+
+## Scope Snapshot
+- Path: `training/context/README.md`.
+- Purpose: Context-model training workflow, configs, and outputs.
+- Audience: Engineers running, extending, or evaluating this module.
+

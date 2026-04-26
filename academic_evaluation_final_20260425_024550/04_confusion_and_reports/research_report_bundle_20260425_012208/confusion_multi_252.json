@@ -1,0 +1,26 @@
+{
+  "split": "multi",
+  "total_rows": 210,
+  "labels": [
+    "support",
+    "refute",
+    "neutral"
+  ],
+  "matrix_3way": {
+    "support": {
+      "support": 17,
+      "refute": 3,
+      "neutral": 41
+    },
+    "refute": {
+      "support": 0,
+      "refute": 13,
+      "neutral": 47
+    },
+    "neutral": {
+      "support": 0,
+      "refute": 5,
+      "neutral": 49
+    }
+  }
+}

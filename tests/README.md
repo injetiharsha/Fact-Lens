@@ -1,4 +1,4 @@
-# tests
+﻿# tests
 
 Automated test suites.
 
@@ -18,3 +18,9 @@ These are used for:
 - OFF vs ON verdict deltas
 - evidence retrieval trace inspection
 - mini benchmark accuracy + neutral-rate comparison
+
+## Scope Snapshot
+- Path: `tests/README.md`.
+- Purpose: Test suite scope and where to run validations.
+- Audience: Engineers running, extending, or evaluating this module.
+
