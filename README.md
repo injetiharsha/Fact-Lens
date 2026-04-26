@@ -69,6 +69,8 @@ Canonical lock specification is documented in [`docs/LOCKED_PIPELINES.md`](docs/
 
 Full implementation walkthrough is documented in [`docs/PROJECT_FULL_EXPLANATION.md`](docs/PROJECT_FULL_EXPLANATION.md).
 
+Detailed model inventory + 3-month project timeline is documented in [`docs/MODEL_INVENTORY_AND_3MONTH_TIMELINE.md`](docs/MODEL_INVENTORY_AND_3MONTH_TIMELINE.md).
+
 ## API Usage
 
 ```bash
