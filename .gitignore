@@ -3,6 +3,9 @@
 .env.local
 .env.*.local
 !.env.example
+.env.backup*
+.env.*.backup*
+*.env.backup*
 
 .venv
 .venv-gpu
@@ -92,6 +95,8 @@ tmp_arch_doc.zip
 tmp_arch_doc_snippets.txt
 temp_*.docx
 temp_*.txt
+Research_Evaluation/05_template/
+**/ijirt_paperformat*.docx
 
 # Jupyter
 .ipynb_checkpoints/
