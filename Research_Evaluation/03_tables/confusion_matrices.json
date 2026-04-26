@@ -1,0 +1,730 @@
+{
+  "parallel_like_results_en_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 3,
+        "refute": 0,
+        "neutral": 9
+      },
+      "refute": {
+        "support": 0,
+        "refute": 4,
+        "neutral": 8
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 3,
+      "tn": 12,
+      "fp": 0,
+      "fn": 9
+    },
+    "by_language_confusion_3way": {
+      "unknown": {
+        "support": {
+          "support": 3,
+          "refute": 0,
+          "neutral": 9
+        },
+        "refute": {
+          "support": 0,
+          "refute": 4,
+          "neutral": 8
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_en_v2_from_252_llm_on.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 9,
+        "refute": 0,
+        "neutral": 3
+      },
+      "refute": {
+        "support": 0,
+        "refute": 6,
+        "neutral": 6
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 9,
+      "tn": 12,
+      "fp": 0,
+      "fn": 3
+    },
+    "by_language_confusion_3way": {
+      "unknown": {
+        "support": {
+          "support": 9,
+          "refute": 0,
+          "neutral": 3
+        },
+        "refute": {
+          "support": 0,
+          "refute": 6,
+          "neutral": 6
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_en_v2_from_252_llm_on_neutral_off.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 4,
+        "refute": 0,
+        "neutral": 8
+      },
+      "refute": {
+        "support": 0,
+        "refute": 4,
+        "neutral": 8
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 4,
+      "tn": 12,
+      "fp": 0,
+      "fn": 8
+    },
+    "by_language_confusion_3way": {
+      "unknown": {
+        "support": {
+          "support": 4,
+          "refute": 0,
+          "neutral": 8
+        },
+        "refute": {
+          "support": 0,
+          "refute": 4,
+          "neutral": 8
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_en_v2_from_252_llm_preonly.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 11,
+        "refute": 0,
+        "neutral": 1
+      },
+      "refute": {
+        "support": 0,
+        "refute": 6,
+        "neutral": 6
+      },
+      "neutral": {
+        "support": 1,
+        "refute": 0,
+        "neutral": 10
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 11,
+      "tn": 12,
+      "fp": 0,
+      "fn": 1
+    },
+    "by_language_confusion_3way": {
+      "unknown": {
+        "support": {
+          "support": 11,
+          "refute": 0,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 0,
+          "refute": 6,
+          "neutral": 6
+        },
+        "neutral": {
+          "support": 1,
+          "refute": 0,
+          "neutral": 10
+        }
+      }
+    }
+  },
+  "parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 7,
+        "refute": 1,
+        "neutral": 4
+      },
+      "refute": {
+        "support": 0,
+        "refute": 5,
+        "neutral": 7
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 7,
+      "tn": 12,
+      "fp": 0,
+      "fn": 5
+    },
+    "by_language_confusion_3way": {
+      "unknown": {
+        "support": {
+          "support": 7,
+          "refute": 1,
+          "neutral": 4
+        },
+        "refute": {
+          "support": 0,
+          "refute": 5,
+          "neutral": 7
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_hi_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 10,
+        "refute": 0,
+        "neutral": 2
+      },
+      "refute": {
+        "support": 0,
+        "refute": 6,
+        "neutral": 5
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 10,
+      "tn": 11,
+      "fp": 0,
+      "fn": 2
+    },
+    "by_language_confusion_3way": {
+      "hi": {
+        "support": {
+          "support": 10,
+          "refute": 0,
+          "neutral": 2
+        },
+        "refute": {
+          "support": 0,
+          "refute": 6,
+          "neutral": 5
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_kn_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 2,
+        "refute": 0,
+        "neutral": 10
+      },
+      "refute": {
+        "support": 2,
+        "refute": 1,
+        "neutral": 8
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 2,
+      "tn": 9,
+      "fp": 2,
+      "fn": 10
+    },
+    "by_language_confusion_3way": {
+      "kn": {
+        "support": {
+          "support": 2,
+          "refute": 0,
+          "neutral": 10
+        },
+        "refute": {
+          "support": 2,
+          "refute": 1,
+          "neutral": 8
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_kn_v2_from_252_nock.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 11,
+        "refute": 0,
+        "neutral": 1
+      },
+      "refute": {
+        "support": 2,
+        "refute": 7,
+        "neutral": 2
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 11,
+      "tn": 9,
+      "fp": 2,
+      "fn": 1
+    },
+    "by_language_confusion_3way": {
+      "kn": {
+        "support": {
+          "support": 11,
+          "refute": 0,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 2,
+          "refute": 7,
+          "neutral": 2
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_kn_v2_from_252_relax1.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 3,
+        "refute": 0,
+        "neutral": 9
+      },
+      "refute": {
+        "support": 0,
+        "refute": 6,
+        "neutral": 5
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 11
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 3,
+      "tn": 11,
+      "fp": 0,
+      "fn": 9
+    },
+    "by_language_confusion_3way": {
+      "kn": {
+        "support": {
+          "support": 3,
+          "refute": 0,
+          "neutral": 9
+        },
+        "refute": {
+          "support": 0,
+          "refute": 6,
+          "neutral": 5
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      }
+    }
+  },
+  "parallel_like_results_ml_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 2,
+        "refute": 0,
+        "neutral": 12
+      },
+      "refute": {
+        "support": 0,
+        "refute": 2,
+        "neutral": 12
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 7
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 2,
+      "tn": 14,
+      "fp": 0,
+      "fn": 12
+    },
+    "by_language_confusion_3way": {
+      "ml": {
+        "support": {
+          "support": 2,
+          "refute": 0,
+          "neutral": 12
+        },
+        "refute": {
+          "support": 0,
+          "refute": 2,
+          "neutral": 12
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 7
+        }
+      }
+    }
+  },
+  "parallel_like_results_ml_v2_from_252_nock.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 12,
+        "refute": 0,
+        "neutral": 2
+      },
+      "refute": {
+        "support": 1,
+        "refute": 12,
+        "neutral": 1
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 0,
+        "neutral": 7
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 12,
+      "tn": 13,
+      "fp": 1,
+      "fn": 2
+    },
+    "by_language_confusion_3way": {
+      "ml": {
+        "support": {
+          "support": 12,
+          "refute": 0,
+          "neutral": 2
+        },
+        "refute": {
+          "support": 1,
+          "refute": 12,
+          "neutral": 1
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 0,
+          "neutral": 7
+        }
+      }
+    }
+  },
+  "parallel_like_results_ml_v2_from_252_relax1.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 3,
+        "refute": 0,
+        "neutral": 11
+      },
+      "refute": {
+        "support": 0,
+        "refute": 4,
+        "neutral": 10
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 6
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 3,
+      "tn": 14,
+      "fp": 0,
+      "fn": 11
+    },
+    "by_language_confusion_3way": {
+      "ml": {
+        "support": {
+          "support": 3,
+          "refute": 0,
+          "neutral": 11
+        },
+        "refute": {
+          "support": 0,
+          "refute": 4,
+          "neutral": 10
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 6
+        }
+      }
+    }
+  },
+  "parallel_like_results_multi_v2_from_252_5lang.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 52,
+        "refute": 4,
+        "neutral": 5
+      },
+      "refute": {
+        "support": 1,
+        "refute": 37,
+        "neutral": 22
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 8,
+        "neutral": 46
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 52,
+      "tn": 59,
+      "fp": 1,
+      "fn": 9
+    },
+    "by_language_confusion_3way": {
+      "hi": {
+        "support": {
+          "support": 10,
+          "refute": 0,
+          "neutral": 2
+        },
+        "refute": {
+          "support": 0,
+          "refute": 6,
+          "neutral": 5
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      },
+      "ta": {
+        "support": {
+          "support": 10,
+          "refute": 0,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 0,
+          "refute": 8,
+          "neutral": 4
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 11
+        }
+      },
+      "te": {
+        "support": {
+          "support": 9,
+          "refute": 2,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 0,
+          "refute": 7,
+          "neutral": 5
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 2,
+          "neutral": 9
+        }
+      },
+      "kn": {
+        "support": {
+          "support": 11,
+          "refute": 1,
+          "neutral": 0
+        },
+        "refute": {
+          "support": 1,
+          "refute": 6,
+          "neutral": 4
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 3,
+          "neutral": 9
+        }
+      },
+      "ml": {
+        "support": {
+          "support": 12,
+          "refute": 1,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 0,
+          "refute": 10,
+          "neutral": 4
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 6
+        }
+      }
+    }
+  },
+  "parallel_like_results_ta_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 11,
+        "refute": 0,
+        "neutral": 0
+      },
+      "refute": {
+        "support": 0,
+        "refute": 11,
+        "neutral": 1
+      },
+      "neutral": {
+        "support": 1,
+        "refute": 1,
+        "neutral": 10
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 11,
+      "tn": 12,
+      "fp": 0,
+      "fn": 0
+    },
+    "by_language_confusion_3way": {
+      "ta": {
+        "support": {
+          "support": 11,
+          "refute": 0,
+          "neutral": 0
+        },
+        "refute": {
+          "support": 0,
+          "refute": 11,
+          "neutral": 1
+        },
+        "neutral": {
+          "support": 1,
+          "refute": 1,
+          "neutral": 10
+        }
+      }
+    }
+  },
+  "parallel_like_results_te_v2_from_252.json": {
+    "overall_confusion_3way": {
+      "support": {
+        "support": 9,
+        "refute": 2,
+        "neutral": 1
+      },
+      "refute": {
+        "support": 0,
+        "refute": 10,
+        "neutral": 2
+      },
+      "neutral": {
+        "support": 0,
+        "refute": 1,
+        "neutral": 10
+      }
+    },
+    "binary_support_vs_refute": {
+      "tp": 9,
+      "tn": 12,
+      "fp": 0,
+      "fn": 3
+    },
+    "by_language_confusion_3way": {
+      "te": {
+        "support": {
+          "support": 9,
+          "refute": 2,
+          "neutral": 1
+        },
+        "refute": {
+          "support": 0,
+          "refute": 10,
+          "neutral": 2
+        },
+        "neutral": {
+          "support": 0,
+          "refute": 1,
+          "neutral": 10
+        }
+      }
+    }
+  }
+}

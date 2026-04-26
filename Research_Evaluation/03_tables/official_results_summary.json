@@ -1,0 +1,91 @@
+{
+  "baseline_file_backed": {
+    "en_30": {
+      "accuracy": 0.4,
+      "correct": 12,
+      "total": 30,
+      "neutral_rate": 0.633
+    },
+    "multi_30": {
+      "accuracy": 0.533,
+      "correct": 16,
+      "total": 30,
+      "neutral_rate": 0.367
+    }
+  },
+  "historical_console_note": {
+    "en_30_reported_once": "0.833 (console-reported historical run, not current file-backed baseline)"
+  },
+  "final_official_for_paper": {
+    "en_35": {
+      "accuracy": 0.771,
+      "correct": 27,
+      "total": 35,
+      "neutral_rate": 0.543
+    },
+    "multi_175_5lang": {
+      "accuracy": 0.771,
+      "correct": 135,
+      "total": 175,
+      "neutral_rate": 0.417,
+      "accuracy_checkable_only": 0.808
+    }
+  },
+  "best_language_runs": [
+    {
+      "file": "parallel_like_results_ta_v2_from_252.json",
+      "total_claims": 35,
+      "correct_predictions": 32,
+      "accuracy": 0.914,
+      "checkable_claims_total": null,
+      "checkable_correct_predictions": null,
+      "accuracy_checkable_only": null,
+      "neutral_rate": 0.314,
+      "f1_true_class": 1.0
+    },
+    {
+      "file": "parallel_like_results_ml_v2_from_252_nock.json",
+      "total_claims": 35,
+      "correct_predictions": 31,
+      "accuracy": 0.886,
+      "checkable_claims_total": 35,
+      "checkable_correct_predictions": 31,
+      "accuracy_checkable_only": 0.886,
+      "neutral_rate": 0.286,
+      "f1_true_class": 0.889
+    },
+    {
+      "file": "parallel_like_results_kn_v2_from_252_nock.json",
+      "total_claims": 35,
+      "correct_predictions": 29,
+      "accuracy": 0.829,
+      "checkable_claims_total": 35,
+      "checkable_correct_predictions": 29,
+      "accuracy_checkable_only": 0.829,
+      "neutral_rate": 0.4,
+      "f1_true_class": 0.88
+    },
+    {
+      "file": "parallel_like_results_te_v2_from_252.json",
+      "total_claims": 35,
+      "correct_predictions": 29,
+      "accuracy": 0.829,
+      "checkable_claims_total": null,
+      "checkable_correct_predictions": null,
+      "accuracy_checkable_only": null,
+      "neutral_rate": 0.371,
+      "f1_true_class": 0.857
+    },
+    {
+      "file": "parallel_like_results_hi_v2_from_252_rerun.json",
+      "total_claims": 35,
+      "correct_predictions": 26,
+      "accuracy": 0.743,
+      "checkable_claims_total": 29,
+      "checkable_correct_predictions": 26,
+      "accuracy_checkable_only": 0.897,
+      "neutral_rate": 0.543,
+      "f1_true_class": 0.909
+    }
+  ]
+}

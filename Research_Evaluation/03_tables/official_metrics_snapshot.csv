@@ -1,0 +1,8 @@
+file,total_claims,correct_predictions,accuracy,checkable_claims_total,checkable_correct_predictions,accuracy_checkable_only,neutral_rate,f1_true_class
+parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json,35,27,0.771,,,,0.543,0.909
+parallel_like_results_hi_v2_from_252_rerun.json,35,26,0.743,29,26,0.897,0.543,0.909
+parallel_like_results_kn_v2_from_252_nock.json,35,29,0.829,35,29,0.829,0.4,0.88
+parallel_like_results_ml_v2_from_252_nock.json,35,31,0.886,35,31,0.886,0.286,0.889
+parallel_like_results_multi_v2_from_252_5lang.json,175,135,0.771,167,135,0.808,0.417,0.912
+parallel_like_results_ta_v2_from_252.json,35,32,0.914,,,,0.314,1.0
+parallel_like_results_te_v2_from_252.json,35,29,0.829,,,,0.371,0.857
