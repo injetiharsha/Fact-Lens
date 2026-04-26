@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-04-26T20:04:10.903287+00:00",
+  "generated_at": "2026-04-26T20:12:28.638787+00:00",
   "root": "Research_Evaluation",
-  "file_count": 39,
+  "file_count": 50,
   "files": [
     "Research_Evaluation\\01_docs\\OFFICIAL_RESULTS_FOR_CITATION.md",
     "Research_Evaluation\\01_docs\\PAPER_SECTION_MAPPING_IJIRT.md",
@@ -23,6 +23,11 @@
     "Research_Evaluation\\03_tables\\verdict_counts_by_language.csv",
     "Research_Evaluation\\03_tables\\whole_252_confusion_matrix.csv",
     "Research_Evaluation\\03_tables\\whole_252_confusion_summary.json",
+    "Research_Evaluation\\03_tables_llm_pre_post\\llm_interventions_by_language.csv",
+    "Research_Evaluation\\03_tables_llm_pre_post\\llm_pre_post_summary.json",
+    "Research_Evaluation\\03_tables_llm_pre_post\\pre_post_rows_combined.csv",
+    "Research_Evaluation\\03_tables_llm_pre_post\\pre_post_transition_rows.csv",
+    "Research_Evaluation\\03_tables_llm_pre_post\\pre_vs_post_accuracy_by_language.csv",
     "Research_Evaluation\\04_figures\\accuracy_by_language_and_combined.png",
     "Research_Evaluation\\04_figures\\checkable_accuracy_by_language_and_combined.png",
     "Research_Evaluation\\04_figures\\confusion_en_252_checkable_only.png",
@@ -40,6 +45,12 @@
     "Research_Evaluation\\04_figures\\predicted_distribution_by_language_stacked.png",
     "Research_Evaluation\\04_figures\\whole_252_confusion_3way.png",
     "Research_Evaluation\\04_figures\\whole_252_confusion_4way_blockaware.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\llm_accuracy_delta_by_language.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\llm_intervention_counts_by_language.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\pre_post_accuracy_by_language.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\pre_post_accuracy_overall.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\pre_post_confidence_mean_by_language.png",
+    "Research_Evaluation\\04_figures_llm_pre_post\\verdict_transition_heatmap_overall.png",
     "Research_Evaluation\\README.md",
     "Research_Evaluation\\manifest.json"
   ]

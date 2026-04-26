@@ -10,6 +10,10 @@ Benchmark runners and outputs for performance/quality checks.
 ## Usage
 Run benchmarks after model/config updates to compare regressions.
 
+## Canonical Reporting Note
+- Benchmark outputs are raw working artifacts.
+- For paper/report citation, use curated files under `Research_Evaluation/`.
+
 ## Scope Snapshot
 - Path: `benchmarks/README.md`.
 - Purpose: Benchmark runner and output interpretation guide.

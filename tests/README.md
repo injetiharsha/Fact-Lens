@@ -19,6 +19,11 @@ These are used for:
 - evidence retrieval trace inspection
 - mini benchmark accuracy + neutral-rate comparison
 
+## LLM Pre/Post Artifacts
+- Canonical generated summaries for paper packaging:
+  - `Research_Evaluation/03_tables_llm_pre_post/`
+  - `Research_Evaluation/04_figures_llm_pre_post/`
+
 ## Scope Snapshot
 - Path: `tests/README.md`.
 - Purpose: Test suite scope and where to run validations.

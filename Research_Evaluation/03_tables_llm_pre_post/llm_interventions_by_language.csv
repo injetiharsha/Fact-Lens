@@ -1,0 +1,8 @@
+language,total,llm_triggered,llm_used,verdict_changed,changed_to_neutral,changed_from_neutral,triggered_but_not_used
+en,23,23,20,14,0,14,3
+hi,25,22,17,15,0,15,5
+ta,25,25,24,24,0,24,1
+te,25,22,22,20,0,20,0
+kn,25,19,17,12,0,12,2
+ml,25,25,16,11,0,11,9
+all,148,136,116,96,0,96,20

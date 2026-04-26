@@ -135,6 +135,9 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
   - ingestion split for image/PDF handling.
 - Benchmark numbers are intentionally not duplicated in this README.
 - Use `Research_Evaluation/` as the only canonical source for current evaluation metrics and figures.
+- LLM pre/post verifier delta analysis (tables + plots) is maintained under:
+  - `Research_Evaluation/03_tables_llm_pre_post/`
+  - `Research_Evaluation/04_figures_llm_pre_post/`
 
 ## Architecture Decision Record
 

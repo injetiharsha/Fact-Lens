@@ -1,0 +1,364 @@
+{
+  "generated_at_utc": "2026-04-26T20:12:27.814335+00:00",
+  "sources": [
+    "tests\\benchmarks\\thesis_runs\\20260424_003008_secondary_api_search_v1_both\\failed_pre_post_llm_scores.csv",
+    "tests\\benchmarks\\thesis_runs\\20260424_003008_secondary_api_search_v1_both\\passed_pre_post_llm_scores.csv"
+  ],
+  "rows_total": 148,
+  "accuracy": [
+    {
+      "language": "en",
+      "total": 23,
+      "pre_correct": 0,
+      "post_correct": 12,
+      "pre_accuracy": 0.0,
+      "post_accuracy": 0.5217391304347826,
+      "delta_accuracy": 0.5217391304347826
+    },
+    {
+      "language": "hi",
+      "total": 25,
+      "pre_correct": 2,
+      "post_correct": 15,
+      "pre_accuracy": 0.08,
+      "post_accuracy": 0.6,
+      "delta_accuracy": 0.52
+    },
+    {
+      "language": "ta",
+      "total": 25,
+      "pre_correct": 0,
+      "post_correct": 24,
+      "pre_accuracy": 0.0,
+      "post_accuracy": 0.96,
+      "delta_accuracy": 0.96
+    },
+    {
+      "language": "te",
+      "total": 25,
+      "pre_correct": 3,
+      "post_correct": 23,
+      "pre_accuracy": 0.12,
+      "post_accuracy": 0.92,
+      "delta_accuracy": 0.8
+    },
+    {
+      "language": "kn",
+      "total": 25,
+      "pre_correct": 19,
+      "post_correct": 7,
+      "pre_accuracy": 0.76,
+      "post_accuracy": 0.28,
+      "delta_accuracy": -0.48
+    },
+    {
+      "language": "ml",
+      "total": 25,
+      "pre_correct": 25,
+      "post_correct": 14,
+      "pre_accuracy": 1.0,
+      "post_accuracy": 0.56,
+      "delta_accuracy": -0.44
+    },
+    {
+      "language": "all",
+      "total": 148,
+      "pre_correct": 49,
+      "post_correct": 95,
+      "pre_accuracy": 0.3310810810810811,
+      "post_accuracy": 0.6418918918918919,
+      "delta_accuracy": 0.3108108108108108
+    }
+  ],
+  "interventions": [
+    {
+      "language": "en",
+      "total": 23,
+      "llm_triggered": 23,
+      "llm_used": 20,
+      "verdict_changed": 14,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 14,
+      "triggered_but_not_used": 3
+    },
+    {
+      "language": "hi",
+      "total": 25,
+      "llm_triggered": 22,
+      "llm_used": 17,
+      "verdict_changed": 15,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 15,
+      "triggered_but_not_used": 5
+    },
+    {
+      "language": "ta",
+      "total": 25,
+      "llm_triggered": 25,
+      "llm_used": 24,
+      "verdict_changed": 24,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 24,
+      "triggered_but_not_used": 1
+    },
+    {
+      "language": "te",
+      "total": 25,
+      "llm_triggered": 22,
+      "llm_used": 22,
+      "verdict_changed": 20,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 20,
+      "triggered_but_not_used": 0
+    },
+    {
+      "language": "kn",
+      "total": 25,
+      "llm_triggered": 19,
+      "llm_used": 17,
+      "verdict_changed": 12,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 12,
+      "triggered_but_not_used": 2
+    },
+    {
+      "language": "ml",
+      "total": 25,
+      "llm_triggered": 25,
+      "llm_used": 16,
+      "verdict_changed": 11,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 11,
+      "triggered_but_not_used": 9
+    },
+    {
+      "language": "all",
+      "total": 148,
+      "llm_triggered": 136,
+      "llm_used": 116,
+      "verdict_changed": 96,
+      "changed_to_neutral": 0,
+      "changed_from_neutral": 96,
+      "triggered_but_not_used": 20
+    }
+  ],
+  "transition_rows": [
+    {
+      "language": "en",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "support",
+      "count": 12
+    },
+    {
+      "language": "en",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 2
+    },
+    {
+      "language": "en",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 9
+    },
+    {
+      "language": "hi",
+      "expected": "support",
+      "pre_verdict": "support",
+      "post_verdict": "support",
+      "count": 2
+    },
+    {
+      "language": "hi",
+      "expected": "support",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 1
+    },
+    {
+      "language": "hi",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "support",
+      "count": 13
+    },
+    {
+      "language": "hi",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 2
+    },
+    {
+      "language": "hi",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 7
+    },
+    {
+      "language": "kn",
+      "expected": "neutral",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 6
+    },
+    {
+      "language": "kn",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 12
+    },
+    {
+      "language": "kn",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 7
+    },
+    {
+      "language": "ml",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "support",
+      "count": 3
+    },
+    {
+      "language": "ml",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 8
+    },
+    {
+      "language": "ml",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 14
+    },
+    {
+      "language": "ta",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 24
+    },
+    {
+      "language": "ta",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 1
+    },
+    {
+      "language": "te",
+      "expected": "refute",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 3
+    },
+    {
+      "language": "te",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 20
+    },
+    {
+      "language": "te",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 2
+    },
+    {
+      "language": "all",
+      "expected": "support",
+      "pre_verdict": "support",
+      "post_verdict": "support",
+      "count": 2
+    },
+    {
+      "language": "all",
+      "expected": "support",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 1
+    },
+    {
+      "language": "all",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "support",
+      "count": 25
+    },
+    {
+      "language": "all",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 4
+    },
+    {
+      "language": "all",
+      "expected": "support",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 16
+    },
+    {
+      "language": "all",
+      "expected": "refute",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 3
+    },
+    {
+      "language": "all",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 44
+    },
+    {
+      "language": "all",
+      "expected": "refute",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 3
+    },
+    {
+      "language": "all",
+      "expected": "neutral",
+      "pre_verdict": "refute",
+      "post_verdict": "refute",
+      "count": 6
+    },
+    {
+      "language": "all",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "support",
+      "count": 3
+    },
+    {
+      "language": "all",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "refute",
+      "count": 20
+    },
+    {
+      "language": "all",
+      "expected": "neutral",
+      "pre_verdict": "neutral",
+      "post_verdict": "neutral",
+      "count": 21
+    }
+  ]
+}
