@@ -131,26 +131,8 @@ curl -X POST http://localhost:8000/api/analyze-pdf \
   - verdict verification fallback path (`orchestrator`, `llm_verifier`),
   - query normalization updates (`normalizer`),
   - ingestion split for image/PDF handling.
-
-- Latest benchmark snapshot:
-  - EN 30-claim full pipeline:
-    - accuracy: `0.833` (`25/30`)
-    - neutral rate: `0.10`
-    - dominant stage: `stage5_evidence_gather` (~`605s`)
-  - Multi 30-claim full pipeline:
-    - accuracy: `0.533` (`16/30`)
-    - neutral rate: `0.30`
-    - dominant stage: `stage5_evidence_gather` (~`555s`)
-
-- Current status:
-  - EN path is strong and stable for full-pipeline benchmark runs.
-  - Multi path remains retrieval/stance constrained and is the next optimization focus.
-  - End-to-end runtime is still dominated by retrieval/scrape time, not model inference.
-
-- Next planned scope:
-  - multilingual retrieval quality improvements (query quality + source relevance),
-  - multilingual verifier/provider expansion (Sarvam integration assessment),
-  - stage5 latency reduction without regressing EN accuracy.
+- Benchmark numbers are intentionally not duplicated in this README.
+- Use `Research_Evaluation/` as the only canonical source for current evaluation metrics and figures.
 
 ## Architecture Decision Record
 

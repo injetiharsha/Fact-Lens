@@ -29,8 +29,8 @@ Restructured claim/document analysis pipeline.
 
 ## Recent Progression (April 2026)
 - Stage5 (evidence gather) remains the dominant runtime bottleneck in benchmarks.
-- EN pipeline currently reaches high benchmark stability (25/30 latest run).
-- Multi pipeline accuracy remains lower due to retrieval + stance ambiguity on Indic claims.
+- EN and MULTI benchmark figures are maintained only in `../Research_Evaluation/`.
+- Do not treat this module README as a metrics source.
 - Recent pipeline-level updates include:
   - LLM verifier verdict fallback (when structured evidence updates are not returned),
   - MMR-style reranking support in gatherer (`EVIDENCE_MMR_*`),
