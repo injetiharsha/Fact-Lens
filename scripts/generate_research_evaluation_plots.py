@@ -106,7 +106,7 @@ def _plot_language_grid(lang_payload: Dict[str, dict], out: Path) -> None:
     plt.close(fig)
 
 
-def _plot_accuracy_bars(metrics_df: pd.DataFrame, out_acc: Path, out_checkable: Path, out_neutral: Path) -> None:
+def _plot_accuracy_bars(metrics_df: pd.DataFrame, out_neutral: Path) -> None:
     subset = metrics_df.loc[metrics_df["file"].str.contains("v2_from_252")].copy()
     keep = [
         "parallel_like_results_en_v2_from_252_scrape_upgrade_v1.json",
@@ -136,33 +136,6 @@ def _plot_accuracy_bars(metrics_df: pd.DataFrame, out_acc: Path, out_checkable: 
 
     order = ["EN", "HI", "TA", "TE", "KN", "ML", "MULTI-175"]
     subset = subset.set_index("run").reindex(order).reset_index()
-
-    fig, ax = plt.subplots(figsize=(10, 5))
-    vals = subset["accuracy"].fillna(0).to_numpy()
-    bars = ax.bar(subset["run"], vals, color="#2d6a4f")
-    ax.set_ylim(0, 1)
-    ax.set_ylabel("Accuracy")
-    ax.set_title("Accuracy by Run")
-    for b, v in zip(bars, vals):
-        ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.3f}", ha="center", va="bottom", fontsize=9)
-    fig.tight_layout()
-    fig.savefig(out_acc, dpi=220)
-    plt.close(fig)
-
-    fig, ax = plt.subplots(figsize=(10, 5))
-    cvals = subset["accuracy_checkable_only"].fillna(np.nan).to_numpy()
-    bars = ax.bar(subset["run"], np.nan_to_num(cvals, nan=0.0), color="#1d3557")
-    ax.set_ylim(0, 1)
-    ax.set_ylabel("Checkable-only Accuracy")
-    ax.set_title("Checkable-only Accuracy by Run")
-    for b, v in zip(bars, cvals):
-        if not np.isnan(v):
-            ax.text(b.get_x() + b.get_width() / 2, v + 0.02, f"{v:.3f}", ha="center", va="bottom", fontsize=9)
-        else:
-            ax.text(b.get_x() + b.get_width() / 2, 0.03, "N/A", ha="center", va="bottom", fontsize=8)
-    fig.tight_layout()
-    fig.savefig(out_checkable, dpi=220)
-    plt.close(fig)
 
     fig, ax = plt.subplots(figsize=(10, 5))
     nvals = subset["neutral_rate"].fillna(0).to_numpy()
@@ -258,12 +231,7 @@ def main() -> None:
     _plot_cm(matrix, "Whole 252 Confusion Matrix (3-way)", FIGS / "whole_252_confusion_3way.png")
 
     # Accuracy and rate plots.
-    _plot_accuracy_bars(
-        metrics_df,
-        FIGS / "accuracy_by_language_and_combined.png",
-        FIGS / "checkable_accuracy_by_language_and_combined.png",
-        FIGS / "neutral_rate_by_language_and_combined.png",
-    )
+    _plot_accuracy_bars(metrics_df, FIGS / "neutral_rate_by_language_and_combined.png")
 
     # Verdict distributions.
     _plot_distributions(
