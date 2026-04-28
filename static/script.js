@@ -44,6 +44,24 @@ const modeTips = {
   pdf: "Tip: text-based PDFs work best. Scanned PDFs may need OCR-enabled extraction.",
 };
 
+function getApiBase() {
+  const cfg = String(window.__FACTLENS_API_BASE__ || "").trim();
+  if (cfg) return cfg.replace(/\/+$/, "");
+  const param = new URLSearchParams(window.location.search).get("api_base");
+  if (param && String(param).trim()) return String(param).trim().replace(/\/+$/, "");
+  const stored = String(window.localStorage?.getItem("FACTLENS_API_BASE") || "").trim();
+  if (stored) return stored.replace(/\/+$/, "");
+  return "";
+}
+
+const API_BASE = getApiBase();
+
+function apiUrl(path) {
+  if (!path) return path;
+  if (/^https?:\/\//i.test(path)) return path;
+  return API_BASE ? `${API_BASE}${path}` : path;
+}
+
 const defaultWorkflowStages = {
   claim: ["Input", "Checkability", "Context", "Domain Routing", "Evidence Gathering", "Relevance", "Stance", "Verdict"],
   image: ["Input", "OCR", "Checkability", "Context", "Domain Routing", "Evidence Gathering", "Relevance", "Stance", "Verdict"],
@@ -878,7 +896,7 @@ async function callApiForMode(signal, progressId = null) {
 }
 
 async function postJson(url, body, signal = null, headers = {}) {
-  const response = await fetch(url, {
+  const response = await fetch(apiUrl(url), {
     method: "POST",
     headers: { "Content-Type": "application/json", ...headers },
     body: JSON.stringify(body),
@@ -893,7 +911,7 @@ async function postFile(url, file, signal = null, headers = {}, fields = {}, fil
   Object.entries(fields || {}).forEach(([key, value]) => {
     if (value != null && String(value).trim()) formData.append(key, String(value).trim());
   });
-  const response = await fetch(url, {
+  const response = await fetch(apiUrl(url), {
     method: "POST",
     body: formData,
     headers,
